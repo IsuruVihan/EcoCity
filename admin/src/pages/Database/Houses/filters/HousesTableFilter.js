@@ -1,12 +1,12 @@
 import React from 'react';
 import {Container} from "react-bootstrap";
 
-const Houses = () => {
+const HousesTableFilter = () => {
   return (
     <Container>
-      Houses
+      Houses table filter
     </Container>
   );
 }
 
-export default Houses;
+export default HousesTableFilter;
