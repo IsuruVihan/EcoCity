@@ -4,6 +4,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import LoadingScreen1 from "./screens/LoadingScreen1";
 import LoadingScreen2 from "./screens/LoadingScreen2";
+import Login from "./screens/Login";
 
 const App = () => {
   const Stack = createNativeStackNavigator();
@@ -11,8 +12,9 @@ const App = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="LoadingScreen1">
-        <Stack.Screen name="LoadingScreen1" component={LoadingScreen1} />
-        <Stack.Screen name="LoadingScreen2" component={LoadingScreen2} />
+        <Stack.Screen name="LoadingScreen1" options={{headerShown: false}} component={LoadingScreen1} />
+        <Stack.Screen name="LoadingScreen2" options={{headerShown: false}} component={LoadingScreen2} />
+        <Stack.Screen name="Login" options={{headerShown: false}} component={Login} />
       </Stack.Navigator>
     </NavigationContainer>
   );
