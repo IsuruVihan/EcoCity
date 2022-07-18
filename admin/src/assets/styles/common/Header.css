@@ -1,3 +1,15 @@
-.active{
-    background-color: green;
+.navigation-bar a{
+    text-decoration: none;
+    font-weight: bold;
+    color: #075061;
 }
+
+.active{
+    background-color: #075061;
+    border-radius: 50px;
+    color: white !important;
+}
+.active:hover{
+    color: white;
+}
+

@@ -14,8 +14,8 @@ const Header = () => {
     return (
         <Container className='py-2 px-0'>
             <Navbar className='navigation-bar justify-content-end'>
-               <Link to='/' className={'me-4 '+(url==='/' ? 'active' : '')}>Home</Link>
-               <Link to='/login' className={url==='/login' ? 'active' : ''}>Login</Link>
+               <Link to='/' className={'me-4 px-3 py-2  '+(url==='/' ? 'active' : '')}>Home</Link>
+               <Link to='/login' className={'px-3 py-2 ' + (url==='/login' ? 'active' : '')}>Login</Link>
             </Navbar>
         </Container>
 
