@@ -1,15 +1,19 @@
-.navigation-bar a{
+.navigation-bar a {
     text-decoration: none;
-    font-weight: bold;
     color: #075061;
 }
 
-.active{
+.active {
     background-color: #075061;
     border-radius: 50px;
     color: white !important;
 }
-.active:hover{
+
+.active:hover {
     color: white;
 }
 
+.vertical-divider {
+    border-left: 3px solid #BFDDDE;
+    height: 65px;
+}

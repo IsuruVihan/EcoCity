@@ -9,7 +9,7 @@ import Header from "../../common/Header";
 
 const Home = () => {
   return (
-    <Container className='mx-1 d-flex justify-content-around'>
+    <Container className='d-flex justify-content-around mx-0' fluid>
       <Header />
     </Container>
   );
