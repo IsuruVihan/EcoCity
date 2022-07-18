@@ -1,6 +1,8 @@
 import React, {useEffect} from 'react';
-import {View, Text} from 'react-native';
-import { StackActions } from '@react-navigation/native';
+import {View, Image} from 'react-native';
+import {StackActions} from '@react-navigation/native';
+
+import Logo from "../assets/images/Logo.png";
 
 const LoadingScreen1 = ({navigation}) => {
   useEffect(() => {
@@ -11,8 +13,8 @@ const LoadingScreen1 = ({navigation}) => {
   }, []);
 
   return (
-    <View>
-      <Text>Loading screen 1</Text>
+    <View style={{height: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+      <Image source={Logo} style={{width: 270, height: 270}} />
     </View>
   );
 }
