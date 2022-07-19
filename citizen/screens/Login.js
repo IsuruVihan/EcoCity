@@ -8,7 +8,7 @@ import Banner from '../assets/images/Banner.png';
 import FacebookLogo from '../assets/images/facebook.png';
 import GoogleLogo from '../assets/images/google.png';
 
-const Login = () => {
+const Login = ({navigation}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
@@ -77,7 +77,10 @@ const Login = () => {
             title="Remember me"
             uncheckedColor="#7CB6B8"
           />
-          <Text style={styles.main.form.set3.forgotPassword}>Forgot password?</Text>
+          <Text
+            style={styles.main.form.set3.forgotPassword}
+            onPress={() => navigation.navigate('ForgotPassword')}
+          >Forgot password?</Text>
         </View>
         <View style={styles.main.form.last}>
           <Button
