@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
-import {View, Text, Image, TextInput, TouchableHighlight, StatusBar, Dimensions, StyleSheet} from 'react-native';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import {View, Text, Image, TextInput, TouchableOpacity, StatusBar, Dimensions, StyleSheet} from 'react-native';
+import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import {CheckBox, Button, Icon} from "@rneui/themed";
 
@@ -26,7 +26,7 @@ const Login = ({navigation}) => {
         resetScrollToCoords={{x: 0, y: 0}}
         scrollEnabled={true}
     >
-      <StatusBar hidden={true} />
+      <StatusBar hidden={false} backgroundColor={'#228693'} />
       <View style={styles.main.header}>
         <Image source={Logo2} style={styles.main.header.logo}/>
       </View>
@@ -98,7 +98,7 @@ const Login = ({navigation}) => {
             title={'Sign In'}
             containerStyle={{width: '100%', marginTop: 10, padding: 0,}}
             titleStyle={{fontWeight: 'bold', fontSize: 18,}}
-            buttonStyle={{backgroundColor: '#228693', borderRadius: 5, padding: 15,}}
+            buttonStyle={{backgroundColor: '#228693', borderRadius: 10, padding: 15,}}
           />
         </View>
       </View>
@@ -108,18 +108,18 @@ const Login = ({navigation}) => {
         <Icon name='ios-remove-outline' type='ionicon' color='#075061'/>
       </View>
       <View style={styles.main.options}>
-        <TouchableHighlight style={styles.main.options.touch}>
+        <TouchableOpacity style={styles.main.options.touch}>
           <View style={styles.main.options.touch.view}>
             <Image source={GoogleLogo} style={styles.main.options.touch.view.img}/>
             <Text style={styles.main.options.touch.view.txt}>Google</Text>
           </View>
-        </TouchableHighlight>
-        <TouchableHighlight style={styles.main.options.touch}>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.main.options.touch}>
           <View style={styles.main.options.touch.view}>
             <Image source={FacebookLogo} style={styles.main.options.touch.view.img}/>
             <Text style={styles.main.options.touch.view.txt}>Facebook</Text>
           </View>
-        </TouchableHighlight>
+        </TouchableOpacity>
       </View>
     </KeyboardAwareScrollView>
   );
