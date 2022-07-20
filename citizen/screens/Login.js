@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {View, Text, Image, TextInput, TouchableHighlight, StatusBar, Dimensions, StyleSheet} from 'react-native';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import {CheckBox, Button, Icon} from "@rneui/themed";
 
@@ -26,7 +26,7 @@ const Login = ({navigation}) => {
         resetScrollToCoords={{x: 0, y: 0}}
         scrollEnabled={true}
     >
-      <StatusBar hidden={true} />
+      <StatusBar hidden={false} backgroundColor={'#228693'} />
       <View style={styles.main.header}>
         <Image source={Logo2} style={styles.main.header.logo}/>
       </View>
