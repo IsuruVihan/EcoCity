@@ -30,7 +30,7 @@ const Header = () => {
             <Container className='py-0 mx-0 px-0 bg-transparent shadow-effect top-0' fluid>
                 <Navbar className='navigation-bar mx-0 fs-5 mt-0 pt-1'>
                     <Col className='ps-5' lg={2}>
-                        <Navbar.Brand href="#home">
+                        <Navbar.Brand href="/">
                             <img
                                 src={logo}
                                 height="40"
@@ -45,11 +45,10 @@ const Header = () => {
                         {notificationCount > 0 &&
                             <label className='notification-count position-absolute'>{notificationCount}</label>
                         }
-
                         {isNotificationsVisible && <Notifications/>}
                     </Col>
-                    <Col lg={1} className='pe-2 d-flex align-items-center justify-content-around'>
-                        <label className='ms-5 vertical-divider'/>
+                    <Col lg={1} className='pe-2 d-flex align-items-center justify-content-evenly'>
+                        <label className=' vertical-divider'/>
                         <Image src={logoutIcon} className='logout-icon me-4'/>
                     </Col>
                 </Navbar>

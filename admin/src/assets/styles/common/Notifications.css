@@ -1,6 +1,22 @@
 .notification-container {
     z-index: 100;
     top: 70px;
-    height: 450px;
-    width: 375px;
+    /*height: 450px;*/
+    width: 350px;
+}
+
+.arrow-top {
+    /*margin-top: 40px;*/
+    box-shadow: 0 0 50px rgba(220, 220, 220, 0.46);
+}
+
+.arrow-top:after {
+    content: " ";
+    position: absolute;
+    right: 30px;
+    top: -15px;
+    border-top: none;
+    border-right: 15px solid transparent;
+    border-left: 15px solid transparent;
+    border-bottom: 15px solid white;
 }
