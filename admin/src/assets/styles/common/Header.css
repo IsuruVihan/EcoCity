@@ -1,3 +1,7 @@
+.shadow-effect {
+    box-shadow: 0 0 50px rgba(220, 220, 220, 0.46);
+}
+
 .navigation-bar a {
     text-decoration: none;
     color: #075061;
