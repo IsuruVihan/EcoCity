@@ -88,10 +88,9 @@ const Login = ({navigation}) => {
             title="Remember me"
             uncheckedColor="#7CB6B8"
           />
-          <Text
-            style={styles.main.form.set3.forgotPassword}
-            onPress={() => navigation.navigate('ForgotPassword')}
-          >Forgot password?</Text>
+          <TouchableOpacity onPress={() => navigation.navigate('ForgotPassword')}>
+            <Text style={styles.main.form.set3.forgotPassword}>Forgot password?</Text>
+          </TouchableOpacity>
         </View>
         <View style={styles.main.form.last}>
           <Button
