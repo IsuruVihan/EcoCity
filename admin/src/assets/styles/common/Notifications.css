@@ -1,0 +1,6 @@
+.notification-container {
+    z-index: 100;
+    top: 70px;
+    height: 450px;
+    width: 375px;
+}
