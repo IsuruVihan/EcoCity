@@ -20,16 +20,20 @@ const db = {};
 // Tables
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
-// db.Player = require('./Player')(sequelize, DataTypes);
-// db.Admin = require('./Admin')(sequelize, DataTypes);
-// db.ItemGroup = require('./ItemGroup')(sequelize, DataTypes);
-// db.BorrowRecord = require('./BorrowRecord')(sequelize, DataTypes);
-// db.BorrowedItemGroup = require('./BorrowedItemGroup')(sequelize, DataTypes);
-// db.Coach = require('./Coach')(sequelize, DataTypes);
-// db.Tournament = require('./Tournament')(sequelize, DataTypes);
-// db.TeamPlayer = require('./TeamPlayer')(sequelize, DataTypes);
-// db.PracticeSession = require('./PracticeSession')(sequelize, DataTypes);
-// db.PracticeParticipant = require('./PracticeParticipant')(sequelize, DataTypes);
+db.Admin = require('./Admin')(sequelize, DataTypes);
+db.Bin = require('./Bin')(sequelize, DataTypes);
+db.Complaint = require('./Complaint')(sequelize, DataTypes);
+db.ComplaintMedia = require('./ComplaintMedia')(sequelize, DataTypes);
+db.Driver = require('./Driver')(sequelize, DataTypes);
+db.GarbageCollectingJob = require('./GarbageCollectingJob')(sequelize, DataTypes);
+db.GarbageHub = require('./GarbageHub')(sequelize, DataTypes);
+db.GCJRoute = require('./GCJRoute')(sequelize, DataTypes);
+db.House = require('./House')(sequelize, DataTypes);
+db.MaintenanceCrew = require('./MaintenanceCrew')(sequelize, DataTypes);
+db.MaintenanceJob = require('./MaintenanceJob')(sequelize, DataTypes);
+db.MJRoute = require('./MJRoute')(sequelize, DataTypes);
+db.NFCTag = require('./NFCTag')(sequelize, DataTypes);
+db.Truck = require('./Usage')(sequelize, DataTypes);
 
 /* Relations */
 
