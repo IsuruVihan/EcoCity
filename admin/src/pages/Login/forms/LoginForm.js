@@ -1,10 +1,12 @@
 import React from 'react';
-import {Container} from "react-bootstrap";
+import {Container, Form ,Button , Image} from "react-bootstrap";
+
 
 const LoginForm = () => {
   return (
     <Container>
-      Login form
+      form
+
     </Container>
   );
 }
