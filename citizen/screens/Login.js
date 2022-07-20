@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {View, Text, Image, TextInput, TouchableHighlight, StatusBar, Dimensions, StyleSheet} from 'react-native';
+import {View, Text, Image, TextInput, TouchableOpacity, StatusBar, Dimensions, StyleSheet} from 'react-native';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import {CheckBox, Button, Icon} from "@rneui/themed";
@@ -108,18 +108,18 @@ const Login = ({navigation}) => {
         <Icon name='ios-remove-outline' type='ionicon' color='#075061'/>
       </View>
       <View style={styles.main.options}>
-        <TouchableHighlight style={styles.main.options.touch}>
+        <TouchableOpacity style={styles.main.options.touch}>
           <View style={styles.main.options.touch.view}>
             <Image source={GoogleLogo} style={styles.main.options.touch.view.img}/>
             <Text style={styles.main.options.touch.view.txt}>Google</Text>
           </View>
-        </TouchableHighlight>
-        <TouchableHighlight style={styles.main.options.touch}>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.main.options.touch}>
           <View style={styles.main.options.touch.view}>
             <Image source={FacebookLogo} style={styles.main.options.touch.view.img}/>
             <Text style={styles.main.options.touch.view.txt}>Facebook</Text>
           </View>
-        </TouchableHighlight>
+        </TouchableOpacity>
       </View>
     </KeyboardAwareScrollView>
   );
