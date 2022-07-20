@@ -8,6 +8,7 @@ import ForgotPasswordBanner from "../assets/images/ForgotPasswordBanner.png";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 
 import {Responsive} from "../helpers/Responsive";
+import {StackActions} from "@react-navigation/native";
 
 // const WIDTH = Dimensions.get('window').width;
 const HEIGHT = Dimensions.get('window').height;
@@ -60,6 +61,7 @@ const ForgotPassword = ({navigation}) => {
           containerStyle={{width: '100%', marginTop: 10, padding: 0,}}
           titleStyle={{fontWeight: 'bold', fontSize: 18,}}
           buttonStyle={{backgroundColor: '#228693', borderRadius: 10, padding: 15,}}
+          onPress={() => navigation.dispatch(StackActions.replace('CheckYourMail'))}
         />
       </View>
     </KeyboardAwareScrollView>
