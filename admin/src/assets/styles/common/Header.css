@@ -2,6 +2,11 @@
     box-shadow: 0 0 50px rgba(220, 220, 220, 0.46);
 }
 
+.navigation-bar {
+    border: 2px solid red;
+    font-size: 15px;
+}
+
 .navigation-bar a {
     text-decoration: none;
     color: #075061;
@@ -19,7 +24,7 @@
 
 .vertical-divider {
     border-left: 3px solid #BFDDDE;
-    height: 65px;
+    height: 40px;
 }
 
 /* logout Icon Styles */
@@ -33,21 +38,31 @@
 
 /* Notification Icon Styles */
 .notification-icon {
-    width: 50px;
+    width: 60px;
+    height: 60px;
+    padding: 10px;
 }
 
 .notification-count {
-    margin-top: 30px;
+    font-size: 14px;
+    font-weight: bold;
     background-color: #228693;
     line-height: normal;
     color: white;
     border-radius: 50%;
-    height: 23px;
-    width: 23px;
+    height: 21px;
+    width: 21px;
+    margin-top: 2.6em;
+    margin-right: 5px;
     text-align: center;
 }
 
 /* common class for hover */
 .on-hover:hover * {
     cursor: pointer;
+}
+
+.link {
+    font-weight: bold;
+    font-size: 15px;
 }
