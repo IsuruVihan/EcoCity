@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {View, Text, StyleSheet, Image, TextInput, TouchableHighlight} from 'react-native';
+import {View, Text, Image, TextInput, TouchableHighlight, SafeAreaView, StatusBar, StyleSheet} from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import {CheckBox, Button, Icon} from "@rneui/themed";
 
@@ -15,7 +15,8 @@ const Login = ({navigation}) => {
   const [rememberMe, setRememberMe] = useState(false);
 
   return (
-    <View style={styles.main}>
+    <SafeAreaView style={styles.main}>
+      <StatusBar hidden={true} />
       <View style={styles.main.header}>
         <Image source={Logo2} style={styles.main.header.logo}/>
       </View>
@@ -110,7 +111,7 @@ const Login = ({navigation}) => {
           </View>
         </TouchableHighlight>
       </View>
-    </View>
+    </SafeAreaView>
   );
 }
 
@@ -118,6 +119,7 @@ const styles = StyleSheet.create({
   main: {
     backgroundColor: 'white',
     height: '100%',
+    flex: 1,
     display: 'flex',
     header: {
       height: 60,
