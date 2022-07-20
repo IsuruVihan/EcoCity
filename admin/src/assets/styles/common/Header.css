@@ -18,10 +18,27 @@
     height: 65px;
 }
 
-.logout-icon{
+/* logout Icon Styles */
+.logout-icon {
     width: 25px;
 }
 
-.logout-icon:hover{
+.logout-icon:hover {
     cursor: pointer;
+}
+
+/* Notification Icon Styles */
+.notification-icon {
+    width: 60px;
+}
+
+.notification-count {
+    margin-top: 30px;
+    background-color: #228693;
+    line-height: normal;
+    color: white;
+    border-radius: 50%;
+    height: 23px;
+    width: 23px;
+    text-align: center;
 }

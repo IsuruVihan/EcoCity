@@ -4,11 +4,14 @@ import {Link, useLocation} from "react-router-dom";
 import '../assets/styles/common/Header.css';
 import logo from '../assets/images/Logo1.png';
 import logoutIcon from '../assets/images/icons/log-out.png';
+import notificationIcon from '../assets/images/icons/notification.png';
 
 const Header = () => {
     const location = useLocation();
     const [url, setUrl] = useState(null);
     const [isLoggedIn, setIsLoggedIn] = useState(true);
+    const notificationCount = 4;
+
     //update the url when the location changes
     useEffect(() => {
         setUrl(location.pathname);
@@ -30,16 +33,17 @@ const Header = () => {
                                 alt="React Bootstrap logo"
                             />
                         </Navbar.Brand>
-
                     </Col>
                     <Col lg={7} className='justify-content-end d-flex pe-lg-5'>
-
+                        <Image src={notificationIcon} className='notification-icon' fluid/>
+                        {notificationCount > 0 &&
+                            <label className='notification-count position-absolute me-2 fs-6'>{notificationCount}</label>
+                        }
                     </Col>
                     <Col lg={3} className='vertical-divider ps-lg-5  d-flex align-items-center justify-content-end'>
-                        <Image src={logoutIcon} className='logout-icon' fluid/>
+                        <Image src={logoutIcon} className='logout-icon me-4' fluid/>
                     </Col>
                 </Navbar>
-
             </Container>
         )
     }
