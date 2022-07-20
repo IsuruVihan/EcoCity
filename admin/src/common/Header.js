@@ -27,7 +27,7 @@ const Header = () => {
                         <Navbar.Brand href="#home">
                             <img
                                 src={logo}
-                                height="110"
+                                height="70"
                                 className="d-inline-block align-top"
                                 alt="React Bootstrap logo"
                             />
@@ -37,7 +37,7 @@ const Header = () => {
                         <Image src={notificationIcon} className='notification-icon' fluid/>
                         {notificationCount > 0 &&
                             <label
-                                className='notification-count position-absolute me-2 fs-6'>{notificationCount}</label>
+                                className='notification-count position-absolute me-1 fs-6'>{notificationCount}</label>
                         }
                     </Col>
                     <Col lg={2} className='d-flex align-items-center'>
