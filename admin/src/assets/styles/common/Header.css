@@ -17,3 +17,11 @@
     border-left: 3px solid #BFDDDE;
     height: 65px;
 }
+
+.logout-icon{
+    width: 25px;
+}
+
+.logout-icon:hover{
+    cursor: pointer;
+}
