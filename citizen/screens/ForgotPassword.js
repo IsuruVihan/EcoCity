@@ -1,5 +1,5 @@
 import React from 'react';
-import {Dimensions, Image, StatusBar, StyleSheet, Text, TouchableHighlight, View} from "react-native";
+import {Dimensions, Image, StatusBar, StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import {KeyboardAwareScrollView} from "react-native-keyboard-aware-scroll-view";
 
 import BackBtn from "../assets/images/BackBtn.png";
@@ -17,9 +17,9 @@ const ForgotPassword = ({navigation}) => {
     >
       <StatusBar hidden={false} backgroundColor={'#228693'} />
       <View style={styles.main.header}>
-        <TouchableHighlight onPress={() => navigation.goBack()} style={{backgroundColor: 'white'}}>
+        <TouchableOpacity onPress={() => navigation.navigate('Login')} style={{backgroundColor: 'white'}}>
           <Image source={BackBtn} style={styles.main.header.logo}/>
-        </TouchableHighlight>
+        </TouchableOpacity>
       </View>
     </KeyboardAwareScrollView>
   );
