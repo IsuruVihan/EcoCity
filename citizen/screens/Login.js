@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
-import {View, Text, Image, TextInput, TouchableHighlight, SafeAreaView, StatusBar, StyleSheet} from 'react-native';
+import {View, Text, Image, TextInput, TouchableHighlight, StatusBar, Dimensions, StyleSheet} from 'react-native';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import {CheckBox, Button, Icon} from "@rneui/themed";
 
@@ -8,6 +9,11 @@ import Banner from '../assets/images/Banner.png';
 import FacebookLogo from '../assets/images/facebook.png';
 import GoogleLogo from '../assets/images/google.png';
 
+import {Responsive} from "../helpers/Responsive";
+
+// const WIDTH = Dimensions.get('window').width;
+const HEIGHT = Dimensions.get('window').height;
+
 const Login = ({navigation}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -15,7 +21,11 @@ const Login = ({navigation}) => {
   const [rememberMe, setRememberMe] = useState(false);
 
   return (
-    <SafeAreaView style={styles.main}>
+    <KeyboardAwareScrollView
+        style={styles.main}
+        resetScrollToCoords={{x: 0, y: 0}}
+        scrollEnabled={true}
+    >
       <StatusBar hidden={true} />
       <View style={styles.main.header}>
         <Image source={Logo2} style={styles.main.header.logo}/>
@@ -111,18 +121,17 @@ const Login = ({navigation}) => {
           </View>
         </TouchableHighlight>
       </View>
-    </SafeAreaView>
+    </KeyboardAwareScrollView>
   );
 }
 
 const styles = StyleSheet.create({
   main: {
     backgroundColor: 'white',
-    height: '100%',
     flex: 1,
     display: 'flex',
     header: {
-      height: 60,
+      height: Responsive(10, HEIGHT),
       display: 'flex',
       alignItems: 'flex-start',
       justifyContent: 'center',
@@ -135,19 +144,19 @@ const styles = StyleSheet.create({
       },
     },
     banner: {
-      height: 180,
+      height: Responsive(20, HEIGHT),
       marginHorizontal: 30,
       backgroundColor: 'white',
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
       bannerImg: {
-        width: '60%',
+        width: '50%',
         height: '100%',
       },
     },
     title: {
-      height: 60,
+      height: Responsive(10, HEIGHT),
       marginHorizontal: 30,
       backgroundColor: 'white',
       display: 'flex',
@@ -159,11 +168,11 @@ const styles = StyleSheet.create({
       },
     },
     form: {
-      height: 300,
+      height: Responsive(40, HEIGHT),
       marginHorizontal: 30,
       backgroundColor: 'white',
       inputSet: {
-        marginTop: 20,
+        marginTop: 10,
         label: {
           color: '#075061',
           fontWeight: '500',
@@ -235,7 +244,7 @@ const styles = StyleSheet.create({
         },
       },
       set3: {
-        marginTop: 20,
+        marginTop: 10,
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'space-between',
@@ -253,7 +262,7 @@ const styles = StyleSheet.create({
       },
     },
     divider: {
-      height: 60,
+      height: Responsive(5, HEIGHT),
       marginHorizontal: 30,
       marginTop: 20,
       backgroundColor: 'white',
@@ -267,7 +276,7 @@ const styles = StyleSheet.create({
       },
     },
     options: {
-      height: 80,
+      height: Responsive(10, HEIGHT),
       marginHorizontal: 30,
       backgroundColor: 'white',
       display: 'flex',
