@@ -42,3 +42,8 @@
     width: 23px;
     text-align: center;
 }
+
+/* common class for hover */
+.on-hover:hover *{
+    cursor: pointer;
+}

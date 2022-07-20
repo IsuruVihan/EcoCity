@@ -22,7 +22,6 @@ const Header = () => {
         //Logged In header
         return (
             <Container className='py-2 mx-0 bg-transparent position-absolute top-0' fluid>
-
                 <Navbar className='navigation-bar mx-3 fs-5 mt-0 pt-1'>
                     <Col lg={2}>
                         <Navbar.Brand href="#home">
@@ -34,13 +33,16 @@ const Header = () => {
                             />
                         </Navbar.Brand>
                     </Col>
-                    <Col lg={7} className='justify-content-end d-flex pe-lg-5'>
+                    <Col lg={7} className='justify-content-end d-flex on-hover'>
                         <Image src={notificationIcon} className='notification-icon' fluid/>
                         {notificationCount > 0 &&
                             <label className='notification-count position-absolute me-2 fs-6'>{notificationCount}</label>
                         }
                     </Col>
-                    <Col lg={3} className='vertical-divider ps-lg-5  d-flex align-items-center justify-content-end'>
+                    <Col lg={2} className='d-flex align-items-center'>
+                        <label className='ms-5 vertical-divider'/>
+                    </Col>
+                    <Col lg={1} className='d-flex align-items-center justify-content-end'>
                         <Image src={logoutIcon} className='logout-icon me-4' fluid/>
                     </Col>
                 </Navbar>
