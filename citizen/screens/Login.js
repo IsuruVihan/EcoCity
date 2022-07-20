@@ -98,7 +98,7 @@ const Login = ({navigation}) => {
             title={'Sign In'}
             containerStyle={{width: '100%', marginTop: 10, padding: 0,}}
             titleStyle={{fontWeight: 'bold', fontSize: 18,}}
-            buttonStyle={{backgroundColor: '#228693', borderRadius: 5, padding: 15,}}
+            buttonStyle={{backgroundColor: '#228693', borderRadius: 10, padding: 15,}}
           />
         </View>
       </View>
