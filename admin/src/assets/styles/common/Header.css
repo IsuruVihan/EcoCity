@@ -44,6 +44,6 @@
 }
 
 /* common class for hover */
-.on-hover:hover *{
+.on-hover:hover * {
     cursor: pointer;
 }

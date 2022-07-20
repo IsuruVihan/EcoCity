@@ -36,7 +36,8 @@ const Header = () => {
                     <Col lg={7} className='justify-content-end d-flex on-hover'>
                         <Image src={notificationIcon} className='notification-icon' fluid/>
                         {notificationCount > 0 &&
-                            <label className='notification-count position-absolute me-2 fs-6'>{notificationCount}</label>
+                            <label
+                                className='notification-count position-absolute me-2 fs-6'>{notificationCount}</label>
                         }
                     </Col>
                     <Col lg={2} className='d-flex align-items-center'>
