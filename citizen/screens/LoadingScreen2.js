@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import {View, Image} from 'react-native';
-import { StackActions } from '@react-navigation/native';
+import {StackActions} from '@react-navigation/native';
 
 import LoadingScreen2Img from '../assets/images/LoadingScreen2.png';
 
