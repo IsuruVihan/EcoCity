@@ -1,0 +1,68 @@
+.shadow-effect {
+    box-shadow: 0 0 50px rgba(220, 220, 220, 0.46);
+}
+
+.navigation-bar {
+    border: 2px solid red;
+    font-size: 15px;
+}
+
+.navigation-bar a {
+    text-decoration: none;
+    color: #075061;
+}
+
+.active {
+    background-color: #075061;
+    border-radius: 50px;
+    color: white !important;
+}
+
+.active:hover {
+    color: white;
+}
+
+.vertical-divider {
+    border-left: 3px solid #BFDDDE;
+    height: 40px;
+}
+
+/* logout Icon Styles */
+.logout-icon {
+    width: 20px;
+}
+
+.logout-icon:hover {
+    cursor: pointer;
+}
+
+/* Notification Icon Styles */
+.notification-icon {
+    width: 60px;
+    height: 60px;
+    padding: 10px;
+}
+
+.notification-count {
+    font-size: 14px;
+    font-weight: bold;
+    background-color: #228693;
+    line-height: normal;
+    color: white;
+    border-radius: 50%;
+    height: 21px;
+    width: 21px;
+    margin-top: 2.6em;
+    margin-right: 5px;
+    text-align: center;
+}
+
+/* common class for hover */
+.on-hover:hover * {
+    cursor: pointer;
+}
+
+.link {
+    font-weight: bold;
+    font-size: 15px;
+}

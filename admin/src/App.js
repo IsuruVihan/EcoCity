@@ -24,7 +24,7 @@ const App = () => {
   // const navigate = useNavigate();
 
   return (
-    <Container className="App mx-0" fluid>
+    <Container className="App mx-0 px-0" fluid>
       <Routes>
         <Route path={ '/' } element={ <Home /> }/>
         <Route path={ '/login' } element={ <Login /> }/>
