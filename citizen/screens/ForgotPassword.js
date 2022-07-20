@@ -21,7 +21,7 @@ const ForgotPassword = ({navigation}) => {
       resetScrollToCoords={{x: 0, y: 0}}
       scrollEnabled={true}
     >
-      <StatusBar hidden={false} backgroundColor={'#228693'} />
+      <StatusBar hidden={false} backgroundColor={'#228693'}/>
       <View style={styles.main.header}>
         <TouchableOpacity onPress={() => navigation.navigate('Login')} style={styles.main.header.touchable}>
           <Image source={BackBtn} style={styles.main.header.touchable.logo}/>
