@@ -26,3 +26,8 @@
 //     });
 //   }
 // }
+
+exports.testMiddleware = async (req, res, next) => {
+  req.middlewareMessage = "Hello from middleware!";
+  return next();
+}

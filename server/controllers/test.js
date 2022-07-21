@@ -20,3 +20,9 @@
 //       console.log('> RETRIEVE ITEM QUANTITY ERROR: ', error);
 //     });
 // }
+
+exports.testController = async (req, res) => {
+  return res.status(200).json({
+    message: "Hello from controller!"
+  });
+}
