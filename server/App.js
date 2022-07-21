@@ -21,7 +21,7 @@ app.use(express.urlencoded({extended: true}));
 app.use(cookieParser());
 
 // Routes
-readdirSync('./routes').map((route) => app.use("/api", require(`./routes/${route}`)));
+// readdirSync('./routes').map((route) => app.use("/api", require(`./routes/${route}`)));
 
 // Sync database, listening on port
 db.sequelize.sync({alter: true}).then(() => {
