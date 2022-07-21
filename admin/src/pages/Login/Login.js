@@ -17,8 +17,8 @@ const Login = () => {
           <Image src={sideImage} width={'80%'}/>
         </Col>
         <Col className="px-0 border border-1 border-danger">
-          form
-          {/*<LoginForm/>*/}
+
+          <LoginForm/>
         </Col>
       </Row>
     </Container>
