@@ -9,14 +9,14 @@ import Header from "../../common/Header";
 const Login = () => {
   return (
     <Container className="mx-0 px-0" fluid>
-      <Row className="mx-0 border border-1 border-danger">
+      <Row className="mx-0 border border-1 border-danger mx-0">
         <Header/>
       </Row>
       <Row className="mx-0">
         <Col className="px-0 border border-1 border-primary">
           <Image src={sideImage} width={'80%'}/>
         </Col>
-        <Col className="px-0 border border-1 border-danger">
+        <Col className="px-0 border border-1 border-danger mx-0">
 
           <LoginForm/>
         </Col>
