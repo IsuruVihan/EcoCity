@@ -61,6 +61,7 @@ const LoginForm = () => {
             </div>
             </div>
 
+
             <div className=' m-1 p-1 d-flex' style={{justifyContent:'space-between'}}>
             <div className=' m-1 ' style={{paddingLeft:3 , paddingRight:3}}>
             <input type="checkbox" class="checkbox"/>
