@@ -105,7 +105,7 @@ const LoginForm = () => {
                  <Row className="mx-0 justify-content-center">
                     <Col className="mx-0 pb-5  d-flex justify-content-center ">
                         <div className="d-flex justify-content-space-evenly">
-                            <div className=' rounded-4 border border-2 ' style={{backgroundColor:'#ecfafc' , borderColor:'#ecfafc' , marginLeft:1 ,marginRight:1  ,width:180 ,height:60 }}>
+                            <div className=' rounded-4 border border-2 ' style={{backgroundColor:'#ecfafc' , borderColor:'#ecfafc' , marginLeft:1 ,marginRight:1  ,width:165 ,height:60 }}>
                                 <Link to={'/#'}  className="d-flex justify-content-center text-decoration-none">
                                     <div style={{width:35 , height:35}} className=" m-2" ><Image src={google} fluid></Image></div>
                                     <div  style={{color:'#075061', fontSize:15 , paddingTop:15 , fontWeight:'bold'}}>Google</div>
@@ -113,7 +113,7 @@ const LoginForm = () => {
                             </div>
                         </div>
                         <div className="d-flex justify-content-space-evenly">
-                            <div className=' rounded-4  border border-2' style={{backgroundColor:'#ecfafc' , borderColor:'#ecfafc' , marginLeft:1 ,marginRight:1  ,width:180 ,height:60 }}>
+                            <div className=' rounded-4  border border-2' style={{backgroundColor:'#ecfafc' , borderColor:'#ecfafc' , marginLeft:1 ,marginRight:1  ,width:165 ,height:60 }}>
                                 <Link to={'/#'}  className="d-flex justify-content-center text-decoration-none">
                                     <div style={{width:35 , height:35}} className=" m-2" ><Image src={facebook} fluid></Image></div>
                                     <div  style={{color:'#075061', fontSize:15 , paddingTop:15 , fontWeight:'bold'}}>Facebook</div>
