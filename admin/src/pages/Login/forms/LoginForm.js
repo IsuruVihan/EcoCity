@@ -39,7 +39,7 @@ const LoginForm = () => {
                                         <div className=" pb-1">
                                             <label for="email" style={{color:'#238692' , fontWeight:600}}>Email</label>
                                         </div>
-                                        <div className='d-flex pb-1 ' style={{borderBottom:1 , borderBottom:'solid' , borderBlockColor:'#238692'}}>
+                                        <div className='d-flex pb-1 ' style={{  borderBottom:"2px solid #238692"}}>
                                             <div style={{backgroundSize:'cover'}} >
                                                 <Image src={email} style={{width:20 , height:20}} fluid />
                                             </div>
@@ -56,7 +56,7 @@ const LoginForm = () => {
                                         <div className=" pb-1">
                                             <label htmlFor="password" style={{color: '#238692', fontWeight: 600}}>Password</label>
                                         </div>
-                                        <div className='d-flex pb-1  ' style={{ borderBottom: 1,borderBottom: 'solid',borderBlockColor: '#238692'}}>
+                                        <div className='d-flex pb-1  ' style={{  borderBottom:"2px solid #238692"}}>
                                             <div style={{backgroundSize: 'cover'}}>
                                                 <Image src={password} style={{width: 25, height: 22}} fluid/>
                                             </div>
