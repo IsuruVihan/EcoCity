@@ -30,6 +30,7 @@ const LoginForm = () => {
                     <h1 className="text-center" style={{fontWeight:800 }}>Login</h1>
                 </Row>
                 <Form>
+
                     <Container>
                         <Row className="mx-0 justify-content-center  px-0 ">
                             <Row className="mx-0 justify-content-center  px-0 pt-4">
@@ -93,6 +94,7 @@ const LoginForm = () => {
 
                         </Row>
                     </Container>
+
                 </Form>
                 <Row className="mx-0 justify-content-center d-flex">
                 {/* next container  */}
