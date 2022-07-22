@@ -7,6 +7,7 @@ import LoadingScreen2 from "./screens/LoadingScreen2";
 import Login from "./screens/Login";
 import ForgotPassword from "./screens/ForgotPassword";
 import CheckYourMail from "./screens/CheckYourMail";
+import Welcome from "./screens/Welcome";
 
 const App = () => {
   const Stack = createNativeStackNavigator();
@@ -19,6 +20,7 @@ const App = () => {
         <Stack.Screen name="Login" options={{headerShown: false}} component={Login}/>
         <Stack.Screen name="ForgotPassword" options={{headerShown: false}} component={ForgotPassword}/>
         <Stack.Screen name="CheckYourMail" options={{headerShown: false}} component={CheckYourMail}/>
+        <Stack.Screen name="Welcome" options={{headerShown: false}} component={Welcome}/>
       </Stack.Navigator>
     </NavigationContainer>
   );

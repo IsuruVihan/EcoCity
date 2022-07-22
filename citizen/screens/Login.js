@@ -1,8 +1,9 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {View, Text, Image, TextInput, TouchableOpacity, StatusBar, Dimensions, StyleSheet} from 'react-native';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import {CheckBox, Button, Icon} from "@rneui/themed";
+import auth from '@react-native-firebase/auth';
 
 import Logo2 from '../assets/images/Logo2.png';
 import Banner from '../assets/images/Banner.png';
@@ -10,118 +11,180 @@ import FacebookLogo from '../assets/images/facebook.png';
 import GoogleLogo from '../assets/images/google.png';
 
 import {Responsive} from "../helpers/Responsive";
+import {StackActions} from "@react-navigation/native";
 
 // const WIDTH = Dimensions.get('window').width;
 const HEIGHT = Dimensions.get('window').height;
 
 const Login = ({navigation}) => {
+  // Set an initializing state whilst Firebase connects
+  const [initializing, setInitializing] = useState(true);
+  const [user, setUser] = useState();
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
 
-  return (
-    <KeyboardAwareScrollView
+  // Handle user state changes
+  const onAuthStateChanged = (user) => {
+    setUser(user);
+    if (initializing) setInitializing(false);
+  }
+
+  useEffect(() => {
+    const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
+    return subscriber; // unsubscribe on unmount
+  }, []);
+
+  // Create & login as a sample user (only for testing purpose)
+  const createAndLogin = () => {
+    auth()
+      .createUserWithEmailAndPassword('jane.doe@example.com', 'SuperSecretPassword!')
+      .then(() => {
+        console.log('User account created & signed in!');
+      })
+      .catch(error => {
+        if (error.code === 'auth/email-already-in-use') {
+          console.log('That email address is already in use!');
+        }
+        if (error.code === 'auth/invalid-email') {
+          console.log('That email address is invalid!');
+        }
+        console.error(error);
+      });
+  }
+
+  // Login as an existing user
+  const login = () => {
+    auth()
+      .signInWithEmailAndPassword('jane.doe@example.com', 'SuperSecretPassword!')
+      .then(() => {
+        console.log('Signed in!');
+      })
+      .catch(error => {
+        if (error.code === 'auth/invalid-email') {
+          console.log('That email address is invalid!');
+        }
+        console.error(error);
+      });
+  }
+
+  if (initializing) return null;
+
+  if (!user) {
+    return (
+      <KeyboardAwareScrollView
         style={styles.main}
         resetScrollToCoords={{x: 0, y: 0}}
         scrollEnabled={true}
-    >
-      <StatusBar hidden={false} backgroundColor={'#228693'} />
-      <View style={styles.main.header}>
-        <Image source={Logo2} style={styles.main.header.logo}/>
-      </View>
-      <View style={styles.main.banner}>
-        <Image source={Banner} style={styles.main.banner.bannerImg}/>
-      </View>
-      <View style={styles.main.title}>
-        <Text style={styles.main.title.titleTxt}>Login</Text>
-      </View>
-      <View style={styles.main.form}>
-        <View style={styles.main.form.inputSet}>
-          <Text style={styles.main.form.inputSet.label}>Email</Text>
-          <View style={styles.main.form.inputSet.txtField}>
-            <View style={styles.main.form.inputSet.txtField.icon}>
-              <FontAwesome5 name={'at'} color={'#BFDDDE'} size={20} thin/>
-            </View>
-            <View style={styles.main.form.inputSet.txtField.enterEmail}>
-              <TextInput
-                onChangeText={setEmail}
-                value={email}
-                style={styles.main.form.inputSet.txtField.enterEmail.txtInput}
-              />
+      >
+        <StatusBar hidden={false} backgroundColor={'#228693'}/>
+        <View style={styles.main.header}>
+          <Image source={Logo2} style={styles.main.header.logo}/>
+        </View>
+        <View style={styles.main.banner}>
+          <Image source={Banner} style={styles.main.banner.bannerImg}/>
+        </View>
+        <View style={styles.main.title}>
+          <Text style={styles.main.title.titleTxt}>Login</Text>
+        </View>
+        <View style={styles.main.form}>
+          <View style={styles.main.form.inputSet}>
+            <Text style={styles.main.form.inputSet.label}>Email</Text>
+            <View style={styles.main.form.inputSet.txtField}>
+              <View style={styles.main.form.inputSet.txtField.icon}>
+                <FontAwesome5 name={'at'} color={'#BFDDDE'} size={20} thin/>
+              </View>
+              <View style={styles.main.form.inputSet.txtField.enterEmail}>
+                <TextInput
+                  onChangeText={setEmail}
+                  value={email}
+                  style={styles.main.form.inputSet.txtField.enterEmail.txtInput}
+                />
+              </View>
             </View>
           </View>
-        </View>
-        <View style={styles.main.form.inputSet2}>
-          <Text style={styles.main.form.inputSet2.label}>Password</Text>
-          <View style={styles.main.form.inputSet2.txtField}>
-            <View style={styles.main.form.inputSet2.txtField.icon}>
-              <FontAwesome5 name={'unlock'} color={'#BFDDDE'} size={20} thin/>
-            </View>
-            <View style={styles.main.form.inputSet2.txtField.enterEmail}>
-              <TextInput
-                onChangeText={setPassword}
-                value={password}
-                secureTextEntry={!showPassword}
-                style={styles.main.form.inputSet2.txtField.enterEmail.txtInput}
-              />
-            </View>
-            <View style={styles.main.form.inputSet2.txtField.icon2}>
-              <FontAwesome5
-                onPress={() => setShowPassword(!showPassword)}
-                name={showPassword ? 'eye-slash' : 'eye'}
-                color={'#BFDDDE'}
-                size={20}
-                thin
-              />
+          <View style={styles.main.form.inputSet2}>
+            <Text style={styles.main.form.inputSet2.label}>Password</Text>
+            <View style={styles.main.form.inputSet2.txtField}>
+              <View style={styles.main.form.inputSet2.txtField.icon}>
+                <FontAwesome5 name={'unlock'} color={'#BFDDDE'} size={20} thin/>
+              </View>
+              <View style={styles.main.form.inputSet2.txtField.enterEmail}>
+                <TextInput
+                  onChangeText={setPassword}
+                  value={password}
+                  secureTextEntry={!showPassword}
+                  style={styles.main.form.inputSet2.txtField.enterEmail.txtInput}
+                />
+              </View>
+              <View style={styles.main.form.inputSet2.txtField.icon2}>
+                <FontAwesome5
+                  onPress={() => setShowPassword(!showPassword)}
+                  name={showPassword ? 'eye-slash' : 'eye'}
+                  color={'#BFDDDE'}
+                  size={20}
+                  thin
+                />
+              </View>
             </View>
           </View>
+          <View style={styles.main.form.set3}>
+            <CheckBox
+              checked={rememberMe}
+              onPress={() => setRememberMe(!rememberMe)}
+              checkedColor="#7CB6B8"
+              containerStyle={{marginLeft: 0, marginRight: 0, marginTop: 0, marginBottom: 0, paddingLeft: 0,}}
+              size={30}
+              textStyle={{color: "#7CB6B8", fontWeight: '100',}}
+              title="Remember me"
+              uncheckedColor="#7CB6B8"
+            />
+            <TouchableOpacity onPress={() => navigation.navigate('ForgotPassword')}>
+              <Text style={styles.main.form.set3.forgotPassword}>Forgot password?</Text>
+            </TouchableOpacity>
+          </View>
+          <View style={styles.main.form.last}>
+            <Button
+              title={'Sign In'}
+              containerStyle={{width: '100%', marginTop: 10, padding: 0,}}
+              titleStyle={{fontWeight: 'bold', fontSize: 18,}}
+              buttonStyle={{backgroundColor: '#228693', borderRadius: 10, padding: 15,}}
+              onPress={login}
+            />
+          </View>
         </View>
-        <View style={styles.main.form.set3}>
-          <CheckBox
-            checked={rememberMe}
-            onPress={() => setRememberMe(!rememberMe)}
-            checkedColor="#7CB6B8"
-            containerStyle={{marginLeft: 0, marginRight: 0, marginTop: 0, marginBottom: 0, paddingLeft: 0,}}
-            size={30}
-            textStyle={{color: "#7CB6B8", fontWeight: '100',}}
-            title="Remember me"
-            uncheckedColor="#7CB6B8"
-          />
-          <TouchableOpacity onPress={() => navigation.navigate('ForgotPassword')}>
-            <Text style={styles.main.form.set3.forgotPassword}>Forgot password?</Text>
+        <View style={styles.main.divider}>
+          <Icon name='ios-remove-outline' type='ionicon' color='#075061'/>
+          <Text style={styles.main.divider.signTxt}> Or Sign in with </Text>
+          <Icon name='ios-remove-outline' type='ionicon' color='#075061'/>
+        </View>
+        <View style={styles.main.options}>
+          <TouchableOpacity style={styles.main.options.touch}>
+            <View style={styles.main.options.touch.view}>
+              <Image source={GoogleLogo} style={styles.main.options.touch.view.img}/>
+              <Text style={styles.main.options.touch.view.txt}>Google</Text>
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.main.options.touch}>
+            <View style={styles.main.options.touch.view}>
+              <Image source={FacebookLogo} style={styles.main.options.touch.view.img}/>
+              <Text style={styles.main.options.touch.view.txt}>Facebook</Text>
+            </View>
           </TouchableOpacity>
         </View>
-        <View style={styles.main.form.last}>
-          <Button
-            title={'Sign In'}
-            containerStyle={{width: '100%', marginTop: 10, padding: 0,}}
-            titleStyle={{fontWeight: 'bold', fontSize: 18,}}
-            buttonStyle={{backgroundColor: '#228693', borderRadius: 10, padding: 15,}}
-          />
-        </View>
-      </View>
-      <View style={styles.main.divider}>
-        <Icon name='ios-remove-outline' type='ionicon' color='#075061'/>
-        <Text style={styles.main.divider.signTxt}> Or Sign in with </Text>
-        <Icon name='ios-remove-outline' type='ionicon' color='#075061'/>
-      </View>
-      <View style={styles.main.options}>
-        <TouchableOpacity style={styles.main.options.touch}>
-          <View style={styles.main.options.touch.view}>
-            <Image source={GoogleLogo} style={styles.main.options.touch.view.img}/>
-            <Text style={styles.main.options.touch.view.txt}>Google</Text>
-          </View>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.main.options.touch}>
-          <View style={styles.main.options.touch.view}>
-            <Image source={FacebookLogo} style={styles.main.options.touch.view.img}/>
-            <Text style={styles.main.options.touch.view.txt}>Facebook</Text>
-          </View>
-        </TouchableOpacity>
-      </View>
-    </KeyboardAwareScrollView>
-  );
+      </KeyboardAwareScrollView>
+    );
+  }
+
+  // return (
+  //   <View>
+  //     <Text>Welcome {user.email}</Text>
+  //     <Button onPress={logout} title={'Logout'}/>
+  //   </View>
+  // );
+  return navigation.dispatch(StackActions.replace('Welcome'));
 }
 
 const styles = StyleSheet.create({
