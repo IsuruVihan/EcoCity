@@ -36,7 +36,7 @@ const LoginForm = () => {
                       <Container style={{borderBottom:'2px solid #238692'}} className="pe-1 ps-1  border-1 ">
                         <Col >
                             <Row className="pb-1">
-                              <label htmlFor="email" style={{color: '#238692', fontWeight: 600}}>Email</label>
+                              <label htmlFor="email" style={{color: '#238692', fontWeight: 700}}>Email</label>
                             </Row>
                             <Row >
                               <Col >
@@ -54,7 +54,7 @@ const LoginForm = () => {
                       <Container style={{borderBottom:'2px solid #238692'}} className="pe-1 ps-1  border-1">
                         <Col>
                           < Row className="pb-1">
-                                <label htmlFor="email" style={{color: '#238692', fontWeight: 600}}>Password</label>
+                                <label htmlFor="email" style={{color: '#238692', fontWeight: 700}}>Password</label>
                           </Row>
                           <Row >
                               <Col >
