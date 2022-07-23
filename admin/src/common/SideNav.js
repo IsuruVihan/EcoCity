@@ -1,11 +1,11 @@
 import React from 'react';
-import {Container} from "react-bootstrap";
+import {Col} from "react-bootstrap";
 
 const SideNav = () => {
   return (
-    <Container>
+    <Col className='border-red' lg={2}>
       Side navbar
-    </Container>
+    </Col>
   );
 }
 
