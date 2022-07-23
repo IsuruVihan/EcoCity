@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { Provider } from 'react-redux'
-
+import {NavigationContainer} from '@react-navigation/native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {Provider} from 'react-redux';
+import Toast from 'react-native-toast-message';
 
 import LoadingScreen1 from "./screens/LoadingScreen1";
 import LoadingScreen2 from "./screens/LoadingScreen2";
@@ -11,7 +11,7 @@ import ForgotPassword from "./screens/ForgotPassword";
 import CheckYourMail from "./screens/CheckYourMail";
 import Welcome from "./screens/Welcome";
 
-import { store } from './redux/store';
+import {store} from './redux/store';
 
 const App = () => {
   const Stack = createNativeStackNavigator();
@@ -28,6 +28,7 @@ const App = () => {
           <Stack.Screen name="Welcome" options={{headerShown: false}} component={Welcome}/>
         </Stack.Navigator>
       </Provider>
+      <Toast/>
     </NavigationContainer>
   );
 }

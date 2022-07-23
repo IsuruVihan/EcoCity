@@ -1,9 +1,11 @@
-import React, {useState, useEffect} from 'react';
-import {View, Text, Image, TextInput, TouchableOpacity, StatusBar, Dimensions, StyleSheet} from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {Dimensions, Image, StatusBar, StyleSheet, Text, TextInput, TouchableOpacity, View} from 'react-native';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
-import {CheckBox, Button, Icon} from "@rneui/themed";
+import {Button, CheckBox, Icon} from "@rneui/themed";
 import auth from '@react-native-firebase/auth';
+import {useDispatch, useSelector} from "react-redux";
+import Toast from 'react-native-toast-message';
 
 import Logo2 from '../assets/images/Logo2.png';
 import Banner from '../assets/images/Banner.png';
@@ -12,55 +14,50 @@ import GoogleLogo from '../assets/images/google.png';
 
 import {Responsive} from "../helpers/Responsive";
 import {StackActions} from "@react-navigation/native";
+import {login} from '../redux/features/user.feature';
 
 // const WIDTH = Dimensions.get('window').width;
 const HEIGHT = Dimensions.get('window').height;
 
 const Login = ({navigation}) => {
-  // Set an initializing state whilst Firebase connects
+  const dispatch = useDispatch();
+
+  let userState = useSelector((state) => {
+    return state['user'];
+  });
+  let {user} = userState;
+
   const [initializing, setInitializing] = useState(true);
-  const [user, setUser] = useState();
+  // const [fUser, setFUser] = useState();
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [showPassword, setShowPassword] = useState(false);
+  const [showPassword, setShowPassword] = useState(true);
   const [rememberMe, setRememberMe] = useState(false);
 
   // Handle user state changes
   const onAuthStateChanged = (user) => {
-    setUser(user);
+    if (!(user == null)) dispatch(login(user.email));
     if (initializing) setInitializing(false);
   }
 
   useEffect(() => {
-    const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
-    return subscriber; // unsubscribe on unmount
+    return auth().onAuthStateChanged(onAuthStateChanged); // unsubscribe on unmount
   }, []);
 
-  // Create & login as a sample user (only for testing purpose)
-  const createAndLogin = () => {
-    auth()
-      .createUserWithEmailAndPassword('jane.doe@example.com', 'SuperSecretPassword!')
-      .then(() => {
-        console.log('User account created & signed in!');
-      })
-      .catch(error => {
-        if (error.code === 'auth/email-already-in-use') {
-          console.log('That email address is already in use!');
-        }
-        if (error.code === 'auth/invalid-email') {
-          console.log('That email address is invalid!');
-        }
-        console.error(error);
-      });
-  }
-
   // Login as an existing user
-  const login = () => {
+  const loginUser = () => {
+    if (email === '' || password === '') return;
     auth()
-      .signInWithEmailAndPassword('jane.doe@example.com', 'SuperSecretPassword!')
+      .signInWithEmailAndPassword(email, password)
       .then(() => {
         console.log('Signed in!');
+        Toast.show({
+          type: 'success',
+          text1: 'Hello!',
+          text2: `Welcome back "${email}!"`
+        });
+        dispatch(login(email));
       })
       .catch(error => {
         if (error.code === 'auth/invalid-email') {
@@ -72,7 +69,7 @@ const Login = ({navigation}) => {
 
   if (initializing) return null;
 
-  if (!user) {
+  if (user === '') {
     return (
       <KeyboardAwareScrollView
         style={styles.main}
@@ -115,7 +112,7 @@ const Login = ({navigation}) => {
                 <TextInput
                   onChangeText={setPassword}
                   value={password}
-                  secureTextEntry={!showPassword}
+                  secureTextEntry={showPassword}
                   style={styles.main.form.inputSet2.txtField.enterEmail.txtInput}
                 />
               </View>
@@ -151,7 +148,7 @@ const Login = ({navigation}) => {
               containerStyle={{width: '100%', marginTop: 10, padding: 0,}}
               titleStyle={{fontWeight: 'bold', fontSize: 18,}}
               buttonStyle={{backgroundColor: '#228693', borderRadius: 10, padding: 15,}}
-              onPress={login}
+              onPress={loginUser}
             />
           </View>
         </View>
@@ -178,12 +175,6 @@ const Login = ({navigation}) => {
     );
   }
 
-  // return (
-  //   <View>
-  //     <Text>Welcome {user.email}</Text>
-  //     <Button onPress={logout} title={'Logout'}/>
-  //   </View>
-  // );
   return navigation.dispatch(StackActions.replace('Welcome'));
 }
 
