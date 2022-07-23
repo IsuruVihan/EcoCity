@@ -1,4 +1,4 @@
-import React from 'react';
+import React , {useState} from 'react';
 import {Container, Button, Image, Row, Col , Form} from "react-bootstrap";
 import {Link} from 'react-router-dom';
 
@@ -10,122 +10,151 @@ import hline from '../../../assets/images/icons/horizontalLine.png';
 import password from '../../../assets/images/icons/password.png';
 import eye from '../../../assets/images/icons/eye.png';
 import email from '../../../assets/images/icons/email.png';
-import vline from '../../../assets/images/icons/verticalLine.png';
+
 
 
 
 const LoginForm = () => {
-    function showPassword() {
-        var x = document.getElementById("password");
-        if (x.type === "password") {
-          x.type = "text";
-        } else {
-          x.type = "password";
-        }
-      }
+    const [passwordShown, setPasswordShown] = useState(false);
+
+    const togglePassword = () => {
+        // When the handler is invoked
+        // inverse the boolean state of passwordShown
+        setPasswordShown(!passwordShown);
+    };
   return (
-      <Container fluid className='mx-0 border border-2 border-danger'>
-            <div className="ps-3 pe-3">
-                <Row className="mx-0 justify-content-center  p-4 ">
-                    <h1 className="text-center" style={{fontWeight:800 }}>Login</h1>
-                </Row>
-                <Form>
 
-                    <Container>
-                        <Row className="mx-0 justify-content-center  px-0 ">
-                            <Row className="mx-0 justify-content-center  px-0 pt-4">
-                                <Col style={{paddingLeft:85 , paddingRight:85}}>
-                                    <div className=' m-1 p-1'>
-                                        <div className=" pb-1">
-                                            <label for="email" style={{color:'#238692' , fontWeight:600}}>Email</label>
-                                        </div>
-                                        <div className='d-flex pb-1 ' style={{borderBottom:1 , borderBottom:'solid' , borderBlockColor:'#238692'}}>
-                                            <div style={{backgroundSize:'cover'}} >
-                                                <Image src={email} style={{width:20 , height:20}} fluid />
-                                            </div>
-                                            <div>
-                                                <input type="text" style={{width:330 , border:'none' , outline:'none'}}/>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </Col>
+      <Container className="border border-1 border-success h-100 "  >
+          <Row className="border border-1 border-primary justify-content-md-center p-5 " >
+              <h1 className="text-center" style={{fontWeight:800 }}>Login</h1>
+          </Row>
+          <Row>
+              <Col  className="p-1">
+              </Col>
+              <Col className="border border-1 border-warning pt-2" xs={7}>
+                  <Row className="pb-5">
+                      <Container style={{borderBottom:'2px solid #238692'}} className="pe-1 ps-1  border-1 ">
+                        <Col >
+                            <Row className="pb-1">
+                              <label htmlFor="email" style={{color: '#238692', fontWeight: 600}}>Email</label>
                             </Row>
-                            <Row className="mx-0 justify-content-center  px-0 pt-4 ">
-                                <Col style={{paddingLeft:85 , paddingRight:85}}>
-                                    <div className=' m-1 p-1  '>
-                                        <div className=" pb-1">
-                                            <label htmlFor="password" style={{color: '#238692', fontWeight: 600}}>Password</label>
-                                        </div>
-                                        <div className='d-flex pb-1  ' style={{ borderBottom: 1,borderBottom: 'solid',borderBlockColor: '#238692'}}>
-                                            <div style={{backgroundSize: 'cover'}}>
-                                                <Image src={password} style={{width: 25, height: 22}} fluid/>
-                                            </div>
-                                            <div>
-                                                <input type="password" id="password" style={{width: 330, border: 'none', outline: 'none'}}/>
-                                            </div>
-                                            <div  className="d-flex  mx-0  px-0  " >
-                                                <div style={{width:20 ,height:30}}><Image src={vline} fluid/></div>
-                                                <button style={{border:'none' , outline:'none' , backgroundColor:'#fff'}} onClick={showPassword}> <div  style={{width:20 ,height:30}}><Image src={eye} fluid/></div> </button>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </Col>
+                            <Row >
+                              <Col >
+                                    <Image style={{width:20 ,height:20}} src={email} fluid/>
+                              </Col>
+                              <Col xs={9} className="p-1">
+                                    <input type="text" style={{ border:'none' , outline:'none'}}/>
+                              </Col>
+                              <Col ></Col>
                             </Row>
-                            <Row className="mx-0 justify-content-center  px-0 ">
-                                <Col style={{paddingLeft:85 , paddingRight:85}} className="d-flex justify-content-between">
-                                    <div className=' m-1 p-1'>
-                                        <input  type="checkbox" />
-                                        <label style={{color:'#bfddde' }}>Remember me</label>
-                                    </div>
-                                    <div className=' m-1 p-1  '>
-                                        <Link to={'/forgot-password'} style={{color:'#bfddde'}}>Forget-password?</Link>
-                                    </div>
-                                </Col>
-                            </Row>
+                        </Col>
+                      </Container>
+                  </Row>
+                  <Row className="pb-3">
+                      <Container style={{borderBottom:'2px solid #238692'}} className="pe-1 ps-1  border-1">
+                        <Col>
+                          < Row className="pb-1">
+                                <label htmlFor="email" style={{color: '#238692', fontWeight: 600}}>Password</label>
+                          </Row>
+                          <Row >
+                              <Col >
+                                    <Image style={{width:20 ,height:20}} src={password} fluid/>
+                              </Col>
+                              <Col xs={9} className="p-1">
+                                    <input type={passwordShown ? "text" : "password"} style={{ border:'none' , outline:'none'}}/>
+                              </Col>
+                              <Col style={{borderLeft:"2px solid #bfddde"}} >
+                                       <button onClick={togglePassword} style={{border:'none' , outline:'none' , backgroundColor:"#fff" }}>
+                                           <Image src={eye} fluid/>
+                                       </button>
+                              </Col>
+                          </Row>
+                        </Col>
+                      </Container>
+                      <Container className="pe-1 ps-1">
+                          <Row className="pt-2  ">
+                              <Col >
+                                  <input  type="checkbox" />
+                                  <label style={{color:'#bfddde' }}>Remember me</label>
+                              </Col>
+                              <Col style={{textAlign:'right'}} >
+                                  <Link to={'/forgot-password'} style={{color:'#bfddde'}} >Forgot password?</Link>
+                              </Col>
+                          </Row>
+                      </Container>
 
-                            <Row className="mx-0 justify-content-center p-2 px-0 ps-5 pe-5">
-                                <div style={{paddingLeft:80 , paddingRight:80}} >
-                                    <Button variant="primary" type="submit" className="shadow " style={{backgroundColor:'#238692' , fontSize:20 ,paddingTop:10, width:'100%' , justifyContent:'center' ,paddingBottom:10, borderRadius:15  , outline:'none' , border:1 , borderColor:'red' , }}>
-                                        Sign In
-                                    </Button>
-                                </div>
-                            </Row>
-
-                        </Row>
-                    </Container>
-
-                </Form>
-                <Row className="mx-0 justify-content-center d-flex">
-                {/* next container  */}
-                    <div className="d-flex justify-content-center " >
-                        <div className=" pt-1"><Image src={hline}/></div>
-                            <div ><p className="text-center pt-3 ps-2 pe-2" style={{color:'#075061'}} >Or sign In with</p></div>
-                        <div className=" pt-1"><Image src={hline}/></div>
-                    </div>
-                 </Row>
-                 <Row className="mx-0 justify-content-center">
-                    <Col className="mx-0 pb-5  d-flex justify-content-center ">
-                        <div className="d-flex justify-content-space-evenly">
-                            <div className=' rounded-4 border border-2 ' style={{backgroundColor:'#ecfafc' , borderColor:'#ecfafc' , marginLeft:1 ,marginRight:1  ,width:165 ,height:60 }}>
-                                <Link to={'/#'}  className="d-flex justify-content-center text-decoration-none">
-                                    <div style={{width:35 , height:35}} className=" m-2" ><Image src={google} fluid></Image></div>
-                                    <div  style={{color:'#075061', fontSize:15 , paddingTop:15 , fontWeight:'bold'}}> Google</div>
+                  </Row>
+                  <Row className=" justify-content-center">
+                        <Col xs={10} >
+                            <Button variant="primary" type="submit" className="shadow "
+                                    style={{backgroundColor:'#238692' ,
+                                            fontSize:20 ,
+                                            paddingTop:10,
+                                            width:'100%' ,
+                                            justifyContent:'center' ,
+                                            paddingBottom:10,
+                                            borderRadius:15  ,
+                                            outline:'none' ,
+                                            border:1 ,
+                                            borderColor:'red' , }}>
+                                Sign In
+                            </Button>
+                        </Col>
+                  </Row>
+                  <Row >
+                      <Col>
+                          <Row className="p-2">
+                              <Col className="d-flex" style={{justifyContent:'center' , alignItem:'center'}}>
+                                  <Image src={hline}/>
+                                  <p className="text-center pt-2"
+                                     style={{color:'#075061'}} >
+                                      Or sign In with
+                                  </p>
+                                  <Image src={hline}/>
+                              </Col>
+                          </Row>
+                      </Col>
+                  </Row>
+                  <Row>
+                      <Col></Col>
+                      <Col className=" d-flex justify-content-between" xs={10}  >
+                        <Container className="border border-1 me-1  d-flex rounded-3 " style={{backgroundColor:'#ecfafc'}}>
+                            <Col className="p-1">
+                                <Image src={google} fluid/>
+                            </Col>
+                            <Col xs={7} className="pt-3">
+                                <Link to={'/#'}  className="d-flex justify-content-center text-decoration-none"
+                                      style={{color:'#075061',
+                                          fontSize:13 ,
+                                          fontWeight:'bold'}}>
+                                    Google
                                 </Link>
-                            </div>
-                        </div>
-                        <div className="d-flex justify-content-space-evenly">
-                            <div className=' rounded-4  border border-2' style={{backgroundColor:'#ecfafc' , borderColor:'#ecfafc' , marginLeft:1 ,marginRight:1  ,width:165 ,height:60 }}>
-                                <Link to={'/#'}  className="d-flex justify-content-center text-decoration-none">
-                                    <div style={{width:35 , height:35}} className=" m-2" ><Image src={facebook} fluid></Image></div>
-                                    <div  style={{color:'#075061', fontSize:15 , paddingTop:15 , fontWeight:'bold'}}>Facebook</div>
-                                </Link>
-                            </div>
-                        </div>
-                    </Col>
-                 </Row>
-            </div>
+                            </Col>
+                        </Container>
+                        <Container className="border border-1  ms-1 d-flex rounded-3" style={{backgroundColor:'#ecfafc'}}>
+                            <Col className="p-1">
+                                  <Image src={facebook} fluid/>
+                            </Col>
+                            <Col xs={7} className="pt-3">
+                                  <Link to={'/#'}  className="d-flex justify-content-center text-decoration-none"
+                                        style={{color:'#075061',
+                                            fontSize:13 ,
+                                            fontWeight:'bold'}}>
+                                      Facebook
+                                  </Link>
+                            </Col>
+                        </Container>
+                      </Col>
+                      <Col></Col>
+                  </Row>
+              </Col>
+              <Col >
+
+              </Col>
+          </Row>
       </Container>
+
+
   );
 }
 
