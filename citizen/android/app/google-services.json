@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "57064371114",
+    "project_id": "ecocity-fb94a",
+    "storage_bucket": "ecocity-fb94a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:57064371114:android:789bc147f6453a7693b1d3",
+        "android_client_info": {
+          "package_name": "com.citizen"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "57064371114-adp59njkkmdmd4er9f9ct78m2ci9b0ae.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBlTyIYPhcEBYY3-HotT7_yKrZ2y_UuBvQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "57064371114-adp59njkkmdmd4er9f9ct78m2ci9b0ae.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
