@@ -9,7 +9,6 @@ const Footer = () => {
             <div className='footer-text mb-2'>
                 &copy; EcoCity {(new Date().getFullYear())}
             </div>
-
         </Row>
     );
 }
