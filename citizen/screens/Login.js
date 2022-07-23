@@ -47,7 +47,15 @@ const Login = ({navigation}) => {
 
   // Login as an existing user
   const loginUser = () => {
-    if (email === '' || password === '') return;
+    if (email === '' || password === '') {
+      Toast.show({
+        type: 'error',
+        text1: 'Login error',
+        text2: 'Please enter your email and password',
+        topOffset: 10,
+      });
+      return;
+    }
     auth()
       .signInWithEmailAndPassword(email, password)
       .then(() => {
@@ -55,15 +63,27 @@ const Login = ({navigation}) => {
         Toast.show({
           type: 'success',
           text1: 'Hello!',
-          text2: `Welcome back "${email}!"`
+          text2: `Welcome back "${email}!"`,
+          topOffset: 10,
         });
         dispatch(login(email));
       })
       .catch(error => {
         if (error.code === 'auth/invalid-email') {
-          console.log('That email address is invalid!');
+          Toast.show({
+            type: 'error',
+            text1: 'Login error',
+            text2: 'That email address is invalid!',
+            topOffset: 10,
+          });
+        } else {
+          Toast.show({
+            type: 'error',
+            text1: 'Login error',
+            text2: 'Email and password combination is not matching!',
+            topOffset: 10,
+          });
         }
-        console.error(error);
       });
   }
 
