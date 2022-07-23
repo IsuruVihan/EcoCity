@@ -24,7 +24,7 @@ const App = () => {
   // const navigate = useNavigate();
 
   return (
-    <Container className="App mx-0 px-0" fluid>
+    <div className="App mx-0 px-0 h-100" >
       <Routes>
         <Route path={ '/' } element={ <Home /> }/>
         <Route path={ '/login' } element={ <Login /> }/>
@@ -42,7 +42,7 @@ const App = () => {
         <Route path={ '/maintenance' } element={ <MaintenanceJobs /> }/>
         <Route path={ '/garbage-collection' } element={ <GarbageCollectionRides /> }/>
       </Routes>
-    </Container>
+    </div>
   );
 };
 

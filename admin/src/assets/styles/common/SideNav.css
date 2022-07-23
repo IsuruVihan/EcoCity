@@ -1,0 +1,36 @@
+.side-navigation{
+    background-color: white;
+}
+.side-navigation ul li{
+    margin-top: 5px;
+    font-size: 15px;
+}
+.side-navigation ul li img{
+    width: 22px;
+    margin-right: 10px;
+}
+.side-navigation a{
+    text-decoration: none;
+}
+.active-item{
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    align-items: center;
+}
+
+.active-item a{
+    color: #075061;
+    align-items: center !important;
+    width: fit-content;
+}
+
+.inactive-item{
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    align-items: center;
+}
+
+.inactive-item a{
+    color: #B9B9B9;
+}
+

@@ -27,7 +27,7 @@ const Header = () => {
 
         //Logged In header
         return (
-            <Row className='py-0 mx-0 px-0 bg-transparent shadow-effect top-0' fluid>
+            <Row className='py-0 mx-0 px-0 bg-transparent shadow-effect w-100 top-0 position-fixed'>
                 <Navbar className='navigation-bar mx-0 fs-5 mt-0 pt-1'>
                     <Col className='ps-5' lg={2}>
                         <Navbar.Brand href="/">
