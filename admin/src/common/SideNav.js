@@ -9,6 +9,13 @@ import complaintsIcon from '../assets/images/icons/NavBar/selectedComplaints.png
 import maintenanceIcon from '../assets/images/icons/NavBar/selectedMaintanance.png';
 import truckIcon from '../assets/images/icons/NavBar/selectedTruck.png';
 
+import unselectedDashboardIcon from '../assets/images/icons/NavBar/unselectedDashboard.png';
+import unselectedDatabaseIcon from '../assets/images/icons/NavBar/unselectedDatabse.png';
+import unselectedAreaMapIcon from '../assets/images/icons/NavBar/unSelectedAreaMap.png';
+import unselectedComplaintsIcon from '../assets/images/icons/NavBar/unselectedComplaints.png';
+import unselectedMaintenanceIcon from '../assets/images/icons/NavBar/unselectedMaintenance.png';
+import unselectedTruckIcon from '../assets/images/icons/NavBar/unselectedTruck.png';
+
 
 const SideNav = () => {
 
@@ -22,11 +29,14 @@ const SideNav = () => {
     }, [location]);
 
     useEffect(() => {
-        if (url.includes('/database')) {
-            if (!showSubNav) {
-                setShowSubNav(true);
-            }
+        if(!showSubNav){
+            console.log('changed')
         }
+        // if (url.includes('/database')) {
+        //     if (!showSubNav) {
+        //         setShowSubNav(true);
+        //     }
+        // }
     }, [url]);
 
     const handleOnDBClicked = () => {
@@ -38,7 +48,7 @@ const SideNav = () => {
             <ul className='list-unstyled h-100 d-grid justify-content-evenly align-content-around '>
                 <Link to='/dashboard'>
                     <li className={url === '/dashboard' ? 'active-item' : 'inactive-item'}>
-                        <Image src={dashboardIcon} fluid/>
+                        <Image src={url === '/dashboard' ? dashboardIcon : unselectedDashboardIcon} fluid/>
                         Dashboard
                     </li>
                 </Link>
@@ -46,7 +56,7 @@ const SideNav = () => {
                 <Link to='/database/garbage-hubs'>
                     <li className={url.includes('/database') ? 'active-item' : 'inactive-item'}
                         onClick={handleOnDBClicked}>
-                        <Image src={databaseIcon} fluid/>
+                        <Image src={url.includes('/database') ? databaseIcon : unselectedDatabaseIcon} fluid/>
                         Database
                     </li>
                 </Link>
@@ -75,28 +85,28 @@ const SideNav = () => {
                 }
                 <Link to='/area-map'>
                     <li className={url === '/area-map' ? 'active-item' : 'inactive-item'}>
-                        <Image src={areaMapIcon} fluid/>
+                        <Image src={url === '/area-map' ? areaMapIcon : unselectedAreaMapIcon} fluid/>
                         Area Map
                     </li>
                 </Link>
 
                 <Link to='/complaints'>
                     <li className={url === '/complaints' ? 'active-item' : 'inactive-item'}>
-                        <Image src={complaintsIcon} fluid/>
+                        <Image src={url === '/complaints' ? complaintsIcon : unselectedComplaintsIcon} fluid/>
                         Complaints
                     </li>
                 </Link>
 
                 <Link to='/maintenance'>
                     <li className={url === '/maintenance' ? 'active-item' : 'inactive-item'}>
-                        <Image src={maintenanceIcon} fluid/>
+                        <Image src={url === '/maintenance' ? maintenanceIcon : unselectedMaintenanceIcon} fluid/>
                         Maintenance
                     </li>
                 </Link>
 
                 <Link to='/garbage-collection'>
                     <li className={url === '/garbage-collection' ? 'active-item' : 'inactive-item'}>
-                        <Image src={truckIcon} fluid/>
+                        <Image src={url === '/garbage-collection' ? truckIcon : unselectedTruckIcon} fluid/>
                         Garbage Collection
                     </li>
                 </Link>
