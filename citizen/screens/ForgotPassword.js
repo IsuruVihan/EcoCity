@@ -37,31 +37,31 @@ const ForgotPassword = ({navigation}) => {
       </View>
       <View style={styles.main.description}>
         <Text style={styles.main.description.txt}>
-          Don't worry! it happens. Please enter the email address associated with your account.
+          Don't worry! it happens. Please contact your municipal council administrator to reset your password.
         </Text>
       </View>
-      <View style={styles.main.inputSet}>
-        <Text style={styles.main.inputSet.label}>Email</Text>
-        <View style={styles.main.inputSet.txtField}>
-          <View style={styles.main.inputSet.txtField.icon}>
-            <FontAwesome5 name={'at'} color={'#BFDDDE'} size={20} thin/>
-          </View>
-          <View style={styles.main.inputSet.txtField.enterEmail}>
-            <TextInput
-              onChangeText={setEmail}
-              value={email}
-              style={styles.main.inputSet.txtField.enterEmail.txtInput}
-            />
-          </View>
-        </View>
-      </View>
+      {/*<View style={styles.main.inputSet}>*/}
+      {/*  <Text style={styles.main.inputSet.label}>Email</Text>*/}
+      {/*  <View style={styles.main.inputSet.txtField}>*/}
+      {/*    <View style={styles.main.inputSet.txtField.icon}>*/}
+      {/*      <FontAwesome5 name={'at'} color={'#BFDDDE'} size={20} thin/>*/}
+      {/*    </View>*/}
+      {/*    <View style={styles.main.inputSet.txtField.enterEmail}>*/}
+      {/*      <TextInput*/}
+      {/*        onChangeText={setEmail}*/}
+      {/*        value={email}*/}
+      {/*        style={styles.main.inputSet.txtField.enterEmail.txtInput}*/}
+      {/*      />*/}
+      {/*    </View>*/}
+      {/*  </View>*/}
+      {/*</View>*/}
       <View style={styles.main.last}>
         <Button
-          title={'Submit'}
+          title={'Go back'}
           containerStyle={{width: '100%', marginTop: 10, padding: 0,}}
           titleStyle={{fontWeight: 'bold', fontSize: 18,}}
           buttonStyle={{backgroundColor: '#228693', borderRadius: 10, padding: 15,}}
-          onPress={() => navigation.dispatch(StackActions.replace('CheckYourMail'))}
+          onPress={() => navigation.dispatch(StackActions.replace('Login'))}
         />
       </View>
     </KeyboardAwareScrollView>
@@ -111,6 +111,7 @@ const styles = StyleSheet.create({
     title: {
       height: Responsive(15, HEIGHT),
       marginHorizontal: 30,
+      marginTop: 40,
       backgroundColor: 'white',
       txt: {
         marginRight: 40,
