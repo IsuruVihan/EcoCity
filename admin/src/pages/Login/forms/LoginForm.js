@@ -6,14 +6,16 @@ import LockSign from '../../../assets/images/icons/password.png';
 import EyeSign from '../../../assets/images/icons/eye.png';
 import EyeHideSign from '../../../assets/images/icons/eye-hide.png';
 
-
 const LoginForm = () => {
   const [showPassword, setShowPassword] = useState(false);
 
   return (
     <Container className="p-0">
       <Row className="m-0 mb-5">
-        <Col className="p-0" style={{textAlign: 'center', fontSize: 30, fontWeight: '900', color: '#042434'}}>Login</Col>
+        <Col
+          className="p-0"
+          style={{textAlign: 'center', fontSize: 30, fontWeight: '900', color: '#042434'}}
+        >Login</Col>
       </Row>
       <Row style={{marginLeft: '8em', marginRight: '8em'}}>
         <Col className="p-0 mb-5" sm={12}>
@@ -25,7 +27,11 @@ const LoginForm = () => {
                   <Image src={AtSign} width='50%'/>
                 </Col>
                 <Col className="p-0" sm={11}>
-                  <input className='input-field' type='email' style={{width: '100%', color: '#7CB6B8', outline: 'none', border: 'none'}}/>
+                  <input
+                    className='input-field'
+                    type='email'
+                    style={{width: '100%', color: '#7CB6B8', outline: 'none', border: 'none'}}
+                  />
                 </Col>
               </Row>
             </Col>
@@ -40,11 +46,27 @@ const LoginForm = () => {
                   <Image src={LockSign} width='50%'/>
                 </Col>
                 <Col className="p-0" sm={10}>
-                  <input className='input-field' type={showPassword ? 'text' : 'password'} style={{width: '100%', color: '#7CB6B8', outline: 'none', border: 'none'}}/>
+                  <input
+                    className='input-field'
+                    type={showPassword ? 'text' : 'password'}
+                    style={{width: '100%', color: '#7CB6B8', outline: 'none', border: 'none'}}
+                  />
                 </Col>
-                <Col className="p-0" style={{display: 'flex', alignItems: 'center', justifyContent: 'center', borderLeft: '1px solid #BFDDDE'}} sm={1}> {/*Border left*/}
-                  <Image src={showPassword ? EyeSign : EyeHideSign} width='50%' style={{cursor: 'pointer'}} onClick={() => setShowPassword(!showPassword)}/>
-                </Col>
+                <Col
+                  className="p-0"
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    borderLeft: '1px solid #BFDDDE'
+                  }}
+                  sm={1}
+                ><Image
+                  src={showPassword ? EyeSign : EyeHideSign}
+                  width='50%'
+                  style={{cursor: 'pointer'}}
+                  onClick={() => setShowPassword(!showPassword)}
+                /></Col>
               </Row>
             </Col>
           </Row>
@@ -56,12 +78,30 @@ const LoginForm = () => {
               <label className='ms-1' style={{color: '#BFDDDE', fontSize: 15, fontWeight: '500'}}>Remember me</label>
             </Col>
             <Col className="p-0 d-flex justify-content-end align-items-center">
-              <label className='ms-1' style={{color: '#BFDDDE', fontSize: 15, fontWeight: '500', textDecoration: 'underline', cursor: 'pointer'}}>Forgot password?</label> {/*Border bottom*/}
+              <label
+                className='ms-1'
+                style={{
+                  color: '#BFDDDE',
+                  fontSize: 15,
+                  fontWeight: '500',
+                  textDecoration: 'underline',
+                  cursor: 'pointer'
+              }}>Forgot password?</label> {/*Border bottom*/}
             </Col>
           </Row>
         </Col>
         <Col className="p-0 d-flex justify-content-center" sm={12}>
-          <button style={{background: '#228693', color: 'white', borderRadius: '15px', width: '70%', height: '3em', fontWeight: '600', boxShadow: `0px 4px 8px rgba(34, 134, 147, 20)`, border: 'none'}}>Sign in</button>
+          <button
+            style={{
+              background: '#228693',
+              color: 'white',
+              borderRadius: '15px',
+              width: '70%',
+              height: '3em',
+              fontWeight: '600',
+              boxShadow: `0px 4px 8px rgba(34, 134, 147, 20)`,
+              border: 'none'
+          }}>Sign in</button>
         </Col>
       </Row>
     </Container>
