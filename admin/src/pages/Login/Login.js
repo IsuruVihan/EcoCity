@@ -14,11 +14,10 @@ const Login = () => {
       </Row>
       <Row className="mx-0">
         <Col className="px-0 border border-1 border-primary">
-          <Image src={sideImage} width={'80%'}/>
+          {/*<Image src={sideImage} width={'100%'}/>*/}
         </Col>
-        <Col className="px-0 border border-1 border-danger">
-          form
-          {/*<LoginForm/>*/}
+        <Col style={{border: '2px solid red'}} className="px-0 pt-5">
+          <LoginForm/>
         </Col>
       </Row>
     </Container>
