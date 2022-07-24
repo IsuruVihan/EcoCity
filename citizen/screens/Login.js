@@ -6,6 +6,7 @@ import {Button, CheckBox, Icon} from "@rneui/themed";
 import auth from '@react-native-firebase/auth';
 import {useDispatch, useSelector} from "react-redux";
 import Toast from 'react-native-toast-message';
+import { GoogleSignin } from '@react-native-google-signin/google-signin';
 
 import Logo2 from '../assets/images/Logo2.png';
 import Banner from '../assets/images/Banner.png';
@@ -18,6 +19,10 @@ import {login} from '../redux/features/user.feature';
 
 // const WIDTH = Dimensions.get('window').width;
 const HEIGHT = Dimensions.get('window').height;
+
+GoogleSignin.configure({
+  webClientId: '57064371114-adp59njkkmdmd4er9f9ct78m2ci9b0ae.apps.googleusercontent.com',
+});
 
 const Login = ({navigation}) => {
   const dispatch = useDispatch();
@@ -85,6 +90,16 @@ const Login = ({navigation}) => {
           });
         }
       });
+  }
+
+  // Login with Google
+  const onGoogleButtonPress = async () => {
+    // Get the users ID token
+    const { idToken } = await GoogleSignin.signIn();
+    // Create a Google credential with the token
+    const googleCredential = auth.GoogleAuthProvider.credential(idToken);
+    // Sign-in the user with the credential
+    return auth().signInWithCredential(googleCredential);
   }
 
   if (initializing) return null;
@@ -178,7 +193,8 @@ const Login = ({navigation}) => {
           <Icon name='ios-remove-outline' type='ionicon' color='#075061'/>
         </View>
         <View style={styles.main.options}>
-          <TouchableOpacity style={styles.main.options.touch}>
+          <TouchableOpacity style={styles.main.options.touch}
+                            onPress={() => onGoogleButtonPress().then(() => console.log('Signed in with Google!')).catch((error) => console.log("ERROR: ", error))}>
             <View style={styles.main.options.touch.view}>
               <Image source={GoogleLogo} style={styles.main.options.touch.view.img}/>
               <Text style={styles.main.options.touch.view.txt}>Google</Text>

@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "57064371114-u609id9ca9t0hj8qqg2g7ab17cd09ndp.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.citizen",
+            "certificate_hash": "6b3ad844ca0826d576dffcd4cb3bb44926ba1eac"
+          }
+        },
+        {
           "client_id": "57064371114-adp59njkkmdmd4er9f9ct78m2ci9b0ae.apps.googleusercontent.com",
           "client_type": 3
         }
