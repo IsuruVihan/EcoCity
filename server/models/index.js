@@ -33,26 +33,62 @@ db.MaintenanceCrew = require('./MaintenanceCrew')(sequelize, DataTypes);
 db.MaintenanceJob = require('./MaintenanceJob')(sequelize, DataTypes);
 db.MJRoute = require('./MJRoute')(sequelize, DataTypes);
 db.NFCTag = require('./NFCTag')(sequelize, DataTypes);
-db.Truck = require('./Usage')(sequelize, DataTypes);
+db.Truck = require('./Truck')(sequelize, DataTypes);
+db.Usage = require('./Usage')(sequelize, DataTypes);
 
 /* Relations */
 
-// db.Player.hasMany(db.BorrowRecord);
-// db.BorrowRecord.belongsTo(db.Player);
+// Complaints
+db.House.hasMany(db.Complaint);
+db.Complaint.belongsTo(db.House);
 
-// db.BorrowRecord.hasMany(db.BorrowedItemGroup);
-// db.BorrowedItemGroup.belongsTo(db.BorrowRecord);
+// ComplaintMedias
+db.Complaint.hasMany(db.ComplaintMedia);
+db.ComplaintMedia.belongsTo(db.Complaint);
 
-// db.BorrowedItemGroup.belongsTo(db.ItemGroup);
+// Usages
+db.NFCTag.hasMany(db.Usage);
+db.Usage.belongsTo(db.NFCTag);
+db.House.hasMany(db.Usage);
+db.Usage.belongsTo(db.House);
+db.Driver.hasMany(db.Usage);
+db.Usage.belongsTo(db.Driver);
+db.MaintenanceCrew.hasMany(db.Usage);
+db.Usage.belongsTo(db.MaintenanceCrew);
 
-// db.Tournament.hasMany(db.TeamPlayer);
-// db.TeamPlayer.belongsTo(db.Tournament);
+// GarbageCollectingJobs
+db.Driver.hasMany(db.GarbageCollectingJob);
+db.GarbageCollectingJob.belongsTo(db.Driver);
+db.Truck.hasMany(db.GarbageCollectingJob);
+db.GarbageCollectingJob.belongsTo(db.Truck);
 
-// db.TeamPlayer.belongsTo(db.Player);
+// NFCTags
+db.House.hasMany(db.NFCTag);
+db.NFCTag.belongsTo(db.House);
+db.Driver.hasMany(db.NFCTag);
+db.NFCTag.belongsTo(db.Driver);
+db.MaintenanceCrew.hasMany(db.NFCTag);
+db.NFCTag.belongsTo(db.MaintenanceCrew);
 
-// db.PracticeParticipant.belongsTo(db.Player);
+// GCJRoutes
+db.GarbageCollectingJob.hasMany(db.GCJRoute);
+db.GCJRoute.belongsTo(db.GarbageCollectingJob);
+db.GarbageHub.hasMany(db.GCJRoute);
+db.GCJRoute.belongsTo(db.GarbageHub);
 
-// db.PracticeSession.hasMany(db.PracticeParticipant);
+// MaintenanceJobs
+db.MaintenanceCrew.hasMany(db.MaintenanceJob);
+db.MaintenanceJob.belongsTo(db.MaintenanceCrew);
+
+// MJRoutes
+db.MaintenanceJob.hasMany(db.MJRoute);
+db.MJRoute.belongsTo(db.MaintenanceJob);
+db.GarbageHub.hasMany(db.MJRoute);
+db.MJRoute.belongsTo(db.GarbageHub);
+
+// Bins
+db.GarbageHub.hasMany(db.Bin);
+db.Bin.belongsTo(db.GarbageHub);
 
 // Sync
 db.sequelize.sync()

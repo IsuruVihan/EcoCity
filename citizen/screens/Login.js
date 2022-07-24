@@ -3,26 +3,20 @@ import {Dimensions, Image, StatusBar, StyleSheet, Text, TextInput, TouchableOpac
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import {Button, CheckBox, Icon} from "@rneui/themed";
-import auth from '@react-native-firebase/auth';
 import {useDispatch, useSelector} from "react-redux";
 import Toast from 'react-native-toast-message';
-import { GoogleSignin } from '@react-native-google-signin/google-signin';
+import {StackActions} from "@react-navigation/native";
 
 import Logo2 from '../assets/images/Logo2.png';
 import Banner from '../assets/images/Banner.png';
-// import FacebookLogo from '../assets/images/facebook.png';
-// import GoogleLogo from '../assets/images/google.png';
 
 import {Responsive} from "../helpers/Responsive";
-import {StackActions} from "@react-navigation/native";
-import {login} from '../redux/features/user.feature';
+import {loginUser} from "../api/Login";
+
+import {loginReducer} from '../redux/features/user.feature';
 
 // const WIDTH = Dimensions.get('window').width;
 const HEIGHT = Dimensions.get('window').height;
-
-GoogleSignin.configure({
-  webClientId: '57064371114-adp59njkkmdmd4er9f9ct78m2ci9b0ae.apps.googleusercontent.com',
-});
 
 const Login = ({navigation}) => {
   const dispatch = useDispatch();
@@ -32,79 +26,40 @@ const Login = ({navigation}) => {
   });
   let {user} = userState;
 
-  const [initializing, setInitializing] = useState(true);
-  // const [fUser, setFUser] = useState();
-
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(true);
   const [rememberMe, setRememberMe] = useState(false);
 
-  // Handle user state changes
-  const onAuthStateChanged = (user) => {
-    if (!(user == null)) dispatch(login(user.email));
-    if (initializing) setInitializing(false);
-  }
-
-  useEffect(() => {
-    return auth().onAuthStateChanged(onAuthStateChanged); // unsubscribe on unmount
-  }, []);
-
-  // Login as an existing user
-  const loginUser = () => {
-    if (email === '' || password === '') {
-      Toast.show({
-        type: 'error',
-        text1: 'Login error',
-        text2: 'Please enter your email and password',
-        topOffset: 10,
-      });
-      return;
-    }
-    auth()
-      .signInWithEmailAndPassword(email, password)
-      .then(() => {
-        console.log('Signed in!');
+  const login = () => {
+    const formData = {
+      email: email,
+      password: password
+    };
+    loginUser(formData)
+      .then((res) => {
         Toast.show({
           type: 'success',
-          text1: 'Hello!',
-          text2: `Welcome back "${email}!"`,
+          text1: res.data.message,
           topOffset: 10,
         });
-        dispatch(login(email));
+        dispatch(loginReducer({
+          email: res.data.email,
+          accessToken: res.data.accessToken,
+          refreshToken: res.data.refreshToken})
+        );
+        navigation.dispatch(StackActions.replace('Welcome'));
       })
-      .catch(error => {
-        if (error.code === 'auth/invalid-email') {
-          Toast.show({
-            type: 'error',
-            text1: 'Login error',
-            text2: 'That email address is invalid!',
-            topOffset: 10,
-          });
-        } else {
-          Toast.show({
-            type: 'error',
-            text1: 'Login error',
-            text2: 'Email and password combination is not matching!',
-            topOffset: 10,
-          });
-        }
+      .catch((error) => {
+        Toast.show({
+          type: 'error',
+          text1: error.response.data.message,
+          topOffset: 10,
+        });
       });
   }
 
-  // // Login with Google
-  // const onGoogleButtonPress = async () => {
-  //   // Get the users ID token
-  //   const { idToken } = await GoogleSignin.signIn();
-  //   // Create a Google credential with the token
-  //   const googleCredential = auth.GoogleAuthProvider.credential(idToken);
-  //   // Sign-in the user with the credential
-  //   return auth().signInWithCredential(googleCredential);
-  // }
-
-  if (initializing) return null;
-
-  if (user === '') {
+  if (user.email === '') {
     return (
       <KeyboardAwareScrollView
         style={styles.main}
@@ -183,7 +138,7 @@ const Login = ({navigation}) => {
               containerStyle={{width: '100%', marginTop: 10, padding: 0,}}
               titleStyle={{fontWeight: 'bold', fontSize: 18,}}
               buttonStyle={{backgroundColor: '#228693', borderRadius: 10, padding: 15,}}
-              onPress={loginUser}
+              onPress={login}
             />
           </View>
         </View>

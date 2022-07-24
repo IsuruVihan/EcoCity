@@ -27,5 +27,5 @@ module.exports = (sequelize, DataTypes) => {
     remarks: {
       type: DataTypes.STRING(1000),
     },
-  }, {timestamps: false});
+  }, {timestamps: true});
 }
