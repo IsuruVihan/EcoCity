@@ -21,7 +21,7 @@ const SideNav = () => {
 
     const location = useLocation();
     const [url, setUrl] = useState('');
-    const [showSubNav, setShowSubNav] = useState(false);
+    const [showSubNav, setShowSubNav] = useState(true);
 
     //update the url when the location changes
     useEffect(() => {
@@ -29,7 +29,7 @@ const SideNav = () => {
     }, [location]);
 
     useEffect(() => {
-        if(!showSubNav){
+        if (!showSubNav) {
             console.log('changed')
         }
         // if (url.includes('/database')) {
@@ -40,7 +40,7 @@ const SideNav = () => {
     }, [url]);
 
     const handleOnDBClicked = () => {
-        setShowSubNav(!showSubNav);
+        // setShowSubNav(!showSubNav);
     }
 
     return (
@@ -62,23 +62,35 @@ const SideNav = () => {
                 </Link>
                 {
                     showSubNav &&
-                    <ul className='list-unstyled sub-navigation '>
+                    <ul className='list-unstyled sub-navigation pt-4'>
                         <li className={url === '/database/garbage-hubs' ? 'active-sub-item' : 'inactive-sub-item'}>
+                            <label/>
+                            <hr/>
                             <Link to='/database/garbage-hubs'> Garbage hubs</Link>
                         </li>
                         <li className={url === '/database/truck-drivers' ? 'active-sub-item' : 'inactive-sub-item'}>
+                            <label/>
+                            <hr/>
                             <Link to='/database/truck-drivers'>Truck Drivers</Link>
                         </li>
                         <li className={url === '/database/garbage-trucks' ? 'active-sub-item' : 'inactive-sub-item'}>
+                            <label/>
+                            <hr/>
                             <Link to='/database/garbage-trucks'> Garbage Trucks</Link>
                         </li>
                         <li className={url === '/database/maintenance' ? 'active-sub-item' : 'inactive-sub-item'}>
+                            <label/>
+                            <hr/>
                             <Link to='/database/maintenance'>Maintenance</Link>
                         </li>
                         <li className={url === '/database/house' ? 'active-sub-item' : 'inactive-sub-item'}>
+                            <label/>
+                            <hr/>
                             <Link to='/database/house'>Houses</Link>
                         </li>
                         <li className={url === '/database/nfc-tags' ? 'active-sub-item' : 'inactive-sub-item'}>
+                            <label/>
+                            <hr/>
                             <Link to='/database/nfc-tags'>NFC Tags</Link>
                         </li>
                     </ul>
