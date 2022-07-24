@@ -10,8 +10,8 @@ import { GoogleSignin } from '@react-native-google-signin/google-signin';
 
 import Logo2 from '../assets/images/Logo2.png';
 import Banner from '../assets/images/Banner.png';
-import FacebookLogo from '../assets/images/facebook.png';
-import GoogleLogo from '../assets/images/google.png';
+// import FacebookLogo from '../assets/images/facebook.png';
+// import GoogleLogo from '../assets/images/google.png';
 
 import {Responsive} from "../helpers/Responsive";
 import {StackActions} from "@react-navigation/native";
@@ -92,15 +92,15 @@ const Login = ({navigation}) => {
       });
   }
 
-  // Login with Google
-  const onGoogleButtonPress = async () => {
-    // Get the users ID token
-    const { idToken } = await GoogleSignin.signIn();
-    // Create a Google credential with the token
-    const googleCredential = auth.GoogleAuthProvider.credential(idToken);
-    // Sign-in the user with the credential
-    return auth().signInWithCredential(googleCredential);
-  }
+  // // Login with Google
+  // const onGoogleButtonPress = async () => {
+  //   // Get the users ID token
+  //   const { idToken } = await GoogleSignin.signIn();
+  //   // Create a Google credential with the token
+  //   const googleCredential = auth.GoogleAuthProvider.credential(idToken);
+  //   // Sign-in the user with the credential
+  //   return auth().signInWithCredential(googleCredential);
+  // }
 
   if (initializing) return null;
 
@@ -187,26 +187,26 @@ const Login = ({navigation}) => {
             />
           </View>
         </View>
-        <View style={styles.main.divider}>
-          <Icon name='ios-remove-outline' type='ionicon' color='#075061'/>
-          <Text style={styles.main.divider.signTxt}> Or Sign in with </Text>
-          <Icon name='ios-remove-outline' type='ionicon' color='#075061'/>
-        </View>
-        <View style={styles.main.options}>
-          <TouchableOpacity style={styles.main.options.touch}
-                            onPress={() => onGoogleButtonPress().then(() => console.log('Signed in with Google!')).catch((error) => console.log("ERROR: ", error))}>
-            <View style={styles.main.options.touch.view}>
-              <Image source={GoogleLogo} style={styles.main.options.touch.view.img}/>
-              <Text style={styles.main.options.touch.view.txt}>Google</Text>
-            </View>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.main.options.touch}>
-            <View style={styles.main.options.touch.view}>
-              <Image source={FacebookLogo} style={styles.main.options.touch.view.img}/>
-              <Text style={styles.main.options.touch.view.txt}>Facebook</Text>
-            </View>
-          </TouchableOpacity>
-        </View>
+        {/*<View style={styles.main.divider}>*/}
+        {/*  <Icon name='ios-remove-outline' type='ionicon' color='#075061'/>*/}
+        {/*  <Text style={styles.main.divider.signTxt}> Or Sign in with </Text>*/}
+        {/*  <Icon name='ios-remove-outline' type='ionicon' color='#075061'/>*/}
+        {/*</View>*/}
+        {/*<View style={styles.main.options}>*/}
+        {/*  <TouchableOpacity style={styles.main.options.touch}*/}
+        {/*                    onPress={() => onGoogleButtonPress().then(() => console.log('Signed in with Google!')).catch((error) => console.log("ERROR: ", error))}>*/}
+        {/*    <View style={styles.main.options.touch.view}>*/}
+        {/*      <Image source={GoogleLogo} style={styles.main.options.touch.view.img}/>*/}
+        {/*      <Text style={styles.main.options.touch.view.txt}>Google</Text>*/}
+        {/*    </View>*/}
+        {/*  </TouchableOpacity>*/}
+        {/*  <TouchableOpacity style={styles.main.options.touch}>*/}
+        {/*    <View style={styles.main.options.touch.view}>*/}
+        {/*      <Image source={FacebookLogo} style={styles.main.options.touch.view.img}/>*/}
+        {/*      <Text style={styles.main.options.touch.view.txt}>Facebook</Text>*/}
+        {/*    </View>*/}
+        {/*  </TouchableOpacity>*/}
+        {/*</View>*/}
       </KeyboardAwareScrollView>
     );
   }
@@ -247,6 +247,7 @@ const styles = StyleSheet.create({
     title: {
       height: Responsive(10, HEIGHT),
       marginHorizontal: 30,
+      marginTop: 40,
       backgroundColor: 'white',
       display: 'flex',
       justifyContent: 'center',
