@@ -16,7 +16,7 @@ const Login = () => {
         <Col className="px-0 border border-1 border-primary">
           {/*<Image src={sideImage} width={'100%'}/>*/}
         </Col>
-        <Col style={{border: '2px solid red'}} className="px-0 pt-5">
+        <Col className="px-0 pt-5">
           <LoginForm/>
         </Col>
       </Row>
