@@ -23,19 +23,19 @@ const SideNav = () => {
     const location = useLocation();
     const [url, setUrl] = useState('');
     const [showSubNav, setShowSubNav] = useState(false);
-    // console.log(location);
 
     //update the url when the location changes
     useEffect(() => {
-        console.log(location.pathname);
         const newURL = location.pathname;
         setUrl(newURL);
-        console.log(location);
-
     }, [location]);
 
     useEffect(() => {
-        if (url.includes('/database')) {
+        if (url === '') {
+            return;
+        }
+
+        if (url.includes('/database/')) {
             setShowSubNav(true);
             console.log('true');
         } else {
@@ -44,22 +44,9 @@ const SideNav = () => {
         }
     }, [url]);
 
+    // Add the css class on selection of submenu
     useEffect(() => {
-
-        const ul = document.getElementById('subNav');
-
-        if (!showSubNav) {
-            // console.log('hide');
-            ul.classList.remove('show-sub-nav');
-        } else {
-            // console.log('show');
-            ul.classList.add('show-sub-nav');
-        }
-    }, [showSubNav]);
-
-    //Add the css class on selection of submenu
-    useEffect(() => {
-        if (url.includes('/database')) {
+        if (showSubNav) {
             let lists = document.getElementById('subNav').querySelectorAll('li');
             for (let li of lists) {
                 li.classList.add('active-left-line');
@@ -68,7 +55,7 @@ const SideNav = () => {
                 }
             }
         }
-    }, [url]);
+    }, [showSubNav]);
 
 
     const handleOnDBClicked = () => {
@@ -95,39 +82,43 @@ const SideNav = () => {
                     </li>
                 </Link>
 
-                <ul className={'list-unstyled sub-navigation pt-4 pb-4 '}
-                    id='subNav'>
-                    <li className={url === '/database/garbage-hubs' ? 'active-sub-item' : 'inactive-sub-item'}>
-                        <label/>
-                        <hr/>
-                        <Link to='/database/garbage-hubs'> Garbage hubs</Link>
-                    </li>
-                    <li className={url === '/database/truck-drivers' ? 'active-sub-item' : 'inactive-sub-item'}>
-                        <label/>
-                        <hr/>
-                        <Link to='/database/truck-drivers'>Truck Drivers</Link>
-                    </li>
-                    <li className={url === '/database/garbage-trucks' ? 'active-sub-item' : 'inactive-sub-item'}>
-                        <label/>
-                        <hr/>
-                        <Link to='/database/garbage-trucks'> Garbage Trucks</Link>
-                    </li>
-                    <li className={url === '/database/maintenance' ? 'active-sub-item' : 'inactive-sub-item'}>
-                        <label/>
-                        <hr/>
-                        <Link to='/database/maintenance'>Maintenance</Link>
-                    </li>
-                    <li className={url === '/database/house' ? 'active-sub-item' : 'inactive-sub-item'}>
-                        <label/>
-                        <hr/>
-                        <Link to='/database/house'>Houses</Link>
-                    </li>
-                    <li className={url === '/database/nfc-tags' ? 'active-sub-item' : 'inactive-sub-item'}>
-                        <label/>
-                        <hr/>
-                        <Link to='/database/nfc-tags'>NFC Tags</Link>
-                    </li>
-                </ul>
+                {
+                    showSubNav &&
+                    <ul className={'list-unstyled sub-navigation    pt-4 pb-4 ms-2'}
+                        id='subNav'>
+                        <li className={url === '/database/garbage-hubs' ? 'active-sub-item' : 'inactive-sub-item'}>
+                            <label/>
+                            <hr/>
+                            <Link to='/database/garbage-hubs'> Garbage hubs</Link>
+                        </li>
+                        <li className={url === '/database/truck-drivers' ? 'active-sub-item' : 'inactive-sub-item'}>
+                            <label/>
+                            <hr/>
+                            <Link to='/database/truck-drivers'>Truck Drivers</Link>
+                        </li>
+                        <li className={url === '/database/garbage-trucks' ? 'active-sub-item' : 'inactive-sub-item'}>
+                            <label/>
+                            <hr/>
+                            <Link to='/database/garbage-trucks'> Garbage Trucks</Link>
+                        </li>
+                        <li className={url === '/database/maintenance' ? 'active-sub-item' : 'inactive-sub-item'}>
+                            <label/>
+                            <hr/>
+                            <Link to='/database/maintenance'>Maintenance</Link>
+                        </li>
+                        <li className={url === '/database/house' ? 'active-sub-item' : 'inactive-sub-item'}>
+                            <label/>
+                            <hr/>
+                            <Link to='/database/house'>Houses</Link>
+                        </li>
+                        <li className={url === '/database/nfc-tags' ? 'active-sub-item' : 'inactive-sub-item'}>
+                            <label/>
+                            <hr/>
+                            <Link to='/database/nfc-tags'>NFC Tags</Link>
+                        </li>
+                    </ul>
+                }
+
 
                 <Link to='/area-map'>
                     <li className={url === '/area-map' ? 'active-item' : 'inactive-item'}>
