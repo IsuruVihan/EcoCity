@@ -11,15 +11,18 @@ import Header from "../../../common/Header";
 
 const NFCTags = () => {
   return (
-      <Container className='mx-0 px-0 h-100 overflow-hidden' fluid>
-          <Header/>
-          <Row className='mx-0 mt-72 container-section' >
-              <SideNav/>
-              <Col className='' lg={10}>
-                  NFC Tags
-              </Col>
-          </Row>
-      </Container>
+      <Col className='' lg={10}>
+          NFC Tags
+      </Col>
+      // <Container className='mx-0 px-0 h-100 overflow-hidden' fluid>
+      //     <Header/>
+      //     <Row className='mx-0 mt-72 container-section' >
+      //         <SideNav/>
+      //         <Col className='' lg={10}>
+      //             NFC Tags
+      //         </Col>
+      //     </Row>
+      // </Container>
   );
 }
 

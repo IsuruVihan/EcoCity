@@ -11,15 +11,16 @@ import Footer from "../../common/Footer";
 
 const Dashboard = () => {
     return (
-        <Container className='mx-0 px-0 h-100 overflow-hidden' fluid>
-            <Header/>
-            <Row className='mx-0 mt-72 container-section' >
-                <SideNav/>
-                <Col className='' lg={10}>
-                    Home Sweet Home
-                </Col>
-            </Row>
-        </Container>
+        <Col className='' lg={10}>
+            Home Sweet Home
+        </Col>
+        // <Container className='mx-0 px-0 h-100 overflow-hidden' fluid>
+        //     <Header/>
+        //     <Row className='mx-0 mt-72 container-section' >
+        //         <SideNav/>
+        //
+        //     </Row>
+        // </Container>
     );
 }
 

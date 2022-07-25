@@ -8,15 +8,18 @@ import Header from "../../common/Header";
 
 const AreaMap = () => {
   return (
-      <Container className='mx-0 px-0 h-100 overflow-hidden' fluid>
-          <Header/>
-          <Row className='mx-0 mt-72 container-section' >
-              <SideNav/>
-              <Col className='' lg={10}>
-                  Area Map
-              </Col>
-          </Row>
-      </Container>
+      <Col className='' lg={10}>
+          Area Map
+      </Col>
+      // <Container className='mx-0 px-0 h-100 overflow-hidden' fluid>
+      //     <Header/>
+      //     <Row className='mx-0 mt-72 container-section' >
+      //         <SideNav/>
+      //         <Col className='' lg={10}>
+      //             Area Map
+      //         </Col>
+      //     </Row>
+      // </Container>
   );
 }
 
