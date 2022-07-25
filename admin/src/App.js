@@ -31,12 +31,12 @@ const App = () => {
         <Route path={ '/forgot-password' } element={ <ForgotPassword /> }/>
         <Route path={ '/check-your-email' } element={ <CheckYourEmail /> }/>
         <Route path={ '/dashboard' } element={ <Dashboard /> }/>
-        <Route path={ '/database/garbage-hubs' } element={ <GarbageHubs /> }/>
-        <Route path={ '/database/truck-drivers' } element={ <TruckDrivers /> }/>
-        <Route path={ '/database/garbage-trucks' } element={ <GarbageTrucks /> }/>
-        <Route path={ '/database/maintenance' } element={ <MaintenanceJobs /> }/>
-        <Route path={ '/database/house' } element={ <Houses /> }/>
-        <Route path={ '/database/nfc-tags' } element={ <NFCTags /> }/>
+        <Route exact path={ '/database/garbage-hubs' } element={ <GarbageHubs /> }/>
+        <Route exact path={ '/database/truck-drivers' } element={ <TruckDrivers /> }/>
+        <Route exact path={ '/database/garbage-trucks' } element={ <GarbageTrucks /> }/>
+        <Route exact path={ '/database/maintenance' } element={ <MaintenanceJobs /> }/>
+        <Route exact path={ '/database/house' } element={ <Houses /> }/>
+        <Route exact path={ '/database/nfc-tags' } element={ <NFCTags /> }/>
         <Route path={ '/area-map' } element={ <AreaMap /> }/>
         <Route path={ '/complaints' } element={ <Complaints /> }/>
         <Route path={ '/maintenance' } element={ <MaintenanceJobs /> }/>

@@ -15,33 +15,67 @@ import unselectedAreaMapIcon from '../assets/images/icons/NavBar/unSelectedAreaM
 import unselectedComplaintsIcon from '../assets/images/icons/NavBar/unselectedComplaints.png';
 import unselectedMaintenanceIcon from '../assets/images/icons/NavBar/unselectedMaintenance.png';
 import unselectedTruckIcon from '../assets/images/icons/NavBar/unselectedTruck.png';
+import {useEffectOnce} from "../helpers/hooks";
 
 
 const SideNav = () => {
 
     const location = useLocation();
     const [url, setUrl] = useState('');
-    const [showSubNav, setShowSubNav] = useState(true);
+    const [showSubNav, setShowSubNav] = useState(false);
+    // console.log(location);
 
     //update the url when the location changes
     useEffect(() => {
-        setUrl(location.pathname);
+        console.log(location.pathname);
+        const newURL = location.pathname;
+        setUrl(newURL);
+        console.log(location);
+
     }, [location]);
 
     useEffect(() => {
-        if (!showSubNav) {
-            console.log('changed')
+        if (url.includes('/database')) {
+            setShowSubNav(true);
+            console.log('true');
+        } else {
+            console.log('false');
+            setShowSubNav(false);
         }
-        // if (url.includes('/database')) {
-        //     if (!showSubNav) {
-        //         setShowSubNav(true);
-        //     }
-        // }
     }, [url]);
 
+    useEffect(() => {
+
+        const ul = document.getElementById('subNav');
+
+        if (!showSubNav) {
+            // console.log('hide');
+            ul.classList.remove('show-sub-nav');
+        } else {
+            // console.log('show');
+            ul.classList.add('show-sub-nav');
+        }
+    }, [showSubNav]);
+
+    //Add the css class on selection of submenu
+    useEffect(() => {
+        if (url.includes('/database')) {
+            let lists = document.getElementById('subNav').querySelectorAll('li');
+            for (let li of lists) {
+                li.classList.add('active-left-line');
+                if (li.classList.contains('active-sub-item')) {
+                    break;
+                }
+            }
+        }
+    }, [url]);
+
+
     const handleOnDBClicked = () => {
-        // setShowSubNav(!showSubNav);
+        const newState = !showSubNav;
+        setShowSubNav(newState);
     }
+
 
     return (
         <Col className='side-navigation shadow-effect p-3' lg={2}>
@@ -60,41 +94,41 @@ const SideNav = () => {
                         Database
                     </li>
                 </Link>
-                {
-                    showSubNav &&
-                    <ul className='list-unstyled sub-navigation pt-4'>
-                        <li className={url === '/database/garbage-hubs' ? 'active-sub-item' : 'inactive-sub-item'}>
-                            <label/>
-                            <hr/>
-                            <Link to='/database/garbage-hubs'> Garbage hubs</Link>
-                        </li>
-                        <li className={url === '/database/truck-drivers' ? 'active-sub-item' : 'inactive-sub-item'}>
-                            <label/>
-                            <hr/>
-                            <Link to='/database/truck-drivers'>Truck Drivers</Link>
-                        </li>
-                        <li className={url === '/database/garbage-trucks' ? 'active-sub-item' : 'inactive-sub-item'}>
-                            <label/>
-                            <hr/>
-                            <Link to='/database/garbage-trucks'> Garbage Trucks</Link>
-                        </li>
-                        <li className={url === '/database/maintenance' ? 'active-sub-item' : 'inactive-sub-item'}>
-                            <label/>
-                            <hr/>
-                            <Link to='/database/maintenance'>Maintenance</Link>
-                        </li>
-                        <li className={url === '/database/house' ? 'active-sub-item' : 'inactive-sub-item'}>
-                            <label/>
-                            <hr/>
-                            <Link to='/database/house'>Houses</Link>
-                        </li>
-                        <li className={url === '/database/nfc-tags' ? 'active-sub-item' : 'inactive-sub-item'}>
-                            <label/>
-                            <hr/>
-                            <Link to='/database/nfc-tags'>NFC Tags</Link>
-                        </li>
-                    </ul>
-                }
+
+                <ul className={'list-unstyled sub-navigation pt-4 pb-4 '}
+                    id='subNav'>
+                    <li className={url === '/database/garbage-hubs' ? 'active-sub-item' : 'inactive-sub-item'}>
+                        <label/>
+                        <hr/>
+                        <Link to='/database/garbage-hubs'> Garbage hubs</Link>
+                    </li>
+                    <li className={url === '/database/truck-drivers' ? 'active-sub-item' : 'inactive-sub-item'}>
+                        <label/>
+                        <hr/>
+                        <Link to='/database/truck-drivers'>Truck Drivers</Link>
+                    </li>
+                    <li className={url === '/database/garbage-trucks' ? 'active-sub-item' : 'inactive-sub-item'}>
+                        <label/>
+                        <hr/>
+                        <Link to='/database/garbage-trucks'> Garbage Trucks</Link>
+                    </li>
+                    <li className={url === '/database/maintenance' ? 'active-sub-item' : 'inactive-sub-item'}>
+                        <label/>
+                        <hr/>
+                        <Link to='/database/maintenance'>Maintenance</Link>
+                    </li>
+                    <li className={url === '/database/house' ? 'active-sub-item' : 'inactive-sub-item'}>
+                        <label/>
+                        <hr/>
+                        <Link to='/database/house'>Houses</Link>
+                    </li>
+                    <li className={url === '/database/nfc-tags' ? 'active-sub-item' : 'inactive-sub-item'}>
+                        <label/>
+                        <hr/>
+                        <Link to='/database/nfc-tags'>NFC Tags</Link>
+                    </li>
+                </ul>
+
                 <Link to='/area-map'>
                     <li className={url === '/area-map' ? 'active-item' : 'inactive-item'}>
                         <Image src={url === '/area-map' ? areaMapIcon : unselectedAreaMapIcon} fluid/>
