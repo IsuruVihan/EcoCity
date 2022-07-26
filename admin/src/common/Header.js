@@ -27,7 +27,7 @@ const Header = () => {
 
         //Logged In header
         return (
-            <Container className='py-0 mx-0 px-0 bg-transparent shadow-effect top-0' fluid>
+            <Row className='py-0 mx-0 px-0 bg-transparent shadow-effect w-100 top-0 position-fixed'>
                 <Navbar className='navigation-bar mx-0 fs-5 mt-0 pt-1'>
                     <Col className='ps-5' lg={2}>
                         <Navbar.Brand href="/">
@@ -52,20 +52,20 @@ const Header = () => {
                         <Image src={logoutIcon} className='logout-icon me-4'/>
                     </Col>
                 </Navbar>
-            </Container>
+            </Row>
         )
     }
 
     //Logged out header
     return (
-        <Container className='bg-transparent shadow-effect top-0' fluid>
+        <Row className='bg-transparent shadow-effect top-0' fluid>
             <Row>
                 <Navbar className='py-2 px-5 navigation-bar justify-content-end'>
                     <Link to='/' className={'me-3 px-4 py-2 link ' + (url === '/' ? 'active' : '')}>Home</Link>
                     <Link to='/login' className={'px-4 py-2 link ' + (url === '/login' ? 'active' : '')}>Login</Link>
                 </Navbar>
             </Row>
-        </Container>
+        </Row>
 
     );
 }

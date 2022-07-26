@@ -1,0 +1,23 @@
+.check-email-row1{
+    margin-top: 20px;
+    height: 153px;
+}
+.check-email-row2{
+    height: 154px;
+}
+.check-email-row1 p{
+    text-align: center;
+    width: 300px;
+    margin: auto;
+    margin-top: 50px;
+    color: rgb(146, 145, 145);
+    font-weight: 500;
+}
+.check-email-row2 p{
+    text-align: center;
+    width: 300px;
+    margin: auto;
+    margin-top: 90px;
+    color: rgb(146, 145, 145);
+    font-weight: 500;
+}
