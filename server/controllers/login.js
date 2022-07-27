@@ -44,3 +44,50 @@ exports.logUser = (req, res) => {
       });
   }
 }
+
+exports.currentLoggedInUser = (req, res) => {
+  const {accesstoken, refreshtoken} = req.headers;
+  if (!accesstoken || !refreshtoken) {
+    return res.status(400).json({
+      email: null,
+      newAccessToken: null,
+      newRefreshToken: null
+    });
+  } else {
+    jwt.verify(accesstoken, process.env.JWT_ACCESS_TOKEN_SECRET, (error, decode) => {
+      if (error) {
+        jwt.verify(refreshtoken, process.env.JWT_REFRESH_TOKEN_SECRET, (error2, decode2) => {
+          if (error2) {
+            return res.status(200).json({
+              email: null,
+              newAccessToken: null,
+              newRefreshToken: null
+            });
+          } else {
+            const newAccessToken = jwt.sign(
+              {aud: decode2.aud, iss: 'EcoCity'},
+              process.env.JWT_ACCESS_TOKEN_SECRET,
+              {expiresIn: '1m'}
+            );
+            const newRefreshToken = jwt.sign(
+              {aud: decode2.aud, iss: 'EcoCity'},
+              process.env.JWT_REFRESH_TOKEN_SECRET,
+              {expiresIn: '1y'}
+            );
+            return res.status(200).json({
+              email: decode2.aud,
+              newAccessToken: newAccessToken,
+              newRefreshToken: newRefreshToken
+            });
+          }
+        });
+      } else {
+        return res.status(200).json({
+          email: decode.aud,
+          newAccessToken: null,
+          newRefreshToken: null
+        });
+      }
+    });
+  }
+}
