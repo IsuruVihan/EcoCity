@@ -15,3 +15,12 @@ code {
 .border-red {
     border: 2px solid red;
 }
+
+.mt-72{
+    margin-top: 72px !important;
+}
+
+.container-section{
+    height: calc(100% - 72px);
+
+}

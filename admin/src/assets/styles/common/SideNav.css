@@ -1,0 +1,117 @@
+.side-navigation {
+    background-color: white;
+}
+
+.side-navigation ul li {
+    margin-top: 5px;
+    font-size: 15px;
+}
+
+.side-navigation ul li img {
+    height: 18px;
+    width: auto;
+    margin-right: 10px;
+}
+
+.side-navigation a {
+    text-decoration: none;
+}
+
+.active-item {
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    align-items: center;
+    cursor: pointer;
+}
+
+.active-item {
+    font-weight: 500;
+    color: #075061;
+    align-items: center !important;
+    width: fit-content;
+    cursor: pointer;
+}
+
+.inactive-item {
+    font-weight: 500;
+    color: #B9B9B9;
+    width: fit-content;
+    display: flex;
+    align-items: center !important;
+    cursor: pointer;
+
+}
+
+.sub-navigation {
+    z-index: 1200;
+    margin-top: -20px;
+    margin-bottom: -40px;
+    width: max-content;
+}
+
+.sub-navigation li {
+    margin-top: 0 !important;
+}
+
+.active-sub-item, .inactive-sub-item {
+    display: flex;
+    align-items: center;
+    height: 25px;
+    width: 150px;
+}
+
+.active-sub-item label, .inactive-sub-item label {
+    position: absolute;
+    height: 30px;
+    margin-top: -40px;
+}
+
+.active-sub-item label {
+    border-left: 2px solid #B9B9B9;
+}
+
+.inactive-sub-item label {
+    border-left: 2px solid #B9B9B9;
+}
+
+.active-sub-item hr {
+    z-index: 1000;
+    opacity: 1;
+    border-top: 0;
+    margin-left: 0;
+    margin-top: 5px;
+    margin-right: 4px;
+    border-bottom: 2px solid #7CB6B8;
+    border-left: 2px solid #7CB6B8;
+    border-bottom-left-radius: 25px;
+    width: 35px;
+    height: 10px;
+}
+
+.active-left-line label {
+    z-index: 1001;
+    border-left: 2px solid #7CB6B8;
+}
+
+.inactive-sub-item hr {
+    border-top: 0;
+    margin-left: 0;
+    margin-top: 5px;
+    margin-right: 4px;
+    border-left: 2px solid #B9B9B9;
+    border-bottom: 2px solid #B9B9B9;
+    width: 35px;
+    border-bottom-left-radius: 25px;
+    height: 10px;
+}
+
+.active-sub-item a {
+    color: #228693;
+    font-weight: bold;
+}
+
+.inactive-sub-item a {
+    color: #B9B9B9 !important;
+}
+
+

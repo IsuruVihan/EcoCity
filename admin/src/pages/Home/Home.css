@@ -1,0 +1,6 @@
+.homeHeader{
+    overflow-y: scroll;
+}
+.homeHeader::-webkit-scrollbar {
+    display: none;
+}
