@@ -11,22 +11,6 @@ import Footer from "../../common/Footer";
 
 const Dashboard = () => {
     return (
-        // <Col className='' lg={10}>
-        //     <Row className="m-0" style={{border: '2px solid red', fontWeight: 800, fontSize: 30, color: '#075061'}}>Hello Nisal,</Row>
-        //     <Row className="m-0" style={{border: '2px solid red', fontSize: 12, fontWeight: 500}}>Hello Nisal. This is what we have got for you today</Row>
-        //     <Row className="m-0" style={{border: '2px solid red', width: '100%'}}>
-        //         <Col lg={9} className='p-0' style={{border: '2px solid green'}}>
-        //
-        //         </Col>
-        //         <Col lg={3} className='p-0' style={{border: '2px solid green'}}>
-        //             <Row className="m-0" style={{border: '2px solid blue'}}>Truck Drivers</Row>
-        //             <Row className="m-0" style={{border: '2px solid blue'}}>Maintenance Crew</Row>
-        //             <Row className="m-0" style={{border: '2px solid blue'}}>Garbage Hubs</Row>
-        //             <Row className="m-0" style={{border: '2px solid blue'}}>Houses</Row>
-        //         </Col>
-        //     </Row>
-        // </Col>
-
         <Col className='' lg={10}>
             <Row className="m-0" style={{border: '2px solid red'}}>
                 <Col className="p-0" style={{
