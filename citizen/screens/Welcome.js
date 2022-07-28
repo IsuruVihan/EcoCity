@@ -1,35 +1,46 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {Text, View} from "react-native";
 import {Button} from "@rneui/base";
-import auth from "@react-native-firebase/auth";
-import {useDispatch, useSelector} from "react-redux";
-
-import {logout} from '../redux/features/user.feature';
+import {RemoveAsyncStorageItem} from "../helpers/RemoveAsyncStorageItem";
+import {GetAsyncStorageItem} from "../helpers/GetAsyncStorageItem";
 import {StackActions} from "@react-navigation/native";
 
 const Welcome = ({navigation}) => {
-  const dispatch = useDispatch();
+  const [loggedUser, setLoggedUser] = useState(null);
+  const [initialized, setInitialized] = useState(false);
 
-  let userState = useSelector((state) => {
-    return state['user'];
-  });
-  let {user} = userState;
+  useEffect(() => {
+    console.log("Welcome");
+    GetAsyncStorageItem('LOGGED_IN_USER')
+      .then((user) => {
+        console.log("LOGGED IN USER: ", user);
+        if (user) {
+          setLoggedUser(JSON.parse(user));
+        } else {
+          setLoggedUser(null);
+          return navigation.dispatch(StackActions.replace('Login'));
+        }
+      })
+      .catch((error) => {
+        console.log("LOGGED IN USER ERROR: ", error);
+      });
+  }, []);
 
-  // Logout
-  const userLogout = () => {
-    auth()
-      .signOut()
+  const logout = () => {
+    RemoveAsyncStorageItem('LOGGED_IN_USER')
       .then(() => {
-        console.log('User signed out!');
-        dispatch(logout());
-        navigation.dispatch(StackActions.replace('Login'));
+        setLoggedUser(null);
+        return navigation.dispatch(StackActions.replace('Login'));
+      })
+      .catch((error) => {
+        console.log("LOGOUT USER ERROR: ", error);
       });
   }
 
   return (
     <View>
-      <Text>Welcome {user}</Text>
-      <Button onPress={userLogout} title={'Logout'}/>
+      <Text>Welcome</Text>
+      <Button onPress={logout} title={'Logout'}/>
     </View>
   );
 }
