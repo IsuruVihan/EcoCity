@@ -5,7 +5,6 @@ import {Button} from "@rneui/themed";
 
 import BackBtn from "../assets/images/BackBtn.png";
 import ForgotPasswordBanner from "../assets/images/ForgotPasswordBanner.png";
-import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 
 import {Responsive} from "../helpers/Responsive";
 import {StackActions} from "@react-navigation/native";

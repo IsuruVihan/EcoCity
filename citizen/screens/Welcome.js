@@ -7,7 +7,6 @@ import {StackActions} from "@react-navigation/native";
 
 const Welcome = ({navigation}) => {
   const [loggedUser, setLoggedUser] = useState(null);
-  const [initialized, setInitialized] = useState(false);
 
   useEffect(() => {
     console.log("Welcome");

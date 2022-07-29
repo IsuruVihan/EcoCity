@@ -24,7 +24,6 @@ const Login = ({navigation}) => {
   const [showPassword, setShowPassword] = useState(true);
   const [rememberMe, setRememberMe] = useState(false);
 
-  const [initialized, setInitialized] = useState(false);
   const [loggedUser, setLoggedUser] = useState(null);
 
   useEffect(() => {
