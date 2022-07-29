@@ -1,21 +1,16 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {Dimensions, Image, StatusBar, StyleSheet, Text, TextInput, TouchableOpacity, View} from 'react-native';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import {Button, CheckBox} from "@rneui/themed";
-import Toast from 'react-native-toast-message';
-import {StackActions} from "@react-navigation/native";
+import Spinner from "react-native-loading-spinner-overlay/src";
 
 import Logo2 from '../assets/images/Logo2.png';
 import Banner from '../assets/images/Banner.png';
 
 import {Responsive} from "../helpers/Responsive";
-import {getLoggedInUser, loginUser} from "../api/Login";
-import {SetAsyncStorageItem} from "../helpers/SetAsyncStorageItem";
-import {GetAsyncStorageItem} from "../helpers/GetAsyncStorageItem";
-import {RemoveAsyncStorageItem} from "../helpers/RemoveAsyncStorageItem";
+import {AuthContext} from "../context/AuthContext";
 
-// const WIDTH = Dimensions.get('window').width;
 const HEIGHT = Dimensions.get('window').height;
 
 const Login = ({navigation}) => {
@@ -24,107 +19,7 @@ const Login = ({navigation}) => {
   const [showPassword, setShowPassword] = useState(true);
   const [rememberMe, setRememberMe] = useState(false);
 
-  const [initialized, setInitialized] = useState(false);
-  const [loggedUser, setLoggedUser] = useState(null);
-
-  useEffect(() => {
-    console.log("Login");
-    GetAsyncStorageItem('LOGGED_IN_USER')
-      .then((user) => {
-        setLoggedUser(JSON.parse(user));
-        console.log("LOGGED IN USER: ", loggedUser);
-        if (loggedUser) {
-          getLoggedInUser(loggedUser.accessToken, loggedUser.refreshToken)
-            .then((res) => {
-              if (res.data.email) {
-                if (res.data.newAccessToken && res.data.newRefreshToken) {
-                  let tempUser = {
-                    email: res.data.email,
-                    accessToken: res.data.newAccessToken,
-                    refreshToken: res.data.newRefreshToken,
-                  };
-                  SetAsyncStorageItem('LOGGED_IN_USER', JSON.stringify(tempUser))
-                    .then(() => {
-                      setLoggedUser(tempUser);
-                      Toast.show({
-                        type: 'success',
-                        text1: 'Welcome back!',
-                        topOffset: 10,
-                      });
-                      return navigation.dispatch(StackActions.replace('Welcome'));
-                    })
-                    .catch((error4) => {
-                      console.log("ERROR 4: ", error4);
-                    });
-                }
-              } else {
-                RemoveAsyncStorageItem('LOGGED_IN_USER')
-                  .then(() => {
-                    setLoggedUser(null);
-                    Toast.show({
-                      type: 'error',
-                      text1: 'Please login',
-                      topOffset: 10,
-                    });
-                  })
-                  .catch((error3) => {
-                    console.log("ERROR 3: ", error3);
-                  });
-              }
-            })
-            .catch((error2) => {
-              console.log("ERROR 2: ", error2);
-            });
-        }
-      })
-      .catch((error1) => {
-        console.log("ERROR 1: ", error1);
-      });
-  }, []);
-
-  const login = () => {
-    if (email.length === 0 || password.length === 0) {
-      return Toast.show({
-        type: 'error',
-        text1: 'Incomplete user credentials',
-        text2: 'Please insert email and password',
-        topOffset: 10,
-      });
-    }
-    const formData = {
-      email: email,
-      password: password
-    };
-    loginUser(formData)
-      .then((res) => {
-        Toast.show({
-          type: 'success',
-          text1: res.data.message,
-          topOffset: 10,
-        });
-        const newUser = {
-          email: res.data.email,
-          accessToken: res.data.accessToken,
-          refreshToken: res.data.refreshToken,
-        };
-        SetAsyncStorageItem('LOGGED_IN_USER', JSON.stringify(newUser))
-          .then(() => {
-            setLoggedUser(newUser);
-            return navigation.dispatch(StackActions.replace('Welcome'));
-          })
-          .catch((error) => {
-            console.log("LOGIN ERROR: ", error);
-          });
-      })
-      .catch((error) => {
-        console.log("LOGIN ERROR: ", error);
-        Toast.show({
-          type: 'error',
-          text1: error.response.data.message,
-          topOffset: 10,
-        });
-      });
-  }
+  const {loading, login} = useContext(AuthContext);
 
   return (
     <KeyboardAwareScrollView
@@ -132,6 +27,7 @@ const Login = ({navigation}) => {
       resetScrollToCoords={{x: 0, y: 0}}
       scrollEnabled={true}
     >
+      <Spinner visible={loading}/>
       <StatusBar hidden={false} backgroundColor={'#228693'}/>
       <View style={styles.main.header}>
         <Image source={Logo2} style={styles.main.header.logo}/>
@@ -204,7 +100,7 @@ const Login = ({navigation}) => {
             containerStyle={{width: '100%', marginTop: 10, padding: 0,}}
             titleStyle={{fontWeight: 'bold', fontSize: 18,}}
             buttonStyle={{backgroundColor: '#228693', borderRadius: 10, padding: 15,}}
-            onPress={login}
+            onPress={() => login(email, password)}
           />
         </View>
       </View>
