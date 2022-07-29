@@ -8,36 +8,34 @@ import Header from "../../common/Header";
 import hubArea from '../../assets/images/hub.png';
 import garbageTruck from '../../assets/images/garbage-truck.png';
 import maintenanceTruck from '../../assets/images/maintenance-truck.png';
+import './AreaMap.css';
 
 const AreaMap = () => {
   return (
       <Col className='p-0' lg={10}> 
-          <Row className='p-0 mt-4 m-0' style={{border:'2px solid orange'}}>
-            <Col sm={2} className='p-0 m-0' style={{border:'2px solid black', display:'flex', justifyContent:'center', alignItems:'center'}}>Area Map</Col>
-            <Col sm={1} className='pr-2 m-0' style={{border:'2px solid black'}}></Col>
-            <Col sm={3} className='p-0' style={{border:'2px solid black', margin:'auto'}}>
-              <Row className='p-0 m-0' style={{border:'2px solid purple'}}>
-                <Col sm={2} className='p-0 m-0' style={{border:'2px solid green', display:'flex',justifyContent:'center', alignItems:'center'}}>1</Col>
-                <Col sm={8} className='p-0 m-0' style={{border:'2px solid green', display:'flex',alignItems:'center',fontSize:14, fontWeight:600}}>Garbage Hubs</Col>
-                <Col sm={2} className='p-0 m-0' style={{border:'2px solid green', display:'flex',justifyContent:'center', alignItems:'center'}}>img</Col>
+          <Row className='p-0 mt-4 m-0'>
+            <Col sm={2} className='p-0 m-0' style={{display:'flex', justifyContent:'center', alignItems:'center', fontSize:35, fontWeight:900, color:'#042434'}}>Area Map</Col>
+            <Col sm={4} className='pr-2 m-0'></Col>
+            <Col sm={2} className='p-1' style={{margin:'auto'}}>
+              <Row className='p-0 m-0 areamap-filter' style={{borderRadius:'10px', boxShadow:'0px 4px 8px #707070', cursor:'pointer'}}>
+                <Col sm={4} className='p-1 m-0' style={{display:'flex',justifyContent:'center', alignItems:'center'}}><img src={hubArea} width='38px'/></Col>
+                <Col sm={8} className='p-0 m-0' style={{display:'flex',alignItems:'center',fontSize:13, fontWeight:600, color:'#7CB6B8'}}>Garbage Hubs</Col>
               </Row>
             </Col>
-            <Col sm={3} className='p-0' style={{border:'2px solid black',margin:'auto'}}>
-              <Row className='p-0 m-0' style={{border:'2px solid purple'}}>
-                <Col sm={2} className='p-0 m-0' style={{border:'2px solid green', display:'flex',justifyContent:'center', alignItems:'center'}}>2</Col>
-                <Col sm={7} className='p-0 m-0' style={{border:'2px solid green', display:'flex', alignItems:'center',fontSize:14, fontWeight:600}}>Garbage Trucks</Col>
-                <Col sm={3} className='p-0 m-0' style={{border:'2px solid green', display:'flex',justifyContent:'center', alignItems:'center'}}>img</Col>
+            <Col sm={2} className='p-1' style={{margin:'auto'}}>
+              <Row className='p-0 m-0 areamap-filter' style={{borderRadius:'10px', boxShadow:'0px 4px 8px #707070', cursor:'pointer'}}>
+                <Col sm={4} className='p-1 m-0' style={{display:'flex',justifyContent:'center', alignItems:'center'}}><img src={garbageTruck} width='40px'/></Col>
+                <Col sm={8} className='p-0 m-0' style={{display:'flex', alignItems:'center',fontSize:13, fontWeight:600, color:'#7CB6B8'}}>Garbage Trucks</Col>
               </Row>
             </Col>
-            <Col sm={3} className='p-0' style={{border:'2px solid black',margin:'auto'}}>
-              <Row className='p-0 m-0' style={{border:'2px solid purple'}}>
-                <Col sm={2} className='p-0 m-0' style={{border:'2px solid green', display:'flex',justifyContent:'center', alignItems:'center'}}>3</Col>
-                <Col sm={7} className='p-0 m-0' style={{border:'2px solid green', display:'flex', alignItems:'center',fontSize:14, fontWeight:600}}>Maintenance Crew</Col>
-                <Col sm={3} className='p-0 m-0' style={{border:'2px solid green', display:'flex',justifyContent:'center', alignItems:'center'}}>img</Col>
+            <Col sm={2} className='p-1' style={{margin:'auto'}}>
+              <Row className='p-0 m-0 areamap-filter' style={{borderRadius:'10px', boxShadow:'0px 4px 8px #707070', cursor:'pointer'}}>
+                <Col sm={4} className='p-1 m-0' style={{display:'flex',justifyContent:'center', alignItems:'center'}}><img src={maintenanceTruck} width='40px'/></Col>
+                <Col sm={8} className='p-0 m-0' style={{display:'flex', alignItems:'center',fontSize:13, fontWeight:600, color:'#7CB6B8'}}>Maintenance Crew</Col>
               </Row>
             </Col>
           </Row>
-          <Row className='p-0 m-0' style={{border:'2px solid orange', height:'488px'}}>Image</Row>
+          <Row className='p-0 m-0' style={{height:'488px'}}></Row>
       </Col>
       // <Container className='mx-0 px-0 h-100 overflow-hidden' fluid>
       //     <Header/>
