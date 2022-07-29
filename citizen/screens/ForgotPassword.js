@@ -13,8 +13,6 @@ import {StackActions} from "@react-navigation/native";
 const HEIGHT = Dimensions.get('window').height;
 
 const ForgotPassword = ({navigation}) => {
-  const [email, setEmail] = useState('');
-
   return (
     <KeyboardAwareScrollView
       style={styles.main}

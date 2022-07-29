@@ -1,44 +1,17 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext} from 'react';
 import {Text, View} from "react-native";
 import {Button} from "@rneui/base";
-import {RemoveAsyncStorageItem} from "../helpers/RemoveAsyncStorageItem";
-import {GetAsyncStorageItem} from "../helpers/GetAsyncStorageItem";
-import {StackActions} from "@react-navigation/native";
+import Spinner from "react-native-loading-spinner-overlay/src";
+
+import {AuthContext} from "../context/AuthContext";
 
 const Welcome = ({navigation}) => {
-  const [loggedUser, setLoggedUser] = useState(null);
-
-  useEffect(() => {
-    console.log("Welcome");
-    GetAsyncStorageItem('LOGGED_IN_USER')
-      .then((user) => {
-        console.log("LOGGED IN USER: ", user);
-        if (user) {
-          setLoggedUser(JSON.parse(user));
-        } else {
-          setLoggedUser(null);
-          return navigation.dispatch(StackActions.replace('Login'));
-        }
-      })
-      .catch((error) => {
-        console.log("LOGGED IN USER ERROR: ", error);
-      });
-  }, []);
-
-  const logout = () => {
-    RemoveAsyncStorageItem('LOGGED_IN_USER')
-      .then(() => {
-        setLoggedUser(null);
-        return navigation.dispatch(StackActions.replace('Login'));
-      })
-      .catch((error) => {
-        console.log("LOGOUT USER ERROR: ", error);
-      });
-  }
+  const {loading, loggedUser, logout} = useContext(AuthContext);
 
   return (
     <View>
-      <Text>Welcome</Text>
+      <Spinner visible={loading}/>
+      <Text>Welcome {loggedUser.email}</Text>
       <Button onPress={logout} title={'Logout'}/>
     </View>
   );

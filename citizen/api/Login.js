@@ -1,7 +1,8 @@
 import axios from "axios";
+import {BASE_URL} from "./config";
 
 export const loginUser = async ({email, password}) => {
-  return await axios.post(`http://192.168.1.227:3001/api/login`, {
+  return await axios.post(`${BASE_URL}/login`, {
     type: 'citizen',
     email: email,
     password: password,
@@ -9,7 +10,7 @@ export const loginUser = async ({email, password}) => {
 }
 
 export const getLoggedInUser = async (accessToken, refreshToken) => {
-  return await axios.post(`http://192.168.1.227:3001/api/login/current`, {}, {
+  return await axios.post(`${BASE_URL}/login/current`, {}, {
     headers: {
       accessToken: accessToken,
       refreshToken: refreshToken
