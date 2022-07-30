@@ -12,12 +12,14 @@ export const AuthProvider = ({children}) => {
   const [loading, setLoading] = useState(false);
   const [splashLoading, setSplashLoading] = useState(false);
   const [loggedUser, setLoggedUser] = useState({});
+  const [rememberedUser, setRememberedUser] = useState(null);
 
   useEffect(() => {
+    getRememberedUser();
     updateLoggedInUser();
   }, []);
 
-  const login = (email, password) => {
+  const login = (email, password, rememberMe) => {
     setLoading(true);
     if (email.length === 0 || password.length === 0) {
       setLoading(false);
@@ -27,6 +29,21 @@ export const AuthProvider = ({children}) => {
         text2: 'Please insert email and password',
         topOffset: 10,
       });
+    }
+    if (rememberMe) {
+      const tempRememberedUser = {
+        email: email,
+        password: password
+      };
+      SetAsyncStorageItem('REMEMBERED_USER', JSON.stringify(tempRememberedUser))
+        .then(() => {
+          setRememberedUser(tempRememberedUser);
+        });
+    } else {
+      RemoveAsyncStorageItem('REMEMBERED_USER')
+        .then(() => {
+          setRememberedUser(null);
+        });
     }
     const formData = {
       email: email,
@@ -191,11 +208,28 @@ export const AuthProvider = ({children}) => {
     }
   }
 
+  const getRememberedUser = () => {
+    GetAsyncStorageItem('REMEMBERED_USER')
+      .then((remUser) => {
+        const remUserObj = JSON.parse(remUser);
+        if (remUserObj) {
+          const tempRememberedUser = {
+            email: remUserObj.email,
+            password: remUserObj.password
+          };
+          setRememberedUser(tempRememberedUser);
+        } else {
+          setRememberedUser(null);
+        }
+      });
+  }
+
   return (
     <AuthContext.Provider value={{
       loading: loading,
       splashLoading: splashLoading,
       loggedUser: loggedUser,
+      rememberedUser: rememberedUser,
       login: login,
       logout: logout
     }}>{children}</AuthContext.Provider>

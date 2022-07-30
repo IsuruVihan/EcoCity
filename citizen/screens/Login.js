@@ -19,7 +19,15 @@ const Login = ({navigation}) => {
   const [showPassword, setShowPassword] = useState(true);
   const [rememberMe, setRememberMe] = useState(false);
 
-  const {loading, login} = useContext(AuthContext);
+  const {loading, login, rememberedUser} = useContext(AuthContext);
+
+  useEffect(() => {
+    if (rememberedUser) {
+      setEmail(rememberedUser.email);
+      setPassword(rememberedUser.password);
+      setRememberMe(true);
+    }
+  }, []);
 
   return (
     <KeyboardAwareScrollView
@@ -100,7 +108,7 @@ const Login = ({navigation}) => {
             containerStyle={{width: '100%', marginTop: 10, padding: 0,}}
             titleStyle={{fontWeight: 'bold', fontSize: 18,}}
             buttonStyle={{backgroundColor: '#228693', borderRadius: 10, padding: 15,}}
-            onPress={() => login(email, password)}
+            onPress={() => login(email, password, rememberMe)}
           />
         </View>
       </View>
