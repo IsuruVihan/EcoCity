@@ -1,5 +1,6 @@
 import React, {Fragment} from 'react';
 import {Row, Table} from "react-bootstrap";
+import {FiEdit, FiTrash} from "react-icons/fi";
 
 
 const GarbageHubsTableItem = () => {
@@ -25,7 +26,13 @@ const GarbageHubsTableItem = () => {
                 <td>10&deg;C</td>
                 <td>20%</td>
                 <td><label className={getFillLevelClasses(95)}>95%</label></td>
-                <td>Edit</td>
+                <td>
+                    <div className='action-item-group'>
+                        <FiEdit/>
+                        <FiTrash/>
+                    </div>
+
+                </td>
             </tr>
             <tr>
                 <td>Glass</td>

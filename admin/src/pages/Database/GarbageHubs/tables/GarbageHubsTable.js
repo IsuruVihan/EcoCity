@@ -4,6 +4,7 @@ import {Container, Row, Table} from "react-bootstrap";
 import GarbageHubDetailsModal from "../modals/GarbageHubDetailsModal";
 import UpdateGarbageHubModal from "../modals/UpdateGarbageHubModal";
 import GarbageHubsTableItem from "./GarbageHubsTableItem";
+import {FiEdit} from "react-icons/fi";
 
 const GarbageHubsTable = () => {
     return (

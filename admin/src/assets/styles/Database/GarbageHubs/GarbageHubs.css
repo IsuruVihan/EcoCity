@@ -8,6 +8,20 @@
 .garbage-hubs-table tbody tr {
     /*border: 0 none transparent !important;*/
 }
+.action-item-group{
+    display: flex;
+    justify-content: space-between;
+    width: 55px;
+}
+.action-item-group svg{
+    font-size: 25px;
+    padding-right: 4px;
+    padding-left: 4px;
+    background-color: green;
+    border-radius: 5px;
+    color: white;
+
+}
 
 .level-warning {
     background-color: rgba(255, 115, 115, 0.5);
