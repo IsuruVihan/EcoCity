@@ -5,12 +5,6 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       autoIncrement: true,
     },
-    currentusertype: {
-      type: DataTypes.ENUM,
-      values: [
-        'House', 'Driver', 'Maintenance'
-      ],
-    },
     serialnumber: {
       type: DataTypes.STRING(1000),
     },
