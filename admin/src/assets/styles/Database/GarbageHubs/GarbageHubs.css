@@ -5,19 +5,27 @@
     vertical-align: middle;
 }
 
+.garbage-hubs-table tbody tr {
+    /*border: 0 none transparent !important;*/
+}
+
 .level-warning {
-    background-color: #FF7373;
+    background-color: rgba(255, 115, 115, 0.5);
 }
 
 .level-normal {
-    background-color: #00C186;
+    background-color: rgba(0, 193, 134, 0.5);
 }
 
 .level-medium {
-    background-color: #FF9900;
+    background-color: rgba(255, 153, 0, 0.5);
 }
 
 .label {
     border-radius: 10px;
     text-align: center;
+}
+
+.divider-row{
+    border-bottom: 2px solid #BFDDDE;
 }

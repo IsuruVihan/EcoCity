@@ -3,6 +3,18 @@ import {Row, Table} from "react-bootstrap";
 
 
 const GarbageHubsTableItem = () => {
+    const getFillLevelClasses = (level) => {
+        let classes = 'px-2 label ';
+        if (level <= 25) {
+            classes += 'level-normal';
+        } else if (level <= 90) {
+            classes += 'level-medium';
+        } else {
+            classes += 'level-warning';
+        }
+
+        return classes;
+    }
     return (
         <Fragment>
             <tr>
@@ -12,7 +24,7 @@ const GarbageHubsTableItem = () => {
                 <td>Active</td>
                 <td>10&deg;C</td>
                 <td>20%</td>
-                <td><label className='px-2 label level-warning'>95%</label></td>
+                <td><label className={getFillLevelClasses(95)}>95%</label></td>
                 <td>Edit</td>
             </tr>
             <tr>
@@ -20,7 +32,7 @@ const GarbageHubsTableItem = () => {
                 <td>Active</td>
                 <td>5&deg;C</td>
                 <td>3%</td>
-                <td><label className='px-2 label level-normal'>23%</label></td>
+                <td><label className={getFillLevelClasses(23)}>23%</label></td>
                 <td>Edit</td>
             </tr>
             <tr>
@@ -28,15 +40,15 @@ const GarbageHubsTableItem = () => {
                 <td>Active</td>
                 <td>3&deg;C</td>
                 <td>5%</td>
-                <td><label className='px-2 label level-medium'>56%</label></td>
+                <td><label className={getFillLevelClasses(56)}>56%</label></td>
                 <td>Edit</td>
             </tr>
-            <tr>
+            <tr className='divider-row'>
                 <td>Plastic</td>
                 <td>Active</td>
                 <td>3&deg;C</td>
                 <td>2%</td>
-                <td><label className='px-2 label level-normal'>21%</label></td>
+                <td><label className={getFillLevelClasses(21)}>21%</label></td>
                 <td>Edit</td>
             </tr>
         </Fragment>

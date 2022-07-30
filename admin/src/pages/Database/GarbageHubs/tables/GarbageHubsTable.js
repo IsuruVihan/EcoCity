@@ -8,7 +8,7 @@ import GarbageHubsTableItem from "./GarbageHubsTableItem";
 const GarbageHubsTable = () => {
     return (
         <Row className='mx-0'>
-            <Table className='my-0 garbage-hubs-table'>
+            <Table className='my-0 garbage-hubs-table' borderless>
                 <thead>
                 <tr className='fw-bold'>
                     <td>#</td>
