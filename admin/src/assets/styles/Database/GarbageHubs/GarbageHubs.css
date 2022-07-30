@@ -1,0 +1,7 @@
+.garbage-hubs-table tbody tr td{
+    padding-top: 5px;
+    padding-bottom: 5px;
+    /*display: flex;*/
+    vertical-align: middle;
+}
+
