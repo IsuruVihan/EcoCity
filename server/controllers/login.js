@@ -2,46 +2,97 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
 const db = require('../models/index');
-const {House} = db;
+const {House, Driver, MaintenanceCrew, Admin} = db;
+
+const manageTokens = async (req, result, res) => {
+  if (await bcrypt.compare(req.body.password, result[0].password)) {
+    const accessToken = jwt.sign(
+      {aud: req.body.email, iss: 'EcoCity'},
+      process.env.JWT_ACCESS_TOKEN_SECRET,
+      {expiresIn: '1m'}
+    );
+    const refreshToken = jwt.sign(
+      {aud: req.body.email, iss: 'EcoCity'},
+      process.env.JWT_REFRESH_TOKEN_SECRET,
+      {expiresIn: '1y'}
+    );
+    res.status(200).json({
+      message: 'Logged in successfully.',
+      email: req.body.email,
+      accessToken: accessToken,
+      refreshToken: refreshToken
+    });
+  } else {
+    res.status(400).json({
+      message: 'Incorrect username or password.'
+    });
+    console.log("> LOGIN ERROR (INCORRECT PASSWORD)");
+  }
+}
 
 exports.logUser = (req, res) => {
   console.log("CONTROLLER: ", req.body.type, req.body.email, req.body.password);
-  if (req.body.type === 'citizen') {
-    House.findAll({
-      attributes: ['password'],
-      where: {email: req.body.email}
-    })
-      .then(async (result) => {
-        if (await bcrypt.compare(req.body.password, result[0].password)) {
-          const accessToken = jwt.sign(
-            {aud: req.body.email, iss: 'EcoCity'},
-            process.env.JWT_ACCESS_TOKEN_SECRET,
-            {expiresIn: '1m'}
-          );
-          const refreshToken = jwt.sign(
-            {aud: req.body.email, iss: 'EcoCity'},
-            process.env.JWT_REFRESH_TOKEN_SECRET,
-            {expiresIn: '1y'}
-          );
-          res.status(200).json({
-            message: 'Logged in successfully.',
-            email: req.body.email,
-            accessToken: accessToken,
-            refreshToken: refreshToken
-          });
-        } else {
-          res.status(400).json({
-            message: 'Incorrect username or password.'
-          });
-          console.log("> LOGIN ERROR (INCORRECT PASSWORD)");
-        }
+  switch (req.body.type) {
+    case "citizen":
+      House.findAll({
+        attributes: ['password'],
+        where: {email: req.body.email}
       })
-      .catch((error) => {
-        res.status(400).json({
-          message: 'User not registered. Please contact admin.',
+        .then(async (result) => {
+          await manageTokens(req, result, res);
+        })
+        .catch((error) => {
+          res.status(400).json({
+            message: 'User not registered. Please contact admin.',
+          });
+          console.log("> LOGIN ERROR (USER DOESN'T EXIST): ", error);
         });
-        console.log("> LOGIN ERROR (USER DOESN'T EXIST): ", error);
-      });
+      break;
+    case "driver":
+      Driver.findAll({
+        attributes: ['password'],
+        where: {email: req.body.email}
+      })
+        .then(async (result) => {
+          await manageTokens(req, result, res);
+        })
+        .catch((error) => {
+          res.status(400).json({
+            message: 'User not registered. Please contact admin.',
+          });
+          console.log("> LOGIN ERROR (USER DOESN'T EXIST): ", error);
+        });
+      break;
+    case "maintenance":
+      MaintenanceCrew.findAll({
+        attributes: ['password'],
+        where: {email: req.body.email}
+      })
+        .then(async (result) => {
+          await manageTokens(req, result, res);
+        })
+        .catch((error) => {
+          res.status(400).json({
+            message: 'User not registered. Please contact admin.',
+          });
+          console.log("> LOGIN ERROR (USER DOESN'T EXIST): ", error);
+        });
+      break;
+    case "admin":
+      Admin.findAll({
+        attributes: ['password'],
+        where: {email: req.body.email}
+      })
+        .then(async (result) => {
+          await manageTokens(req, result, res);
+        })
+        .catch((error) => {
+          res.status(400).json({
+            message: 'User not registered. Please contact admin.',
+          });
+          console.log("> LOGIN ERROR (USER DOESN'T EXIST): ", error);
+        });
+      break;
   }
 }
 
