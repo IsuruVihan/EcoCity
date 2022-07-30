@@ -16,7 +16,7 @@ const Dashboard = () => {
                 <Col className="p-0" style={{
                     border: '2px solid blue', fontWeight: 800, fontSize: 30, color: '#075061'}} sm={12}>Hello Nisal,</Col>
                 <Col className="p-0" style={{border: '2px solid blue'}} sm={12}>This is what we have got for you today!</Col>
-                <Col lg={9} className="p-0" style={{border: '2px solid blue'}}>
+                <Col lg={10} className="p-0" style={{border: '2px solid red'}}>
                     <Row className="m-0" style={{border: '2px solid green'}}>
                         <Col lg={12} className="p-0" style={{border: '2px solid pink'}}>Garbage Collection Weight</Col>
                         <Col lg={12} className="p-0" style={{border: '2px solid pink'}}>Filter</Col>
@@ -28,13 +28,8 @@ const Dashboard = () => {
                         </Col>
                     </Row>
                 </Col>
-                <Col lg={3} className="p-0" style={{border: '2px solid blue'}}>
-                    <Row className="m-0" style={{border: '2px solid green'}}>
-                        <Col lg={12} className="p-0" style={{border: '2px solid pink'}}>Truck Drivers</Col>
-                        <Col lg={12} className="p-0" style={{border: '2px solid pink'}}>Maintenance</Col>
-                        <Col lg={12} className="p-0" style={{border: '2px solid pink'}}>Garbage Hubs</Col>
-                        <Col lg={12} className="p-0" style={{border: '2px solid pink'}}>Houses</Col>
-                    </Row>
+                <Col lg={2} className="p-0" style={{border: '2px solid red'}}>
+                    <Row className="m-0 ms-3"><CountCard/></Row>
                 </Col>
             </Row>
         </Col>
