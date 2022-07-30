@@ -12,7 +12,7 @@ const GarbageHubsTableItem = () => {
                 <td>Active</td>
                 <td>10&deg;C</td>
                 <td>20%</td>
-                <td>95%</td>
+                <td><label className='px-2 label level-warning'>95%</label></td>
                 <td>Edit</td>
             </tr>
             <tr>
@@ -20,7 +20,7 @@ const GarbageHubsTableItem = () => {
                 <td>Active</td>
                 <td>5&deg;C</td>
                 <td>3%</td>
-                <td>23%</td>
+                <td><label className='px-2 label level-normal'>23%</label></td>
                 <td>Edit</td>
             </tr>
             <tr>
@@ -28,7 +28,7 @@ const GarbageHubsTableItem = () => {
                 <td>Active</td>
                 <td>3&deg;C</td>
                 <td>5%</td>
-                <td>56%</td>
+                <td><label className='px-2 label level-medium'>56%</label></td>
                 <td>Edit</td>
             </tr>
             <tr>
@@ -36,7 +36,7 @@ const GarbageHubsTableItem = () => {
                 <td>Active</td>
                 <td>3&deg;C</td>
                 <td>2%</td>
-                <td>21%</td>
+                <td><label className='px-2 label level-normal'>21%</label></td>
                 <td>Edit</td>
             </tr>
         </Fragment>
