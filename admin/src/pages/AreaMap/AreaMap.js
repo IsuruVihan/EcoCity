@@ -1,6 +1,7 @@
 import React from 'react';
 import {Col, Container, Row} from "react-bootstrap";
 
+
 import SideNav from "../../common/SideNav";
 import Map from "./maps/Map";
 import MainFilter from "./filters/MainFilter";
