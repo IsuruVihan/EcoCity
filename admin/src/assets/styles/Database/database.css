@@ -1,0 +1,15 @@
+.section-header {
+    height: 60px;
+}
+
+.section-contents {
+    height: calc(100% - 70px);
+}
+
+.section-contents div {
+    background-color: white;
+}
+
+.column-left {
+    width: calc(65%);
+}
