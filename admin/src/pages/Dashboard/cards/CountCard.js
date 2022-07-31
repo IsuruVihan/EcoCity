@@ -16,9 +16,9 @@ const CountCard = () => {
                       <Image src={TruckDriver} width='35%'/>
                   </Col>
                   <Col lg={6} className="p-0 mt-3" style={{
-                      color: '#042434', display: "flex", alignItems: "center", justifyContent: "left"}}>Truck Drivers</Col>
+                      color: '#042434', display: "flex", alignItems: "center", justifyContent: "flex-start", fontSize: '13px'}}>Truck Drivers</Col>
                   <Col lg={12} className="p-0" style={{
-                      fontWeight: 700, fontSize: 70, color: '#042434', textAlign: "center"}}>26</Col>
+                      fontWeight: 700, fontSize: 55, color: '#042434', textAlign: "center"}}>26</Col>
               </Row>
           </Col>
           <Col sm={12} className="p-0 mb-3" style={{border: '2px solid #BFDDDE', borderRadius: '20px'}}>
@@ -27,9 +27,9 @@ const CountCard = () => {
                       <Image src={Crew} width='35%'/>
                   </Col>
                   <Col lg={6} className="p-0 mt-3" style={{
-                      color: '#042434', display: "flex", alignItems: "center", justifyContent: "left"}}>Maintenance</Col>
+                      color: '#042434', display: "flex", alignItems: "center", justifyContent: "flex-start", fontSize: '13px'}}>Maintenance</Col>
                   <Col lg={12} className="p-0" style={{
-                      fontWeight: 700, fontSize: 70, color: '#042434', textAlign: "center"}}>13</Col>
+                      fontWeight: 700, fontSize: 55, color: '#042434', textAlign: "center"}}>13</Col>
               </Row>
           </Col>
           <Col sm={12} className="p-0 mb-3" style={{border: '2px solid #BFDDDE', borderRadius: '20px'}}>
@@ -38,9 +38,9 @@ const CountCard = () => {
                       <Image src={Hub} width='35%'/>
                   </Col>
                   <Col lg={6} className="p-0 mt-3" style={{
-                      color: '#042434', display: "flex", alignItems: "center", justifyContent: "left"}}>Garbage Hubs</Col>
+                      color: '#042434', display: "flex", alignItems: "center", justifyContent: "flex-start", fontSize: '13px'}}>Garbage Hubs</Col>
                   <Col lg={12} className="p-0" style={{
-                      fontWeight: 700, fontSize: 70, color: '#042434', textAlign: "center"}}>11</Col>
+                      fontWeight: 700, fontSize: 55, color: '#042434', textAlign: "center"}}>11</Col>
               </Row>
           </Col>
           <Col sm={12} className="p-0" style={{border: '2px solid #BFDDDE', borderRadius: '20px'}}>
@@ -49,9 +49,9 @@ const CountCard = () => {
                       <Image src={House} width='35%'/>
                   </Col>
                   <Col lg={6} className="p-0 mt-3" style={{
-                      color: '#042434', display: "flex", alignItems: "center", justifyContent: "left"}}>Houses</Col>
+                      color: '#042434', display: "flex", alignItems: "center", justifyContent: "flex-start", fontSize: '13px'}}>Houses</Col>
                   <Col lg={12} className="p-0" style={{
-                      fontWeight: 700, fontSize: 70, color: '#042434', textAlign: "center"}}>73</Col>
+                      fontWeight: 700, fontSize: 55, color: '#042434', textAlign: "center"}}>73</Col>
               </Row>
           </Col>
       </Row>
