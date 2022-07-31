@@ -3,6 +3,8 @@ import {Text, View} from "react-native";
 import {Button} from "@rneui/base";
 import Spinner from "react-native-loading-spinner-overlay/src";
 
+import Header from "../components/Header";
+
 import {AuthContext} from "../context/AuthContext";
 
 const Welcome = ({navigation}) => {
@@ -10,6 +12,7 @@ const Welcome = ({navigation}) => {
 
   return (
     <View>
+      <Header/>
       <Spinner visible={loading}/>
       <Text>Welcome {loggedUser.email}</Text>
       <Button onPress={logout} title={'Logout'}/>
