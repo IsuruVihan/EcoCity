@@ -28,7 +28,7 @@ const Dashboard = () => {
                         </Col>
                     </Row>
                 </Col>
-                <Col lg={2} className="p-0" style={{border: '2px solid blue', display: "flex", flexDirection: "column"}}>
+                <Col lg={2} className="p-0" style={{border: '2px solid red', display: "flex", flexDirection: "column"}}>
                     <Row className="m-0 ms-3"><CountCard/></Row>
                 </Col>
             </Row>
