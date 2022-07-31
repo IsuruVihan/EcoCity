@@ -31,12 +31,12 @@ const Complaints = () => {
                   style={{border:"1px solid #BFDDDE" , borderRadius:10}} className="m-2">
                   <Row className="d-flex border ">
                       <Col xs={10}></Col>
-                      <Col  className='pt-3 px-4 border ' >
-                          <Row xs="2"
-                               style={{border:'2px solid #BFDDDE', borderRadius:10 }} >
+                      <Col  className='pt-3 mx-3 me-2 ' >
+                          <Row xs="2" className="mx-2"
+                               style={{border:'2px solid #BFDDDE', borderRadius:10 , textAlign:'right',  }} >
                               <Col
                                   onClick={() => setOpen(!open)}
-                                  style={{ cursor:'pointer' }}
+                                  style={{ cursor:'pointer' , }}
                                   aria-controls="example-collapse-text"
                                   aria-expanded={open}
                                   xs="6">
@@ -134,7 +134,7 @@ const Complaints = () => {
                                               <Row>
                                                   <Col>
                                                       <label
-                                                          style={{fontSize:9}}>
+                                                          style={{fontSize:12}}>
                                                           ComplaintID
                                                       </label>
                                                   </Col>
@@ -149,7 +149,7 @@ const Complaints = () => {
                                               <Row>
                                                   <Col>
                                                       <label
-                                                          style={{fontSize:9}}>
+                                                          style={{fontSize:12}}>
                                                           FirstName
                                                       </label>
                                                   </Col>
@@ -164,7 +164,7 @@ const Complaints = () => {
                                               <Row>
                                                   <Col>
                                                       <label
-                                                          style={{fontSize:9}}>
+                                                          style={{fontSize:12}}>
                                                           LastName
                                                       </label>
                                                   </Col>
@@ -178,7 +178,7 @@ const Complaints = () => {
                                               </Row>
                                               <Row className="mx-1 mt-3 ">
                                                   <Col style={{textAlign:'left'}} xs={5}>
-                                                      <Image src={from_date} width="40%"/>
+                                                      <Image src={from_date} width="30%"/>
                                                   </Col>
                                                   <Col style={{textAlign:'left',
                                                        fontSize:12,
@@ -194,7 +194,7 @@ const Complaints = () => {
                                               </Row>
                                               <Row className="mx-1 mt-3">
                                                   <Col style={{textAlign:'left'}} xs={5} >
-                                                      <Image src={to_date} width="40%"/>
+                                                      <Image src={to_date} width="30%"/>
                                                   </Col>
                                                   <Col style={{textAlign:'left',
                                                        fontSize:12,
@@ -210,7 +210,7 @@ const Complaints = () => {
                                               </Row>
                                           </Col>
                                       </Row>
-                                      <Row  className="me-1 mt-1 mb-1 p-1"
+                                      <Row  className="me-2 mt-2 mb-1 p-1"
                                             style={{ marginLeft:'60%' ,}}>
                                           <Col>
                                               <Row style={{backgroundColor:'#228693' ,
@@ -218,7 +218,7 @@ const Complaints = () => {
                                                            paddingBottom:5 ,
                                                            paddingTop:5}}>
                                                   <Col style={{textAlign:'right' ,}} xs={4}>
-                                                      <Image src={filtericonbutton}  width="250%"/>
+                                                      <Image src={filtericonbutton}  width="180%"/>
                                                   </Col>
                                                   <Col style={{ color:'#fff' ,
                                                                 textAlign:'left' ,
