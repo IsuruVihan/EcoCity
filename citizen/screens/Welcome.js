@@ -12,8 +12,8 @@ const Welcome = ({navigation}) => {
 
   return (
     <View>
-      <Header/>
       <Spinner visible={loading}/>
+      <Header email={loggedUser.email}/>
       <Text>Welcome {loggedUser.email}</Text>
       <Button onPress={logout} title={'Logout'}/>
     </View>

@@ -6,14 +6,14 @@ import {Responsive} from "../helpers/Responsive";
 
 const HEIGHT = Dimensions.get('window').height;
 
-const Header = () => {
+const Header = ({email}) => {
   return (
     <View style={styles.header}>
       <View style={styles.header.imageContainer}>
         <Image style={styles.header.imageContainer.image} source={Logo2}/>
       </View>
       <View style={styles.header.titleContainer}>
-        <Text style={styles.header.titleContainer.title}>Welcome</Text>
+        <Text style={styles.header.titleContainer.title}>{email}</Text>
       </View>
       <View style={styles.header.imageContainer}/>
     </View>
@@ -22,33 +22,28 @@ const Header = () => {
 
 const styles = StyleSheet.create({
   header: {
-    borderColor: 'red',
-    borderWidth: 2,
     width: '100%',
     height: Responsive(8, HEIGHT),
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
     imageContainer: {
-      borderColor: 'green',
-      borderWidth: 2,
       height: '100%',
       width: '20%',
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
       image: {
-        // borderColor: 'blue',
-        // borderWidth: 2,
         width: '70%',
         height: '60%',
       },
     },
-    title: {
-      borderColor: 'blue',
-      borderWidth: 2,
+    titleContainer: {
       display: 'flex',
       justifyContent: 'center',
+      title: {
+        color: '#042434',
+      },
     },
   },
 });
