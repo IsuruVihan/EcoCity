@@ -1,6 +1,7 @@
 import React from 'react';
 import {Col, Container, Row} from "react-bootstrap";
 
+
 import SideNav from "../../common/SideNav";
 import Map from "./maps/Map";
 import MainFilter from "./filters/MainFilter";
@@ -11,6 +12,12 @@ import maintenanceTruck from '../../assets/images/maintenance-truck.png';
 import './AreaMap.css';
 
 const AreaMap = () => {
+  const [isActive, setIsActive] = useState(false);
+
+  const handleClick = () => {
+    setIsActive(current => !current);
+
+  };
   return (
     <Col className='p-0' lg={10}>
       <Row className='p-0 mt-4 m-0' style={{border: '2px solid red',}}>
