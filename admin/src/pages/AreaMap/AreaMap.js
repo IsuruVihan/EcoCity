@@ -21,26 +21,22 @@ const AreaMap = () => {
           fontSize: 35,
           fontWeight: 900,
           color: '#042434',
-          border: '2px solid red',
-        }}>Area Map</Col>
-        <Col sm={4} className='pr-2 m-0' style={{border: '2px solid red',}}></Col>
+          border: '2px solid red'}}>Area Map</Col>
+        <Col sm={4} className='pr-2 m-0' style={{border: '2px solid red'}}></Col>
         <Col sm={2} className='p-1' style={{margin: 'auto'}}>
           <Row className='p-0 m-0 areamap-filter'
                style={{borderRadius: '10px', boxShadow: '2px 4px 8px lightgray', cursor: 'pointer'}}>
             <Col sm={4} className='p-1 m-0'
-                 style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}><img src={hubArea}
-                                                                                                width='38px'/></Col>
+                 style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}><img src={hubArea}width='38px'/></Col>
             <Col sm={8} className='p-0 m-0'
-                 style={{display: 'flex', alignItems: 'center', fontSize: 13, fontWeight: 600, color: '#7CB6B8'}}>Garbage
-              Hubs</Col>
+                 style={{display: 'flex', alignItems: 'center', fontSize: 13, fontWeight: 600, color: '#7CB6B8'}}>GarbageHubs</Col>
           </Row>
         </Col>
         <Col sm={2} className='p-1' style={{margin: 'auto'}}>
           <Row className='p-0 m-0 areamap-filter'
                style={{borderRadius: '10px', boxShadow: '2px 4px 8px lightgray', cursor: 'pointer'}}>
             <Col sm={4} className='p-1 m-0'
-                 style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}><img src={garbageTruck}
-                                                                                                width='40px'/></Col>
+                 style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}><img src={garbageTruck}width='40px'/></Col>
             <Col sm={8} className='p-0 m-0'
                  style={{display: 'flex', alignItems: 'center', fontSize: 13, fontWeight: 600, color: '#7CB6B8'}}>Garbage
               Trucks</Col>
@@ -50,8 +46,7 @@ const AreaMap = () => {
           <Row className='p-0 m-0 areamap-filter'
                style={{borderRadius: '10px', boxShadow: '2px 4px 8px lightgray', cursor: 'pointer'}}>
             <Col sm={4} className='p-1 m-0'
-                 style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}><img src={maintenanceTruck}
-                                                                                                width='40px'/></Col>
+                 style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}><img src={maintenanceTruck}width='40px'/></Col>
             <Col sm={8} className='p-0 m-0'
                  style={{display: 'flex', alignItems: 'center', fontSize: 13, fontWeight: 600, color: '#7CB6B8'}}>Maintenance
               Crew</Col>
