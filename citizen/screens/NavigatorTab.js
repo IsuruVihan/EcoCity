@@ -1,9 +1,18 @@
-import React, {useState} from 'react';
-import {Text} from "react-native";
+import React, {useState, useContext} from 'react';
 import {Tab, TabView} from '@rneui/themed';
+
+import Welcome from "./Welcome";
+import AreaMap from "./AreaMap";
+import Complaints from "./Complaints";
+import MyProfile from "./MyProfile";
+import Header from "../components/Header";
+
+import {AuthContext} from "../context/AuthContext";
 
 const NavigatorTab = () => {
   const [index, setIndex] = useState(0);
+
+  const {loggedUser} = useContext(AuthContext);
 
   const TabItem = (title, id, icon, type) => {
     return (
@@ -20,18 +29,19 @@ const NavigatorTab = () => {
 
   return (
     <>
+      <Header email={loggedUser.email}/>
       <TabView value={index} onChange={setIndex}>
-        <TabView.Item style={{backgroundColor: 'red', width: '100%'}}>
-          <Text>Home</Text>
+        <TabView.Item style={{backgroundColor: 'white', width: '100%'}}>
+          {/*<Welcome/>*/}
         </TabView.Item>
-        <TabView.Item style={{backgroundColor: 'green', width: '100%'}}>
-          <Text>Area Map</Text>
+        <TabView.Item style={{backgroundColor: 'white', width: '100%'}}>
+          {/*<AreaMap/>*/}
         </TabView.Item>
-        <TabView.Item style={{backgroundColor: 'blue', width: '100%'}}>
-          <Text>Complaints</Text>
+        <TabView.Item style={{backgroundColor: 'white', width: '100%'}}>
+          {/*<Complaints/>*/}
         </TabView.Item>
-        <TabView.Item style={{backgroundColor: 'green', width: '100%'}}>
-          <Text>My Profile</Text>
+        <TabView.Item style={{backgroundColor: 'white', width: '100%'}}>
+          {/*<MyProfile/>*/}
         </TabView.Item>
       </TabView>
       <Tab value={index} onChange={(e) => setIndex(e)}>
