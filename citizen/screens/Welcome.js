@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useContext, useState} from 'react';
 import {Dimensions, ScrollView, StyleSheet, Text, View} from "react-native";
 import {Button} from "@rneui/base";
 import Spinner from "react-native-loading-spinner-overlay/src";
@@ -14,6 +14,8 @@ const HEIGHT = Dimensions.get('window').height;
 const Welcome = ({navigation}) => {
   const {loading, loggedUser, logout} = useContext(AuthContext);
 
+  const [selectedLink, setSelectedLink] = useState('home');
+
   return (
     <View>
       <Spinner visible={loading}/>
@@ -22,7 +24,7 @@ const Welcome = ({navigation}) => {
         <Text>Welcome {loggedUser.email}</Text>
         <Button onPress={logout} title={'Logout'}/>
       </View>
-      <Footer/>
+      <Footer selected={selectedLink} onChange={setSelectedLink}/>
     </View>
   );
 }
@@ -30,9 +32,7 @@ const Welcome = ({navigation}) => {
 const styles = StyleSheet.create({
   body: {
     width: '100%',
-    height: Responsive(81, HEIGHT),
-    borderColor: 'red',
-    borderWidth: 2,
+    height: Responsive(80, HEIGHT),
   },
 });
 

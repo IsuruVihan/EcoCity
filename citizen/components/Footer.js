@@ -1,5 +1,5 @@
 import React from 'react';
-import {Dimensions, Image, StyleSheet, Text, View} from "react-native";
+import {Dimensions, Image, Pressable, StyleSheet, Text, View} from "react-native";
 
 import ComplaintsImg from "../assets/images/mobile-complaints.png";
 import HomeImg from "../assets/images/mobile-home.png";
@@ -14,13 +14,45 @@ import {Responsive} from "../helpers/Responsive";
 
 const HEIGHT = Dimensions.get('window').height;
 
-const Footer = () => {
+const Footer = ({selected, onChange}) => {
   return (
     <View style={styles.footer}>
-      <Image source={ComplaintsImgSelected} style={styles.footer.icon}/>
-      <Image source={HomeImgSelected} style={styles.footer.icon}/>
-      <Image source={MapImgSelected} style={styles.footer.icon}/>
-      <Image source={ProfileImgSelected} style={styles.footer.icon}/>
+      <Pressable
+        style={selected === 'complaint' ? {borderBottomColor: '#228693', borderBottomWidth: 2, height: '60%'} : {}}
+        onPress={() => onChange('complaint')}
+      >
+        <Image
+          source={selected === 'complaint' ? ComplaintsImgSelected : ComplaintsImg}
+          style={selected === 'complaint' ? styles.footer.icon_selected : styles.footer.icon}
+        />
+      </Pressable>
+      <Pressable
+        style={selected === 'home' ? {borderBottomColor: '#228693', borderBottomWidth: 2, height: '60%'} : {}}
+        onPress={() => onChange('home')}
+      >
+        <Image
+          source={selected === 'home' ? HomeImgSelected : HomeImg}
+          style={selected === 'home' ? styles.footer.icon_selected : styles.footer.icon}
+        />
+      </Pressable>
+      <Pressable
+        style={selected === 'map' ? {borderBottomColor: '#228693', borderBottomWidth: 2, height: '60%'} : {}}
+        onPress={() => onChange('map')}
+      >
+        <Image
+          source={selected === 'map' ? MapImgSelected : MapImg}
+          style={styles.footer.icon2}
+        />
+      </Pressable>
+      <Pressable
+        style={selected === 'profile' ? {borderBottomColor: '#228693', borderBottomWidth: 2, height: '60%'} : {}}
+        onPress={() => onChange('profile')}
+      >
+        <Image
+          source={selected === 'profile' ? ProfileImgSelected : ProfileImg}
+          style={styles.footer.icon2}
+        />
+      </Pressable>
     </View>
   );
 }
@@ -28,18 +60,32 @@ const Footer = () => {
 const styles = StyleSheet.create({
   footer: {
     width: '100%',
-    height: Responsive(8, HEIGHT),
+    height: Responsive(9, HEIGHT),
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-evenly',
     alignItems: 'center',
-    borderColor: 'red',
-    borderWidth: 2,
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
+    borderLeftRadius: 20,
+    borderRightRadius: 20,
+    borderColor: 'lightgray',
+    borderWidth: 1,
     icon: {
-      // borderColor: 'red',
-      // borderWidth: 1,
-      width: '6%',
-      height: '60%',
+      width: 25,
+      height: 25,
+    },
+    icon2: {
+      width: 25,
+      height: 30,
+    },
+    icon_selected: {
+      width: 25,
+      height: 25,
+    },
+    icon2_selected: {
+      width: 25,
+      height: 30,
     },
   },
 });
