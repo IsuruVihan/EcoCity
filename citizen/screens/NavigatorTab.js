@@ -32,16 +32,16 @@ const NavigatorTab = () => {
       <Header email={loggedUser.email}/>
       <TabView value={index} onChange={setIndex}>
         <TabView.Item style={{backgroundColor: 'white', width: '100%'}}>
-          {/*<Welcome/>*/}
+          <Welcome/>
         </TabView.Item>
         <TabView.Item style={{backgroundColor: 'white', width: '100%'}}>
-          {/*<AreaMap/>*/}
+          <AreaMap/>
         </TabView.Item>
         <TabView.Item style={{backgroundColor: 'white', width: '100%'}}>
-          {/*<Complaints/>*/}
+          <Complaints/>
         </TabView.Item>
         <TabView.Item style={{backgroundColor: 'white', width: '100%'}}>
-          {/*<MyProfile/>*/}
+          <MyProfile/>
         </TabView.Item>
       </TabView>
       <Tab value={index} onChange={(e) => setIndex(e)}>
