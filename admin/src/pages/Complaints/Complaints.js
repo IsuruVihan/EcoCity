@@ -3,7 +3,7 @@ import {Col, Container, Image, Row, Collapse, Button} from "react-bootstrap";
 
 import SideNav from "../../common/SideNav";
 import ComplaintsTableFilter from "./filters/ComplaintsTableFilter";
-import ComplaintsTable from "./tables/ComplaintsTable";
+import ComplaintsdTable from "./tables/ComplaintsTable";
 import ViewComplaintModal from "./modals/ViewComplaintModal";
 import Header from "../../common/Header";
 
