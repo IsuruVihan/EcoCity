@@ -1,6 +1,7 @@
 import React from 'react';
 import {Text, View, StyleSheet, Dimensions, LogBox} from "react-native";
-import { VictoryPie, VictoryChart, VictoryTheme } from "victory-native";
+import {VictoryPie} from "victory-native";
+
 import {Responsive} from "../helpers/Responsive";
 
 const HEIGHT = Dimensions.get('window').height;
@@ -11,29 +12,31 @@ LogBox.ignoreLogs([
 ]);
 
 const Complaints = () => {
+  const Table = () => {
+
+  }
+
   const PieChart = () => {
     return (
-      <View style={{display: 'flex', justifyContent: 'center', alignItems: 'center',}}>
-        <VictoryPie
-          style={{labels: {fontSize: 10, fill: "white", fontWeight: 'bold',},}}
-          labelRadius={Responsive(12, WIDTH)}
-          width={Responsive(100, WIDTH)}
-          height={Responsive(25, HEIGHT)}
-          padding={10}
-          radius={Responsive(20, WIDTH)}
-          innerRadius={Responsive(5, WIDTH)}
-          padAngle={5}
-          categories={{ x: ["dogs", "cats", "mice"] }}
-          colorScale={["#03989E", "#68ADCA", "#ABC2E4", "#075061", ]}
-          responsive={true}
-          data={[
-            { x: '1', y: 1 },
-            { x: '3', y: 3 },
-            { x: '2', y: 2 },
-            { x: '2', y: 2 },
-          ]}
-        />
-      </View>
+      <VictoryPie
+        style={{labels: {fontSize: 10, fill: "white", fontWeight: 'bold',},}}
+        labelRadius={Responsive(12, WIDTH)}
+        width={Responsive(100, WIDTH)}
+        height={Responsive(25, HEIGHT)}
+        padding={10}
+        radius={Responsive(20, WIDTH)}
+        innerRadius={Responsive(5, WIDTH)}
+        padAngle={5}
+        categories={{x: ["dogs", "cats", "mice"]}}
+        colorScale={["#03989E", "#68ADCA", "#ABC2E4", "#075061",]}
+        responsive={true}
+        data={[
+          {x: '1', y: 1},
+          {x: '3', y: 3},
+          {x: '2', y: 2},
+          {x: '2', y: 2},
+        ]}
+      />
     );
   }
 
@@ -67,7 +70,10 @@ const Complaints = () => {
         </View>
       </View>
       <View style={styles.complaints.table}>
-        <Text>Table</Text>
+        <View style={styles.complaints.table.title}>
+          <Text style={styles.complaints.table.title.txt}>My Complaints</Text>
+          <View style={styles.complaints.table.title.filter}></View>
+        </View>
       </View>
     </View>
   );
@@ -118,7 +124,7 @@ const styles = StyleSheet.create({
           backgroundColor: '#EDFBFC',
           borderRadius: 5,
           width: Responsive(18.5, WIDTH),
-          height: Responsive(12, HEIGHT),
+          height: Responsive(11, HEIGHT),
           display: 'flex',
           title: {
             // borderColor: 'blue',
@@ -150,14 +156,39 @@ const styles = StyleSheet.create({
       section2: {
         // borderColor: 'black',
         // borderWidth: 2,
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
         flex: 7,
       },
     },
     table: {
-      padding: 5,
-      borderColor: 'orange',
+      borderColor: 'red',
       borderWidth: 2,
+      padding: 5,
       flex: 8,
+      paddingHorizontal: 23,
+      // paddingTop: 20,
+      title: {
+        borderColor: 'orange',
+        borderWidth: 2,
+        marginTop: 15,
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        txt: {
+          color: '#042434',
+          fontSize: 18,
+          fontWeight: '600',
+        },
+        filter: {
+          borderWidth: 2,
+          borderColor: 'blue',
+          height: '100%',
+          width: Responsive(20, WIDTH),
+        },
+      },
     },
   },
 });
