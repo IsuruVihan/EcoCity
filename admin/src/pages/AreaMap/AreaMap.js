@@ -1,5 +1,6 @@
 import React from 'react';
 import {Col, Container, Row} from "react-bootstrap";
+import { useState } from 'react';
 
 
 import SideNav from "../../common/SideNav";
@@ -12,15 +13,13 @@ import maintenanceTruck from '../../assets/images/maintenance-truck.png';
 import './AreaMap.css';
 
 const AreaMap = () => {
-  const [isActive, setIsActive] = useState(false);
+  const [isActive1, setIsActive1] = useState(false);
+  const [isActive2, setIsActive2] = useState(false);
+  const [isActive3, setIsActive3] = useState(false);
 
-  const handleClick = () => {
-    setIsActive(current => !current);
-
-  };
   return (
     <Col className='p-0' lg={10}>
-      <Row className='p-0 mt-4 m-0' style={{border: '2px solid red',}}>
+      <Row className='p-0 mt-4 m-0'>
         <Col sm={2} className='p-0 m-0' style={{
           display: 'flex',
           justifyContent: 'center',
@@ -28,35 +27,33 @@ const AreaMap = () => {
           fontSize: 35,
           fontWeight: 900,
           color: '#042434',
-          border: '2px solid red'}}>Area Map</Col>
-        <Col sm={4} className='pr-2 m-0' style={{border: '2px solid red'}}></Col>
+          }}>Area Map</Col>
+        <Col sm={4} className='pr-2 m-0'></Col>
         <Col sm={2} className='p-1' style={{margin: 'auto'}}>
           <Row className='p-0 m-0 areamap-filter'
-               style={{borderRadius: '10px', boxShadow: '2px 4px 8px lightgray', cursor: 'pointer'}}>
+               style={{borderRadius: '10px', boxShadow: '2px 4px 8px lightgray', cursor: 'pointer', backgroundColor: isActive1 ? '#effbfc' : ''}} onClick={() => setIsActive1(!isActive1)}>
             <Col sm={4} className='p-1 m-0'
                  style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}><img src={hubArea}width='38px'/></Col>
             <Col sm={8} className='p-0 m-0'
-                 style={{display: 'flex', alignItems: 'center', fontSize: 13, fontWeight: 600, color: '#7CB6B8'}}>GarbageHubs</Col>
+                 style={{display: 'flex', alignItems: 'center', fontSize: 13, fontWeight: 600, color: '#7CB6B8'}}>Garbage Hubs</Col>
           </Row>
         </Col>
         <Col sm={2} className='p-1' style={{margin: 'auto'}}>
           <Row className='p-0 m-0 areamap-filter'
-               style={{borderRadius: '10px', boxShadow: '2px 4px 8px lightgray', cursor: 'pointer'}}>
+               style={{borderRadius: '10px', boxShadow: '2px 4px 8px lightgray', cursor: 'pointer', backgroundColor: isActive2 ? '#effbfc' : ''}} onClick={() => setIsActive2(!isActive2)}>
             <Col sm={4} className='p-1 m-0'
                  style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}><img src={garbageTruck}width='40px'/></Col>
             <Col sm={8} className='p-0 m-0'
-                 style={{display: 'flex', alignItems: 'center', fontSize: 13, fontWeight: 600, color: '#7CB6B8'}}>Garbage
-              Trucks</Col>
+                 style={{display: 'flex', alignItems: 'center', fontSize: 13, fontWeight: 600, color: '#7CB6B8'}}>Garbage Trucks</Col>
           </Row>
         </Col>
         <Col sm={2} className='p-1' style={{margin: 'auto'}}>
           <Row className='p-0 m-0 areamap-filter'
-               style={{borderRadius: '10px', boxShadow: '2px 4px 8px lightgray', cursor: 'pointer'}}>
+               style={{borderRadius: '10px', boxShadow: '2px 4px 8px lightgray', cursor: 'pointer', backgroundColor: isActive3 ? '#effbfc' : ''}} onClick={() => setIsActive3(!isActive3)}>
             <Col sm={4} className='p-1 m-0'
                  style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}><img src={maintenanceTruck}width='40px'/></Col>
             <Col sm={8} className='p-0 m-0'
-                 style={{display: 'flex', alignItems: 'center', fontSize: 13, fontWeight: 600, color: '#7CB6B8'}}>Maintenance
-              Crew</Col>
+                 style={{display: 'flex', alignItems: 'center', fontSize: 13, fontWeight: 600, color: '#7CB6B8'}}>Maintenance Crew</Col>
           </Row>
         </Col>
       </Row>
