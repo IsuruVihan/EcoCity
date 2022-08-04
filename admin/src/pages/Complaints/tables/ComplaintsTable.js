@@ -1,11 +1,10 @@
 import React, {useState} from 'react';
-import {Col, Container, Image, Row, Table,Modal, CloseButton} from "react-bootstrap";
+import {Col, Container, Image, Row, Table, Modal, CloseButton} from "react-bootstrap";
 
 import ViewComplaintModal from "../modals/ViewComplaintModal";
 
 import leftarrow from "../../../assets/images/icons/leftarrow.png";
 import rightarrow from "../../../assets/images/icons/rightarrow.png";
-
 
 const ComplaintsTable = () => {
     const [show, setShow] = useState(false);

@@ -6,12 +6,12 @@ import {createNativeStackNavigator} from "@react-navigation/native-stack";
 import {AuthContext} from "../context/AuthContext";
 
 import SplashLoadingView from "./SplashLoadingView";
-import Welcome from "./Welcome";
 import LoadingScreen1 from "./LoadingScreen1";
 import LoadingScreen2 from "./LoadingScreen2";
 import Login from "./Login";
 import ForgotPassword from "./ForgotPassword";
 import CheckYourMail from "./CheckYourMail";
+import NavigatorTab from "./NavigatorTab";
 
 const Stack = createNativeStackNavigator();
 
@@ -25,7 +25,7 @@ const Navigation = () => {
           <Stack.Screen name="SplashLoadingScreen" options={{headerShown: false}} component={SplashLoadingView}/>
         ) : (
           loggedUser.accessToken ? (
-            <Stack.Screen name="Welcome" options={{headerShown: false}} component={Welcome}/>
+            <Stack.Screen name="Welcome" options={{headerShown: false}} component={NavigatorTab}/>
           ) : (
             <>
               <Stack.Screen name="LoadingScreen1" options={{headerShown: false}} component={LoadingScreen1}/>
