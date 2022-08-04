@@ -8,11 +8,12 @@ import ViewComplaintModal from "./modals/ViewComplaintModal";
 import Header from "../../common/Header";
 
 import filtericon from "../../assets/images/icons/filter.png";
+import ComplaintsTable from "./tables/ComplaintsTable";
 
 
 const Complaints = () => {
     const [open, setOpen] = useState(false);
-    
+
     return (
         <Col lg={10}>
           <Row className="ps-3 pb-3 pt-2">

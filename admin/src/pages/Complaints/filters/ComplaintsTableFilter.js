@@ -1,5 +1,5 @@
 import React from 'react';
-import {Col, Container, Image, Row} from "react-bootstrap";
+import {Col, Image, Row} from "react-bootstrap";
 import from_date from "../../../assets/images/icons/from-date.png";
 import to_date from "../../../assets/images/icons/to-date.png";
 import filtericonbutton from "../../../assets/images/icons/filterwhite.png";
