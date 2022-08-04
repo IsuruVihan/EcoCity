@@ -14,3 +14,8 @@
 .column-left {
     width: calc(65%);
 }
+
+.box-shadow {
+    box-shadow: 0 0 50px rgba(220, 220, 220, 0.6);
+    border-radius: 5px;
+}

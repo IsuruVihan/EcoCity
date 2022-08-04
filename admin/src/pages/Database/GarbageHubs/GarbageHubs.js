@@ -12,16 +12,17 @@ import GarbageHubDetailsModal from "./modals/GarbageHubDetailsModal";
 import UpdateGarbageHubModal from "./modals/UpdateGarbageHubModal";
 import Header from "../../../common/Header";
 
+
 const GarbageHubs = () => {
     return (
         <Col className='' lg={10}>
             <Row className='mx-0 section-header '>Garbage Hubs</Row>
             <Row className='mx-0 section-contents d-flex px-0 justify-content-evenly'>
-                <Col lg={8} className='column-left me-3 border-red'>
+                <Col lg={8} className='column-left box-shadow me-3'>
                     <div className='mt-2'>Filter</div>
                     <GarbageHubsTable/>
                 </Col>
-                <Col lg={4} className='border-red'>Map</Col>
+                <Col lg={4} className='box-shadow'>Map</Col>
             </Row>
         </Col>
 
