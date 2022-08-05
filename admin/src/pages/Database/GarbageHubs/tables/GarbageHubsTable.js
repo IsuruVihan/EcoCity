@@ -1,17 +1,16 @@
 import React, {Fragment, useEffect, useState} from 'react';
-import {Container, Row, Table} from "react-bootstrap";
+import {Button, Col, Container, Row, Table} from "react-bootstrap";
 
 import GarbageHubDetailsModal from "../modals/GarbageHubDetailsModal";
 import UpdateGarbageHubModal from "../modals/UpdateGarbageHubModal";
 import GarbageHubsTableItem from "./GarbageHubsTableItem";
-import {FiEdit} from "react-icons/fi";
+import {FiArrowLeft, FiArrowRight, FiEdit} from "react-icons/fi";
 
 //Temporary json file to render hub details
 import hubsDetails from '../../../../data/HubDetails.json';
 
 const GarbageHubsTable = () => {
     const hubs = hubsDetails.hubs;
-    console.log(hubs);
     const hubCount = hubs.length;
     const hubsPerPage = 3;
     const pageCount = Math.ceil(hubCount / hubsPerPage);
@@ -30,15 +29,26 @@ const GarbageHubsTable = () => {
             setEndIndex(startIndex + hubsPerPage);
         }
     }
+    const range = (start, end) => {
+        let length = end - start + 1;
+        /*
+            Create an array of certain length and set the elements within it from
+          start value to end value.
+        */
+        return Array.from({length}, (_, idx) => idx + start);
+    };
 
+    //Update start index on page number change
     useEffect(() => {
         calculateStartIndex();
     }, [currentPage]);
 
+    //Update end index on start index change
     useEffect(() => {
         calculateEndIndex();
     }, [startIndex])
 
+    //update hubs array to display on end index change
     useEffect(() => {
         if (startIndex > endIndex) {
             return;
@@ -46,6 +56,11 @@ const GarbageHubsTable = () => {
         setFilteredHubs(hubs.slice(startIndex, endIndex));
     }, [endIndex]);
 
+    const pageNumbers = range(1, pageCount);
+
+    const handleOnPageNumberChange = () => {
+
+    }
     return (
         <Row className='mx-0'>
             <Table className='my-0 garbage-hubs-table' borderless>
@@ -68,7 +83,25 @@ const GarbageHubsTable = () => {
                         })
                     }
                 </Fragment>
+
             </Table>
+            <Row className='bottom-0 mb-3 w-100 d-flex align-items-end'>
+                <Col className='' lg={2}>
+                    <Button><FiEdit/> Create</Button>
+                </Col>
+                <Col className='d-flex justify-content-end pe-3' lg={10}>
+                    <FiArrowLeft color='#228693' size='23px'/>
+                    {
+                        pageNumbers.map((pageNumber, idx) => {
+                            return <label className='single-page-number mx-1 px-2' id={pageNumber}
+                                          onClick={handleOnPageNumberChange}>
+                                {pageNumber}
+                            </label>;
+                        })
+                    }
+                    <FiArrowRight color='#228693' size='23px'/>
+                </Col>
+            </Row>
         </Row>
     );
 }

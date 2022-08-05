@@ -29,10 +29,10 @@ const GarbageHubsTableItem = (props) => {
             <td>{bins[0].humidity}</td>
             <td><label className={getFillLevelClasses(bins[0].level)}>{bins[0].level}%</label></td>
             <td>
-                <div className='action-item-group'>
+                <label className='action-item-group'>
                     <FiEdit/>
                     <FiTrash/>
-                </div>
+                </label>
             </td>
         </tr>
         {

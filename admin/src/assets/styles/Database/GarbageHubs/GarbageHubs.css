@@ -73,4 +73,17 @@
     background-color: #E8F5F6;
 }
 
+/*Page numbers*/
+
+.single-page-number {
+    border: 2px solid #7CB6B8;
+    border-radius: 8px;
+}
+
+.single-page-number:hover {
+    cursor: pointer;
+    background-color: #7CB6B8;
+    transition: transform .2s;
+    /*transform: scale(1.2);*/
+}
 
