@@ -38,7 +38,7 @@ const GarbageHubsTableItem = (props) => {
         {
             bins.map((bin, idx) => {
                 if (idx !== 0) {
-                    return <tr>
+                    return <tr key={idx}>
                         <td>{bin.binType}</td>
                         <td>{bin.status}</td>
                         <td>{bin.temperature}&deg;C</td>

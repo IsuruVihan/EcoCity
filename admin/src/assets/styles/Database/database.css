@@ -4,7 +4,8 @@
 
 .section-contents {
     height: calc(100% - 70px);
-    filter: drop-shadow();
+    box-shadow: 0 0 50px rgba(220, 220, 220, 0.46);
+
 }
 
 .section-contents div {
