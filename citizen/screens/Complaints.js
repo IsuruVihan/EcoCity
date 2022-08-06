@@ -1,6 +1,8 @@
 import React from 'react';
-import {Text, View, StyleSheet, Dimensions, LogBox} from "react-native";
+import {Text, View, StyleSheet, Dimensions, LogBox, Image, TouchableOpacity} from "react-native";
 import {VictoryPie} from "victory-native";
+
+import FilterImg from '../assets/images/filter.png';
 
 import {Responsive} from "../helpers/Responsive";
 
@@ -72,7 +74,10 @@ const Complaints = () => {
       <View style={styles.complaints.table}>
         <View style={styles.complaints.table.title}>
           <Text style={styles.complaints.table.title.txt}>My Complaints</Text>
-          <View style={styles.complaints.table.title.filter}></View>
+          <TouchableOpacity style={styles.complaints.table.title.filter}>
+            <Text style={styles.complaints.table.title.filter.txt}>Filter</Text>
+            <Image source={FilterImg} style={styles.complaints.table.title.filter.icon}/>
+          </TouchableOpacity>
         </View>
       </View>
     </View>
@@ -170,8 +175,8 @@ const styles = StyleSheet.create({
       paddingHorizontal: 23,
       // paddingTop: 20,
       title: {
-        borderColor: 'orange',
-        borderWidth: 2,
+        // borderColor: 'orange',
+        // borderWidth: 2,
         marginTop: 15,
         display: 'flex',
         flexDirection: 'row',
@@ -183,10 +188,24 @@ const styles = StyleSheet.create({
           fontWeight: '600',
         },
         filter: {
-          borderWidth: 2,
-          borderColor: 'blue',
+          borderWidth: 1,
+          borderColor: '#BFDDDE',
+          borderRadius: 5,
           height: '100%',
-          width: Responsive(20, WIDTH),
+          width: Responsive(23, WIDTH),
+          display: 'flex',
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          paddingVertical: 3,
+          paddingHorizontal: 10,
+          txt: {
+            color: '#042434',
+          },
+          icon: {
+            width: 20,
+            height: '100%',
+          },
         },
       },
     },
