@@ -14,7 +14,7 @@ const GarbageHubsTable = () => {
     const hubCount = hubs.length;
     const hubsPerPage = 3;
     const pageCount = Math.ceil(hubCount / hubsPerPage);
-    const [currentPage, setCurrentPage] = useState(2);
+    const [currentPage, setCurrentPage] = useState(1);
     const [startIndex, setStartIndex] = useState(0);
     const [endIndex, setEndIndex] = useState(hubsPerPage);
     const [filteredHubs, setFilteredHubs] = useState(hubs.slice(startIndex, endIndex));
@@ -58,8 +58,9 @@ const GarbageHubsTable = () => {
 
     const pageNumbers = range(1, pageCount);
 
-    const handleOnPageNumberChange = () => {
-
+    const handleOnPageNumberChange = (e) => {
+        const newPageNumber = e.target.id;
+        setCurrentPage(newPageNumber);
     }
     return (
         <Row className='mx-0'>
@@ -93,7 +94,7 @@ const GarbageHubsTable = () => {
                     <FiArrowLeft color='#228693' size='23px'/>
                     {
                         pageNumbers.map((pageNumber, idx) => {
-                            return <label className='single-page-number mx-1 px-2' id={pageNumber}
+                            return <label className='single-page-number mx-1 px-2' id={pageNumber} key={pageNumber}
                                           onClick={handleOnPageNumberChange}>
                                 {pageNumber}
                             </label>;
