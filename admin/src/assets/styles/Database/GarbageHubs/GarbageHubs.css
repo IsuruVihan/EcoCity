@@ -99,3 +99,15 @@
 .filter-box:hover {
     cursor: pointer;
 }
+
+.active-arrow {
+
+}
+
+.inactive-arrow {
+    color: #BFDDDE;
+}
+
+.pagination-group svg:hover {
+    cursor: pointer;
+}

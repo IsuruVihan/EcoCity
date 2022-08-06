@@ -31,7 +31,8 @@ const GarbageHubsTable = () => {
     }
     const range = (start, end) => {
         let length = end - start + 1;
-        return Array.from({length}, (_, idx) => idx + start);
+        // return Array.from({length}, (_, idx) => idx + start);
+        return [...Array(end - start + 1).keys()].map(x => x + start);
     };
 
     //Update start index on page number change
@@ -52,11 +53,15 @@ const GarbageHubsTable = () => {
         setFilteredHubs(hubs.slice(startIndex, endIndex));
     }, [endIndex]);
 
-    const pageNumbers = range(1, pageCount);
+    const pageNumbers = range(1, pageCount).map((item) => {
+        return parseInt(item, 10);
+    });
 
     //Set new page number when clicked on pages
     const handleOnPageNumberChange = (e) => {
         const valueReceived = e.target.id;
+        if (valueReceived === '') return;
+        console.log(valueReceived)
         if (!isNaN(valueReceived)) {
             const newPageNumber = e.target.id;
             setCurrentPage(newPageNumber);
@@ -79,6 +84,9 @@ const GarbageHubsTable = () => {
 
     }
 
+    // const getPageNumberClasses = () => {
+    //
+    // }
 
     return (
         <Row className='mx-0'>
@@ -108,12 +116,12 @@ const GarbageHubsTable = () => {
                 <Col className='' lg={2}>
                     <Button><FiEdit/> Create</Button>
                 </Col>
-                <Col className='d-flex justify-content-end pe-1' lg={10}>
+                <Col className='d-flex justify-content-end pe-1 pagination-group' lg={10}>
                     <FiArrowLeft color='#228693' size='23px' id='prev' onClick={handleOnPageNumberChange}/>
                     {
                         pageNumbers.map((pageNumber, idx) => {
                             return <label
-                                className='single-page-number mx-1 px-2 '
+                                className={'single-page-number mx-1 px-2 '}
                                 id={pageNumber} key={pageNumber}
                                 onClick={handleOnPageNumberChange}>
                                 {pageNumber}
