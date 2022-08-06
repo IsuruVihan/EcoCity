@@ -31,10 +31,6 @@ const GarbageHubsTable = () => {
     }
     const range = (start, end) => {
         let length = end - start + 1;
-        /*
-            Create an array of certain length and set the elements within it from
-          start value to end value.
-        */
         return Array.from({length}, (_, idx) => idx + start);
     };
 
@@ -58,10 +54,32 @@ const GarbageHubsTable = () => {
 
     const pageNumbers = range(1, pageCount);
 
+    //Set new page number when clicked on pages
     const handleOnPageNumberChange = (e) => {
-        const newPageNumber = e.target.id;
-        setCurrentPage(newPageNumber);
+        const valueReceived = e.target.id;
+        if (!isNaN(valueReceived)) {
+            const newPageNumber = e.target.id;
+            setCurrentPage(newPageNumber);
+        } else {
+            let newPageNumber = currentPage;
+            switch (valueReceived) {
+                case 'prev':
+                    if (currentPage === 1) break;
+                    newPageNumber = currentPage - 1;
+                    setCurrentPage(newPageNumber);
+                    break;
+                case 'next':
+                    if (currentPage === pageNumbers[pageCount - 1]) break;
+                    newPageNumber = currentPage + 1;
+                    setCurrentPage(newPageNumber);
+                    break;
+                default:
+            }
+        }
+
     }
+
+
     return (
         <Row className='mx-0'>
             <Table className='my-0 garbage-hubs-table' borderless>
@@ -91,7 +109,7 @@ const GarbageHubsTable = () => {
                     <Button><FiEdit/> Create</Button>
                 </Col>
                 <Col className='d-flex justify-content-end pe-3' lg={10}>
-                    <FiArrowLeft color='#228693' size='23px'/>
+                    <FiArrowLeft color='#228693' size='23px' id='prev' onClick={handleOnPageNumberChange}/>
                     {
                         pageNumbers.map((pageNumber, idx) => {
                             return <label className='single-page-number mx-1 px-2' id={pageNumber} key={pageNumber}
@@ -100,7 +118,7 @@ const GarbageHubsTable = () => {
                             </label>;
                         })
                     }
-                    <FiArrowRight color='#228693' size='23px'/>
+                    <FiArrowRight color='#228693' size='23px' id='next' onClick={handleOnPageNumberChange}/>
                 </Col>
             </Row>
         </Row>
