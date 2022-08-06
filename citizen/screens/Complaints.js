@@ -14,8 +14,20 @@ LogBox.ignoreLogs([
 ]);
 
 const Complaints = () => {
-  const Table = () => {
-
+  const TableRow = (index, id, date, status) => {
+    return (
+      <View style={styles.complaints.table.content.row}>
+        <Text style={styles.complaints.table.content.row.index}>{index}</Text>
+        <Text style={styles.complaints.table.content.row.id}>{id}</Text>
+        <Text style={styles.complaints.table.content.row.date}>{date}</Text>
+        <Text style={
+          status === 'Viewed' ? styles.complaints.table.content.row.status.viewed :
+          status === 'Not Viewed' ? styles.complaints.table.content.row.status.notViewed :
+          status === 'Resolved' ? styles.complaints.table.content.row.status.resolved :
+          styles.complaints.table.content.row.status.removed
+        }>{status}</Text>
+      </View>
+    );
   }
 
   const PieChart = () => {
@@ -78,6 +90,17 @@ const Complaints = () => {
             <Text style={styles.complaints.table.title.filter.txt}>Filter</Text>
             <Image source={FilterImg} style={styles.complaints.table.title.filter.icon}/>
           </TouchableOpacity>
+        </View>
+        <View style={styles.complaints.table.content}>
+          {TableRow()}
+          {/*{TableRow()}*/}
+          {/*{TableRow()}*/}
+          {/*{TableRow()}*/}
+          {/*{TableRow()}*/}
+          {/*{TableRow()}*/}
+        </View>
+        <View style={styles.complaints.table.last}>
+
         </View>
       </View>
     </View>
@@ -174,10 +197,13 @@ const styles = StyleSheet.create({
       flex: 8,
       paddingHorizontal: 23,
       // paddingTop: 20,
+      display: 'flex',
+      flexDirection: 'column',
       title: {
-        // borderColor: 'orange',
-        // borderWidth: 2,
+        borderColor: 'orange',
+        borderWidth: 2,
         marginTop: 15,
+        flex: 1,
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'space-between',
@@ -207,6 +233,81 @@ const styles = StyleSheet.create({
             height: '100%',
           },
         },
+      },
+      content: {
+        borderColor: 'black',
+        borderWidth: 2,
+        flex: 8.5,
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-evenly',
+        // alignItems: 'center',
+        row: {
+          borderColor: 'blue',
+          borderWidth: 2,
+          height: Responsive(5, HEIGHT),
+          display: 'flex',
+          flexDirection: 'row',
+          index: {
+            borderColor: 'green',
+            borderWidth: 2,
+            flex: 1,
+            textAlignVertical: 'center',
+            textAlign: 'center',
+            color: '#707070',
+          },
+          id: {
+            borderColor: 'green',
+            borderWidth: 2,
+            flex: 3,
+            textAlignVertical: 'center',
+            textAlign: 'center',
+            color: '#707070',
+          },
+          date: {
+            borderColor: 'green',
+            borderWidth: 2,
+            flex: 3,
+            textAlignVertical: 'center',
+            textAlign: 'center',
+            color: '#707070',
+          },
+          status: {
+            viewed: {
+              flex: 2,
+              textAlignVertical: 'center',
+              textAlign: 'center',
+              borderColor: 'blue',
+              borderWidth: 1,
+            },
+            notViewed: {
+              flex: 2,
+              textAlignVertical: 'center',
+              textAlign: 'center',
+              borderColor: 'orange',
+              borderWidth: 1,
+            },
+            resolved: {
+              flex: 2,
+              textAlignVertical: 'center',
+              textAlign: 'center',
+              borderColor: 'green',
+              borderWidth: 1,
+            },
+            removed: {
+              flex: 2,
+              textAlignVertical: 'center',
+              textAlign: 'center',
+              borderColor: 'red',
+              borderWidth: 1,
+            },
+          },
+        },
+      },
+      last: {
+        borderColor: 'black',
+        borderWidth: 2,
+        flex: 1.5,
       },
     },
   },
