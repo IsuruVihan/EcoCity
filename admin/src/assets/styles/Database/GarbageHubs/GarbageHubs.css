@@ -87,3 +87,15 @@
     /*transform: scale(1.2);*/
 }
 
+.filter-box {
+    border: 2px solid #BFDDDE;
+    border-radius: 8px;
+}
+
+.filter-box svg {
+    margin-left: 13px;
+}
+
+.filter-box:hover {
+    cursor: pointer;
+}

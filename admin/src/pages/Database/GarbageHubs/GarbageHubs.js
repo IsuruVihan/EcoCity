@@ -11,6 +11,7 @@ import CreateGarbageHubModal from "./modals/CreateGarbageHubModal";
 import GarbageHubDetailsModal from "./modals/GarbageHubDetailsModal";
 import UpdateGarbageHubModal from "./modals/UpdateGarbageHubModal";
 import Header from "../../../common/Header";
+import {FiFilter} from "react-icons/fi";
 
 
 const GarbageHubs = () => {
@@ -19,7 +20,12 @@ const GarbageHubs = () => {
             <Row className='mx-0 section-header '>Garbage Hubs</Row>
             <Row className='mx-0 section-contents d-flex px-0 justify-content-evenly'>
                 <Col lg={8} className='column-left box-shadow me-3'>
-                    <div className='mt-2'>Filter</div>
+                    <div className='mt-2 d-flex justify-content-end'>
+                        <span className='filter-box px-2 me-3'>
+                            Filter
+                            <FiFilter color='#228693' size='20px'/>
+                        </span>
+                    </div>
                     <GarbageHubsTable/>
                 </Col>
                 <Col lg={4} className='box-shadow'>Map</Col>

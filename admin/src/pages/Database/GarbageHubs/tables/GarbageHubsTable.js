@@ -104,16 +104,18 @@ const GarbageHubsTable = () => {
                 </Fragment>
 
             </Table>
-            <Row className='bottom-0 mb-3 w-100 d-flex align-items-end'>
+            <Row className='bottom-0 mb-3 w-50 d-flex pe-0 position-absolute align-items-end'>
                 <Col className='' lg={2}>
                     <Button><FiEdit/> Create</Button>
                 </Col>
-                <Col className='d-flex justify-content-end pe-3' lg={10}>
+                <Col className='d-flex justify-content-end pe-1' lg={10}>
                     <FiArrowLeft color='#228693' size='23px' id='prev' onClick={handleOnPageNumberChange}/>
                     {
                         pageNumbers.map((pageNumber, idx) => {
-                            return <label className='single-page-number mx-1 px-2' id={pageNumber} key={pageNumber}
-                                          onClick={handleOnPageNumberChange}>
+                            return <label
+                                className='single-page-number mx-1 px-2 '
+                                id={pageNumber} key={pageNumber}
+                                onClick={handleOnPageNumberChange}>
                                 {pageNumber}
                             </label>;
                         })
