@@ -1,5 +1,5 @@
 import React from 'react';
-import {Col, Container, Row} from "react-bootstrap";
+import {Col, Row} from "react-bootstrap";
 
 import CountCard from "./cards/CountCard";
 import WeightCard from "./cards/WeightCard";
@@ -19,7 +19,7 @@ const Dashboard = () => {
                 <Col lg={10} className="p-0" style={{border: '2px solid red'}}>
                     <Row className="m-0" style={{border: '2px solid green'}}>
                         <Col lg={12} className="p-0" style={{border: '2px solid pink'}}>Garbage Collection Weight</Col>
-                        <Col lg={12} className="p-0" style={{border: '2px solid pink'}}>Filter</Col>
+                        <Col lg={12} className="p-0" style={{border: '2px solid pink'}}><GarbageCollectionWeightFilter/></Col>
                         <Col lg={12} className="p-0" style={{border: '2px solid pink'}}>
                             <Row className="m-0" style={{border: '2px solid yellow'}}>
                                 <Col lg={4} className="p-0" style={{border: '2px solid purple'}}>Bins</Col>
