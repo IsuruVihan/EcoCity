@@ -7,14 +7,14 @@ import GarbageHubCollectedWeightsGraph from "../graphs/GarbageHubCollectedWeight
 import GarbageHubCollectedWeightsGraphFilter from "../filters/GarbageHubCollectedWeightsGraphFilter";
 import {AiFillCloseCircle} from "react-icons/ai";
 
-const GarbageHubDetailsModal = () => {
+const GarbageHubDetailsModal = (props) => {
     return (
         <Container
             className='position-absolute border-red garbage-hub-details-wrapper d-flex justify-content-center align-items-center'>
             <Row className='garbage-hub-details border-red h-75 w-35'>
                 <Row className='mx-0 border-red h-10'>
                     <span>Garbage Hub Details</span>
-                    <AiFillCloseCircle/>
+                    <span onClick={props.onClose}>close</span>
                 </Row>
                 <Row className='mx-0 border-red h-90 garbage-hub-details-body'>
                     <div>Hub Id</div>
