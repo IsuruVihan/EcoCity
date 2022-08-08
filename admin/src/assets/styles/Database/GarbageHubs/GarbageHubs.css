@@ -128,7 +128,7 @@
 
 .garbage-hubs-table-filter-wrapper {
     margin-top: 30px;
-    width: 250px;
+    width: 200px;
     box-shadow: 0 0 70px rgba(220, 220, 220, 1);
 }
 
@@ -156,7 +156,19 @@
     width: calc(90%);
     background-color: #BFDDDE;
     height: 2px;
-    /*border-bottom: 3px solid #BFDDDE;*/
-
 }
+
+.filter-section form {
+}
+
+.filter-inputs label {
+    width: 60px;
+}
+
+.filter-inputs input {
+    width: calc(100% - 65px);
+
+    height: 20px;
+}
+
 
