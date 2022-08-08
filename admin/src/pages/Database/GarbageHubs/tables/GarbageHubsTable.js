@@ -137,7 +137,7 @@ const GarbageHubsTable = () => {
 
     return (
         <Row className='mx-0'>
-            {isHubDetailsVisible && <GarbageHubDetailsModal onClose={handleOnHubCloseClicked}/>}
+            <GarbageHubDetailsModal show={isHubDetailsVisible} onHide={() => setIsHubDetailsVisible(false)}/>
             <Table className='my-0 garbage-hubs-table' borderless>
                 <thead>
                 <tr className='table-header'>

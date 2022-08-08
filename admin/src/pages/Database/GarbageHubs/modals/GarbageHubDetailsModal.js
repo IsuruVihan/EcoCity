@@ -1,5 +1,5 @@
 import React from 'react';
-import {Col, Container, Row} from "react-bootstrap";
+import {Col, Container, Modal, Row} from "react-bootstrap";
 
 import GarbageBinDetailsCard from "../cards/GarbageBinDetailsCard";
 import GarbageHubLocationMap from "../maps/GarbageHubLocationMap";
@@ -9,22 +9,44 @@ import {AiFillCloseCircle} from "react-icons/ai";
 
 const GarbageHubDetailsModal = (props) => {
     return (
-        <Container
-            className='position-absolute border-red garbage-hub-details-wrapper d-flex justify-content-center align-items-center'>
-            <Row className='garbage-hub-details border-red h-75 w-35'>
-                <Row className='mx-0 border-red h-10'>
-                    <span>Garbage Hub Details</span>
-                    <span onClick={props.onClose}>close</span>
-                </Row>
-                <Row className='mx-0 border-red h-90 garbage-hub-details-body'>
-                    <div>Hub Id</div>
-                    <div>Status</div>
-                    <div>Sensor data section</div>
-                    <div>Location</div>
-                    <div>Collected weight of garbage section</div>
-                </Row>
-            </Row>
-        </Container>
+        // <Container
+        //     className='position-absolute border-red garbage-hub-details-wrapper d-flex justify-content-center align-items-center'>
+        //     <Row className='garbage-hub-details border-red h-75 w-35'>
+        //         <Row className='mx-0 border-red h-10'>
+        //             <span>Garbage Hub Details</span>
+        //             <span onClick={props.onClose}>close</span>
+        //         </Row>
+        //         <Row className='mx-0 border-red h-90 garbage-hub-details-body'>
+        //             <div>Hub Id</div>
+        //             <div>Status</div>
+        //             <div>Sensor data section</div>
+        //             <div>Location</div>
+        //             <div>Collected weight of garbage section</div>
+        //         </Row>
+        //     </Row>
+        // </Container>
+
+        <Modal
+            {...props}
+            size="md"
+            aria-labelledby="contained-modal-title-vcenter"
+            centered
+        >
+            <Modal.Header closeButton>
+                <Modal.Title id="contained-modal-title-vcenter">
+                    Garbage Hub Details
+                </Modal.Title>
+            </Modal.Header>
+
+            <Modal.Body>
+                <div>Hub Id</div>
+                <div>Status</div>
+                <div>Sensor data section</div>
+                <div>Location</div>
+                <div>Collected weight of garbage section</div>
+            </Modal.Body>
+
+        </Modal>
     );
 }
 
