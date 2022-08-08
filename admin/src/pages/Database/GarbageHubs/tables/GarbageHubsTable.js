@@ -124,8 +124,11 @@ const GarbageHubsTable = () => {
     //
     //     }
     // }
+
+
     return (
         <Row className='mx-0'>
+            <GarbageHubDetailsModal/>
             <Table className='my-0 garbage-hubs-table' borderless>
                 <thead>
                 <tr className='table-header'>
