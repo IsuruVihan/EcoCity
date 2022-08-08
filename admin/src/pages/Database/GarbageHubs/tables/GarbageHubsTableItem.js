@@ -6,6 +6,7 @@ import {FiEdit, FiTrash} from "react-icons/fi";
 const GarbageHubsTableItem = (props) => {
     const hub = props.hub;
     const bins = hub.bins;
+
     const getFillLevelClasses = (level) => {
         let classes = 'px-2 label ';
         if (level <= 25) {
@@ -18,9 +19,14 @@ const GarbageHubsTableItem = (props) => {
 
         return classes;
     }
+
+    const handleOnGarbageBinClicked = () => {
+
+    }
+
     return (
-        <tbody>
-        <tr>
+        <tbody onClick={props.onClick}>
+        <tr onClick={handleOnGarbageBinClicked}>
             <td rowSpan={4}>{props.index + 1}</td>
             <td rowSpan={4}>{hub.hubID}</td>
             <td>{bins[0].binType}</td>
