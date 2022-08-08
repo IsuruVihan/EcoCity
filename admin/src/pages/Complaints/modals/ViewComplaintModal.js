@@ -17,7 +17,7 @@ const ViewComplaintModal = () => {
             <Col>
                 <Row style={{border:'1px solid green', textAlign:'center'}} className="d-flex">
                     <Col
-                        style={{marginRight:130, marginLeft:130,marginTop:8, backgroundColor:'#E1F0FF', borderRadius:10, color:'#008BD1', padding:5}}>
+                        style={{marginRight:130, marginLeft:130,marginTop:8, backgroundColor:'#E1F0FF', borderRadius:10, color:'#008BD1', padding:5, fontWeight:'bold'}}>
                         Viewed Complaints
                     </Col>
                 </Row>

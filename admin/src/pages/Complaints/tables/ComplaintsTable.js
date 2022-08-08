@@ -1,10 +1,11 @@
 import React, {useState} from 'react';
-import {CloseButton, Col, Container, Image, Modal, Row, Table} from "react-bootstrap";
+import { Col, Container, Image, Modal, Row, Table} from "react-bootstrap";
 
 import ViewComplaintModal from "../modals/ViewComplaintModal";
 
 import leftarrow from "../../../assets/images/icons/leftarrow.png";
 import rightarrow from "../../../assets/images/icons/rightarrow.png";
+import close from "../../../assets/images/icons/close.png";
 
 const ComplaintsTable = () => {
         const [show, setShow] = useState(false);
@@ -45,7 +46,9 @@ const ComplaintsTable = () => {
                                     <Modal.Header style={{border:'none',}} className="button">
                                         <Row >
                                             <Col style={{textAlign:'right', marginLeft:440}}>
-                                                <CloseButton  style={{ backgroundColor:'#7CB6B8', borderRadius:'50%' }}/>
+                                                <Row>
+                                                    <Image src={close} />
+                                                </Row>
                                             </Col>
                                         </Row>
                                     </Modal.Header>
