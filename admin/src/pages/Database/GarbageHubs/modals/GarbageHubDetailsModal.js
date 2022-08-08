@@ -39,11 +39,38 @@ const GarbageHubDetailsModal = (props) => {
             </Modal.Header>
 
             <Modal.Body>
-                <div>Hub Id</div>
-                <div>Status</div>
-                <div>Sensor data section</div>
-                <div>Location</div>
-                <div>Collected weight of garbage section</div>
+                <Container>
+                    <Row className='mx-0'>
+                        <Col>
+                            <div className='h4'>Hub Id</div>
+                            <div className='h4'>Status</div>
+                        </Col>
+                    </Row>
+                    <Row className='mx-0'>
+                        <Col lg={12} className='h4'>Sensor Data</Col>
+                        <Col lg={12}>
+                            <Row>
+                                <Col lg={6}>Bin 1</Col>
+                                <Col lg={6}>Bin 2</Col>
+                                <Col lg={6}>Bin 3</Col>
+                                <Col lg={6}>Bin 4</Col>
+                            </Row>
+                        </Col>
+                    </Row>
+                    <Row className='mx-0'>
+                        <Col lg={12} className='h4'>Location</Col>
+                        <Col lg={12}>
+                            Map goes here
+                        </Col>
+                    </Row>
+                    <Row className='mx-0'>
+                        <Col lg={11} className='h4'>Collected Weight of garbage:</Col>
+                        <Col lg={1}>Filter</Col>
+                        <Col lg={12}>
+                            Chart
+                        </Col>
+                    </Row>
+                </Container>
             </Modal.Body>
 
         </Modal>
