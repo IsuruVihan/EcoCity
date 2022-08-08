@@ -18,7 +18,7 @@ const CountCard = () => {
                   <Col lg={6} className="p-0 mt-3" style={{
                       color: '#042434', display: "flex", alignItems: "center", justifyContent: "flex-start", fontSize: '13px'}}>Truck Drivers</Col>
                   <Col lg={12} className="p-0" style={{
-                      fontWeight: 700, fontSize: 55, color: '#042434', textAlign: "center"}}>26</Col>
+                      fontWeight: 700, fontSize: 50, color: '#042434', textAlign: "center"}}>26</Col>
               </Row>
           </Col>
           <Col sm={12} className="p-0 mb-3" style={{border: '2px solid #BFDDDE', borderRadius: '20px'}}>
@@ -29,7 +29,7 @@ const CountCard = () => {
                   <Col lg={6} className="p-0 mt-3" style={{
                       color: '#042434', display: "flex", alignItems: "center", justifyContent: "flex-start", fontSize: '13px'}}>Maintenance</Col>
                   <Col lg={12} className="p-0" style={{
-                      fontWeight: 700, fontSize: 55, color: '#042434', textAlign: "center"}}>13</Col>
+                      fontWeight: 700, fontSize: 50, color: '#042434', textAlign: "center"}}>13</Col>
               </Row>
           </Col>
           <Col sm={12} className="p-0 mb-3" style={{border: '2px solid #BFDDDE', borderRadius: '20px'}}>
@@ -40,7 +40,7 @@ const CountCard = () => {
                   <Col lg={6} className="p-0 mt-3" style={{
                       color: '#042434', display: "flex", alignItems: "center", justifyContent: "flex-start", fontSize: '13px'}}>Garbage Hubs</Col>
                   <Col lg={12} className="p-0" style={{
-                      fontWeight: 700, fontSize: 55, color: '#042434', textAlign: "center"}}>11</Col>
+                      fontWeight: 700, fontSize: 50, color: '#042434', textAlign: "center"}}>11</Col>
               </Row>
           </Col>
           <Col sm={12} className="p-0" style={{border: '2px solid #BFDDDE', borderRadius: '20px'}}>
@@ -51,7 +51,7 @@ const CountCard = () => {
                   <Col lg={6} className="p-0 mt-3" style={{
                       color: '#042434', display: "flex", alignItems: "center", justifyContent: "flex-start", fontSize: '13px'}}>Houses</Col>
                   <Col lg={12} className="p-0" style={{
-                      fontWeight: 700, fontSize: 55, color: '#042434', textAlign: "center"}}>73</Col>
+                      fontWeight: 700, fontSize: 50, color: '#042434', textAlign: "center"}}>73</Col>
               </Row>
           </Col>
       </Row>
