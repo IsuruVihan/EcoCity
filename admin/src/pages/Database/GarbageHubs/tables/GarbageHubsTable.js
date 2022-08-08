@@ -61,7 +61,7 @@ const GarbageHubsTable = () => {
     const handleOnPageNumberChange = (e) => {
         const valueReceived = e.target.id;
         if (valueReceived === '') return;
-        console.log(valueReceived)
+
         if (!isNaN(valueReceived)) {
             const newPageNumber = e.target.id;
             setCurrentPage(newPageNumber);
@@ -84,10 +84,46 @@ const GarbageHubsTable = () => {
 
     }
 
-    // const getPageNumberClasses = () => {
-    //
-    // }
+    useEffect(() => {
+        changeActivePageNumberClasses();
+        // changeNextPrevButtonSelection();
+    }, [currentPage]);
 
+    const changeActivePageNumberClasses = () => {
+        let currentPageNumberElement = document.getElementById(currentPage.toString());
+
+        //remove active classes
+        let elements = document.getElementsByClassName('active-page-number');
+        for (let i = 0; i < elements.length; i++) {
+            elements[i].classList.remove('active-page-number');
+        }
+
+        //add active class to current page number
+        currentPageNumberElement.classList.add('active-page-number');
+    }
+
+    // const changeNextPrevButtonSelection = () => {
+    //     let next = document.getElementById('next');
+    //     let prev = document.getElementById('prev');
+    //
+    //     if(prev.classList.contains('inactive-pagination-arrow')){
+    //         prev.classList.remove('inactive-pagination-arrow');
+    //     }
+    //
+    //     if(next.classList.contains('inactive-pagination-arrow')){
+    //         next.classList.remove('inactive-pagination-arrow');
+    //     }
+    //
+    //     if (currentPage === pageCount) {
+    //         next.classList.add('inactive-pagination-arrow');
+    //         console.log('added 1')
+    //     }
+    //     if(currentPage === 1){
+    //         prev.classList.add('inactive-pagination-arrow');
+    //         console.log('added 2')
+    //
+    //     }
+    // }
     return (
         <Row className='mx-0'>
             <Table className='my-0 garbage-hubs-table' borderless>
@@ -121,7 +157,7 @@ const GarbageHubsTable = () => {
                     {
                         pageNumbers.map((pageNumber, idx) => {
                             return <label
-                                className={'single-page-number mx-1 px-2 '}
+                                className={'single-page-number mx-1 px-2'}
                                 id={pageNumber} key={pageNumber}
                                 onClick={handleOnPageNumberChange}>
                                 {pageNumber}
