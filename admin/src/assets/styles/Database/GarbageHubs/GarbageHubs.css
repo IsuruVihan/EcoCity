@@ -140,3 +140,23 @@
     padding-top: 3px;
     padding-bottom: 3px;
 }
+
+.filter-button:hover {
+    cursor: pointer;
+}
+
+.filter-button .filter-button-mask {
+    background-color: transparent;
+    width: 80px;
+    height: 30px;
+
+}
+
+.garbage-hubs-table-filter-wrapper .hr {
+    width: calc(90%);
+    background-color: #BFDDDE;
+    height: 2px;
+    /*border-bottom: 3px solid #BFDDDE;*/
+
+}
+
