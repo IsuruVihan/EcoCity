@@ -1,11 +1,13 @@
 import React, {useEffect, useState} from 'react';
 import {Text, View, StyleSheet, Dimensions, LogBox, Image, TouchableOpacity} from "react-native";
 import {VictoryPie} from "victory-native";
+import IconFontAwesome from "react-native-vector-icons/FontAwesome";
 
 import FilterImg from '../assets/images/filter.png';
 import CreateImg from '../assets/images/create.png';
 
 import {Responsive} from "../helpers/Responsive";
+import {act} from "react-test-renderer";
 
 const HEIGHT = Dimensions.get('window').height;
 const WIDTH = Dimensions.get('window').width;
@@ -42,29 +44,37 @@ const Complaints = () => {
   const [paginatedData, setPaginatedData] = useState([]);
 
   useEffect(() => {
+    setPaginatedComplaints();
+  }, [filteredData]);
+
+  const setPaginatedComplaints = () => {
     setPageCount(Math.ceil(filteredData.length / 5));
     setActivePage(pageCount > 0 ? 1 : 0);
     const paginatedComplaints = [];
     let index = 1;
     loop1:
-    for (let i = 1; i <= pageCount; i++) { // Page
-      for (let j = 1; j <= 5; j++) { // Item
-        if (index > filteredData.length) {
-          break loop1;
+      for (let i = 1; i <= pageCount; i++) { // Page
+        for (let j = 1; j <= 5; j++) { // Item
+          if (index > filteredData.length) {
+            break loop1;
+          }
+          paginatedComplaints.push({
+            page: i,
+            index: index,
+            id: filteredData[index-1].id,
+            date: filteredData[index-1].date,
+            status: filteredData[index-1].status
+          });
+          index += 1;
         }
-        paginatedComplaints.push({
-          page: i,
-          index: index,
-          id: filteredData[index-1].id,
-          date: filteredData[index-1].date,
-          status: filteredData[index-1].status
-        });
-        index += 1;
       }
-    }
     setPaginatedData(paginatedComplaints);
     console.log(paginatedData);
-  }, [filteredData]);
+  }
+
+  const renderPaginatedComplaints = () => {
+
+  }
 
   const TableRow = (index, id, date, status) => {
     return (
@@ -145,7 +155,7 @@ const Complaints = () => {
         </View>
         <View style={styles.complaints.table.content}>
           {paginatedData.map((complaint, id) => {
-            if (complaint.page === 1) {
+            if (complaint.page === activePage) {
               return TableRow(complaint.index, complaint.id, complaint.date, complaint.status)
             }
           })}
@@ -158,7 +168,19 @@ const Complaints = () => {
             </TouchableOpacity>
           </View>
           <View style={styles.complaints.table.last.paginationContainer}>
-
+            <IconFontAwesome
+              name="arrow-left"
+              size={15}
+              color={activePage === 1 ? "#BFDDDE" : "#228693"}
+              onPress={() => setActivePage(activePage === 1 ? activePage : activePage-1)}
+            />
+            <Text style={styles.complaints.table.last.paginationContainer.pageNo}>{activePage}</Text>
+            <IconFontAwesome
+              name="arrow-right"
+              size={15}
+              color={activePage < pageCount ? "#228693" : "#BFDDDE"}
+              onPress={() => setActivePage(activePage === pageCount ? activePage : activePage+1)}
+            />
           </View>
         </View>
       </View>
@@ -387,8 +409,9 @@ const styles = StyleSheet.create({
         display: 'flex',
         flexDirection: 'row',
         alignItems: 'center',
+        justifyContent: 'space-between',
         buttonContainer: {
-          flex: 3,
+          // flex: 1,
           height: '80%',
           // borderColor: 'red',
           // borderWidth: 1,
@@ -400,7 +423,7 @@ const styles = StyleSheet.create({
             alignItems: 'center',
             borderRadius: 5,
             // paddingVertical: 3,
-            // paddingHorizontal: 10,
+            paddingHorizontal: 10,
             height: '100%',
             icon: {
               // borderColor: 'blue',
@@ -414,14 +437,30 @@ const styles = StyleSheet.create({
               color: 'white',
               fontWeight: '700',
               fontSize: 12,
+              marginLeft: 10,
             },
           },
         },
         paginationContainer: {
-          flex: 5,
+          // flex: 5,
           height: '80%',
           borderColor: 'red',
           borderWidth: 1,
+          display: 'flex',
+          flexDirection: 'row',
+          justifyContent: 'space-around',
+          alignItems: 'center',
+          pageNo: {
+            marginHorizontal: 15,
+            fontSize: 15,
+            fontWeight: '700',
+            color: '#7CB6B8',
+            borderColor: '#7CB6B8',
+            borderRadius: 5,
+            borderWidth: 2,
+            padding: 5,
+            textAlign: 'center',
+          },
         },
       },
     },
