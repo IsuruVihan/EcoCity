@@ -7,7 +7,6 @@ import FilterImg from '../assets/images/filter.png';
 import CreateImg from '../assets/images/create.png';
 
 import {Responsive} from "../helpers/Responsive";
-import {act} from "react-test-renderer";
 
 const HEIGHT = Dimensions.get('window').height;
 const WIDTH = Dimensions.get('window').width;
@@ -44,7 +43,7 @@ const Complaints = () => {
   const [paginatedData, setPaginatedData] = useState([]);
 
   useEffect(() => {
-    setPaginatedComplaints();
+    // setPaginatedComplaints();
   }, [filteredData]);
 
   const setPaginatedComplaints = () => {
@@ -70,10 +69,6 @@ const Complaints = () => {
       }
     setPaginatedData(paginatedComplaints);
     console.log(paginatedData);
-  }
-
-  const renderPaginatedComplaints = () => {
-
   }
 
   const TableRow = (index, id, date, status) => {
