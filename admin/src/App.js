@@ -28,6 +28,7 @@ const App = () => {
 
   return (
     <div className="App mx-0 px-0 h-100">
+      <ToastContainer/>
       <Routes>
         <Route path={'/home'} element={<Home/>}/>
         <Route path={'/login'} element={<Login/>}/>

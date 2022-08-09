@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState,useContext,useEffect} from 'react';
 import {Container, Row, Col, Image} from "react-bootstrap";
 
 import AtSign from '../../../assets/images/icons/email.png';
@@ -6,8 +6,34 @@ import LockSign from '../../../assets/images/icons/password.png';
 import EyeSign from '../../../assets/images/icons/eye.png';
 import EyeHideSign from '../../../assets/images/icons/eye-hide.png';
 
+import {AuthContext} from "../../../Context/AuthContext";
+
 const LoginForm = () => {
   const [showPassword, setShowPassword] = useState(false);
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [rememberMe, setRememberMe] = useState(false);
+
+    const { login, rememberedUser} = useContext(AuthContext);
+
+    const signWithMailAndPp = () => {
+        const newUser = {
+            email:email,
+            password:password,
+            rememberMe:rememberMe
+        }
+        console.log(newUser)
+        login(newUser)
+
+    }
+
+    useEffect(() => {
+        if (rememberedUser) {
+            setEmail(rememberedUser.email);
+            setPassword(rememberedUser.password);
+            setRememberMe(true);
+        }
+    }, []);
 
   return (
     <Container className="p-0">
@@ -30,6 +56,8 @@ const LoginForm = () => {
                   <input
                     className='input-field'
                     type='email'
+                    value={email}
+                    onChange={e => setEmail(e.target.value)}
                     style={{width: '100%', color: '#7CB6B8', outline: 'none', border: 'none'}}
                   />
                 </Col>
@@ -48,6 +76,8 @@ const LoginForm = () => {
                 <Col className="p-0" sm={10}>
                   <input
                     className='input-field'
+                    value={password}
+                    onChange={e => setPassword(e.target.value)}
                     type={showPassword ? 'text' : 'password'}
                     style={{width: '100%', color: '#7CB6B8', outline: 'none', border: 'none'}}
                   />
@@ -74,7 +104,9 @@ const LoginForm = () => {
         <Col className="p-0 pb-4" sm={12}>
           <Row className="m-0">
             <Col className="p-0 d-flex align-items-center">
-              <input type='checkbox' style={{cursor: 'pointer'}}/>
+              <input type='checkbox' style={{cursor: 'pointer'}}
+              checked={rememberMe}
+              onChange={e => setRememberMe(e.target.checked)} />
               <label className='ms-1' style={{color: '#BFDDDE', fontSize: 15, fontWeight: '500'}}>Remember me</label>
             </Col>
             <Col className="p-0 d-flex justify-content-end align-items-center">
@@ -101,7 +133,7 @@ const LoginForm = () => {
               fontWeight: '600',
               boxShadow: `0px 4px 8px rgba(34, 134, 147, 20)`,
               border: 'none'
-          }}>Sign in</button>
+          }} onClick={signWithMailAndPp}>Sign in</button>
         </Col>
       </Row>
     </Container>
