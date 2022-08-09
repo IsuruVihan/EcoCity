@@ -61,18 +61,32 @@ const Complaints = () => {
 
   useEffect(() => {
     // TODO: Divide filtered data into pages
-
-    setPageCount(Math.ceil(filteredData.length / 5));
-    setActivePage(Math.ceil(filteredData.length / 5) > 0 ? 1 : 0);
-
-
-
-    console.log('PAGINATE DATA');
+    const pc = Math.ceil(filteredData.length / 5);
+    setPageCount(pc);
+    setActivePage(pc > 0 ? 1 : 0);
+    let ind = 1;
+    const tempPaginatedData = [];
+    outer:
+    for (let i = 1; i <= pc; i++) { // Page
+      for (let j = 1; j <= 5; j++) { // Index
+        if (ind > filteredData.length)
+          break outer;
+        tempPaginatedData.push({
+          page: i,
+          index: ind,
+          id: filteredData[ind - 1].id,
+          date: filteredData[ind - 1].date,
+          status: filteredData[ind - 1].status
+        });
+        ind++;
+      }
+    }
+    setPaginatedData(tempPaginatedData);
   }, [filteredData]);
 
   const TableRow = (index, id, date, status) => {
     return (
-      <View style={styles.complaints.table.content.row}>
+      <View key={index} style={styles.complaints.table.content.row}>
         <Text style={styles.complaints.table.content.row.index}>{index}</Text>
         <Text style={styles.complaints.table.content.row.id}>{id}</Text>
         <Text style={styles.complaints.table.content.row.date}>{date}</Text>
@@ -148,7 +162,10 @@ const Complaints = () => {
           </TouchableOpacity>
         </View>
         <View style={styles.complaints.table.content}>
-          {}
+          {paginatedData.map((complaint) => {
+            if (complaint.page === activePage)
+              return TableRow(complaint.index, complaint.id, complaint.date, complaint.status);
+          })}
         </View>
         <View style={styles.complaints.table.last}>
           <View style={styles.complaints.table.last.buttonContainer}>
@@ -434,8 +451,8 @@ const styles = StyleSheet.create({
         paginationContainer: {
           // flex: 5,
           height: '80%',
-          borderColor: 'red',
-          borderWidth: 1,
+          // borderColor: 'red',
+          // borderWidth: 1,
           display: 'flex',
           flexDirection: 'row',
           justifyContent: 'space-around',
