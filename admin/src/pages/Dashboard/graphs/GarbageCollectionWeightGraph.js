@@ -1,49 +1,54 @@
 import React from 'react';
 import {Container, Row, Col} from "react-bootstrap";
 import {Line} from 'react-chartjs-2';
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend,
+} from 'chart.js';
+
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend
+);
 
 const GarbageCollectionWeightGraph = () => {
-    return (
-        <Container className="p-0">
-            <Row className="m-0" style={{border: '2px solid red'}}>
-                <Col className="p-0" style={{border: '2px solid blue'}}>
-                    <Line
-                        type='line'
-                        data={{
-                            labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
-                            datasets: [
-                                {
-                                    label: "Days",
-                                    data: [12, 19, 3, 5, 2, 3],
-                                    backgroundColor: [
-                                        'rgba(255, 99, 132, 0.2)',
-                                        'rgba(54, 162, 235, 0.2)',
-                                        'rgba(255, 206, 86, 0.2)',
-                                        'rgba(75, 192, 192, 0.2)',
-                                        'rgba(153, 102, 255, 0.2)',
-                                        'rgba(253, 159, 64, 0.2)',
-                                    ],
-                                    borderColor: [
-                                        'rgba(255, 99, 132, 0.2)',
-                                        'rgba(54, 162, 235, 0.2)',
-                                        'rgba(255, 206, 86, 0.2)',
-                                        'rgba(75, 192, 192, 0.2)',
-                                        'rgba(153, 102, 255, 0.2)',
-                                        'rgba(253, 159, 64, 0.2)',
-                                    ],
-                                },
-                            ],
-                        }}
-                        width={100}
-                        height={300}
-                        options={{
-                            maintainAspectRatio: false
-                        }}
-                    />
-                </Col>
-            </Row>
-        </Container>
-    );
+  return (
+    <Container className="p-0">
+      <Row className="m-0" style={{border: '2px solid red'}}>
+        <Col className="p-0" style={{border: '2px solid blue'}}>
+          <Line
+            datasetIdKey='id'
+            data={{
+              labels: ['Jun', 'Jul', 'Aug'],
+              datasets: [
+                {
+                  id: 1,
+                  label: '',
+                  data: [5, 6, 7],
+                },
+                {
+                  id: 2,
+                  label: '',
+                  data: [3, 2, 1],
+                },
+              ],
+            }}
+          />
+        </Col>
+      </Row>
+    </Container>
+  );
 }
 
 export default GarbageCollectionWeightGraph;
