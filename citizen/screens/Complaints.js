@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {Text, View, StyleSheet, Dimensions, LogBox, Image, TouchableOpacity} from "react-native";
 import {VictoryPie} from "victory-native";
 import IconFontAwesome from "react-native-vector-icons/FontAwesome";
+import {Dialog} from '@rneui/themed';
 
 import FilterImg from '../assets/images/filter.png';
 import CreateImg from '../assets/images/create.png';
@@ -16,6 +17,7 @@ LogBox.ignoreLogs([
 ]);
 
 const Complaints = () => {
+  const [filterVisible, setFilterVisible] = useState(false);
   const [viewedFilter, setViewedFilter] = useState(true);
   const [notViewedFilter, setNotViewedFilter] = useState(true);
   const [resolvedFilter, setResolvedFilter] = useState(true);
@@ -67,20 +69,20 @@ const Complaints = () => {
     let ind = 1;
     const tempPaginatedData = [];
     outer:
-    for (let i = 1; i <= pc; i++) { // Page
-      for (let j = 1; j <= 5; j++) { // Index
-        if (ind > filteredData.length)
-          break outer;
-        tempPaginatedData.push({
-          page: i,
-          index: ind,
-          id: filteredData[ind - 1].id,
-          date: filteredData[ind - 1].date,
-          status: filteredData[ind - 1].status
-        });
-        ind++;
+      for (let i = 1; i <= pc; i++) { // Page
+        for (let j = 1; j <= 5; j++) { // Index
+          if (ind > filteredData.length)
+            break outer;
+          tempPaginatedData.push({
+            page: i,
+            index: ind,
+            id: filteredData[ind - 1].id,
+            date: filteredData[ind - 1].date,
+            status: filteredData[ind - 1].status
+          });
+          ind++;
+        }
       }
-    }
     setPaginatedData(tempPaginatedData);
   }, [filteredData]);
 
@@ -92,9 +94,9 @@ const Complaints = () => {
         <Text style={styles.complaints.table.content.row.date}>{date}</Text>
         <Text style={
           status === 'Viewed' ? styles.complaints.table.content.row.status.viewed :
-          status === 'Not Viewed' ? styles.complaints.table.content.row.status.notViewed :
-          status === 'Resolved' ? styles.complaints.table.content.row.status.resolved :
-          styles.complaints.table.content.row.status.removed
+            status === 'Not Viewed' ? styles.complaints.table.content.row.status.notViewed :
+              status === 'Resolved' ? styles.complaints.table.content.row.status.resolved :
+                styles.complaints.table.content.row.status.removed
         }>{status}</Text>
       </View>
     );
@@ -137,8 +139,20 @@ const Complaints = () => {
     );
   }
 
+  const Filter = () => {
+    return (
+      <Dialog
+        isVisible={filterVisible}
+        onBackdropPress={() => setFilterVisible(false)}
+      >
+        <Text>Complaints Filter</Text>
+      </Dialog>
+    );
+  }
+
   return (
     <View style={styles.complaints}>
+      {Filter()}
       <View style={styles.complaints.title}>
         <Text style={styles.complaints.title.txt}>Complaints</Text>
       </View>
@@ -156,7 +170,7 @@ const Complaints = () => {
       <View style={styles.complaints.table}>
         <View style={styles.complaints.table.title}>
           <Text style={styles.complaints.table.title.txt}>My Complaints</Text>
-          <TouchableOpacity style={styles.complaints.table.title.filter}>
+          <TouchableOpacity style={styles.complaints.table.title.filter} onPress={() => setFilterVisible(true)}>
             <Text style={styles.complaints.table.title.filter.txt}>Filter</Text>
             <Image source={FilterImg} style={styles.complaints.table.title.filter.icon}/>
           </TouchableOpacity>
@@ -179,14 +193,14 @@ const Complaints = () => {
               name="arrow-left"
               size={15}
               color={activePage === 1 ? "#BFDDDE" : "#228693"}
-              onPress={() => setActivePage(activePage === 1 ? activePage : activePage-1)}
+              onPress={() => setActivePage(activePage === 1 ? activePage : activePage - 1)}
             />
             <Text style={styles.complaints.table.last.paginationContainer.pageNo}>{activePage}</Text>
             <IconFontAwesome
               name="arrow-right"
               size={15}
               color={activePage < pageCount ? "#228693" : "#BFDDDE"}
-              onPress={() => setActivePage(activePage === pageCount ? activePage : activePage+1)}
+              onPress={() => setActivePage(activePage === pageCount ? activePage : activePage + 1)}
             />
           </View>
         </View>
