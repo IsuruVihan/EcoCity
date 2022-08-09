@@ -1,5 +1,5 @@
 import React from 'react';
-import {Col, Container, Row} from "react-bootstrap";
+import {Col, Row} from "react-bootstrap";
 
 import CountCard from "./cards/CountCard";
 import WeightCard from "./cards/WeightCard";
@@ -21,10 +21,9 @@ const Dashboard = () => {
                     fontWeight: 800, fontSize: 30, color: '#075061'}} sm={12}>Hello Nisal,</Col>
                 <Col className="p-0 mb-3" sm={12}>This is what we have got for you today - {date}</Col>
                 <Col lg={10} className="p-0" style={{border: '2px solid red'}}>
-                    <Row className="m-0" style={{border: '2px solid #BFDDDE', borderRadius: '20px'}}>
-                        <Col lg={12} className="p-0 mt-2 ms-2" style={{
-                            border: '2px solid pink', fontSize: 20, fontWeight: 500, color: '#042434'}}>Garbage Collection Weight</Col>
-                        <Col lg={12} className="p-0" style={{border: '2px solid pink'}}>Filter</Col>
+                    <Row className="m-0" style={{border: '2px solid green'}}>
+                        <Col lg={12} className="p-0" style={{border: '2px solid pink'}}>Garbage Collection Weight</Col>
+                        <Col lg={12} className="p-0" style={{border: '2px solid pink'}}><GarbageCollectionWeightFilter/></Col>
                         <Col lg={12} className="p-0" style={{border: '2px solid pink'}}>
                             <Row className="m-0" style={{border: '2px solid yellow'}}>
                                 <Col lg={4} className="p-0" style={{border: '2px solid purple'}}><WeightCard/></Col>

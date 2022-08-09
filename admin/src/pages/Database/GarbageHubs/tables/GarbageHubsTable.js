@@ -18,6 +18,7 @@ const GarbageHubsTable = () => {
     const [startIndex, setStartIndex] = useState(0);
     const [endIndex, setEndIndex] = useState(hubsPerPage);
     const [filteredHubs, setFilteredHubs] = useState(hubs.slice(startIndex, endIndex));
+    const [isHubDetailsVisible, setIsHubDetailsVisible] = useState(false);
 
     const calculateStartIndex = () => {
         setStartIndex((currentPage - 1) * hubsPerPage);
@@ -124,8 +125,19 @@ const GarbageHubsTable = () => {
     //
     //     }
     // }
+
+    const handleOnHubClicked = () => {
+        const newState = !isHubDetailsVisible;
+        setIsHubDetailsVisible(newState);
+    }
+
+    const handleOnHubCloseClicked = () => {
+        setIsHubDetailsVisible(false);
+    }
+
     return (
         <Row className='mx-0'>
+            <GarbageHubDetailsModal show={isHubDetailsVisible} onHide={() => setIsHubDetailsVisible(false)}/>
             <Table className='my-0 garbage-hubs-table' borderless>
                 <thead>
                 <tr className='table-header'>
@@ -142,7 +154,8 @@ const GarbageHubsTable = () => {
                 <Fragment>
                     {
                         filteredHubs.map((hub, index) => {
-                            return <GarbageHubsTableItem key={index + startIndex} hub={hub} index={index + startIndex}/>
+                            return <GarbageHubsTableItem key={index + startIndex} hub={hub} index={index + startIndex}
+                                                         onClick={handleOnHubClicked}/>
                         })
                     }
                 </Fragment>
