@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Col, Container, Row} from "react-bootstrap";
 import '../../../assets/styles/Database/database.css';
 import '../../../assets/styles/Database/GarbageHubs/GarbageHubs.css';
@@ -15,16 +15,25 @@ import {FiFilter} from "react-icons/fi";
 
 
 const GarbageHubs = () => {
+
+    const [isTableFilterVisible, setIsTableFilterVisible] = useState(false);
+
+    const handleOnFilterButtonClicked = () => {
+        const newState = !isTableFilterVisible;
+        setIsTableFilterVisible(newState);
+    }
     return (
+
         <Col className='' lg={10}>
             <Row className='mx-0 section-header '>Garbage Hubs</Row>
             <Row className='mx-0 section-contents d-flex px-0 justify-content-evenly'>
                 <Col lg={8} className='column-left box-shadow me-3'>
                     <div className='mt-2 d-flex justify-content-end'>
-                        <span className='filter-box px-2 me-3'>
+                        <span className='filter-box px-2 me-3' onClick={handleOnFilterButtonClicked}>
                             Filter
                             <FiFilter color='#228693' size='20px'/>
                         </span>
+                        {isTableFilterVisible && <GarbageHubsTableFilter/>}
                     </div>
                     <GarbageHubsTable/>
                 </Col>
