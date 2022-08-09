@@ -16,6 +16,13 @@ LogBox.ignoreLogs([
 ]);
 
 const Complaints = () => {
+  const [viewedFilter, setViewedFilter] = useState(true);
+  const [notViewedFilter, setNotViewedFilter] = useState(true);
+  const [resolvedFilter, setResolvedFilter] = useState(true);
+  const [removedFilter, setRemovedFilter] = useState(true);
+  const [fromDateFilter, setFromDateFilter] = useState(null);
+  const [toDateFilter, setToDateFilter] = useState(null);
+
   const [pageCount, setPageCount] = useState(0);
   const [activePage, setActivePage] = useState(0);
 
@@ -42,34 +49,26 @@ const Complaints = () => {
   ]);
   const [paginatedData, setPaginatedData] = useState([]);
 
-  useEffect(() => {
-    // setPaginatedComplaints();
-  }, [filteredData]);
+  // useEffect(() => {
+  //   // TODO: Get data
+  //   console.log('GET DATA');
+  // }, []);
 
-  const setPaginatedComplaints = () => {
+  // useEffect(() => {
+  //   // TODO: Apply filters and push eligible complaints into filtered data
+  //   console.log('FILTER DATA');
+  // }, [data]);
+
+  useEffect(() => {
+    // TODO: Divide filtered data into pages
+
     setPageCount(Math.ceil(filteredData.length / 5));
-    setActivePage(pageCount > 0 ? 1 : 0);
-    const paginatedComplaints = [];
-    let index = 1;
-    loop1:
-      for (let i = 1; i <= pageCount; i++) { // Page
-        for (let j = 1; j <= 5; j++) { // Item
-          if (index > filteredData.length) {
-            break loop1;
-          }
-          paginatedComplaints.push({
-            page: i,
-            index: index,
-            id: filteredData[index-1].id,
-            date: filteredData[index-1].date,
-            status: filteredData[index-1].status
-          });
-          index += 1;
-        }
-      }
-    setPaginatedData(paginatedComplaints);
-    console.log(paginatedData);
-  }
+    setActivePage(Math.ceil(filteredData.length / 5) > 0 ? 1 : 0);
+
+
+
+    console.log('PAGINATE DATA');
+  }, [filteredData]);
 
   const TableRow = (index, id, date, status) => {
     return (
@@ -149,11 +148,7 @@ const Complaints = () => {
           </TouchableOpacity>
         </View>
         <View style={styles.complaints.table.content}>
-          {paginatedData.map((complaint, id) => {
-            if (complaint.page === activePage) {
-              return TableRow(complaint.index, complaint.id, complaint.date, complaint.status)
-            }
-          })}
+          {}
         </View>
         <View style={styles.complaints.table.last}>
           <View style={styles.complaints.table.last.buttonContainer}>
