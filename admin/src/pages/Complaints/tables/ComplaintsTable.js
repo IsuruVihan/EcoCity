@@ -1,11 +1,12 @@
 import React, {useState} from 'react';
-import { Col, Container, Image, Modal, Row, Table} from "react-bootstrap";
+import { Col, Container, Image, Modal, Row, Table, Button} from "react-bootstrap";
 
 import ViewComplaintModal from "../modals/ViewComplaintModal";
 
 import leftarrow from "../../../assets/images/icons/leftarrow.png";
 import rightarrow from "../../../assets/images/icons/rightarrow.png";
 import close from "../../../assets/images/icons/close.png";
+import RemarksForm from "../forms/RemarksForm";
 
 const ComplaintsTable = () => {
         const [show, setShow] = useState(false);
@@ -37,25 +38,16 @@ const ComplaintsTable = () => {
                                 <td>CMB-7-12</td>
                             </tr>
                             <Modal show={show} onHide={handleClose}>
-                                <Modal
-                                    size="md"
-                                    show={show}
-                                    onHide={() => setShow(false)}
-                                    dialogClassName="modal-50w"
-                                    aria-labelledby="example-custom-modal-styling-title">
-                                    <Modal.Header style={{border:'none',}} className="button">
-                                        <Row >
-                                            <Col style={{textAlign:'right', marginLeft:440}}>
-                                                <Row>
-                                                    <Image src={close} />
-                                                </Row>
-                                            </Col>
-                                        </Row>
-                                    </Modal.Header>
-                                    <Modal.Body>
-                                        <ViewComplaintModal/>
-                                    </Modal.Body>
-                                </Modal>
+                                <Modal.Header style={{border:'none'}}>
+                                    <Row>
+                                        <Col style={{ marginLeft:430}}>
+                                            <Image src={close} onClick={handleClose} width="70%"/>
+                                        </Col>
+                                    </Row>
+                                </Modal.Header>
+                                <Modal.Body>
+                                    <ViewComplaintModal/>
+                                </Modal.Body>
                             </Modal>
                             <tr style={{borderBottom:'1px solid #BFDDDE', cursor:'pointer'}}>
                                 <th scope="row" >2</th>
