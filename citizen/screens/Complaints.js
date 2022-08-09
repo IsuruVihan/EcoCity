@@ -1,8 +1,9 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {Text, View, StyleSheet, Dimensions, LogBox, Image, TouchableOpacity} from "react-native";
 import {VictoryPie} from "victory-native";
 
 import FilterImg from '../assets/images/filter.png';
+import CreateImg from '../assets/images/create.png';
 
 import {Responsive} from "../helpers/Responsive";
 
@@ -14,6 +15,57 @@ LogBox.ignoreLogs([
 ]);
 
 const Complaints = () => {
+  const [pageCount, setPageCount] = useState(0);
+  const [activePage, setActivePage] = useState(0);
+
+  const [data, setData] = useState([]);
+  const [filteredData, setFilteredData] = useState([
+    {id: 'CMB-07-123', date: '23/06/2022', status: 'Viewed'},
+    {id: 'CMB-07-124', date: '24/06/2022', status: 'Not Viewed'},
+    {id: 'CMB-07-125', date: '25/06/2022', status: 'Resolved'},
+    {id: 'CMB-07-126', date: '26/06/2022', status: 'Removed'},
+    {id: 'CMB-07-127', date: '27/06/2022', status: 'Viewed'},
+    {id: 'CMB-07-128', date: '28/06/2022', status: 'Viewed'},
+    {id: 'CMB-07-123', date: '23/06/2022', status: 'Viewed'},
+    {id: 'CMB-07-124', date: '24/06/2022', status: 'Not Viewed'},
+    {id: 'CMB-07-125', date: '25/06/2022', status: 'Resolved'},
+    {id: 'CMB-07-126', date: '26/06/2022', status: 'Removed'},
+    {id: 'CMB-07-127', date: '27/06/2022', status: 'Viewed'},
+    {id: 'CMB-07-128', date: '28/06/2022', status: 'Viewed'},
+    {id: 'CMB-07-123', date: '23/06/2022', status: 'Viewed'},
+    {id: 'CMB-07-124', date: '24/06/2022', status: 'Not Viewed'},
+    {id: 'CMB-07-125', date: '25/06/2022', status: 'Resolved'},
+    {id: 'CMB-07-126', date: '26/06/2022', status: 'Removed'},
+    {id: 'CMB-07-127', date: '27/06/2022', status: 'Viewed'},
+    {id: 'CMB-07-128', date: '28/06/2022', status: 'Viewed'},
+  ]);
+  const [paginatedData, setPaginatedData] = useState([]);
+
+  useEffect(() => {
+    setPageCount(Math.ceil(filteredData.length / 5));
+    setActivePage(pageCount > 0 ? 1 : 0);
+    const paginatedComplaints = [];
+    let index = 1;
+    loop1:
+    for (let i = 1; i <= pageCount; i++) { // Page
+      for (let j = 1; j <= 5; j++) { // Item
+        if (index > filteredData.length) {
+          break loop1;
+        }
+        paginatedComplaints.push({
+          page: i,
+          index: index,
+          id: filteredData[index-1].id,
+          date: filteredData[index-1].date,
+          status: filteredData[index-1].status
+        });
+        index += 1;
+      }
+    }
+    setPaginatedData(paginatedComplaints);
+    console.log(paginatedData);
+  }, [filteredData]);
+
   const TableRow = (index, id, date, status) => {
     return (
       <View style={styles.complaints.table.content.row}>
@@ -92,15 +144,22 @@ const Complaints = () => {
           </TouchableOpacity>
         </View>
         <View style={styles.complaints.table.content}>
-          {TableRow()}
-          {/*{TableRow()}*/}
-          {/*{TableRow()}*/}
-          {/*{TableRow()}*/}
-          {/*{TableRow()}*/}
-          {/*{TableRow()}*/}
+          {paginatedData.map((complaint, id) => {
+            if (complaint.page === 1) {
+              return TableRow(complaint.index, complaint.id, complaint.date, complaint.status)
+            }
+          })}
         </View>
         <View style={styles.complaints.table.last}>
+          <View style={styles.complaints.table.last.buttonContainer}>
+            <TouchableOpacity style={styles.complaints.table.last.buttonContainer.btn}>
+              <Image source={CreateImg} style={styles.complaints.table.last.buttonContainer.btn.icon}/>
+              <Text style={styles.complaints.table.last.buttonContainer.btn.txt}>New Complaint</Text>
+            </TouchableOpacity>
+          </View>
+          <View style={styles.complaints.table.last.paginationContainer}>
 
+          </View>
         </View>
       </View>
     </View>
@@ -147,8 +206,8 @@ const styles = StyleSheet.create({
         justifyContent: 'space-around',
         alignContent: 'space-around',
         card: {
-          borderColor: '#BFDDDE',
-          borderWidth: 1,
+          // borderColor: '#BFDDDE',
+          // borderWidth: 1,
           backgroundColor: '#EDFBFC',
           borderRadius: 5,
           width: Responsive(18.5, WIDTH),
@@ -191,8 +250,8 @@ const styles = StyleSheet.create({
       },
     },
     table: {
-      borderColor: 'red',
-      borderWidth: 2,
+      // borderColor: 'red',
+      // borderWidth: 2,
       padding: 5,
       flex: 8,
       paddingHorizontal: 23,
@@ -200,8 +259,8 @@ const styles = StyleSheet.create({
       display: 'flex',
       flexDirection: 'column',
       title: {
-        borderColor: 'orange',
-        borderWidth: 2,
+        // borderColor: 'orange',
+        // borderWidth: 2,
         marginTop: 15,
         flex: 1,
         display: 'flex',
@@ -235,38 +294,39 @@ const styles = StyleSheet.create({
         },
       },
       content: {
-        borderColor: 'black',
-        borderWidth: 2,
+        // borderColor: 'black',
+        // borderWidth: 2,
         flex: 8.5,
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'space-evenly',
         // alignItems: 'center',
         row: {
-          borderColor: 'blue',
-          borderWidth: 2,
-          height: Responsive(5, HEIGHT),
+          borderBottomColor: '#EDFBFC',
+          borderBottomWidth: 2,
+          height: Responsive(6, HEIGHT),
           display: 'flex',
           flexDirection: 'row',
+          alignItems: 'center',
           index: {
-            borderColor: 'green',
-            borderWidth: 2,
+            // borderColor: 'green',
+            // borderWidth: 2,
             flex: 1,
             textAlignVertical: 'center',
             textAlign: 'center',
             color: '#707070',
           },
           id: {
-            borderColor: 'green',
-            borderWidth: 2,
+            // borderColor: 'green',
+            // borderWidth: 2,
             flex: 3,
             textAlignVertical: 'center',
             textAlign: 'center',
             color: '#707070',
           },
           date: {
-            borderColor: 'green',
-            borderWidth: 2,
+            // borderColor: 'green',
+            // borderWidth: 2,
             flex: 3,
             textAlignVertical: 'center',
             textAlign: 'center',
@@ -277,37 +337,92 @@ const styles = StyleSheet.create({
               flex: 2,
               textAlignVertical: 'center',
               textAlign: 'center',
-              borderColor: 'blue',
-              borderWidth: 1,
+              // borderColor: 'blue',
+              // borderWidth: 1,
+              borderRadius: 5,
+              color: '#008BD1',
+              backgroundColor: '#E1F0FF',
+              height: '75%',
             },
             notViewed: {
               flex: 2,
               textAlignVertical: 'center',
               textAlign: 'center',
-              borderColor: 'orange',
-              borderWidth: 1,
+              // borderColor: 'orange',
+              // borderWidth: 1,
+              borderRadius: 5,
+              color: '#FF9900',
+              backgroundColor: '#FFF6E9',
+              height: '75%',
             },
             resolved: {
               flex: 2,
               textAlignVertical: 'center',
               textAlign: 'center',
-              borderColor: 'green',
-              borderWidth: 1,
+              // borderColor: 'green',
+              // borderWidth: 1,
+              borderRadius: 5,
+              color: '#00C186',
+              backgroundColor: '#E0F8E3',
+              height: '75%',
             },
             removed: {
               flex: 2,
               textAlignVertical: 'center',
               textAlign: 'center',
-              borderColor: 'red',
-              borderWidth: 1,
+              // borderColor: 'red',
+              // borderWidth: 1,
+              borderRadius: 5,
+              color: 'red',
+              backgroundColor: 'pink',
+              height: '75%',
             },
           },
         },
       },
       last: {
-        borderColor: 'black',
-        borderWidth: 2,
+        // borderColor: 'black',
+        // borderWidth: 2,
         flex: 1.5,
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'center',
+        buttonContainer: {
+          flex: 3,
+          height: '80%',
+          // borderColor: 'red',
+          // borderWidth: 1,
+          btn: {
+            backgroundColor: '#228693',
+            display: 'flex',
+            flexDirection: 'row',
+            justifyContent: 'space-around',
+            alignItems: 'center',
+            borderRadius: 5,
+            // paddingVertical: 3,
+            // paddingHorizontal: 10,
+            height: '100%',
+            icon: {
+              // borderColor: 'blue',
+              // borderWidth: 1,
+              width: 16,
+              height: 16,
+            },
+            txt: {
+              // borderColor: 'blue',
+              // borderWidth: 1,
+              color: 'white',
+              fontWeight: '700',
+              fontSize: 12,
+            },
+          },
+        },
+        paginationContainer: {
+          flex: 5,
+          height: '80%',
+          borderColor: 'red',
+          borderWidth: 1,
+        },
       },
     },
   },
