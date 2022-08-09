@@ -129,7 +129,8 @@
 .garbage-hubs-table-filter-wrapper {
     margin-top: 30px;
     width: 200px;
-    box-shadow: 0 0 70px rgba(220, 220, 220, 1);
+    box-shadow: 0 0 50px rgba(220, 220, 220, 0.46);
+    border-radius: 8px;
 }
 
 .filter-button {
@@ -165,10 +166,21 @@
     width: 60px;
 }
 
-.filter-inputs input {
+.filter-inputs input, #hubTableBinType {
     width: calc(100% - 65px);
-
-    height: 20px;
+    height: 25px;
+    line-height: 24px;
+    font-size: 14px;
+    border: none;
+    border-bottom: 2px solid #E9E8EF;
 }
 
+.filter-inputs input:focus, #hubTableBinType:focus {
+    border-color: transparent;
+    /*border: none !important;*/
+    outline: none;
+}
 
+/*#hubTableBinType {*/
+/*    width: 100%;*/
+/*}*/
