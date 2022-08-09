@@ -22,7 +22,7 @@ const Dashboard = () => {
                 <Col lg={10} className="p-0" style={{border: '2px solid #BFDDDE', borderRadius: '20px'}}>
                     <Row className="m-0">
                         <Col lg={12} className="p-0 mt-3 ms-3"
-                             style={{fontWeight: 700, fontSize: 20, color: '#042434'}}>Garbage Collection Weight</Col>
+                             style={{fontWeight: 600, fontSize: 20, color: '#042434'}}>Garbage Collection Weight</Col>
                         <Col lg={12} className="p-0"><GarbageCollectionWeightFilter/></Col>
                         <Col lg={12} className="p-0">
                             <Row className="m-0">
