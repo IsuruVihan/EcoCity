@@ -22,6 +22,11 @@ const GarbageHubs = () => {
         const newState = !isTableFilterVisible;
         setIsTableFilterVisible(newState);
     }
+
+    const [showCreateHubForm, setShowCreateHubForm] = useState(false);
+
+    const handleClose = () => setShowCreateHubForm(false);
+    const handleShow = () => setShowCreateHubForm(true);
     return (
 
         <Col className='' lg={10}>
@@ -35,7 +40,8 @@ const GarbageHubs = () => {
                         </span>
                         {isTableFilterVisible && <GarbageHubsTableFilter/>}
                     </div>
-                    <GarbageHubsTable/>
+                    <GarbageHubsTable onCreateClicked={setShowCreateHubForm}/>
+                    <CreateGarbageHubModal onHide={handleClose} show={showCreateHubForm}/>
                 </Col>
                 <Col lg={4} className='box-shadow'>Map</Col>
             </Row>
