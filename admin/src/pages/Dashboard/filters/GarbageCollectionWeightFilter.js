@@ -13,9 +13,9 @@ const GarbageCollectionWeightFilter = () => {
   return (
     <Container>
         <Row className="p-0">
-            <Col lg={11} className="p-0"></Col>
-            <Col lg={1}>
-                <Row className="p-0" onClick={() => setOpen(!open)}
+            <Col className="p-0" lg={11}></Col>
+            <Col className="p-0" lg={1}>
+                <Row className="m-0 me-1" onClick={() => setOpen(!open)}
                      style={{border: '2px solid #BFDDDE', borderRadius: 7, cursor: "pointer"}}>
                     <Col className="p-0 ps-2" aria-controls="example-collapse-text" aria-expanded={open} xs="6">Filter</Col>
                     <Col className="p-0 d-flex align-items-center justify-content-center" style={{textAlign: "right"}}>

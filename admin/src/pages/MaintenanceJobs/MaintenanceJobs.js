@@ -10,7 +10,7 @@ import Header from "../../common/Header";
 
 const MaintenanceJobs = () => {
   return (
-      <Col lg={10} className='p-0 '>
+      <Col lg={10} className='p-0'>
         <Row className='p-0 m-0 mt-4 ps-3' style={{ 
         fontSize: 35, 
         fontWeight: 900, 

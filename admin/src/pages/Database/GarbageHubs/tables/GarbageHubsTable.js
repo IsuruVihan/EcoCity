@@ -9,7 +9,7 @@ import {FiArrowLeft, FiArrowRight, FiEdit} from "react-icons/fi";
 //Temporary json file to render hub details
 import hubsDetails from '../../../../data/HubDetails.json';
 
-const GarbageHubsTable = () => {
+const GarbageHubsTable = (props) => {
     const hubs = hubsDetails.hubs;
     const hubCount = hubs.length;
     const hubsPerPage = 3;
@@ -163,7 +163,7 @@ const GarbageHubsTable = () => {
             </Table>
             <Row className='bottom-0 mb-3 w-50 d-flex pe-0 position-absolute align-items-end'>
                 <Col className='' lg={2}>
-                    <Button><FiEdit/> Create</Button>
+                    <Button onClick={props.onCreateClicked}><FiEdit/> Create</Button>
                 </Col>
                 <Col className='d-flex justify-content-end pe-1 pagination-group' lg={10}>
                     <FiArrowLeft color='#228693' size='23px' id='prev' onClick={handleOnPageNumberChange}/>
