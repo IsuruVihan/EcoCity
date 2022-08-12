@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Col, Collapse, Container, Image, Row} from "react-bootstrap";
 
 import SideNav from "../../common/SideNav";
@@ -10,6 +10,8 @@ import Header from "../../common/Header";
 import filtericon from "../../assets/images/icons/filter.png";
 
 const GarbageCollectionRides = () => {
+    const [open, setOpen] = useState(false);
+
   return (
       <Col lg={10} style={{border:'1px solid red'}}>
           <Row className="ps-3 pb-3 pt-2">
@@ -19,22 +21,30 @@ const GarbageCollectionRides = () => {
           </Row>
           <Row>
               <Col style={{border:"1px solid #BFDDDE" , borderRadius:10}} className="m-2">
-                  <Row className="d-flex ">
+                  <Row className="d-flex">
                       <Col xs={10}></Col>
                       <Col className='pt-3 mx-3 me-2'>
-                          <Row xs="2" className="mx-2" style={{border:'2px solid #BFDDDE', borderRadius:10 , textAlign:'right',}}>
-                              <Col  style={{cursor:'pointer',}} aria-controls="example-collapse-text"  xs="6">
+                          <Row xs="2" className="mx-2" style={{border:'2px solid #BFDDDE', borderRadius:10 , textAlign:'right',}}
+                               onClick={() => setOpen(!open)} >
+                              <Col style={{cursor:'pointer',}} aria-controls="example-collapse-text" aria-expanded={open} xs="6">
                                   Filter
                               </Col>
-                              <Col style={{textAlign:'right',}}>
+                              <Col style={{textAlign:'right',cursor:'pointer'}}>
                                   <Image src={filtericon} width="50%"></Image>
                               </Col>
                           </Row>
                       </Col>
                   </Row>
+                  <Row style={{position: 'absolute', right: 25, paddingTop: 8, zIndex:2}}>
+                      <Collapse in={open}>
+                          <Container id="example-collapse-text" style={{backgroundColor:'#fff'}}>
+                              <RidesTableFilter/>
+                          </Container>
+                      </Collapse>
+                  </Row>
                   <Row>
                       <Col style={{border:"1px solid #BFDDDE",}} className="m-4">
-                            <RidesTable/>
+                          <RidesTable/>
                       </Col>
                   </Row>
               </Col>
