@@ -9,7 +9,7 @@ import {FiArrowLeft, FiArrowRight, FiEdit} from "react-icons/fi";
 //Temporary json file to render hub details
 import hubsDetails from '../../../../data/HubDetails.json';
 
-const GarbageHubsTable = () => {
+const GarbageHubsTable = (props) => {
     const hubs = hubsDetails.hubs;
     const hubCount = hubs.length;
     const hubsPerPage = 3;
@@ -18,6 +18,7 @@ const GarbageHubsTable = () => {
     const [startIndex, setStartIndex] = useState(0);
     const [endIndex, setEndIndex] = useState(hubsPerPage);
     const [filteredHubs, setFilteredHubs] = useState(hubs.slice(startIndex, endIndex));
+    const [isHubDetailsVisible, setIsHubDetailsVisible] = useState(false);
 
     const calculateStartIndex = () => {
         setStartIndex((currentPage - 1) * hubsPerPage);
@@ -124,8 +125,19 @@ const GarbageHubsTable = () => {
     //
     //     }
     // }
+
+    const handleOnHubClicked = () => {
+        const newState = !isHubDetailsVisible;
+        setIsHubDetailsVisible(newState);
+    }
+
+    const handleOnHubCloseClicked = () => {
+        setIsHubDetailsVisible(false);
+    }
+
     return (
         <Row className='mx-0'>
+            <GarbageHubDetailsModal show={isHubDetailsVisible} onHide={() => setIsHubDetailsVisible(false)}/>
             <Table className='my-0 garbage-hubs-table' borderless>
                 <thead>
                 <tr className='table-header'>
@@ -142,7 +154,8 @@ const GarbageHubsTable = () => {
                 <Fragment>
                     {
                         filteredHubs.map((hub, index) => {
-                            return <GarbageHubsTableItem key={index + startIndex} hub={hub} index={index + startIndex}/>
+                            return <GarbageHubsTableItem key={index + startIndex} hub={hub} index={index + startIndex}
+                                                         onClick={handleOnHubClicked}/>
                         })
                     }
                 </Fragment>
@@ -150,7 +163,7 @@ const GarbageHubsTable = () => {
             </Table>
             <Row className='bottom-0 mb-3 w-50 d-flex pe-0 position-absolute align-items-end'>
                 <Col className='' lg={2}>
-                    <Button><FiEdit/> Create</Button>
+                    <Button onClick={props.onCreateClicked}><FiEdit/> Create</Button>
                 </Col>
                 <Col className='d-flex justify-content-end pe-1 pagination-group' lg={10}>
                     <FiArrowLeft color='#228693' size='23px' id='prev' onClick={handleOnPageNumberChange}/>

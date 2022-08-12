@@ -1,14 +1,27 @@
 import React from 'react';
-import {Container} from "react-bootstrap";
+import {Col, Container, Row} from "react-bootstrap";
 
 import CreateGarbageHubForm from "../forms/CreateGarbageHubForm";
+import Modal from "react-bootstrap/Modal";
 
-const CreateGarbageHubModal = () => {
-  return (
-    <Container>
-      Create garbage hub modal
-    </Container>
-  );
+const CreateGarbageHubModal = (props) => {
+    return (
+        <Modal
+            {...props}
+            size="md"
+            aria-labelledby="contained-modal-title-vcenter"
+            centered
+            backdrop="static"
+            keyboard={false}
+        >
+            <Modal.Header closeButton>
+                <Modal.Title>New Garbage Hub</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+                <CreateGarbageHubForm/>
+            </Modal.Body>
+        </Modal>
+    );
 }
 
 export default CreateGarbageHubModal;
