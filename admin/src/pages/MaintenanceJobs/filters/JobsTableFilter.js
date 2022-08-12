@@ -10,12 +10,12 @@ const JobsTableFilter = () => {
   const [open, setOpen] = useState(false);
   return (
     <Container>
-      <Col lg={10}  className='pt-3 mx-3 me-2 '>
+      <Col lg={8}  className='pt-3 mx-3 me-2 '>
         <Row sm="2" className="p-0 m-0" onClick={() => setOpen(!open)}
           style={{
-            border: '2px solid #BFDDDE', 
-            borderRadius: 10, 
-            textAlign: 'right', 
+            border: '2px solid #BFDDDE',
+            borderRadius: 10,
+            textAlign: 'right',
             cursor: 'pointer'
             }}>
           <Col aria-controls="example-collapse-text" aria-expanded={open} sm="6">
@@ -27,16 +27,16 @@ const JobsTableFilter = () => {
         </Row>
         <Row style={{
           position: 'absolute',
-          right: 25, 
-          paddingTop: 8, 
-          width:'400px', 
+          right: 25,
+          paddingTop: 8,
+          width:'400px',
           zIndex:1}}>
           <Collapse in={open}>
             <Container  id="example-collapse-text">
               <Row >
                 <Col style={{
-                  borderBottomRightRadius: 15, 
-                  borderBottomLeftRadius: 15, 
+                  borderBottomRightRadius: 15,
+                  borderBottomLeftRadius: 15,
                   boxShadow: `0px 4px 8px #707070`
                   }}>
                   <Row className="m-1">
@@ -49,8 +49,8 @@ const JobsTableFilter = () => {
                         </Col>
                         <Col className="p-0 m-0" sm={9}>
                           <input style={{
-                            width: 157,  
-                            outline: 'none', 
+                            width: 157,
+                            outline: 'none',
                             border:'none',
                             borderBottom: '2px solid #E9E8EF'}}/>
                         </Col>
@@ -65,9 +65,9 @@ const JobsTableFilter = () => {
                             </Col>
                             <Col className="p-0 m-0">
                               <input style={{
-                                width: 95,  
+                                width: 95,
                                 outline: 'none',
-                                border:'none', 
+                                border:'none',
                                 borderBottom: '2px solid #E9E8EF'}}/>
                             </Col>
                           </Row>
@@ -81,8 +81,8 @@ const JobsTableFilter = () => {
                             </Col>
                             <Col className="p-0 m-0">
                               <input style={{
-                                width: 95, 
-                                outline: 'none', 
+                                width: 95,
+                                outline: 'none',
                                 border:'none',
                                 borderBottom: '2px solid #E9E8EF'}}/>
                             </Col>
@@ -97,8 +97,8 @@ const JobsTableFilter = () => {
                         </Col>
                         <Col className="p-0 m-0" sm={9}>
                           <input style={{
-                            width: 157, 
-                            outline: 'none', 
+                            width: 157,
+                            outline: 'none',
                             border:'none',
                             borderBottom: '2px solid #E9E8EF'}}/>
                         </Col>
@@ -108,10 +108,10 @@ const JobsTableFilter = () => {
                       <Row className="p-0 m-0">Status</Row>
                       <Row>
                         <Col style={{
-                          display:'flex', 
-                          textAlign:'center', 
-                          alignItems:'center', 
-                          marginBottom: '10px', 
+                          display:'flex',
+                          textAlign:'center',
+                          alignItems:'center',
+                          marginBottom: '10px',
                           marginTop:'10px'
                           }}>
                           <input type='checkbox'
@@ -124,9 +124,9 @@ const JobsTableFilter = () => {
                       </Row>
                       <Row>
                         <Col style={{
-                          display:'flex', 
-                          textAlign:'center', 
-                          alignItems:'center', 
+                          display:'flex',
+                          textAlign:'center',
+                          alignItems:'center',
                           marginBottom: '10px'
                           }}>
                           <input type='checkbox'
@@ -139,9 +139,9 @@ const JobsTableFilter = () => {
                       </Row>
                       <Row>
                         <Col style={{
-                          display:'flex', 
-                          textAlign:'center', 
-                          alignItems:'center', 
+                          display:'flex',
+                          textAlign:'center',
+                          alignItems:'center',
                           }}>
                           <input type='checkbox'
                             style={{cursor: 'pointer'}}/>
@@ -165,16 +165,16 @@ const JobsTableFilter = () => {
                       <Row className='mt-1'>Bin Type</Row>
                       <Row>
                         <Col className="p-0 m-0" sm={7} style={{
-                          display:'flex', 
-                          textAlign:'center', 
+                          display:'flex',
+                          textAlign:'center',
                           alignItems:'center'
                           }}>
                           <Row className="p-0 m-0">
                             <Col className="p-0 m-0">
                               <Row className="p-0 m-0">
                                 <Col className="p-0 m-0 mb-2" style={{
-                                  display:'flex', 
-                                  textAlign:'center', 
+                                  display:'flex',
+                                  textAlign:'center',
                                   alignItems:'center'
                                   }}>
                                   <input type='checkbox'
@@ -187,8 +187,8 @@ const JobsTableFilter = () => {
                               </Row>
                               <Row className="p-0 m-0">
                                 <Col className="p-0 m-0" style={{
-                                  display:'flex', 
-                                  textAlign:'center', 
+                                  display:'flex',
+                                  textAlign:'center',
                                   alignItems:'center'
                                   }}>
                                   <input type='checkbox'
@@ -203,8 +203,8 @@ const JobsTableFilter = () => {
                             <Col className="p-0 m-0">
                               <Row className="p-0 m-0">
                                 <Col className="p-0 m-0 mb-2 mx-3" style={{
-                                  display:'flex', 
-                                  textAlign:'center', 
+                                  display:'flex',
+                                  textAlign:'center',
                                   alignItems:'center'
                                   }}>
                                   <input type='checkbox'
@@ -216,7 +216,7 @@ const JobsTableFilter = () => {
                                 </Col>
                               </Row>
                               <Row className="p-0 m-0">
-                                <Col className="p-0 m-0 mx-3" 
+                                <Col className="p-0 m-0 mx-3"
                                   style={{display:'flex', textAlign:'center', alignItems:'center'}}>
                                   <input type='checkbox'
                                         style={{cursor: 'pointer'}}/>
@@ -295,7 +295,7 @@ const JobsTableFilter = () => {
                             }}>
                               Filter
                             </Col>
-                      </Row>  
+                      </Row>
                     </Col>
                   </Row>
                 </Col>
