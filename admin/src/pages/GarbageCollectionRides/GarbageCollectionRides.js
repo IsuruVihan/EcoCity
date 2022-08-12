@@ -37,15 +37,15 @@ const GarbageCollectionRides = () => {
                   </Row>
                   <Row style={{position: 'absolute', right: 25, paddingTop: 8, zIndex:2}}>
                       <Collapse in={open}>
-                          <Container id="example-collapse-text">
+                          <Container id="example-collapse-text" style={{backgroundColor:'#fff'}}>
                               <RidesTableFilter/>
                           </Container>
                       </Collapse>
                   </Row>
                   <Row>
-                      {/*<Col style={{border:"1px solid #BFDDDE",}} className="m-4">*/}
-                      {/*    <RidesTable/>*/}
-                      {/*</Col>*/}
+                      <Col style={{border:"1px solid #BFDDDE",}} className="m-4">
+                          <RidesTable/>
+                      </Col>
                   </Row>
               </Col>
           </Row>
