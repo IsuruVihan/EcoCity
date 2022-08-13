@@ -9,9 +9,9 @@ import DatePicker from 'react-native-date-picker'
 
 import FilterImg from '../assets/images/filter.png';
 import CreateImg from '../assets/images/create.png';
+import ViewComplaintImg from '../assets/images/view-complaint.png';
 
 import {Responsive} from "../helpers/Responsive";
-import {Touchable} from "react-native-toast-message/lib/src/components/Touchable";
 
 const HEIGHT = Dimensions.get('window').height;
 const WIDTH = Dimensions.get('window').width;
@@ -25,6 +25,8 @@ LogBox.ignoreLogs([
 const Complaints = () => {
   const [fromDateFilterOpen, setFromDateFilterOpen] = useState(false);
   const [toDateFilterOpen, setToDateFilterOpen] = useState(false);
+
+  const [viewComplaintModalOpen, setViewComplaintModalOpen] = useState(false);
 
   const [filterVisible, setFilterVisible] = useState(false);
   const [viewedFilter, setViewedFilter] = useState(true);
@@ -101,7 +103,7 @@ const Complaints = () => {
 
   const TableRow = (index, id, date, status) => {
     return (
-      <View key={index} style={styles.complaints.table.content.row}>
+      <TouchableOpacity key={index} style={styles.complaints.table.content.row} onPress={() => setViewComplaintModalOpen(true)}>
         <Text style={styles.complaints.table.content.row.index}>{index}</Text>
         <Text style={styles.complaints.table.content.row.id}>{id}</Text>
         <Text style={styles.complaints.table.content.row.date}>{date}</Text>
@@ -111,7 +113,7 @@ const Complaints = () => {
               status === 'Resolved' ? styles.complaints.table.content.row.status.resolved :
                 styles.complaints.table.content.row.status.removed
         }>{status}</Text>
-      </View>
+      </TouchableOpacity>
     );
   }
 
@@ -303,9 +305,30 @@ const Complaints = () => {
     );
   }
 
+  const ViewComplaintModal = () => {
+    return (
+      <Dialog
+        isVisible={viewComplaintModalOpen}
+        onBackdropPress={() => setViewComplaintModalOpen(false)}
+        style={styles.complaints.viewComplaintModal}
+      >
+        <View style={styles.complaints.viewComplaintModal.cancelBtnContainer}>
+
+        </View>
+        <View style={styles.complaints.viewComplaintModal.imgContainer}>
+
+        </View>
+        <View style={styles.complaints.viewComplaintModal.dataFields}>
+
+        </View>
+      </Dialog>
+    );
+  }
+
   return (
     <View style={styles.complaints}>
       {Filter()}
+      {ViewComplaintModal()}
       <View style={styles.complaints.title}>
         <Text style={styles.complaints.title.txt}>Complaints</Text>
       </View>
@@ -684,6 +707,22 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'flex-end',
         alignItems: 'center',
+      },
+    },
+    viewComplaintModal: {
+      borderColor: 'red',
+      borderWidth: 2,
+      cancelBtnContainer: {
+        borderColor: 'blue',
+        borderWidth: 2,
+      },
+      imgContainer: {
+        borderColor: 'blue',
+        borderWidth: 2,
+      },
+      dataFields: {
+        borderColor: 'blue',
+        borderWidth: 2,
       },
     },
   },
