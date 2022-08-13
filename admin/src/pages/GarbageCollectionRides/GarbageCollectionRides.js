@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Col, Collapse, Container, Image, Row} from "react-bootstrap";
+import {Col, Container, Row, Collapse, Image} from "react-bootstrap";
 
 import SideNav from "../../common/SideNav";
 import RidesTableFilter from "./filters/RidesTableFilter";
@@ -7,6 +7,8 @@ import RidesTable from "./tables/RidesTable";
 import ViewRideModal from "./modals/ViewRideModal";
 import AssignRideModal from "./modals/AssignRideModal";
 import Header from "../../common/Header";
+import filtericon from "../../assets/images/icons/filter.png";
+
 import filtericon from "../../assets/images/icons/filter.png";
 
 const GarbageCollectionRides = () => {
@@ -43,7 +45,7 @@ const GarbageCollectionRides = () => {
                       </Collapse>
                   </Row>
                   <Row>
-                      <Col style={{border:"1px solid #BFDDDE",}} className="m-4">
+                      <Col className="m-4">
                           <RidesTable/>
                       </Col>
                   </Row>

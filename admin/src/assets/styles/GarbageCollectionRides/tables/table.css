@@ -1,0 +1,15 @@
+.state-assigned{
+    background-color: #E1F0FF;
+    color: #008BD1;
+    font-weight: bold;
+}
+.state-completed{
+    background-color: #E0F8E3;
+    color: #00C186;
+    font-weight: bold;
+}
+.state-ongoing{
+    background-color: #FFF6E9;
+    color: #FF9900;
+    font-weight: bold;
+}
