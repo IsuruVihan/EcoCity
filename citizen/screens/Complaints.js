@@ -2,28 +2,37 @@ import React, {useEffect, useState} from 'react';
 import {Text, View, StyleSheet, Dimensions, LogBox, Image, TouchableOpacity} from "react-native";
 import {VictoryPie} from "victory-native";
 import IconFontAwesome from "react-native-vector-icons/FontAwesome";
-import {Dialog} from '@rneui/themed';
+import IconFontAwesome5 from "react-native-vector-icons/FontAwesome5";
+import AntDesign from "react-native-vector-icons/AntDesign";
+import {Dialog, CheckBox, Button} from '@rneui/themed';
+import DatePicker from 'react-native-date-picker'
 
 import FilterImg from '../assets/images/filter.png';
 import CreateImg from '../assets/images/create.png';
 
 import {Responsive} from "../helpers/Responsive";
+import {Touchable} from "react-native-toast-message/lib/src/components/Touchable";
 
 const HEIGHT = Dimensions.get('window').height;
 const WIDTH = Dimensions.get('window').width;
+const LAUNCH = new Date("2022-01-01");
+const TODAY = new Date();
 
 LogBox.ignoreLogs([
   "Require cycle: node_modules/victory",
 ]);
 
 const Complaints = () => {
+  const [fromDateFilterOpen, setFromDateFilterOpen] = useState(false);
+  const [toDateFilterOpen, setToDateFilterOpen] = useState(false);
+
   const [filterVisible, setFilterVisible] = useState(false);
   const [viewedFilter, setViewedFilter] = useState(true);
   const [notViewedFilter, setNotViewedFilter] = useState(true);
   const [resolvedFilter, setResolvedFilter] = useState(true);
   const [removedFilter, setRemovedFilter] = useState(true);
-  const [fromDateFilter, setFromDateFilter] = useState(null);
-  const [toDateFilter, setToDateFilter] = useState(null);
+  const [fromDateFilter, setFromDateFilter] = useState(new Date);
+  const [toDateFilter, setToDateFilter] = useState(new Date);
 
   const [pageCount, setPageCount] = useState(0);
   const [activePage, setActivePage] = useState(0);
@@ -86,6 +95,10 @@ const Complaints = () => {
     setPaginatedData(tempPaginatedData);
   }, [filteredData]);
 
+  const handleOnClickFilterBtn = () => {
+
+  }
+
   const TableRow = (index, id, date, status) => {
     return (
       <View key={index} style={styles.complaints.table.content.row}>
@@ -144,9 +157,149 @@ const Complaints = () => {
       <Dialog
         isVisible={filterVisible}
         onBackdropPress={() => setFilterVisible(false)}
+        style={styles.complaints.filter}
       >
-        <Text>Complaints Filter</Text>
+        <View style={styles.complaints.filter.title}>
+          <Text style={styles.complaints.filter.title.txt}>Complaint Filter</Text>
+        </View>
+        <View style={styles.complaints.filter.options}>
+          <CheckBox
+            checkedColor={'#228693'}
+            containerStyle={{marginVertical: 0, paddingVertical: 4,}}
+            textStyle={{color: '#042434', fontWeight: '100',}}
+            title="Viewed"
+            checked={viewedFilter}
+            onPress={() => setViewedFilter(!viewedFilter)}
+          />
+          <CheckBox
+            checkedColor={'#228693'}
+            containerStyle={{marginVertical: 0, paddingVertical: 4,}}
+            textStyle={{color: '#042434', fontWeight: '100',}}
+            title="Not Viewed"
+            checked={notViewedFilter}
+            onPress={() => setNotViewedFilter(!notViewedFilter)}
+          />
+          <CheckBox
+            checkedColor={'#228693'}
+            containerStyle={{marginVertical: 0, paddingVertical: 4,}}
+            textStyle={{color: '#042434', fontWeight: '100',}}
+            title="Resolved"
+            checked={resolvedFilter}
+            onPress={() => setResolvedFilter(!resolvedFilter)}
+          />
+          <CheckBox
+            checkedColor={'#228693'}
+            containerStyle={{marginVertical: 0, paddingVertical: 4,}}
+            textStyle={{color: '#042434', fontWeight: '100',}}
+            title="Removed"
+            checked={removedFilter}
+            onPress={() => setRemovedFilter(!removedFilter)}
+          />
+        </View>
+        <View style={styles.complaints.filter.dates}>
+          <TouchableOpacity
+            style={styles.complaints.filter.dates.date}
+            onPress={() => setFromDateFilterOpen(true)}
+          >
+            <IconFontAwesome5
+              name="calendar-alt"
+              size={30}
+              color={"#228693"}
+            />
+            <View style={styles.complaints.filter.dates.date.texts}>
+              <Text style={styles.complaints.filter.dates.date.texts.txtOne}>From</Text>
+              <Text style={styles.complaints.filter.dates.date.texts.txtTwo}>{fromDateFilter.toDateString()}</Text>
+              <DatePicker
+                modal
+                mode="date"
+                minimumDate={LAUNCH}
+                maximumDate={toDateFilter > TODAY ? toDateFilter : TODAY}
+                open={fromDateFilterOpen}
+                date={fromDateFilter}
+                onConfirm={(date) => {
+                  setFromDateFilterOpen(false);
+                  setFromDateFilter(date);
+                }}
+                onCancel={() => setFromDateFilterOpen(false)}
+              />
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.complaints.filter.dates.date}
+            onPress={() => setToDateFilterOpen(true)}
+          >
+            <IconFontAwesome5
+              name="calendar-alt"
+              size={30}
+              color={"#228693"}
+            />
+            <View style={styles.complaints.filter.dates.date.texts}>
+              <Text style={styles.complaints.filter.dates.date.texts.txtOne}>To</Text>
+              <Text style={styles.complaints.filter.dates.date.texts.txtTwo}>{toDateFilter.toDateString()}</Text>
+              <DatePicker
+                modal
+                mode="date"
+                minimumDate={LAUNCH < fromDateFilter ? LAUNCH : fromDateFilter}
+                maximumDate={TODAY}
+                open={toDateFilterOpen}
+                date={toDateFilter}
+                onConfirm={(date) => {
+                  setToDateFilterOpen(false);
+                  setToDateFilter(date);
+                }}
+                onCancel={() => setToDateFilterOpen(false)}
+              />
+            </View>
+          </TouchableOpacity>
+        </View>
+        <View style={styles.complaints.filter.last}>
+          <Button
+            type="solid"
+            size='sm'
+            color={'#228693'}
+            buttonStyle={{borderRadius: 5, width: Responsive(20, WIDTH),}}
+          >
+            <AntDesign name='filter' size={20} color={'white'}/>
+            Filter
+          </Button>
+        </View>
       </Dialog>
+    );
+  }
+
+  const Paginator = () => {
+    return (
+      <View style={styles.complaints.table.last.paginationContainer}>
+        <IconFontAwesome
+          name="arrow-left"
+          size={15}
+          color={activePage === 1 ? "#BFDDDE" : "#228693"}
+          onPress={() => setActivePage(activePage === 1 ? activePage : activePage - 1)}
+          style={styles.complaints.table.last.paginationContainer.arrowLeft}
+        />
+        {
+          activePage - 1 > 0 && <TouchableOpacity
+            style={styles.complaints.table.last.paginationContainer.prevPageNo}
+            onPress={() => setActivePage(activePage - 1)}
+          ><Text>{activePage - 1}</Text>
+          </TouchableOpacity>
+        }
+        <Text style={styles.complaints.table.last.paginationContainer.pageNo}>{activePage}</Text>
+        {
+          activePage + 1 <= pageCount && <TouchableOpacity
+            style={styles.complaints.table.last.paginationContainer.prevPageNo}
+            onPress={() => setActivePage(activePage + 1)}
+          ><Text>{activePage + 1}</Text>
+          </TouchableOpacity>
+        }
+        <IconFontAwesome
+          name="arrow-right"
+          size={15}
+          color={activePage < pageCount ? "#228693" : "#BFDDDE"}
+          onPress={() => setActivePage(activePage === pageCount ? activePage : activePage + 1)}
+          style={styles.complaints.table.last.paginationContainer.arrowRight}
+        />
+      </View>
     );
   }
 
@@ -188,37 +341,7 @@ const Complaints = () => {
               <Text style={styles.complaints.table.last.buttonContainer.btn.txt}>New Complaint</Text>
             </TouchableOpacity>
           </View>
-          <View style={styles.complaints.table.last.paginationContainer}>
-            <IconFontAwesome
-              name="arrow-left"
-              size={15}
-              color={activePage === 1 ? "#BFDDDE" : "#228693"}
-              onPress={() => setActivePage(activePage === 1 ? activePage : activePage - 1)}
-              style={styles.complaints.table.last.paginationContainer.arrowLeft}
-            />
-            {
-              activePage - 1 > 0 && <TouchableOpacity
-                style={styles.complaints.table.last.paginationContainer.prevPageNo}
-                onPress={() => setActivePage(activePage - 1)}
-              ><Text>{activePage - 1}</Text>
-              </TouchableOpacity>
-            }
-            <Text style={styles.complaints.table.last.paginationContainer.pageNo}>{activePage}</Text>
-            {
-              activePage + 1 <= pageCount && <TouchableOpacity
-                style={styles.complaints.table.last.paginationContainer.prevPageNo}
-                onPress={() => setActivePage(activePage + 1)}
-              ><Text>{activePage + 1}</Text>
-              </TouchableOpacity>
-            }
-            <IconFontAwesome
-              name="arrow-right"
-              size={15}
-              color={activePage < pageCount ? "#228693" : "#BFDDDE"}
-              onPress={() => setActivePage(activePage === pageCount ? activePage : activePage + 1)}
-              style={styles.complaints.table.last.paginationContainer.arrowRight}
-            />
-          </View>
+          {Paginator()}
         </View>
       </View>
     </View>
@@ -513,6 +636,54 @@ const styles = StyleSheet.create({
             marginLeft: 10,
           },
         },
+      },
+    },
+    filter: {
+      title: {
+        txt: {
+          color: '#042434',
+          fontSize: 15,
+          fontWeight: '600',
+        },
+      },
+      options: {
+        paddingVertical: 5,
+      },
+      dates: {
+        borderColor: '#BFDDDE',
+        borderTopWidth: 2,
+        borderBottomWidth: 2,
+        paddingVertical: 5,
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        date: {
+          // borderColor: 'red',
+          // borderWidth: 1,
+          display: 'flex',
+          flexDirection: 'row',
+          justifyContent: 'center',
+          alignItems: 'center',
+          marginVertical: 5,
+          texts: {
+            marginLeft: 30,
+            txtOne: {
+              color: '#BFDDDE',
+            },
+            txtTwo: {
+              color: '#228693',
+            },
+          },
+        },
+      },
+      last: {
+        // borderColor: 'pink',
+        // borderWidth: 1,
+        marginVertical: 10,
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'flex-end',
+        alignItems: 'center',
       },
     },
   },
