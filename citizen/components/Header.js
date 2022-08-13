@@ -31,14 +31,16 @@ const styles = StyleSheet.create({
     // borderBottomWidth: 1,
     backgroundColor: 'white',
     imageContainer: {
+      // borderColor: 'red',
+      // borderWidth: 1,
       height: '100%',
       width: '20%',
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
       image: {
-        width: '70%',
-        height: '60%',
+        width: 60,
+        height: 30,
       },
     },
     titleContainer: {
