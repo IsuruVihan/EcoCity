@@ -194,13 +194,29 @@ const Complaints = () => {
               size={15}
               color={activePage === 1 ? "#BFDDDE" : "#228693"}
               onPress={() => setActivePage(activePage === 1 ? activePage : activePage - 1)}
+              style={styles.complaints.table.last.paginationContainer.arrowLeft}
             />
+            {
+              activePage - 1 > 0 && <TouchableOpacity
+                style={styles.complaints.table.last.paginationContainer.prevPageNo}
+                onPress={() => setActivePage(activePage - 1)}
+              ><Text>{activePage - 1}</Text>
+              </TouchableOpacity>
+            }
             <Text style={styles.complaints.table.last.paginationContainer.pageNo}>{activePage}</Text>
+            {
+              activePage + 1 <= pageCount && <TouchableOpacity
+                style={styles.complaints.table.last.paginationContainer.prevPageNo}
+                onPress={() => setActivePage(activePage + 1)}
+              ><Text>{activePage + 1}</Text>
+              </TouchableOpacity>
+            }
             <IconFontAwesome
               name="arrow-right"
               size={15}
               color={activePage < pageCount ? "#228693" : "#BFDDDE"}
               onPress={() => setActivePage(activePage === pageCount ? activePage : activePage + 1)}
+              style={styles.complaints.table.last.paginationContainer.arrowRight}
             />
           </View>
         </View>
@@ -472,7 +488,7 @@ const styles = StyleSheet.create({
           justifyContent: 'space-around',
           alignItems: 'center',
           pageNo: {
-            marginHorizontal: 15,
+            marginHorizontal: 5,
             fontSize: 15,
             fontWeight: '700',
             color: '#7CB6B8',
@@ -481,6 +497,20 @@ const styles = StyleSheet.create({
             borderWidth: 2,
             padding: 5,
             textAlign: 'center',
+          },
+          prevPageNo: {
+            marginHorizontal: 5,
+            fontSize: 15,
+            fontWeight: '700',
+            color: '#A3A3A3',
+            padding: 5,
+            textAlign: 'center',
+          },
+          arrowLeft: {
+            marginRight: 10,
+          },
+          arrowRight: {
+            marginLeft: 10,
           },
         },
       },
