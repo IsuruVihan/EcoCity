@@ -127,6 +127,7 @@ const GarbageHubsTable = (props) => {
     // }
 
     const handleOnHubClicked = () => {
+        console.log('called')
         const newState = !isHubDetailsVisible;
         setIsHubDetailsVisible(newState);
     }
