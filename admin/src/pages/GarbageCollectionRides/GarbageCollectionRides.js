@@ -7,6 +7,7 @@ import RidesTable from "./tables/RidesTable";
 import ViewRideModal from "./modals/ViewRideModal";
 import AssignRideModal from "./modals/AssignRideModal";
 import Header from "../../common/Header";
+import filtericon from "../../assets/images/icons/filter.png";
 
 import filtericon from "../../assets/images/icons/filter.png";
 

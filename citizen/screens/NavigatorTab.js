@@ -17,12 +17,17 @@ const NavigatorTab = () => {
   const TabItem = (title, id, icon, type) => {
     return (
       <Tab.Item
-        // title={title}
+        title={title}
         containerStyle={{
-          backgroundColor: index === id ? "#228693" : "white", height: 50, display: 'flex', justifyContent: 'center'
+          backgroundColor: "white",
+          height: 60,
+          display: 'flex',
+          justifyContent: 'center',
+          borderTopWidth: 2,
+          borderTopColor: id === index ? '#228693' : 'white',
         }}
-        titleStyle={{fontSize: 12, color: index === id ? 'white' : "#228693"}}
-        icon={{name: icon, size: 25, type: type, color: index === id ? 'white' : "#228693"}}
+        titleStyle={{fontSize: 9, color: "#228693"}}
+        icon={{name: icon, size: 25, type: type, color: "#228693"}}
       />
     );
   }
@@ -44,7 +49,7 @@ const NavigatorTab = () => {
           <MyProfile/>
         </TabView.Item>
       </TabView>
-      <Tab value={index} onChange={(e) => setIndex(e)}>
+      <Tab value={index} onChange={(e) => setIndex(e)} indicatorStyle={{backgroundColor: 'white', height: 3,}}>
         {TabItem('Home', 0, 'home', 'feather')}
         {TabItem('Map', 1, 'location-on', 'materialicon')}
         {TabItem('Complaints', 2, 'error', 'materialicon')}

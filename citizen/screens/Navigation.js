@@ -20,7 +20,7 @@ const Navigation = () => {
 
   return (
     <NavigationContainer>
-      <Stack.Navigator defaultScreenOptions={LoadingScreen1}>
+      <Stack.Navigator defaultScreenOptions={Login}>
         {splashLoading ? (
           <Stack.Screen name="SplashLoadingScreen" options={{headerShown: false}} component={SplashLoadingView}/>
         ) : (
@@ -28,8 +28,8 @@ const Navigation = () => {
             <Stack.Screen name="Welcome" options={{headerShown: false}} component={NavigatorTab}/>
           ) : (
             <>
-              <Stack.Screen name="LoadingScreen1" options={{headerShown: false}} component={LoadingScreen1}/>
-              <Stack.Screen name="LoadingScreen2" options={{headerShown: false}} component={LoadingScreen2}/>
+              {/*<Stack.Screen name="LoadingScreen1" options={{headerShown: false}} component={LoadingScreen1}/>*/}
+              {/*<Stack.Screen name="LoadingScreen2" options={{headerShown: false}} component={LoadingScreen2}/>*/}
               <Stack.Screen name="Login" options={{headerShown: false}} component={Login}/>
               <Stack.Screen name="ForgotPassword" options={{headerShown: false}} component={ForgotPassword}/>
               <Stack.Screen name="CheckYourMail" options={{headerShown: false}} component={CheckYourMail}/>
