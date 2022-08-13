@@ -9,8 +9,6 @@ import AssignRideModal from "./modals/AssignRideModal";
 import Header from "../../common/Header";
 import filtericon from "../../assets/images/icons/filter.png";
 
-import filtericon from "../../assets/images/icons/filter.png";
-
 const GarbageCollectionRides = () => {
     const [open, setOpen] = useState(false);
 
