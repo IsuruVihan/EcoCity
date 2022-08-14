@@ -25,12 +25,16 @@ const GarbageBinDetailsCard = (props) => {
         }
     }
     return (
-        <Row className={'mx-0'}>
-            <Col lg={6}>
+        <Row className={' px-0'}>
+            <Col lg={5} className={'px-0 d-flex align-items-center'}>
                 {getBinImage()}
             </Col>
-            <Col lg={6}>
-
+            <Col lg={7} className={'px-0'}>
+                <h6 style={{fontSize: '13px'}} className={'mb-0'}>Fill Level</h6>
+                <label className={'fs-2 fw-bolder lh-1'}>{bin.level}%</label>
+                <label style={{fontSize: '13px'}}>Temperature {bin.temperature}&deg;C</label>
+                <label style={{fontSize: '13px'}}>Humidity {bin.humidity}</label>
+                <label style={{fontSize: '13px'}}>Weight {bin.level} Kg</label>
             </Col>
         </Row>
     );
