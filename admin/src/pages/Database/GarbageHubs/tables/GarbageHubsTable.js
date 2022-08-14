@@ -19,6 +19,8 @@ const GarbageHubsTable = (props) => {
     const [endIndex, setEndIndex] = useState(hubsPerPage);
     const [filteredHubs, setFilteredHubs] = useState(hubs.slice(startIndex, endIndex));
     const [isHubDetailsVisible, setIsHubDetailsVisible] = useState(false);
+    const [currentSelectedHubID, setCurrentSelectedHubID] = useState('');
+    const [currentSelectedHub, setCurrentselectedHub] = useState({});
 
     const calculateStartIndex = () => {
         setStartIndex((currentPage - 1) * hubsPerPage);
@@ -126,11 +128,19 @@ const GarbageHubsTable = (props) => {
     //     }
     // }
 
-    const handleOnHubClicked = () => {
-        console.log('called')
+    const handleOnHubClicked = (hubId) => {
+        setCurrentSelectedHubID(hubId);
         const newState = !isHubDetailsVisible;
         setIsHubDetailsVisible(newState);
     }
+
+    useEffect(() => {
+        for (let i = 0; i < filteredHubs.length; i++) {
+            if (currentSelectedHubID === filteredHubs[i].hubID) {
+                setCurrentselectedHub(filteredHubs[i]);
+            }
+        }
+    }, [currentSelectedHubID])
 
     const handleOnHubCloseClicked = () => {
         setIsHubDetailsVisible(false);
@@ -138,7 +148,8 @@ const GarbageHubsTable = (props) => {
 
     return (
         <Row className='mx-0'>
-            <GarbageHubDetailsModal show={isHubDetailsVisible} onHide={() => setIsHubDetailsVisible(false)}/>
+            <GarbageHubDetailsModal show={isHubDetailsVisible} onHide={() => setIsHubDetailsVisible(false)}
+                                    hub={currentSelectedHub}/>
             <Table className='my-0 garbage-hubs-table' borderless>
                 <thead>
                 <tr className='table-header'>

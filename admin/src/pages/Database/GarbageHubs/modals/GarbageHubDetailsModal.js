@@ -8,24 +8,8 @@ import GarbageHubCollectedWeightsGraphFilter from "../filters/GarbageHubCollecte
 import {AiFillCloseCircle} from "react-icons/ai";
 
 const GarbageHubDetailsModal = (props) => {
+    const bins = props.hub.bins;
     return (
-        // <Container
-        //     className='position-absolute border-red garbage-hub-details-wrapper d-flex justify-content-center align-items-center'>
-        //     <Row className='garbage-hub-details border-red h-75 w-35'>
-        //         <Row className='mx-0 border-red h-10'>
-        //             <span>Garbage Hub Details</span>
-        //             <span onClick={props.onClose}>close</span>
-        //         </Row>
-        //         <Row className='mx-0 border-red h-90 garbage-hub-details-body'>
-        //             <div>Hub Id</div>
-        //             <div>Status</div>
-        //             <div>Sensor data section</div>
-        //             <div>Location</div>
-        //             <div>Collected weight of garbage section</div>
-        //         </Row>
-        //     </Row>
-        // </Container>
-
         <Modal
             {...props}
             size="md"
@@ -50,10 +34,10 @@ const GarbageHubDetailsModal = (props) => {
                         <Col lg={12} className='h4'>Sensor Data</Col>
                         <Col lg={12}>
                             <Row>
-                                <Col lg={6}>Bin 1</Col>
-                                <Col lg={6}>Bin 2</Col>
-                                <Col lg={6}>Bin 3</Col>
-                                <Col lg={6}>Bin 4</Col>
+                                <Col lg={6} className={'my-2'}><GarbageBinDetailsCard bin={bins[0]}/></Col>
+                                <Col lg={6} className={'my-2'}><GarbageBinDetailsCard bin={bins[1]}/></Col>
+                                <Col lg={6} className={'my-2'}><GarbageBinDetailsCard bin={bins[2]}/></Col>
+                                <Col lg={6} className={'my-2'}><GarbageBinDetailsCard bin={bins[3]}/></Col>
                             </Row>
                         </Col>
                     </Row>
