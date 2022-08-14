@@ -7,7 +7,6 @@ import paperBinImage from '../../../../assets/images/paper.png';
 
 const GarbageBinDetailsCard = (props) => {
     const bin = props.bin;
-    console.log(bin);
 
     const getBinImage = () => {
         switch (bin.binType) {
