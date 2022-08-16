@@ -20,7 +20,7 @@ const GarbageHubsTable = (props) => {
     const [filteredHubs, setFilteredHubs] = useState(hubs.slice(startIndex, endIndex));
     const [isHubDetailsVisible, setIsHubDetailsVisible] = useState(false);
     const [currentSelectedHubID, setCurrentSelectedHubID] = useState('');
-    const [currentSelectedHub, setCurrentselectedHub] = useState({});
+    const [currentSelectedHub, setCurrentSelectedHub] = useState(filteredHubs[0]);
 
     const calculateStartIndex = () => {
         setStartIndex((currentPage - 1) * hubsPerPage);
@@ -137,7 +137,7 @@ const GarbageHubsTable = (props) => {
     useEffect(() => {
         for (let i = 0; i < filteredHubs.length; i++) {
             if (currentSelectedHubID === filteredHubs[i].hubID) {
-                setCurrentselectedHub(filteredHubs[i]);
+                setCurrentSelectedHub(filteredHubs[i]);
             }
         }
     }, [currentSelectedHubID])

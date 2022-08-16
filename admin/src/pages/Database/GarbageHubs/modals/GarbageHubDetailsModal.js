@@ -6,15 +6,17 @@ import GarbageHubLocationMap from "../maps/GarbageHubLocationMap";
 import GarbageHubCollectedWeightsGraph from "../graphs/GarbageHubCollectedWeightsGraph";
 import GarbageHubCollectedWeightsGraphFilter from "../filters/GarbageHubCollectedWeightsGraphFilter";
 import {AiFillCloseCircle} from "react-icons/ai";
+import '../../../../assets/styles/Comp1.css';
 
 const GarbageHubDetailsModal = (props) => {
     const bins = props.hub.bins;
     return (
         <Modal
             {...props}
-            size="md"
+            size="lg"
             aria-labelledby="contained-modal-title-vcenter"
             centered
+            scrollable={true}
         >
             <Modal.Header closeButton>
                 <Modal.Title id="contained-modal-title-vcenter">
@@ -47,10 +49,10 @@ const GarbageHubDetailsModal = (props) => {
                             Map goes here
                         </Col>
                     </Row>
-                    <Row className='mx-0'>
-                        <Col lg={11} className='h4'>Collected Weight of garbage:</Col>
-                        <Col lg={1}>Filter</Col>
-                        <Col lg={12}>
+                    <Row className='mx-0 mb-5'>
+                        <Col lg={10} className='h5'>Collected Weight of garbage:</Col>
+                        <Col lg={2}><GarbageHubCollectedWeightsGraphFilter/></Col>
+                        <Col lg={12} className='test border-red mb-5'>
                             Chart
                         </Col>
                     </Row>
