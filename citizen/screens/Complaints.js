@@ -15,6 +15,7 @@ import ViewComplaintImg from '../assets/images/view-complaint.png';
 import FileComplaintImg from '../assets/images/file-complaint.png';
 
 import {Responsive} from "../helpers/Responsive";
+import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 
 const HEIGHT = Dimensions.get('window').height;
 const WIDTH = Dimensions.get('window').width;
@@ -400,9 +401,31 @@ const Complaints = () => {
               keyboardType="text"
             />
           </View>
+          <View style={styles.complaints.createComplaintModal.content.inputSet}>
+            <Text style={styles.complaints.createComplaintModal.content.inputSet.label}>Upload images</Text>
+            <TouchableOpacity style={styles.complaints.createComplaintModal.content.inputSet.imgInput}>
+              <FontAwesome5
+                name={'file-upload'}
+                size={18}
+                color={'#228693'}
+                style={styles.complaints.createComplaintModal.content.inputSet.imgInput.img}
+              />
+              <Text
+                style={styles.complaints.createComplaintModal.content.inputSet.imgInput.txt1}
+              >Browse files</Text>
+              <Text
+                style={styles.complaints.createComplaintModal.content.inputSet.imgInput.txt2}
+              >Support JPEG and PNG files</Text>
+            </TouchableOpacity>
+          </View>
         </View>
         <View style={styles.complaints.createComplaintModal.last}>
-
+          <TouchableOpacity style={styles.complaints.createComplaintModal.last.btn1}>
+            <Text style={styles.complaints.createComplaintModal.last.btn1.txt}>Save</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.complaints.createComplaintModal.last.btn2}>
+            <Text style={styles.complaints.createComplaintModal.last.btn2.txt}>Cancel</Text>
+          </TouchableOpacity>
         </View>
       </Dialog>
     );
@@ -814,8 +837,8 @@ const styles = StyleSheet.create({
     },
     createComplaintModal: {
       title: {
-        borderColor: 'blue',
-        borderWidth: 2,
+        // borderColor: 'blue',
+        // borderWidth: 2,
         txt: {
           color: '#042434',
           fontWeight: '700',
@@ -823,8 +846,8 @@ const styles = StyleSheet.create({
         },
       },
       imageContainer: {
-        borderColor: 'blue',
-        borderWidth: 2,
+        // borderColor: 'blue',
+        // borderWidth: 2,
         display: 'flex',
         alignItems: 'center',
         paddingVertical: 10,
@@ -852,11 +875,62 @@ const styles = StyleSheet.create({
             color: '#707070',
             paddingLeft: 10,
           },
+          imgInput: {
+            borderWidth: 2,
+            borderColor: '#7CB6B8',
+            borderStyle: 'dashed',
+            borderRadius: 10,
+            height: Responsive(15, HEIGHT),
+            color: '#707070',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center',
+            img: {
+              padding: 10,
+              backgroundColor: '#E8F5F6',
+              borderRadius: 100,
+            },
+            txt1: {
+              color: '#228693',
+              fontWeight: 'bold',
+            },
+            txt2: {
+              fontSize: 10,
+            },
+          },
         },
       },
       last: {
-        borderColor: 'blue',
-        borderWidth: 2,
+        // borderColor: 'blue',
+        // borderWidth: 2,
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: 10,
+        btn1: {
+          marginRight: 10,
+          borderRadius: 5,
+          paddingHorizontal: 20,
+          paddingVertical: 8,
+          backgroundColor: '#228693',
+          txt: {
+            color: 'white',
+            fontWeight: 'bold',
+          },
+        },
+        btn2: {
+          borderWidth: 1,
+          borderColor: '#E9E8EF',
+          borderRadius: 5,
+          paddingHorizontal: 20,
+          paddingVertical: 8,
+          txt: {
+            color: '#228693',
+            fontWeight: 'bold',
+          },
+        }
       },
     },
   },
