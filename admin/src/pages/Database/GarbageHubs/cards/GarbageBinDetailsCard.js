@@ -1,12 +1,42 @@
 import React from 'react';
-import {Container} from "react-bootstrap";
+import {Col, Image, Row} from "react-bootstrap";
+import glassBinImage from '../../../../assets/images/glass.png';
+import plasticBinImage from '../../../../assets/images/plastic.png';
+import organicBinImage from '../../../../assets/images/organic.png';
+import paperBinImage from '../../../../assets/images/paper.png';
 
-const GarbageBinDetailsCard = () => {
-  return (
-    <Container>
-      Garbage bin details card
-    </Container>
-  );
+const GarbageBinDetailsCard = (props) => {
+    const bin = props.bin;
+
+    const getBinImage = () => {
+        switch (bin.binType) {
+            case 'Organic':
+                return <Image fluid src={organicBinImage}/>;
+            case 'Paper':
+                return <Image fluid src={paperBinImage}/>;
+            case 'Plastic':
+                return <Image fluid src={plasticBinImage}/>;
+            case 'Glass':
+                return <Image fluid src={glassBinImage}/>;
+            default:
+                return <Image fluid src={''}/>;
+
+        }
+    }
+    return (
+        <Row className={' px-0'}>
+            <Col lg={5} className={'px-0 d-flex align-items-center'}>
+                {getBinImage()}
+            </Col>
+            <Col lg={7} className={'px-0'}>
+                <h6 style={{fontSize: '15px'}} className={'mb-0'}>Fill Level</h6>
+                <p className={'fs-2 fw-bolder lh-1'}>{bin.level}%</p>
+                <p style={{fontSize: '15px'}}>Temperature {bin.temperature}&deg;C</p>
+                <p style={{fontSize: '15px'}}>Humidity {bin.humidity}</p>
+                <p style={{fontSize: '15px'}}>Weight {bin.level} Kg</p>
+            </Col>
+        </Row>
+    );
 }
 
 export default GarbageBinDetailsCard;
