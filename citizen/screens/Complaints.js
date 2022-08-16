@@ -31,6 +31,15 @@ const Complaints = () => {
   const [toDateFilterOpen, setToDateFilterOpen] = useState(false);
 
   const [viewComplaintModalOpen, setViewComplaintModalOpen] = useState(false);
+  const [viewedComplaint, setViewedComplaint] = useState({
+    id: 'CMB - 1',
+    category: 'Garbage Hub',
+    status: 'Viewed',
+    date: '16/08/2022',
+    description: 'Hub lid is not functioning after tapping the NFC card',
+    files: [],
+    remarks: 'We will fix th issue as soon as possible',
+  });
 
   const [createComplaintModalOpen, setCreateComplaintModalOpen] = useState(false);
   const [newComplaintCategory, setNewComplaintCategory] = useState("Other");
@@ -419,7 +428,12 @@ const Complaints = () => {
         style={styles.complaints.viewComplaintModal}
       >
         <View style={styles.complaints.viewComplaintModal.cancelBtnContainer}>
-          <AntDesign name={'closecircle'} size={15} color='#7CB6B8' />
+          <AntDesign
+            name={'closecircle'}
+            size={15}
+            color='#7CB6B8'
+            onPress={() => setViewComplaintModalOpen(false)}
+          />
         </View>
         <View style={styles.complaints.viewComplaintModal.imgContainer}>
           <Image source={ViewComplaintImg} style={styles.complaints.viewComplaintModal.imgContainer.img} />
@@ -429,31 +443,51 @@ const Complaints = () => {
             <Text style={styles.complaints.viewComplaintModal.dataFields.inputSet.label}>Complaint ID</Text>
             <View
               style={styles.complaints.viewComplaintModal.dataFields.inputSet.txtInput}
-            ><Text style={styles.complaints.viewComplaintModal.dataFields.inputSet.txtInput.txt}>Hello</Text></View>
+            >
+              <Text style={styles.complaints.viewComplaintModal.dataFields.inputSet.txtInput.txt}>
+                {viewedComplaint.id}
+              </Text>
+            </View>
           </View>
           <View style={styles.complaints.viewComplaintModal.dataFields.inputSet}>
             <Text style={styles.complaints.viewComplaintModal.dataFields.inputSet.label}>Complaint Category</Text>
             <View
               style={styles.complaints.viewComplaintModal.dataFields.inputSet.txtInput}
-            ><Text style={styles.complaints.viewComplaintModal.dataFields.inputSet.txtInput.txt}>Hello</Text></View>
+            >
+              <Text style={styles.complaints.viewComplaintModal.dataFields.inputSet.txtInput.txt}>
+                {viewedComplaint.category}
+              </Text>
+            </View>
           </View>
           <View style={styles.complaints.viewComplaintModal.dataFields.inputSet}>
             <Text style={styles.complaints.viewComplaintModal.dataFields.inputSet.label}>Complaint Status</Text>
             <View
               style={styles.complaints.viewComplaintModal.dataFields.inputSet.txtInput}
-            ><Text style={styles.complaints.viewComplaintModal.dataFields.inputSet.txtInput.txt}>Hello</Text></View>
+            >
+              <Text style={styles.complaints.viewComplaintModal.dataFields.inputSet.txtInput.txt}>
+                {viewedComplaint.status}
+              </Text>
+            </View>
           </View>
           <View style={styles.complaints.viewComplaintModal.dataFields.inputSet}>
             <Text style={styles.complaints.viewComplaintModal.dataFields.inputSet.label}>Complaint Date</Text>
             <View
               style={styles.complaints.viewComplaintModal.dataFields.inputSet.txtInput}
-            ><Text style={styles.complaints.viewComplaintModal.dataFields.inputSet.txtInput.txt}>Hello</Text></View>
+            >
+              <Text style={styles.complaints.viewComplaintModal.dataFields.inputSet.txtInput.txt}>
+                {viewedComplaint.date}
+              </Text>
+            </View>
           </View>
           <View style={styles.complaints.viewComplaintModal.dataFields.inputSet}>
             <Text style={styles.complaints.viewComplaintModal.dataFields.inputSet.label}>Complaint Description</Text>
             <View
               style={styles.complaints.viewComplaintModal.dataFields.inputSet.txtInput2}
-            ><Text style={styles.complaints.viewComplaintModal.dataFields.inputSet.txtInput.txt}>Hello</Text></View>
+            >
+              <Text style={styles.complaints.viewComplaintModal.dataFields.inputSet.txtInput.txt}>
+                {viewedComplaint.description}
+              </Text>
+            </View>
           </View>
           <View style={styles.complaints.viewComplaintModal.dataFields.inputSet}>
             <Text style={styles.complaints.viewComplaintModal.dataFields.inputSet.label}>Uploaded Files</Text>
@@ -467,8 +501,17 @@ const Complaints = () => {
             <Text style={styles.complaints.viewComplaintModal.dataFields.inputSet.label}>Remarks</Text>
             <View
               style={styles.complaints.viewComplaintModal.dataFields.inputSet.txtInput2}
-            ><Text style={styles.complaints.viewComplaintModal.dataFields.inputSet.txtInput.txt}>Hello</Text></View>
+            >
+              <Text style={styles.complaints.viewComplaintModal.dataFields.inputSet.txtInput.txt}>
+                {viewedComplaint.remarks}
+              </Text>
+            </View>
           </View>
+        </View>
+        <View style={styles.complaints.viewComplaintModal.last}>
+          <TouchableOpacity style={styles.complaints.viewComplaintModal.last.btn}>
+            <Text style={styles.complaints.viewComplaintModal.last.btn.txt}>Remove the complaint</Text>
+          </TouchableOpacity>
         </View>
       </Dialog>
     );
@@ -863,19 +906,19 @@ const styles = StyleSheet.create({
       },
     },
     viewComplaintModal: {
-      borderColor: 'red',
-      borderWidth: 2,
+      // borderColor: 'red',
+      // borderWidth: 2,
       cancelBtnContainer: {
-        borderColor: 'blue',
-        borderWidth: 2,
+        // borderColor: 'blue',
+        // borderWidth: 2,
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'flex-end',
         alignItems: 'center',
       },
       imgContainer: {
-        borderColor: 'blue',
-        borderWidth: 2,
+        // borderColor: 'blue',
+        // borderWidth: 2,
         display: 'flex',
         alignItems: 'center',
         img: {
@@ -884,10 +927,8 @@ const styles = StyleSheet.create({
         },
       },
       dataFields: {
-        borderColor: 'blue',
-        borderWidth: 2,
-
-
+        // borderColor: 'blue',
+        // borderWidth: 2,
         inputSet: {
           // borderColor: 'red',
           // borderWidth: 2,
@@ -946,8 +987,20 @@ const styles = StyleSheet.create({
             },
           },
         },
-
-
+      },
+      last: {
+        display: 'flex',
+        alignItems: 'center',
+        paddingVertical: 10,
+        btn: {
+          backgroundColor: 'lightpink',
+          paddingVertical: 3,
+          paddingHorizontal: 6,
+          borderRadius: 5,
+          txt: {
+            color: 'red',
+          },
+        },
       },
     },
     createComplaintModal: {
