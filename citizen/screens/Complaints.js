@@ -1,17 +1,21 @@
 import React, {useEffect, useState} from 'react';
-import {Text, View, StyleSheet, Dimensions, LogBox, Image, TouchableOpacity} from "react-native";
+import {Text, View, StyleSheet, Dimensions, LogBox, TouchableOpacity, Image, TextInput} from "react-native";
 import {VictoryPie} from "victory-native";
 import IconFontAwesome from "react-native-vector-icons/FontAwesome";
 import IconFontAwesome5 from "react-native-vector-icons/FontAwesome5";
 import AntDesign from "react-native-vector-icons/AntDesign";
+import Ionicons from "react-native-vector-icons/Ionicons";
 import {Dialog, CheckBox, Button} from '@rneui/themed';
-import DatePicker from 'react-native-date-picker'
+import DatePicker from 'react-native-date-picker';
+import SelectDropdown from 'react-native-select-dropdown';
 
 import FilterImg from '../assets/images/filter.png';
 import CreateImg from '../assets/images/create.png';
 import ViewComplaintImg from '../assets/images/view-complaint.png';
+import FileComplaintImg from '../assets/images/file-complaint.png';
 
 import {Responsive} from "../helpers/Responsive";
+import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 
 const HEIGHT = Dimensions.get('window').height;
 const WIDTH = Dimensions.get('window').width;
@@ -27,6 +31,11 @@ const Complaints = () => {
   const [toDateFilterOpen, setToDateFilterOpen] = useState(false);
 
   const [viewComplaintModalOpen, setViewComplaintModalOpen] = useState(false);
+
+  const [createComplaintModalOpen, setCreateComplaintModalOpen] = useState(false);
+  const [newComplaintCategory, setNewComplaintCategory] = useState("Other");
+  const [newComplaintHubNFCId, setNewComplaintHubNFCId] = useState("");
+  const [newComplaintDescription, setNewComplaintDescription] = useState("");
 
   const [filterVisible, setFilterVisible] = useState(false);
   const [viewedFilter, setViewedFilter] = useState(true);
@@ -103,7 +112,11 @@ const Complaints = () => {
 
   const TableRow = (index, id, date, status) => {
     return (
-      <TouchableOpacity key={index} style={styles.complaints.table.content.row} onPress={() => setViewComplaintModalOpen(true)}>
+      <TouchableOpacity
+        key={index}
+        style={styles.complaints.table.content.row}
+        onPress={() => setViewComplaintModalOpen(true)}
+      >
         <Text style={styles.complaints.table.content.row.index}>{index}</Text>
         <Text style={styles.complaints.table.content.row.id}>{id}</Text>
         <Text style={styles.complaints.table.content.row.date}>{date}</Text>
@@ -325,10 +338,104 @@ const Complaints = () => {
     );
   }
 
+  const CreateComplaintModal = () => {
+    return (
+      <Dialog
+        isVisible={createComplaintModalOpen}
+        onBackdropPress={() => setCreateComplaintModalOpen(false)}
+        style={styles.complaints.createComplaintModal}
+      >
+        <View style={styles.complaints.createComplaintModal.title}>
+          <Text style={styles.complaints.createComplaintModal.title.txt}>File a Complaint</Text>
+        </View>
+        <View style={styles.complaints.createComplaintModal.imageContainer}>
+          <Image source={FileComplaintImg} style={styles.complaints.createComplaintModal.imageContainer.img}/>
+        </View>
+        <View style={styles.complaints.createComplaintModal.content}>
+          <View style={styles.complaints.createComplaintModal.content.inputSet}>
+            <Text style={styles.complaints.createComplaintModal.content.inputSet.label}>Complaint Category</Text>
+            <SelectDropdown
+              data={["Garage hub", "NFC tags", "Mobile app", "Other"]}
+              defaultValue="Other"
+              defaultButtonText="Complaint type"
+              onSelect={(selectedItem) => setNewComplaintCategory(selectedItem)}
+              buttonTextAfterSelection={(selectedItem) => selectedItem}
+              rowTextForSelection={(item) => item}
+              buttonStyle={{
+                width: '100%',
+                height: Responsive(5, HEIGHT),
+                borderWidth: 2,
+                borderColor: '#E8F5F6',
+                borderRadius: 10,
+                marginVertical: 3,
+                backgroundColor: 'white',
+              }}
+              buttonTextStyle={{fontSize: 12, color: '#707070', backgroundColor: 'white',}}
+              dropdownStyle={{backgroundColor: 'white', height: Responsive(20, HEIGHT), borderRadius: 10,}}
+              rowStyle={{
+                height: Responsive(5, HEIGHT),
+                paddingVertical: 5,
+                borderBottomColor: '#E8F5F6',
+                borderBottomWidth: 1,
+              }}
+              rowTextStyle={{color: '#7CB6B8', fontSize: 15,}}
+              renderDropdownIcon={() => <Ionicons name={'caret-down-circle'} color="#7CB6B8"/>}
+              dropdownIconPosition="right"
+            />
+          </View>
+          <View style={styles.complaints.createComplaintModal.content.inputSet}>
+            <Text style={styles.complaints.createComplaintModal.content.inputSet.label}>Hub / NFC ID</Text>
+            <TextInput
+              style={styles.complaints.createComplaintModal.content.inputSet.txtInput}
+              onChangeText={(txt) => setNewComplaintHubNFCId(txt)}
+              value={newComplaintHubNFCId}
+              keyboardType="text"
+            />
+          </View>
+          <View style={styles.complaints.createComplaintModal.content.inputSet}>
+            <Text style={styles.complaints.createComplaintModal.content.inputSet.label}>Your Complaint</Text>
+            <TextInput
+              style={styles.complaints.createComplaintModal.content.inputSet.txtInput}
+              onChangeText={(txt) => setNewComplaintDescription(txt)}
+              value={newComplaintDescription}
+              keyboardType="text"
+            />
+          </View>
+          <View style={styles.complaints.createComplaintModal.content.inputSet}>
+            <Text style={styles.complaints.createComplaintModal.content.inputSet.label}>Upload images</Text>
+            <TouchableOpacity style={styles.complaints.createComplaintModal.content.inputSet.imgInput}>
+              <FontAwesome5
+                name={'file-upload'}
+                size={18}
+                color={'#228693'}
+                style={styles.complaints.createComplaintModal.content.inputSet.imgInput.img}
+              />
+              <Text
+                style={styles.complaints.createComplaintModal.content.inputSet.imgInput.txt1}
+              >Browse files</Text>
+              <Text
+                style={styles.complaints.createComplaintModal.content.inputSet.imgInput.txt2}
+              >Support JPEG and PNG files</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+        <View style={styles.complaints.createComplaintModal.last}>
+          <TouchableOpacity style={styles.complaints.createComplaintModal.last.btn1}>
+            <Text style={styles.complaints.createComplaintModal.last.btn1.txt}>Save</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.complaints.createComplaintModal.last.btn2}>
+            <Text style={styles.complaints.createComplaintModal.last.btn2.txt}>Cancel</Text>
+          </TouchableOpacity>
+        </View>
+      </Dialog>
+    );
+  }
+
   return (
     <View style={styles.complaints}>
       {Filter()}
       {ViewComplaintModal()}
+      {CreateComplaintModal()}
       <View style={styles.complaints.title}>
         <Text style={styles.complaints.title.txt}>Complaints</Text>
       </View>
@@ -359,7 +466,10 @@ const Complaints = () => {
         </View>
         <View style={styles.complaints.table.last}>
           <View style={styles.complaints.table.last.buttonContainer}>
-            <TouchableOpacity style={styles.complaints.table.last.buttonContainer.btn}>
+            <TouchableOpacity
+              style={styles.complaints.table.last.buttonContainer.btn}
+              onPress={() => setCreateComplaintModalOpen(true)}
+            >
               <Image source={CreateImg} style={styles.complaints.table.last.buttonContainer.btn.icon}/>
               <Text style={styles.complaints.table.last.buttonContainer.btn.txt}>New Complaint</Text>
             </TouchableOpacity>
@@ -723,6 +833,104 @@ const styles = StyleSheet.create({
       dataFields: {
         borderColor: 'blue',
         borderWidth: 2,
+      },
+    },
+    createComplaintModal: {
+      title: {
+        // borderColor: 'blue',
+        // borderWidth: 2,
+        txt: {
+          color: '#042434',
+          fontWeight: '700',
+          fontSize: 18,
+        },
+      },
+      imageContainer: {
+        // borderColor: 'blue',
+        // borderWidth: 2,
+        display: 'flex',
+        alignItems: 'center',
+        paddingVertical: 10,
+        img: {
+          width: Responsive(30, WIDTH),
+          height: Responsive(20, WIDTH),
+        },
+      },
+      content: {
+        // borderColor: 'blue',
+        // borderWidth: 2,
+        inputSet: {
+          // borderColor: 'red',
+          // borderWidth: 2,
+          paddingVertical: 5,
+          padding: 0,
+          label: {
+            color: '#042434',
+          },
+          txtInput: {
+            borderWidth: 2,
+            borderColor: '#E8F5F6',
+            borderRadius: 10,
+            height: Responsive(5, HEIGHT),
+            color: '#707070',
+            paddingLeft: 10,
+          },
+          imgInput: {
+            borderWidth: 2,
+            borderColor: '#7CB6B8',
+            borderStyle: 'dashed',
+            borderRadius: 10,
+            height: Responsive(15, HEIGHT),
+            color: '#707070',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center',
+            img: {
+              padding: 10,
+              backgroundColor: '#E8F5F6',
+              borderRadius: 100,
+            },
+            txt1: {
+              color: '#228693',
+              fontWeight: 'bold',
+            },
+            txt2: {
+              fontSize: 10,
+            },
+          },
+        },
+      },
+      last: {
+        // borderColor: 'blue',
+        // borderWidth: 2,
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: 10,
+        btn1: {
+          marginRight: 10,
+          borderRadius: 5,
+          paddingHorizontal: 20,
+          paddingVertical: 8,
+          backgroundColor: '#228693',
+          txt: {
+            color: 'white',
+            fontWeight: 'bold',
+          },
+        },
+        btn2: {
+          borderWidth: 1,
+          borderColor: '#E9E8EF',
+          borderRadius: 5,
+          paddingHorizontal: 20,
+          paddingVertical: 8,
+          txt: {
+            color: '#228693',
+            fontWeight: 'bold',
+          },
+        }
       },
     },
   },
