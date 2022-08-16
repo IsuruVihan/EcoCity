@@ -318,26 +318,6 @@ const Complaints = () => {
     );
   }
 
-  const ViewComplaintModal = () => {
-    return (
-      <Dialog
-        isVisible={viewComplaintModalOpen}
-        onBackdropPress={() => setViewComplaintModalOpen(false)}
-        style={styles.complaints.viewComplaintModal}
-      >
-        <View style={styles.complaints.viewComplaintModal.cancelBtnContainer}>
-
-        </View>
-        <View style={styles.complaints.viewComplaintModal.imgContainer}>
-
-        </View>
-        <View style={styles.complaints.viewComplaintModal.dataFields}>
-
-        </View>
-      </Dialog>
-    );
-  }
-
   const CreateComplaintModal = () => {
     return (
       <Dialog
@@ -426,6 +406,69 @@ const Complaints = () => {
           <TouchableOpacity style={styles.complaints.createComplaintModal.last.btn2}>
             <Text style={styles.complaints.createComplaintModal.last.btn2.txt}>Cancel</Text>
           </TouchableOpacity>
+        </View>
+      </Dialog>
+    );
+  }
+
+  const ViewComplaintModal = () => {
+    return (
+      <Dialog
+        isVisible={viewComplaintModalOpen}
+        onBackdropPress={() => setViewComplaintModalOpen(false)}
+        style={styles.complaints.viewComplaintModal}
+      >
+        <View style={styles.complaints.viewComplaintModal.cancelBtnContainer}>
+          <AntDesign name={'closecircle'} size={15} color='#7CB6B8' />
+        </View>
+        <View style={styles.complaints.viewComplaintModal.imgContainer}>
+          <Image source={ViewComplaintImg} style={styles.complaints.viewComplaintModal.imgContainer.img} />
+        </View>
+        <View style={styles.complaints.viewComplaintModal.dataFields}>
+          <View style={styles.complaints.viewComplaintModal.dataFields.inputSet}>
+            <Text style={styles.complaints.viewComplaintModal.dataFields.inputSet.label}>Complaint ID</Text>
+            <View
+              style={styles.complaints.viewComplaintModal.dataFields.inputSet.txtInput}
+            ><Text style={styles.complaints.viewComplaintModal.dataFields.inputSet.txtInput.txt}>Hello</Text></View>
+          </View>
+          <View style={styles.complaints.viewComplaintModal.dataFields.inputSet}>
+            <Text style={styles.complaints.viewComplaintModal.dataFields.inputSet.label}>Complaint Category</Text>
+            <View
+              style={styles.complaints.viewComplaintModal.dataFields.inputSet.txtInput}
+            ><Text style={styles.complaints.viewComplaintModal.dataFields.inputSet.txtInput.txt}>Hello</Text></View>
+          </View>
+          <View style={styles.complaints.viewComplaintModal.dataFields.inputSet}>
+            <Text style={styles.complaints.viewComplaintModal.dataFields.inputSet.label}>Complaint Status</Text>
+            <View
+              style={styles.complaints.viewComplaintModal.dataFields.inputSet.txtInput}
+            ><Text style={styles.complaints.viewComplaintModal.dataFields.inputSet.txtInput.txt}>Hello</Text></View>
+          </View>
+          <View style={styles.complaints.viewComplaintModal.dataFields.inputSet}>
+            <Text style={styles.complaints.viewComplaintModal.dataFields.inputSet.label}>Complaint Date</Text>
+            <View
+              style={styles.complaints.viewComplaintModal.dataFields.inputSet.txtInput}
+            ><Text style={styles.complaints.viewComplaintModal.dataFields.inputSet.txtInput.txt}>Hello</Text></View>
+          </View>
+          <View style={styles.complaints.viewComplaintModal.dataFields.inputSet}>
+            <Text style={styles.complaints.viewComplaintModal.dataFields.inputSet.label}>Complaint Description</Text>
+            <View
+              style={styles.complaints.viewComplaintModal.dataFields.inputSet.txtInput2}
+            ><Text style={styles.complaints.viewComplaintModal.dataFields.inputSet.txtInput.txt}>Hello</Text></View>
+          </View>
+          <View style={styles.complaints.viewComplaintModal.dataFields.inputSet}>
+            <Text style={styles.complaints.viewComplaintModal.dataFields.inputSet.label}>Uploaded Files</Text>
+            <View style={styles.complaints.viewComplaintModal.dataFields.inputSet.imgContainer}>
+              <TouchableOpacity style={styles.complaints.viewComplaintModal.dataFields.inputSet.imgContainer.btn}>
+                <Text style={styles.complaints.viewComplaintModal.dataFields.inputSet.imgContainer.btn.txt}>Open</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+          <View style={styles.complaints.viewComplaintModal.dataFields.inputSet}>
+            <Text style={styles.complaints.viewComplaintModal.dataFields.inputSet.label}>Remarks</Text>
+            <View
+              style={styles.complaints.viewComplaintModal.dataFields.inputSet.txtInput2}
+            ><Text style={styles.complaints.viewComplaintModal.dataFields.inputSet.txtInput.txt}>Hello</Text></View>
+          </View>
         </View>
       </Dialog>
     );
@@ -825,14 +868,86 @@ const styles = StyleSheet.create({
       cancelBtnContainer: {
         borderColor: 'blue',
         borderWidth: 2,
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'flex-end',
+        alignItems: 'center',
       },
       imgContainer: {
         borderColor: 'blue',
         borderWidth: 2,
+        display: 'flex',
+        alignItems: 'center',
+        img: {
+          width: Responsive(25, WIDTH),
+          height: Responsive(25, WIDTH),
+        },
       },
       dataFields: {
         borderColor: 'blue',
         borderWidth: 2,
+
+
+        inputSet: {
+          // borderColor: 'red',
+          // borderWidth: 2,
+          paddingVertical: 5,
+          padding: 0,
+          label: {
+            color: '#042434',
+            fontSize: 12,
+          },
+          txtInput: {
+            borderWidth: 2,
+            borderColor: '#E8F5F6',
+            borderRadius: 10,
+            height: Responsive(4, HEIGHT),
+            color: '#707070',
+            paddingLeft: 10,
+            display: 'flex',
+            flexDirection: 'row',
+            justifyContent: 'flex-start',
+            alignItems: 'center',
+            txt: {
+              fontSize: 10,
+            },
+          },
+          txtInput2: {
+            borderWidth: 2,
+            borderColor: '#E8F5F6',
+            borderRadius: 10,
+            height: Responsive(8, HEIGHT),
+            color: '#707070',
+            paddingHorizontal: 10,
+            paddingVertical: 5,
+            display: 'flex',
+            flexDirection: 'row',
+            justifyContent: 'flex-start',
+            alignItems: 'flex-start',
+            txt: {
+              fontSize: 10,
+            },
+          },
+          imgContainer: {
+            display: 'flex',
+            flexDirection: 'row',
+            justifyContent: 'center',
+            alignItems: 'center',
+
+            btn: {
+              backgroundColor: '#228693',
+              paddingHorizontal: 10,
+              paddingVertical: 3,
+              borderRadius: 5,
+              txt: {
+                color: 'white',
+                fontSize: 12,
+              },
+            },
+          },
+        },
+
+
       },
     },
     createComplaintModal: {
