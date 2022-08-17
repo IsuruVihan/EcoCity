@@ -31,6 +31,17 @@ const Complaints = () => {
   const [toDateFilterOpen, setToDateFilterOpen] = useState(false);
 
   const [viewComplaintModalOpen, setViewComplaintModalOpen] = useState(false);
+  const [viewedComplaint, setViewedComplaint] = useState({
+    id: 'CMB - 1',
+    category: 'Garbage Hub',
+    status: 'Viewed',
+    date: '16/08/2022',
+    description: 'Hub lid is not functioning after tapping the NFC card',
+    files: [],
+    remarks: 'We will fix th issue as soon as possible',
+  });
+
+  const [viewImagesModalOpen, setViewImagesModalOpen] = useState(false);
 
   const [createComplaintModalOpen, setCreateComplaintModalOpen] = useState(false);
   const [newComplaintCategory, setNewComplaintCategory] = useState("Other");
@@ -318,26 +329,6 @@ const Complaints = () => {
     );
   }
 
-  const ViewComplaintModal = () => {
-    return (
-      <Dialog
-        isVisible={viewComplaintModalOpen}
-        onBackdropPress={() => setViewComplaintModalOpen(false)}
-        style={styles.complaints.viewComplaintModal}
-      >
-        <View style={styles.complaints.viewComplaintModal.cancelBtnContainer}>
-
-        </View>
-        <View style={styles.complaints.viewComplaintModal.imgContainer}>
-
-        </View>
-        <View style={styles.complaints.viewComplaintModal.dataFields}>
-
-        </View>
-      </Dialog>
-    );
-  }
-
   const CreateComplaintModal = () => {
     return (
       <Dialog
@@ -431,11 +422,138 @@ const Complaints = () => {
     );
   }
 
+  const ViewComplaintModal = () => {
+    return (
+      <Dialog
+        isVisible={viewComplaintModalOpen}
+        onBackdropPress={() => setViewComplaintModalOpen(false)}
+        style={styles.complaints.viewComplaintModal}
+      >
+        <View style={styles.complaints.viewComplaintModal.cancelBtnContainer}>
+          <AntDesign
+            name={'closecircle'}
+            size={15}
+            color='#7CB6B8'
+            onPress={() => setViewComplaintModalOpen(false)}
+          />
+        </View>
+        <View style={styles.complaints.viewComplaintModal.imgContainer}>
+          <Image source={ViewComplaintImg} style={styles.complaints.viewComplaintModal.imgContainer.img} />
+        </View>
+        <View style={styles.complaints.viewComplaintModal.dataFields}>
+          <View style={styles.complaints.viewComplaintModal.dataFields.inputSet}>
+            <Text style={styles.complaints.viewComplaintModal.dataFields.inputSet.label}>Complaint ID</Text>
+            <View
+              style={styles.complaints.viewComplaintModal.dataFields.inputSet.txtInput}
+            >
+              <Text style={styles.complaints.viewComplaintModal.dataFields.inputSet.txtInput.txt}>
+                {viewedComplaint.id}
+              </Text>
+            </View>
+          </View>
+          <View style={styles.complaints.viewComplaintModal.dataFields.inputSet}>
+            <Text style={styles.complaints.viewComplaintModal.dataFields.inputSet.label}>Complaint Category</Text>
+            <View
+              style={styles.complaints.viewComplaintModal.dataFields.inputSet.txtInput}
+            >
+              <Text style={styles.complaints.viewComplaintModal.dataFields.inputSet.txtInput.txt}>
+                {viewedComplaint.category}
+              </Text>
+            </View>
+          </View>
+          <View style={styles.complaints.viewComplaintModal.dataFields.inputSet}>
+            <Text style={styles.complaints.viewComplaintModal.dataFields.inputSet.label}>Complaint Status</Text>
+            <View
+              style={styles.complaints.viewComplaintModal.dataFields.inputSet.txtInput}
+            >
+              <Text style={styles.complaints.viewComplaintModal.dataFields.inputSet.txtInput.txt}>
+                {viewedComplaint.status}
+              </Text>
+            </View>
+          </View>
+          <View style={styles.complaints.viewComplaintModal.dataFields.inputSet}>
+            <Text style={styles.complaints.viewComplaintModal.dataFields.inputSet.label}>Complaint Date</Text>
+            <View
+              style={styles.complaints.viewComplaintModal.dataFields.inputSet.txtInput}
+            >
+              <Text style={styles.complaints.viewComplaintModal.dataFields.inputSet.txtInput.txt}>
+                {viewedComplaint.date}
+              </Text>
+            </View>
+          </View>
+          <View style={styles.complaints.viewComplaintModal.dataFields.inputSet}>
+            <Text style={styles.complaints.viewComplaintModal.dataFields.inputSet.label}>Complaint Description</Text>
+            <View
+              style={styles.complaints.viewComplaintModal.dataFields.inputSet.txtInput2}
+            >
+              <Text style={styles.complaints.viewComplaintModal.dataFields.inputSet.txtInput.txt}>
+                {viewedComplaint.description}
+              </Text>
+            </View>
+          </View>
+          <View style={styles.complaints.viewComplaintModal.dataFields.inputSet}>
+            <Text style={styles.complaints.viewComplaintModal.dataFields.inputSet.label}>Uploaded Files</Text>
+            <View style={styles.complaints.viewComplaintModal.dataFields.inputSet.imgContainer}>
+              <TouchableOpacity
+                style={styles.complaints.viewComplaintModal.dataFields.inputSet.imgContainer.btn}
+                onPress={() => setViewImagesModalOpen(true)}
+              >
+                <Text style={styles.complaints.viewComplaintModal.dataFields.inputSet.imgContainer.btn.txt}>Open</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+          <View style={styles.complaints.viewComplaintModal.dataFields.inputSet}>
+            <Text style={styles.complaints.viewComplaintModal.dataFields.inputSet.label}>Remarks</Text>
+            <View
+              style={styles.complaints.viewComplaintModal.dataFields.inputSet.txtInput2}
+            >
+              <Text style={styles.complaints.viewComplaintModal.dataFields.inputSet.txtInput.txt}>
+                {viewedComplaint.remarks}
+              </Text>
+            </View>
+          </View>
+        </View>
+        <View style={styles.complaints.viewComplaintModal.last}>
+          <TouchableOpacity style={styles.complaints.viewComplaintModal.last.btn}>
+            <Text style={styles.complaints.viewComplaintModal.last.btn.txt}>Remove the complaint</Text>
+          </TouchableOpacity>
+        </View>
+      </Dialog>
+    );
+  }
+
+  const ViewImagesModal = () => {
+    return (
+      <Dialog
+        isVisible={viewImagesModalOpen}
+        onBackdropPress={() => setViewImagesModalOpen(false)}
+        style={styles.complaints.viewImagesModal}
+      >
+        <View style={styles.complaints.viewImagesModal.top}>
+          <Text style={styles.complaints.viewImagesModal.top.txt}>View images</Text>
+          <AntDesign name='closecircle' color='#7CB6B8' size={15} onPress={() => setViewImagesModalOpen(false)} />
+        </View>
+        <View style={styles.complaints.viewImagesModal.body}>
+          <View style={styles.complaints.viewImagesModal.body.btn}>
+            <AntDesign name='caretleft' color='#7CB6B8' size={15} onPress={() => setViewImagesModalOpen(false)} />
+          </View>
+          <View style={styles.complaints.viewImagesModal.body.imgContainer}>
+            <Image source={ViewComplaintImg} style={styles.complaints.viewImagesModal.body.imgContainer.img} />
+          </View>
+          <View style={styles.complaints.viewImagesModal.body.btn}>
+            <AntDesign name='caretright' color='#7CB6B8' size={15} onPress={() => setViewImagesModalOpen(false)} />
+          </View>
+        </View>
+      </Dialog>
+    );
+  }
+
   return (
     <View style={styles.complaints}>
       {Filter()}
       {ViewComplaintModal()}
       {CreateComplaintModal()}
+      {ViewImagesModal()}
       <View style={styles.complaints.title}>
         <Text style={styles.complaints.title.txt}>Complaints</Text>
       </View>
@@ -483,15 +601,10 @@ const Complaints = () => {
 
 const styles = StyleSheet.create({
   complaints: {
-    // borderColor: 'red',
-    // borderWidth: 2,
     height: '100%',
     display: 'flex',
     flexDirection: 'column',
-    // backgroundColor: '#F7F7F7',
     title: {
-      // borderColor: 'blue',
-      // borderWidth: 2,
       paddingLeft: 10,
       width: '100%',
       flex: 1,
@@ -500,20 +613,15 @@ const styles = StyleSheet.create({
         fontSize: 25,
         fontWeight: 'bold',
         color: '#042434',
-        // marginLeft: 5,
       },
     },
     statistics: {
-      // borderColor: 'green',
-      // borderWidth: 2,
       paddingVertical: 5,
       paddingLeft: 20,
       flex: 4,
       display: 'flex',
       flexDirection: 'row',
       section1: {
-        // borderColor: 'black',
-        // borderWidth: 2,
         flex: 5,
         display: 'flex',
         flexDirection: 'row',
@@ -521,16 +629,12 @@ const styles = StyleSheet.create({
         justifyContent: 'space-around',
         alignContent: 'space-around',
         card: {
-          // borderColor: '#BFDDDE',
-          // borderWidth: 1,
           backgroundColor: '#EDFBFC',
           borderRadius: 5,
           width: Responsive(18.5, WIDTH),
           height: Responsive(11, HEIGHT),
           display: 'flex',
           title: {
-            // borderColor: 'blue',
-            // borderWidth: 2,
             flex: 3,
             display: 'flex',
             justifyContent: 'center',
@@ -541,8 +645,6 @@ const styles = StyleSheet.create({
             },
           },
           count: {
-            // borderColor: 'blue',
-            // borderWidth: 2,
             flex: 8,
             display: 'flex',
             justifyContent: 'center',
@@ -556,8 +658,6 @@ const styles = StyleSheet.create({
         },
       },
       section2: {
-        // borderColor: 'black',
-        // borderWidth: 2,
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
@@ -565,17 +665,12 @@ const styles = StyleSheet.create({
       },
     },
     table: {
-      // borderColor: 'red',
-      // borderWidth: 2,
       padding: 5,
       flex: 8,
       paddingHorizontal: 23,
-      // paddingTop: 20,
       display: 'flex',
       flexDirection: 'column',
       title: {
-        // borderColor: 'orange',
-        // borderWidth: 2,
         marginTop: 15,
         flex: 1,
         display: 'flex',
@@ -609,13 +704,10 @@ const styles = StyleSheet.create({
         },
       },
       content: {
-        // borderColor: 'black',
-        // borderWidth: 2,
         flex: 8.5,
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'space-evenly',
-        // alignItems: 'center',
         row: {
           borderBottomColor: '#EDFBFC',
           borderBottomWidth: 2,
@@ -624,24 +716,18 @@ const styles = StyleSheet.create({
           flexDirection: 'row',
           alignItems: 'center',
           index: {
-            // borderColor: 'green',
-            // borderWidth: 2,
             flex: 1,
             textAlignVertical: 'center',
             textAlign: 'center',
             color: '#707070',
           },
           id: {
-            // borderColor: 'green',
-            // borderWidth: 2,
             flex: 3,
             textAlignVertical: 'center',
             textAlign: 'center',
             color: '#707070',
           },
           date: {
-            // borderColor: 'green',
-            // borderWidth: 2,
             flex: 3,
             textAlignVertical: 'center',
             textAlign: 'center',
@@ -652,8 +738,6 @@ const styles = StyleSheet.create({
               flex: 2,
               textAlignVertical: 'center',
               textAlign: 'center',
-              // borderColor: 'blue',
-              // borderWidth: 1,
               borderRadius: 5,
               color: '#008BD1',
               backgroundColor: '#E1F0FF',
@@ -663,8 +747,6 @@ const styles = StyleSheet.create({
               flex: 2,
               textAlignVertical: 'center',
               textAlign: 'center',
-              // borderColor: 'orange',
-              // borderWidth: 1,
               borderRadius: 5,
               color: '#FF9900',
               backgroundColor: '#FFF6E9',
@@ -674,8 +756,6 @@ const styles = StyleSheet.create({
               flex: 2,
               textAlignVertical: 'center',
               textAlign: 'center',
-              // borderColor: 'green',
-              // borderWidth: 1,
               borderRadius: 5,
               color: '#00C186',
               backgroundColor: '#E0F8E3',
@@ -685,8 +765,6 @@ const styles = StyleSheet.create({
               flex: 2,
               textAlignVertical: 'center',
               textAlign: 'center',
-              // borderColor: 'red',
-              // borderWidth: 1,
               borderRadius: 5,
               color: 'red',
               backgroundColor: 'pink',
@@ -696,18 +774,13 @@ const styles = StyleSheet.create({
         },
       },
       last: {
-        // borderColor: 'black',
-        // borderWidth: 2,
         flex: 1.5,
         display: 'flex',
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
         buttonContainer: {
-          // flex: 1,
           height: '80%',
-          // borderColor: 'red',
-          // borderWidth: 1,
           btn: {
             backgroundColor: '#228693',
             display: 'flex',
@@ -715,18 +788,13 @@ const styles = StyleSheet.create({
             justifyContent: 'space-around',
             alignItems: 'center',
             borderRadius: 5,
-            // paddingVertical: 3,
             paddingHorizontal: 10,
             height: '100%',
             icon: {
-              // borderColor: 'blue',
-              // borderWidth: 1,
               width: 16,
               height: 16,
             },
             txt: {
-              // borderColor: 'blue',
-              // borderWidth: 1,
               color: 'white',
               fontWeight: '700',
               fontSize: 12,
@@ -735,10 +803,7 @@ const styles = StyleSheet.create({
           },
         },
         paginationContainer: {
-          // flex: 5,
           height: '80%',
-          // borderColor: 'red',
-          // borderWidth: 1,
           display: 'flex',
           flexDirection: 'row',
           justifyContent: 'space-around',
@@ -791,8 +856,6 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         alignItems: 'center',
         date: {
-          // borderColor: 'red',
-          // borderWidth: 1,
           display: 'flex',
           flexDirection: 'row',
           justifyContent: 'center',
@@ -810,8 +873,6 @@ const styles = StyleSheet.create({
         },
       },
       last: {
-        // borderColor: 'pink',
-        // borderWidth: 1,
         marginVertical: 10,
         display: 'flex',
         flexDirection: 'row',
@@ -820,25 +881,95 @@ const styles = StyleSheet.create({
       },
     },
     viewComplaintModal: {
-      borderColor: 'red',
-      borderWidth: 2,
       cancelBtnContainer: {
-        borderColor: 'blue',
-        borderWidth: 2,
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'flex-end',
+        alignItems: 'center',
       },
       imgContainer: {
-        borderColor: 'blue',
-        borderWidth: 2,
+        display: 'flex',
+        alignItems: 'center',
+        img: {
+          width: Responsive(25, WIDTH),
+          height: Responsive(25, WIDTH),
+        },
       },
       dataFields: {
-        borderColor: 'blue',
-        borderWidth: 2,
+        inputSet: {
+          paddingVertical: 5,
+          padding: 0,
+          label: {
+            color: '#042434',
+            fontSize: 12,
+          },
+          txtInput: {
+            borderWidth: 2,
+            borderColor: '#E8F5F6',
+            borderRadius: 10,
+            height: Responsive(4, HEIGHT),
+            color: '#707070',
+            paddingLeft: 10,
+            display: 'flex',
+            flexDirection: 'row',
+            justifyContent: 'flex-start',
+            alignItems: 'center',
+            txt: {
+              fontSize: 10,
+            },
+          },
+          txtInput2: {
+            borderWidth: 2,
+            borderColor: '#E8F5F6',
+            borderRadius: 10,
+            height: Responsive(8, HEIGHT),
+            color: '#707070',
+            paddingHorizontal: 10,
+            paddingVertical: 5,
+            display: 'flex',
+            flexDirection: 'row',
+            justifyContent: 'flex-start',
+            alignItems: 'flex-start',
+            txt: {
+              fontSize: 10,
+            },
+          },
+          imgContainer: {
+            display: 'flex',
+            flexDirection: 'row',
+            justifyContent: 'center',
+            alignItems: 'center',
+
+            btn: {
+              backgroundColor: '#228693',
+              paddingHorizontal: 10,
+              paddingVertical: 3,
+              borderRadius: 5,
+              txt: {
+                color: 'white',
+                fontSize: 12,
+              },
+            },
+          },
+        },
+      },
+      last: {
+        display: 'flex',
+        alignItems: 'center',
+        paddingVertical: 10,
+        btn: {
+          backgroundColor: 'lightpink',
+          paddingVertical: 3,
+          paddingHorizontal: 6,
+          borderRadius: 5,
+          txt: {
+            color: 'red',
+          },
+        },
       },
     },
     createComplaintModal: {
       title: {
-        // borderColor: 'blue',
-        // borderWidth: 2,
         txt: {
           color: '#042434',
           fontWeight: '700',
@@ -846,8 +977,6 @@ const styles = StyleSheet.create({
         },
       },
       imageContainer: {
-        // borderColor: 'blue',
-        // borderWidth: 2,
         display: 'flex',
         alignItems: 'center',
         paddingVertical: 10,
@@ -857,11 +986,7 @@ const styles = StyleSheet.create({
         },
       },
       content: {
-        // borderColor: 'blue',
-        // borderWidth: 2,
         inputSet: {
-          // borderColor: 'red',
-          // borderWidth: 2,
           paddingVertical: 5,
           padding: 0,
           label: {
@@ -902,8 +1027,6 @@ const styles = StyleSheet.create({
         },
       },
       last: {
-        // borderColor: 'blue',
-        // borderWidth: 2,
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'center',
@@ -931,6 +1054,40 @@ const styles = StyleSheet.create({
             fontWeight: 'bold',
           },
         }
+      },
+    },
+    viewImagesModal: {
+      top: {
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        txt: {
+          color: '#042434',
+        },
+      },
+      body: {
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        btn: {
+          flex: 1,
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+        },
+        imgContainer: {
+          flex: 10,
+          height: Responsive(30, HEIGHT),
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          img: {
+            width: Responsive(30, HEIGHT),
+            height: Responsive(30, HEIGHT),
+          },
+        },
       },
     },
   },
