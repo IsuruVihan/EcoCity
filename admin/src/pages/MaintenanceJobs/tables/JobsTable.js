@@ -35,15 +35,15 @@ const JobsTable = () => {
               <td>01/07/2022</td>
               <td>Paper</td>
             </tr>
-            <Modal className={'m-0 p-0'} show={show} onHide={handleClose} style={{width:'100%', margin:'auto'}} size='lg' dialogClassName="jobs-table-modal">
+            <Modal className={'m-0 p-0'} show={show} onHide={handleClose} style={{width:'100%', margin:'auto'}} size='lg'>
               <Modal.Header className={'m-0 p-0'}>
                 <Row className={'m-0 p-0 mt-3'}>
-                  <Col style={{ marginLeft:430, display:'flex', alignItems:'center', justifyContent:'right'}}>
+                  <Col style={{marginLeft:430, display:'flex', alignItems:'center', justifyContent:'right'}}>
                     <Image src={close} onClick={handleClose} width="10%" style={{cursor:'pointer'}}/>
                   </Col>
                 </Row>
               </Modal.Header>
-              <Modal.Body style={{border:'2px solid black'}} className={'m-0 p-0'}>
+              <Modal.Body className={'m-0 p-0'}>
                 <ViewJobModal/>
               </Modal.Body>
             </Modal>
