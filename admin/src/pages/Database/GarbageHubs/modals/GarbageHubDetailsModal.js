@@ -52,8 +52,8 @@ const GarbageHubDetailsModal = (props) => {
                     <Row className='mx-0 mb-5'>
                         <Col lg={10} className='h5'>Collected Weight of garbage:</Col>
                         <Col lg={2}><GarbageHubCollectedWeightsGraphFilter/></Col>
-                        <Col lg={12} className='test border-red mb-5'>
-                            Chart
+                        <Col lg={12} className='mb-5'>
+                            <GarbageHubCollectedWeightsGraph/>
                         </Col>
                     </Row>
                 </Container>
