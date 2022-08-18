@@ -15,6 +15,10 @@ exports.submitComplaint = async (req, res) => {
     HouseId: HouseId,
   })
     .then((complaint) => {
+      if (files.uri) {
+        // TODO: Upload file to the google cloud
+        // TODO: Save the record inside 'ComplaintsMedia' table
+      }
       return res.status(200).json({
         complaint: complaint,
       });

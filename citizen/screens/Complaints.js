@@ -53,7 +53,7 @@ const Complaints = () => {
   const [createComplaintModalOpen, setCreateComplaintModalOpen] = useState(false);
   const [newComplaintCategory, setNewComplaintCategory] = useState("Other");
   const [newComplaintHubNFCId, setNewComplaintHubNFCId] = useState("");
-  const [newComplaintImages, setNewComplaintImages] = useState('');
+  const [newComplaintImages, setNewComplaintImages] = useState("");
   const [newComplaintDescription, setNewComplaintDescription] = useState("");
 
   const [filterVisible, setFilterVisible] = useState(false);
@@ -130,8 +130,10 @@ const Complaints = () => {
       mediaType: 'photo',
       quality: 1,
     }, (res) => {
-      console.log("RES ASSETS: ", res.assets[0]);
-      setNewComplaintImages(res.assets[0]);
+      if (!res.didCancel) {
+        console.log("RES ASSETS: ", res.assets[0]);
+        setNewComplaintImages(res.assets[0]);
+      }
     });
   }
 
@@ -157,17 +159,6 @@ const Complaints = () => {
         topOffset: 10,
       });
     }
-    // const formData = new FormData();
-    // formData.append('category', newComplaintCategory);
-    // formData.append('id', newComplaintHubNFCId);
-    // formData.append('description', newComplaintDescription);
-    // if (newComplaintImages) {
-    //   formData.append('file', {
-    //     uri: newComplaintImages[0].uri,
-    //     type: newComplaintImages[0].type,
-    //     name: newComplaintImages[0].fileName,
-    //   });
-    // }
 
     getHouseIdByEmail(loggedUser)
       .then((result) => {
@@ -182,13 +173,28 @@ const Complaints = () => {
             name: newComplaintImages.fileName,
           },
         };
-        console.log("QQQQQQQQQQQQQQQQQ: ", formData);
         submitComplaint(formData, loggedUser)
-          .then((res) => {
-            console.log("RESSS: ", res.data);
+          .then(() => {
+            setNewComplaintCategory("Other");
+            setNewComplaintDescription("");
+            setNewComplaintHubNFCId("");
+            setNewComplaintImages("");
+            setCreateComplaintModalOpen(false);
+            return Toast.show({
+              type: 'success',
+              text1: 'Success!',
+              text2: 'Your complaint has been submitted successfully',
+              topOffset: 10,
+            });
           })
           .catch((err) => {
-            console.log("ERRRR: ", err);
+            console.log("SUBMIT COMPLAINT ERROR: ", err);
+            return Toast.show({
+              type: 'error',
+              text1: 'Oops!',
+              text2: 'Something went wrong. Please try again.',
+              topOffset: 10,
+            });
           });
       });
   }
