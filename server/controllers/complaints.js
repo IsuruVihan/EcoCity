@@ -1,16 +1,22 @@
-const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
-
 const db = require('../models/index');
 const {Complaint, ComplaintMedia} = db;
 
 exports.submitComplaint = async (req, res) => {
-  const {category, description, files, id} = req.body;
-  console.log("CATEGORY: ", category);
-  console.log("DESCRIPTION: ", description);
-  console.log("FILE: ", files);
-  console.log("ID: ", id);
-  return res.json({
-    message: 'tahikei',
-  });
+  const {category, description, files, id, HouseId} = req.body;
+  if ((category === 'Garbage hub' || category === 'NFC tags') && id === '')
+    return res.status(406).json({
+      error: 'Please insert Garbage hub / NFC tag ID',
+    });
+  Complaint.create({
+    hubornfcid: (category === 'Garbage hub' || category === 'NFC tags') ? id : null,
+    category: category,
+    status: 'Not Viewed',
+    description: description,
+    HouseId: HouseId,
+  })
+    .then((complaint) => {
+      return res.status(200).json({
+        complaint: complaint,
+      });
+    });
 }

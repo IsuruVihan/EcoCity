@@ -12,13 +12,13 @@ module.exports = (sequelize, DataTypes) => {
     category: {
       type: DataTypes.ENUM,
       values: [
-        'Hub', 'NFC', 'App', 'Other'
+        "Garbage hub", "NFC tags", "Mobile app", "Other"
       ],
     },
     status: {
       type: DataTypes.ENUM,
       values: [
-        'Open', 'Viewed', 'Removed', 'Resolved'
+        'Not Viewed', 'Viewed', 'Removed', 'Resolved'
       ],
     },
     description: {

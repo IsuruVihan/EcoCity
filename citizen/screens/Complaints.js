@@ -20,6 +20,7 @@ import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 import Toast from "react-native-toast-message";
 import {submitComplaint} from "../api/Complaints";
 import {AuthContext} from "../context/AuthContext";
+import {getHouseIdByEmail} from "../api/Houses";
 
 const HEIGHT = Dimensions.get('window').height;
 const WIDTH = Dimensions.get('window').width;
@@ -167,23 +168,28 @@ const Complaints = () => {
     //     name: newComplaintImages[0].fileName,
     //   });
     // }
-    const formData = {
-      category: newComplaintCategory,
-      id: newComplaintHubNFCId,
-      description : newComplaintDescription,
-      file: {
-        uri: newComplaintImages.uri,
-        type: newComplaintImages.type,
-        name: newComplaintImages.fileName,
-      },
-    };
-    console.log("QQQQQQQQQQQQQQQQQ: ", formData);
-    submitComplaint(formData, loggedUser)
-      .then((res) => {
-        console.log("RESSS: ", res.data);
-      })
-      .catch((err) => {
-        console.log("ERRRR: ", err);
+
+    getHouseIdByEmail(loggedUser)
+      .then((result) => {
+        const formData = {
+          category: newComplaintCategory,
+          id: newComplaintHubNFCId,
+          description : newComplaintDescription,
+          HouseId: result.data.id[0].id,
+          file: {
+            uri: newComplaintImages.uri,
+            type: newComplaintImages.type,
+            name: newComplaintImages.fileName,
+          },
+        };
+        console.log("QQQQQQQQQQQQQQQQQ: ", formData);
+        submitComplaint(formData, loggedUser)
+          .then((res) => {
+            console.log("RESSS: ", res.data);
+          })
+          .catch((err) => {
+            console.log("ERRRR: ", err);
+          });
       });
   }
 

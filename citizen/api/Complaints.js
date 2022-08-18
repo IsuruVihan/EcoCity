@@ -8,6 +8,7 @@ export const submitComplaint = async (formData, loggedUser) => {
     id: formData.id,
     description: formData.description,
     files: formData.file,
+    HouseId: formData.HouseId,
   }, {
     headers: {
       accessToken: loggedUser.accessToken,
