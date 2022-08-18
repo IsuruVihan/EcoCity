@@ -1,10 +1,12 @@
 import React, {useContext, useEffect, useState} from 'react';
-import {Text, View, StyleSheet, Dimensions, LogBox, TouchableOpacity, Image, TextInput} from "react-native";
+import {Text, View, StyleSheet, Dimensions, LogBox, TouchableOpacity, Image, TextInput, ScrollView, RefreshControl}
+  from "react-native";
 import {VictoryPie} from "victory-native";
 import IconFontAwesome from "react-native-vector-icons/FontAwesome";
 import IconFontAwesome5 from "react-native-vector-icons/FontAwesome5";
 import AntDesign from "react-native-vector-icons/AntDesign";
 import Ionicons from "react-native-vector-icons/Ionicons";
+import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 import {Dialog, CheckBox, Button} from '@rneui/themed';
 import DatePicker from 'react-native-date-picker';
 import SelectDropdown from 'react-native-select-dropdown';
@@ -16,9 +18,8 @@ import ViewComplaintImg from '../assets/images/view-complaint.png';
 import FileComplaintImg from '../assets/images/file-complaint.png';
 
 import {Responsive} from "../helpers/Responsive";
-import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 import Toast from "react-native-toast-message";
-import {submitComplaint} from "../api/Complaints";
+import {getComplaintsByUserId, submitComplaint} from "../api/Complaints";
 import {AuthContext} from "../context/AuthContext";
 import {getHouseIdByEmail} from "../api/Houses";
 
@@ -33,6 +34,8 @@ LogBox.ignoreLogs([
 
 const Complaints = () => {
   const {loggedUser} = useContext(AuthContext);
+
+  const [refreshing, setRefreshing] = useState(false);
 
   const [fromDateFilterOpen, setFromDateFilterOpen] = useState(false);
   const [toDateFilterOpen, setToDateFilterOpen] = useState(false);
@@ -57,7 +60,7 @@ const Complaints = () => {
   const [newComplaintDescription, setNewComplaintDescription] = useState("");
 
   const [filterVisible, setFilterVisible] = useState(false);
-  const [viewedFilter, setViewedFilter] = useState(true);
+  const [viewedFilter, setViewedFilter] = useState(false);
   const [notViewedFilter, setNotViewedFilter] = useState(true);
   const [resolvedFilter, setResolvedFilter] = useState(true);
   const [removedFilter, setRemovedFilter] = useState(true);
@@ -90,26 +93,66 @@ const Complaints = () => {
   ]);
   const [paginatedData, setPaginatedData] = useState([]);
 
-  // useEffect(() => {
-  //   // TODO: Get data
-  //   console.log('GET DATA');
-  // }, []);
-
-  // useEffect(() => {
-  //   // TODO: Apply filters and push eligible complaints into filtered data
-  //   console.log('FILTER DATA');
-  // }, [data]);
+  useEffect(() => {
+    getData();
+  }, []);
 
   useEffect(() => {
-    // TODO: Divide filtered data into pages
-    const pc = Math.ceil(filteredData.length / 5);
+    filterData();
+  }, [data]);
+
+  useEffect(() => {
+    paginateData();
+  }, [filteredData]);
+
+  const getData = () => {
+    getHouseIdByEmail(loggedUser)
+      .then((result) => {
+        getComplaintsByUserId(result.data.id[0].id, loggedUser)
+          .then((result2) => {
+            const complaintsArr = [];
+            result2.data.complaints.map((comp) => {
+              let fullDay = comp.createdAt.split('T')[0].split('-');
+              let tempComplaint = {
+                category: comp.category,
+                date: `${fullDay[2]}/${fullDay[1]}/${fullDay[0]}`,
+                description: comp.description,
+                hubornfcid: comp.hubornfcid,
+                id: 'COMP-' + comp.id,
+                remarks: comp.remarks,
+                status: comp.status,
+              };
+              complaintsArr.push(tempComplaint);
+            });
+            setData(complaintsArr);
+          });
+      });
+  }
+
+  const filterData = () => {
+    let complaintStatusOptions = [];
+    viewedFilter && complaintStatusOptions.push("Viewed");
+    notViewedFilter && complaintStatusOptions.push("Not Viewed");
+    resolvedFilter && complaintStatusOptions.push("Resolved");
+    removedFilter && complaintStatusOptions.push("Removed");
+
+    // console.log(JSON.parse(data[0]));
+    let tempFilteredData = data.filter(comp => complaintStatusOptions.includes(comp.status));
+    // console.log(JSON.parse(tempFilteredData[0]));
+    // tempFilteredData = tempFilteredData.filter(comp => comp.date.toDateString() >= fromDateFilter);
+    // tempFilteredData = tempFilteredData.filter(comp => comp.date.toDateString() <= toDateFilter);
+    setFilteredData(tempFilteredData);
+  }
+
+  const paginateData = () => {
+    const pc = Math.ceil(filteredData.length / 7);
     setPageCount(pc);
     setActivePage(pc > 0 ? 1 : 0);
     let ind = 1;
     const tempPaginatedData = [];
     outer:
       for (let i = 1; i <= pc; i++) { // Page
-        for (let j = 1; j <= 5; j++) { // Index
+        for (let j = 1; j <= 7; j++) { // Index
           if (ind > filteredData.length)
             break outer;
           tempPaginatedData.push({
@@ -123,7 +166,7 @@ const Complaints = () => {
         }
       }
     setPaginatedData(tempPaginatedData);
-  }, [filteredData]);
+  }
 
   const openGallery = async () => {
     await launchImageLibrary({
@@ -159,13 +202,12 @@ const Complaints = () => {
         topOffset: 10,
       });
     }
-
     getHouseIdByEmail(loggedUser)
       .then((result) => {
         const formData = {
           category: newComplaintCategory,
           id: newComplaintHubNFCId,
-          description : newComplaintDescription,
+          description: newComplaintDescription,
           HouseId: result.data.id[0].id,
           file: {
             uri: newComplaintImages.uri,
@@ -362,6 +404,10 @@ const Complaints = () => {
             size='sm'
             color={'#228693'}
             buttonStyle={{borderRadius: 5, width: Responsive(20, WIDTH),}}
+            onPress={() => {
+              filterData();
+              setFilterVisible(false);
+            }}
           >
             <AntDesign name='filter' size={20} color={'white'}/>
             Filter
@@ -531,7 +577,7 @@ const Complaints = () => {
           />
         </View>
         <View style={styles.complaints.viewComplaintModal.imgContainer}>
-          <Image source={ViewComplaintImg} style={styles.complaints.viewComplaintModal.imgContainer.img} />
+          <Image source={ViewComplaintImg} style={styles.complaints.viewComplaintModal.imgContainer.img}/>
         </View>
         <View style={styles.complaints.viewComplaintModal.dataFields}>
           <View style={styles.complaints.viewComplaintModal.dataFields.inputSet}>
@@ -624,25 +670,32 @@ const Complaints = () => {
       >
         <View style={styles.complaints.viewImagesModal.top}>
           <Text style={styles.complaints.viewImagesModal.top.txt}>View images</Text>
-          <AntDesign name='closecircle' color='#7CB6B8' size={15} onPress={() => setViewImagesModalOpen(false)} />
+          <AntDesign name='closecircle' color='#7CB6B8' size={15} onPress={() => setViewImagesModalOpen(false)}/>
         </View>
         <View style={styles.complaints.viewImagesModal.body}>
           <View style={styles.complaints.viewImagesModal.body.btn}>
-            <AntDesign name='caretleft' color='#7CB6B8' size={15} onPress={() => setViewImagesModalOpen(false)} />
+            <AntDesign name='caretleft' color='#7CB6B8' size={15} onPress={() => setViewImagesModalOpen(false)}/>
           </View>
           <View style={styles.complaints.viewImagesModal.body.imgContainer}>
-            <Image source={ViewComplaintImg} style={styles.complaints.viewImagesModal.body.imgContainer.img} />
+            <Image source={ViewComplaintImg} style={styles.complaints.viewImagesModal.body.imgContainer.img}/>
           </View>
           <View style={styles.complaints.viewImagesModal.body.btn}>
-            <AntDesign name='caretright' color='#7CB6B8' size={15} onPress={() => setViewImagesModalOpen(false)} />
+            <AntDesign name='caretright' color='#7CB6B8' size={15} onPress={() => setViewImagesModalOpen(false)}/>
           </View>
         </View>
       </Dialog>
     );
   }
 
+  const onRefresh = () => {
+    // setRefreshing(true);
+  }
+
   return (
-    <View style={styles.complaints}>
+    <ScrollView
+      style={styles.complaints}
+      refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh}/>}
+    >
       {Filter()}
       {ViewComplaintModal()}
       {CreateComplaintModal()}
@@ -688,7 +741,7 @@ const Complaints = () => {
           {Paginator()}
         </View>
       </View>
-    </View>
+    </ScrollView>
   );
 }
 

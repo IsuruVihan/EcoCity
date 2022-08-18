@@ -24,3 +24,13 @@ exports.submitComplaint = async (req, res) => {
       });
     });
 }
+
+exports.getComplaintsByUserId = async (req, res) => {
+  const {id} = req.params;
+  Complaint.findAll({where: {HouseId: id}})
+    .then((complaints) => {
+      return res.status(200).json({
+        complaints: complaints,
+      });
+    });
+}
