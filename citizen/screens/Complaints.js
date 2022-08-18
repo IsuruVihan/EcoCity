@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {Text, View, StyleSheet, Dimensions, LogBox, TouchableOpacity, Image, TextInput} from "react-native";
 import {VictoryPie} from "victory-native";
 import IconFontAwesome from "react-native-vector-icons/FontAwesome";
@@ -8,6 +8,7 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 import {Dialog, CheckBox, Button} from '@rneui/themed';
 import DatePicker from 'react-native-date-picker';
 import SelectDropdown from 'react-native-select-dropdown';
+import {launchImageLibrary} from 'react-native-image-picker';
 
 import FilterImg from '../assets/images/filter.png';
 import CreateImg from '../assets/images/create.png';
@@ -16,6 +17,10 @@ import FileComplaintImg from '../assets/images/file-complaint.png';
 
 import {Responsive} from "../helpers/Responsive";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
+import Toast from "react-native-toast-message";
+import {submitComplaint} from "../api/Complaints";
+import {AuthContext} from "../context/AuthContext";
+import {getHouseIdByEmail} from "../api/Houses";
 
 const HEIGHT = Dimensions.get('window').height;
 const WIDTH = Dimensions.get('window').width;
@@ -27,6 +32,8 @@ LogBox.ignoreLogs([
 ]);
 
 const Complaints = () => {
+  const {loggedUser} = useContext(AuthContext);
+
   const [fromDateFilterOpen, setFromDateFilterOpen] = useState(false);
   const [toDateFilterOpen, setToDateFilterOpen] = useState(false);
 
@@ -46,6 +53,7 @@ const Complaints = () => {
   const [createComplaintModalOpen, setCreateComplaintModalOpen] = useState(false);
   const [newComplaintCategory, setNewComplaintCategory] = useState("Other");
   const [newComplaintHubNFCId, setNewComplaintHubNFCId] = useState("");
+  const [newComplaintImages, setNewComplaintImages] = useState("");
   const [newComplaintDescription, setNewComplaintDescription] = useState("");
 
   const [filterVisible, setFilterVisible] = useState(false);
@@ -117,8 +125,78 @@ const Complaints = () => {
     setPaginatedData(tempPaginatedData);
   }, [filteredData]);
 
-  const handleOnClickFilterBtn = () => {
+  const openGallery = async () => {
+    await launchImageLibrary({
+      mediaType: 'photo',
+      quality: 1,
+    }, (res) => {
+      if (!res.didCancel) {
+        console.log("RES ASSETS: ", res.assets[0]);
+        setNewComplaintImages(res.assets[0]);
+      }
+    });
+  }
 
+  const handleOnCreateComplaint = () => {
+    if (newComplaintDescription.length === 0) {
+      setCreateComplaintModalOpen(false);
+      return Toast.show({
+        type: 'error',
+        text1: 'Incomplete form data',
+        text2: 'Please enter the complaint description',
+        topOffset: 10,
+      });
+    }
+    if (
+      (newComplaintCategory === "Garbage hub" || newComplaintCategory === "NFC tags") &&
+      (newComplaintHubNFCId.length === 0)
+    ) {
+      setCreateComplaintModalOpen(false);
+      return Toast.show({
+        type: 'error',
+        text1: 'Incomplete form data',
+        text2: 'Please enter the Hub / NFC Id',
+        topOffset: 10,
+      });
+    }
+
+    getHouseIdByEmail(loggedUser)
+      .then((result) => {
+        const formData = {
+          category: newComplaintCategory,
+          id: newComplaintHubNFCId,
+          description : newComplaintDescription,
+          HouseId: result.data.id[0].id,
+          file: {
+            uri: newComplaintImages.uri,
+            type: newComplaintImages.type,
+            name: newComplaintImages.fileName,
+          },
+        };
+        submitComplaint(formData, loggedUser)
+          .then(() => {
+            setNewComplaintCategory("Other");
+            setNewComplaintDescription("");
+            setNewComplaintHubNFCId("");
+            setNewComplaintImages("");
+            setCreateComplaintModalOpen(false);
+            return Toast.show({
+              type: 'success',
+              text1: 'Success!',
+              text2: 'Your complaint has been submitted successfully',
+              topOffset: 10,
+            });
+          })
+          .catch((err) => {
+            console.log("SUBMIT COMPLAINT ERROR: ", err);
+            return Toast.show({
+              type: 'error',
+              text1: 'Oops!',
+              text2: 'Something went wrong. Please try again.',
+              topOffset: 10,
+            });
+          });
+      });
   }
 
   const TableRow = (index, id, date, status) => {
@@ -346,7 +424,7 @@ const Complaints = () => {
           <View style={styles.complaints.createComplaintModal.content.inputSet}>
             <Text style={styles.complaints.createComplaintModal.content.inputSet.label}>Complaint Category</Text>
             <SelectDropdown
-              data={["Garage hub", "NFC tags", "Mobile app", "Other"]}
+              data={["Garbage hub", "NFC tags", "Mobile app", "Other"]}
               defaultValue="Other"
               defaultButtonText="Complaint type"
               onSelect={(selectedItem) => setNewComplaintCategory(selectedItem)}
@@ -374,7 +452,9 @@ const Complaints = () => {
               dropdownIconPosition="right"
             />
           </View>
-          <View style={styles.complaints.createComplaintModal.content.inputSet}>
+          {(newComplaintCategory === "Garbage hub" || newComplaintCategory === "NFC tags") && <View
+            style={styles.complaints.createComplaintModal.content.inputSet}
+          >
             <Text style={styles.complaints.createComplaintModal.content.inputSet.label}>Hub / NFC ID</Text>
             <TextInput
               style={styles.complaints.createComplaintModal.content.inputSet.txtInput}
@@ -382,7 +462,7 @@ const Complaints = () => {
               value={newComplaintHubNFCId}
               keyboardType="text"
             />
-          </View>
+          </View>}
           <View style={styles.complaints.createComplaintModal.content.inputSet}>
             <Text style={styles.complaints.createComplaintModal.content.inputSet.label}>Your Complaint</Text>
             <TextInput
@@ -394,24 +474,37 @@ const Complaints = () => {
           </View>
           <View style={styles.complaints.createComplaintModal.content.inputSet}>
             <Text style={styles.complaints.createComplaintModal.content.inputSet.label}>Upload images</Text>
-            <TouchableOpacity style={styles.complaints.createComplaintModal.content.inputSet.imgInput}>
-              <FontAwesome5
-                name={'file-upload'}
-                size={18}
-                color={'#228693'}
-                style={styles.complaints.createComplaintModal.content.inputSet.imgInput.img}
-              />
-              <Text
-                style={styles.complaints.createComplaintModal.content.inputSet.imgInput.txt1}
-              >Browse files</Text>
-              <Text
-                style={styles.complaints.createComplaintModal.content.inputSet.imgInput.txt2}
-              >Support JPEG and PNG files</Text>
+            <TouchableOpacity
+              style={styles.complaints.createComplaintModal.content.inputSet.imgInput}
+              onPress={() => openGallery()}
+            >
+              {newComplaintImages !== '' ? <>
+                <Image
+                  source={{uri: newComplaintImages.uri}}
+                  style={{width: Responsive(14, HEIGHT), height: Responsive(14, HEIGHT),}}
+                />
+              </> : <>
+                <FontAwesome5
+                  name={'file-upload'}
+                  size={18}
+                  color={'#228693'}
+                  style={styles.complaints.createComplaintModal.content.inputSet.imgInput.img}
+                />
+                <Text
+                  style={styles.complaints.createComplaintModal.content.inputSet.imgInput.txt1}
+                >Browse files</Text>
+                <Text
+                  style={styles.complaints.createComplaintModal.content.inputSet.imgInput.txt2}
+                >Support JPEG and PNG files</Text>
+              </>}
             </TouchableOpacity>
           </View>
         </View>
         <View style={styles.complaints.createComplaintModal.last}>
-          <TouchableOpacity style={styles.complaints.createComplaintModal.last.btn1}>
+          <TouchableOpacity
+            style={styles.complaints.createComplaintModal.last.btn1}
+            onPress={() => handleOnCreateComplaint()}
+          >
             <Text style={styles.complaints.createComplaintModal.last.btn1.txt}>Save</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.complaints.createComplaintModal.last.btn2}>
@@ -996,7 +1089,7 @@ const styles = StyleSheet.create({
             borderWidth: 2,
             borderColor: '#E8F5F6',
             borderRadius: 10,
-            height: Responsive(5, HEIGHT),
+            height: Responsive(6, HEIGHT),
             color: '#707070',
             paddingLeft: 10,
           },
