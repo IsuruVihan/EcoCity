@@ -13,16 +13,16 @@ import './Home.css'
 const Home = () => {
   return (
     <Container className="p-0 homeHeader"fluid>
-      <Row className='p-0 m-0' style={{border:'2px solid orange'}}><Header/></Row>
-      <Row className='p-0 m-0' style={{border:'2px solid orange'}}>
+      <Row className='p-0 m-0'><Header/></Row>
+      <Row className='p-0 m-0'>
         <img src={sideImageWeb} className='p-0'/>
       </Row>
-      <Row className='p-0 m-0' style={{border:'2px solid orange'}}><OurMission/></Row>
-      <Row className='p-0 m-0' style={{border:'2px solid orange'}}>
-        <Col sm={3} className='p-0 m-0' style={{border:'2px solid black'}}><BinTypeStatus/></Col>
-        <Col sm={9} className='p-0 m-0' style={{border:'2px solid black'}}><GarbageCollectionBarGraph/></Col>
+      <Row className='p-0 m-0'><OurMission/></Row>
+      <Row className='p-0 m-0'>
+        <Col sm={3} className='p-0 m-0'><BinTypeStatus/></Col>
+        <Col sm={9} className='p-0 m-0'><GarbageCollectionBarGraph/></Col>
       </Row>
-      <Row className='p-0 m-0' style={{border:'2px solid orange'}}><TeamMemberCard/></Row>
+      <Row className='p-0 m-0'><TeamMemberCard/></Row>
       <Row className='p-0 m-0'><Footer/></Row>
     </Container>
   );

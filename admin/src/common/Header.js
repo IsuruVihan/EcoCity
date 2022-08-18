@@ -27,8 +27,8 @@ const Header = () => {
 
         //Logged In header
         return (
-            <Row className='py-0 mx-0 px-0 bg-transparent shadow-effect w-100 top-0 position-fixed'>
-                <Navbar className='navigation-bar mx-0 fs-5 mt-0 pt-1'>
+            <Row className='py-0 mx-0 px-0 bg-transparent shadow-effect w-100 top-0'>
+                <Navbar className='navigation-bar mx-0 fs-5 mt-0 pt-1 position-fixed'>
                     <Col className='ps-5' lg={2}>
                         <Navbar.Brand href="/">
                             <img
