@@ -70,6 +70,11 @@ const Complaints = () => {
   const [pageCount, setPageCount] = useState(0);
   const [activePage, setActivePage] = useState(0);
 
+  const [numNotViewedComplaints, setNumNotViewedComplaints] = useState(0);
+  const [numViewedComplaints, setNumViewedComplaints] = useState(0);
+  const [numResolvedComplaints, setNumResolvedComplaints] = useState(0);
+  const [numRemovedComplaints, setNumRemovedComplaints] = useState(0);
+
   const [data, setData] = useState([]);
   const [filteredData, setFilteredData] = useState([
     {id: 'CMB-07-123', date: '23/06/2022', status: 'Viewed'},
@@ -111,6 +116,10 @@ const Complaints = () => {
         getComplaintsByUserId(result.data.id[0].id, loggedUser)
           .then((result2) => {
             const complaintsArr = [];
+            let tempNumViewedComplaints = 0;
+            let tempNumNotViewedComplaints = 0;
+            let tempNumResolvedComplaints = 0;
+            let tempNumRemovedComplaints = 0;
             result2.data.complaints.map((comp) => {
               let fullDay = comp.createdAt.split('T')[0].split('-');
               let tempComplaint = {
@@ -123,6 +132,23 @@ const Complaints = () => {
                 remarks: comp.remarks,
                 status: comp.status,
               };
+              switch (tempComplaint.status) {
+                case "Viewed":
+                  tempNumViewedComplaints += 1;
+                  break;
+                case "Not Viewed":
+                  tempNumNotViewedComplaints += 1;
+                  break;
+                case "Resolved":
+                  tempNumResolvedComplaints += 1;
+                  break;
+                case "Removed":
+                  tempNumRemovedComplaints += 1;
+              }
+              setNumViewedComplaints(tempNumViewedComplaints);
+              setNumNotViewedComplaints(tempNumNotViewedComplaints);
+              setNumResolvedComplaints(tempNumResolvedComplaints);
+              setNumRemovedComplaints(tempNumRemovedComplaints);
               complaintsArr.push(tempComplaint);
             });
             setData(complaintsArr);
@@ -140,17 +166,8 @@ const Complaints = () => {
     let tempFilteredData = data.filter(comp => complaintStatusOptions.includes(comp.status));
 
     if (tempFilteredData.length > 0) {
-      // console.log("fromDateFilter type: ", typeof fromDateFilter);
-      // console.log("data.date type: ", typeof new Date(tempFilteredData[0].date));
-
       tempFilteredData = tempFilteredData.filter(comp => new Date(comp.date) >= new Date(fromDateFilter));
       tempFilteredData = tempFilteredData.filter(comp => new Date(comp.date) <= new Date(toDateFilter));
-
-      // console.log("fromDateFilter: ", new Date(fromDateFilter));
-      // console.log("data.date: ", new Date(tempFilteredData[0].date));
-      // console.log("COMPARE: ", new Date(fromDateFilter) >= new Date(tempFilteredData[0].date));
-
-      // console.log("DATE FILTER: ", tempFilteredData);
     }
 
     setFilteredData(tempFilteredData);
@@ -284,14 +301,14 @@ const Complaints = () => {
         radius={Responsive(20, WIDTH)}
         innerRadius={Responsive(5, WIDTH)}
         padAngle={5}
-        categories={{x: ["dogs", "cats", "mice"]}}
+        categories={{x: ["Viewed", "Not Viewed", "Resolved", "Removed"]}}
         colorScale={["#03989E", "#68ADCA", "#ABC2E4", "#075061",]}
         responsive={true}
         data={[
-          {x: '1', y: 1},
-          {x: '3', y: 3},
-          {x: '2', y: 2},
-          {x: '2', y: 2},
+          {x: numViewedComplaints, y: numViewedComplaints},
+          {x: numNotViewedComplaints, y: numNotViewedComplaints},
+          {x: numResolvedComplaints, y: numResolvedComplaints},
+          {x: numRemovedComplaints, y: numRemovedComplaints},
         ]}
       />
     );
@@ -717,10 +734,10 @@ const Complaints = () => {
       </View>
       <View style={styles.complaints.statistics}>
         <View style={styles.complaints.statistics.section1}>
-          {Card('Viewed', '1')}
-          {Card('Not Viewed', '6')}
-          {Card('Resolved', '3')}
-          {Card('Removed', '2')}
+          {Card('Viewed', numViewedComplaints)}
+          {Card('Not Viewed', numNotViewedComplaints)}
+          {Card('Resolved', numResolvedComplaints)}
+          {Card('Removed', numRemovedComplaints)}
         </View>
         <View style={styles.complaints.statistics.section2}>
           {PieChart()}
