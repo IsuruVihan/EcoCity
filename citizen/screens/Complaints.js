@@ -189,12 +189,19 @@ const Complaints = () => {
             index: ind,
             id: filteredData[ind - 1].id,
             date: filteredData[ind - 1].date,
-            status: filteredData[ind - 1].status
+            status: filteredData[ind - 1].status,
+            category: filteredData[ind - 1].category,
+            description: filteredData[ind - 1].description,
+            files: filteredData[ind - 1].files,
+            remarks: filteredData[ind - 1].remarks,
           });
           ind++;
         }
       }
     setPaginatedData(tempPaginatedData);
+    if (tempPaginatedData.length > 0) {
+      console.log("PAGINATED DATA: ", tempPaginatedData[0]);
+    }
   }
 
   const openGallery = async () => {
@@ -203,7 +210,6 @@ const Complaints = () => {
       quality: 1,
     }, (res) => {
       if (!res.didCancel) {
-        console.log("RES ASSETS: ", res.assets[0]);
         setNewComplaintImages(res.assets[0]);
       }
     });
@@ -270,12 +276,32 @@ const Complaints = () => {
       });
   }
 
-  const TableRow = (index, id, date, status) => {
+  const TableRow = (index, id, date, status, category, description, files, remarks) => {
     return (
       <TouchableOpacity
         key={index}
         style={styles.complaints.table.content.row}
-        onPress={() => setViewComplaintModalOpen(true)}
+        onPress={() => {
+          console.log({
+            id: id,
+            category: category,
+            status: status,
+            date: date,
+            description: description,
+            files: files,
+            remarks: remarks,
+          });
+          setViewedComplaint({
+            id: id,
+            category: category,
+            status: status,
+            date: date,
+            description: description,
+            files: files,
+            remarks: remarks,
+          });
+          setViewComplaintModalOpen(true);
+        }}
       >
         <Text style={styles.complaints.table.content.row.index}>{index}</Text>
         <Text style={styles.complaints.table.content.row.id}>{id}</Text>
@@ -754,7 +780,8 @@ const Complaints = () => {
         <View style={styles.complaints.table.content}>
           {paginatedData.map((complaint) => {
             if (complaint.page === activePage)
-              return TableRow(complaint.index, complaint.id, complaint.date, complaint.status);
+              return TableRow(complaint.index, complaint.id, complaint.date, complaint.status, complaint.category,
+                complaint.description, complaint.files, complaint.remarks);
           })}
         </View>
         <View style={styles.complaints.table.last}>
