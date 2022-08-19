@@ -26,7 +26,7 @@ import {getHouseIdByEmail} from "../api/Houses";
 const HEIGHT = Dimensions.get('window').height;
 const WIDTH = Dimensions.get('window').width;
 const LAUNCH = new Date("2022-01-01");
-const TODAY = new Date();
+const TODAY = new Date("2052-01-01");
 
 LogBox.ignoreLogs([
   "Require cycle: node_modules/victory",
@@ -60,12 +60,12 @@ const Complaints = () => {
   const [newComplaintDescription, setNewComplaintDescription] = useState("");
 
   const [filterVisible, setFilterVisible] = useState(false);
-  const [viewedFilter, setViewedFilter] = useState(false);
+  const [viewedFilter, setViewedFilter] = useState(true);
   const [notViewedFilter, setNotViewedFilter] = useState(true);
   const [resolvedFilter, setResolvedFilter] = useState(true);
   const [removedFilter, setRemovedFilter] = useState(true);
-  const [fromDateFilter, setFromDateFilter] = useState(new Date);
-  const [toDateFilter, setToDateFilter] = useState(new Date);
+  const [fromDateFilter, setFromDateFilter] = useState(LAUNCH);
+  const [toDateFilter, setToDateFilter] = useState(TODAY);
 
   const [pageCount, setPageCount] = useState(0);
   const [activePage, setActivePage] = useState(0);
@@ -115,7 +115,8 @@ const Complaints = () => {
               let fullDay = comp.createdAt.split('T')[0].split('-');
               let tempComplaint = {
                 category: comp.category,
-                date: `${fullDay[2]}/${fullDay[1]}/${fullDay[0]}`,
+                // date: `${fullDay[2]}/${fullDay[1]}/${fullDay[0]}`,
+                date: comp.createdAt,
                 description: comp.description,
                 hubornfcid: comp.hubornfcid,
                 id: 'COMP-' + comp.id,
@@ -136,11 +137,22 @@ const Complaints = () => {
     resolvedFilter && complaintStatusOptions.push("Resolved");
     removedFilter && complaintStatusOptions.push("Removed");
 
-    // console.log(JSON.parse(data[0]));
     let tempFilteredData = data.filter(comp => complaintStatusOptions.includes(comp.status));
-    // console.log(JSON.parse(tempFilteredData[0]));
-    // tempFilteredData = tempFilteredData.filter(comp => comp.date.toDateString() >= fromDateFilter);
-    // tempFilteredData = tempFilteredData.filter(comp => comp.date.toDateString() <= toDateFilter);
+
+    if (tempFilteredData.length > 0) {
+      // console.log("fromDateFilter type: ", typeof fromDateFilter);
+      // console.log("data.date type: ", typeof new Date(tempFilteredData[0].date));
+
+      tempFilteredData = tempFilteredData.filter(comp => new Date(comp.date) >= new Date(fromDateFilter));
+      tempFilteredData = tempFilteredData.filter(comp => new Date(comp.date) <= new Date(toDateFilter));
+
+      // console.log("fromDateFilter: ", new Date(fromDateFilter));
+      // console.log("data.date: ", new Date(tempFilteredData[0].date));
+      // console.log("COMPARE: ", new Date(fromDateFilter) >= new Date(tempFilteredData[0].date));
+
+      // console.log("DATE FILTER: ", tempFilteredData);
+    }
+
     setFilteredData(tempFilteredData);
   }
 
@@ -358,8 +370,8 @@ const Complaints = () => {
               <DatePicker
                 modal
                 mode="date"
-                minimumDate={LAUNCH}
-                maximumDate={toDateFilter > TODAY ? toDateFilter : TODAY}
+                // minimumDate={LAUNCH}
+                // maximumDate={fromDateFilter > TODAY ? fromDateFilter : TODAY}
                 open={fromDateFilterOpen}
                 date={fromDateFilter}
                 onConfirm={(date) => {
@@ -385,8 +397,8 @@ const Complaints = () => {
               <DatePicker
                 modal
                 mode="date"
-                minimumDate={LAUNCH < fromDateFilter ? LAUNCH : fromDateFilter}
-                maximumDate={TODAY}
+                // minimumDate={LAUNCH < toDateFilter ? LAUNCH : toDateFilter}
+                // maximumDate={TODAY}
                 open={toDateFilterOpen}
                 date={toDateFilter}
                 onConfirm={(date) => {
