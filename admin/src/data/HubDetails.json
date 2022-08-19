@@ -2,6 +2,7 @@
   "hubs": [
     {
       "hubID": "CMB-7-1",
+      "status": "Active",
       "bins": [
         {
           "binID": "",
@@ -39,6 +40,7 @@
     },
     {
       "hubID": "CMB-7-2",
+      "status": "Active",
       "bins": [
         {
           "binID": "",
@@ -76,6 +78,7 @@
     },
     {
       "hubID": "CMB-7-3",
+      "status": "Active",
       "bins": [
         {
           "binID": "",
@@ -113,6 +116,7 @@
     },
     {
       "hubID": "CMB-7-4",
+      "status": "Active",
       "bins": [
         {
           "binID": "",
@@ -150,6 +154,7 @@
     },
     {
       "hubID": "CMB-7-5",
+      "status": "Active",
       "bins": [
         {
           "binID": "",
@@ -187,6 +192,7 @@
     },
     {
       "hubID": "CMB-7-2",
+      "status": "Active",
       "bins": [
         {
           "binID": "",
@@ -224,6 +230,7 @@
     },
     {
       "hubID": "CMB-7-3",
+      "status": "Active",
       "bins": [
         {
           "binID": "",
@@ -261,6 +268,7 @@
     },
     {
       "hubID": "CMB-7-4",
+      "status": "Active",
       "bins": [
         {
           "binID": "",
@@ -298,6 +306,7 @@
     },
     {
       "hubID": "CMB-7-5",
+      "status": "Active",
       "bins": [
         {
           "binID": "",
@@ -335,6 +344,7 @@
     },
     {
       "hubID": "CMB-7-2",
+      "status": "Active",
       "bins": [
         {
           "binID": "",
@@ -372,6 +382,7 @@
     },
     {
       "hubID": "CMB-7-3",
+      "status": "Active",
       "bins": [
         {
           "binID": "",
@@ -409,6 +420,7 @@
     },
     {
       "hubID": "CMB-7-4",
+      "status": "Active",
       "bins": [
         {
           "binID": "",
@@ -446,6 +458,7 @@
     },
     {
       "hubID": "CMB-7-5",
+      "status": "Active",
       "bins": [
         {
           "binID": "",
