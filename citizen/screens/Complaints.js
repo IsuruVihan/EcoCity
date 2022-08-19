@@ -121,16 +121,15 @@ const Complaints = () => {
             let tempNumResolvedComplaints = 0;
             let tempNumRemovedComplaints = 0;
             result2.data.complaints.map((comp) => {
-              let fullDay = comp.createdAt.split('T')[0].split('-');
               let tempComplaint = {
                 category: comp.category,
-                // date: `${fullDay[2]}/${fullDay[1]}/${fullDay[0]}`,
                 date: comp.createdAt,
                 description: comp.description,
                 hubornfcid: comp.hubornfcid,
                 id: 'COMP-' + comp.id,
                 remarks: comp.remarks,
                 status: comp.status,
+                files: [], // TODO: Change this later
               };
               switch (tempComplaint.status) {
                 case "Viewed":
@@ -162,14 +161,11 @@ const Complaints = () => {
     notViewedFilter && complaintStatusOptions.push("Not Viewed");
     resolvedFilter && complaintStatusOptions.push("Resolved");
     removedFilter && complaintStatusOptions.push("Removed");
-
     let tempFilteredData = data.filter(comp => complaintStatusOptions.includes(comp.status));
-
     if (tempFilteredData.length > 0) {
       tempFilteredData = tempFilteredData.filter(comp => new Date(comp.date) >= new Date(fromDateFilter));
       tempFilteredData = tempFilteredData.filter(comp => new Date(comp.date) <= new Date(toDateFilter));
     }
-
     setFilteredData(tempFilteredData);
   }
 
@@ -265,7 +261,6 @@ const Complaints = () => {
             });
           })
           .catch((err) => {
-            console.log("SUBMIT COMPLAINT ERROR: ", err);
             return Toast.show({
               type: 'error',
               text1: 'Oops!',
@@ -277,25 +272,18 @@ const Complaints = () => {
   }
 
   const TableRow = (index, id, date, status, category, description, files, remarks) => {
+    let fullDay = date.split('T')[0].split('-');
+    let formattedDate = `${fullDay[2]}/${fullDay[1]}/${fullDay[0]}`;
     return (
       <TouchableOpacity
         key={index}
         style={styles.complaints.table.content.row}
         onPress={() => {
-          console.log({
-            id: id,
-            category: category,
-            status: status,
-            date: date,
-            description: description,
-            files: files,
-            remarks: remarks,
-          });
           setViewedComplaint({
             id: id,
             category: category,
             status: status,
-            date: date,
+            date: formattedDate,
             description: description,
             files: files,
             remarks: remarks,
@@ -305,7 +293,7 @@ const Complaints = () => {
       >
         <Text style={styles.complaints.table.content.row.index}>{index}</Text>
         <Text style={styles.complaints.table.content.row.id}>{id}</Text>
-        <Text style={styles.complaints.table.content.row.date}>{date}</Text>
+        <Text style={styles.complaints.table.content.row.date}>{formattedDate}</Text>
         <Text style={
           status === 'Viewed' ? styles.complaints.table.content.row.status.viewed :
             status === 'Not Viewed' ? styles.complaints.table.content.row.status.notViewed :
@@ -685,7 +673,7 @@ const Complaints = () => {
               </Text>
             </View>
           </View>
-          <View style={styles.complaints.viewComplaintModal.dataFields.inputSet}>
+          {viewedComplaint.files.length > 0 && <View style={styles.complaints.viewComplaintModal.dataFields.inputSet}>
             <Text style={styles.complaints.viewComplaintModal.dataFields.inputSet.label}>Uploaded Files</Text>
             <View style={styles.complaints.viewComplaintModal.dataFields.inputSet.imgContainer}>
               <TouchableOpacity
@@ -695,7 +683,7 @@ const Complaints = () => {
                 <Text style={styles.complaints.viewComplaintModal.dataFields.inputSet.imgContainer.btn.txt}>Open</Text>
               </TouchableOpacity>
             </View>
-          </View>
+          </View>}
           <View style={styles.complaints.viewComplaintModal.dataFields.inputSet}>
             <Text style={styles.complaints.viewComplaintModal.dataFields.inputSet.label}>Remarks</Text>
             <View
@@ -707,11 +695,11 @@ const Complaints = () => {
             </View>
           </View>
         </View>
-        <View style={styles.complaints.viewComplaintModal.last}>
+        {viewedComplaint.status === "Not Viewed" && <View style={styles.complaints.viewComplaintModal.last}>
           <TouchableOpacity style={styles.complaints.viewComplaintModal.last.btn}>
             <Text style={styles.complaints.viewComplaintModal.last.btn.txt}>Remove the complaint</Text>
           </TouchableOpacity>
-        </View>
+        </View>}
       </Dialog>
     );
   }
