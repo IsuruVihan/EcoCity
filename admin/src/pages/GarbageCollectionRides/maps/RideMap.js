@@ -1,11 +1,12 @@
 import React from 'react';
-import {Container} from "react-bootstrap";
+import {Container, Row, Col} from "react-bootstrap";
 
 const RideMap = () => {
   return (
-    <Container>
-      Ride map
-    </Container>
+          <Col style={{border:'1px solid red', marginBottom:15}}>
+              <Row style={{fontSize:14}}>Location</Row>
+              <Row style={{border:'1px solid blue', height:85, borderRadius:10}}>Map</Row>
+          </Col>
   );
 }
 
