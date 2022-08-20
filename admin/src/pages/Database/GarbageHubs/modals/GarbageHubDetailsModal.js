@@ -1,5 +1,5 @@
 import React from 'react';
-import {Col, Container, Modal, Row} from "react-bootstrap";
+import {Col, Container, FormControl, Modal, Row} from "react-bootstrap";
 
 import GarbageBinDetailsCard from "../cards/GarbageBinDetailsCard";
 import GarbageHubLocationMap from "../maps/GarbageHubLocationMap";
@@ -10,6 +10,7 @@ import '../../../../assets/styles/Comp1.css';
 
 const GarbageHubDetailsModal = (props) => {
     const bins = props.hub.bins;
+    console.log(props.hub)
     return (
         <Modal
             {...props}
@@ -26,13 +27,23 @@ const GarbageHubDetailsModal = (props) => {
 
             <Modal.Body>
                 <Container>
-                    <Row className='mx-0'>
-                        <Col>
+                    <Row className='mx-0 align-items-center d-flex'>
+                        <Col lg={3}>
                             <div className='h4'>Hub Id</div>
+                        </Col>
+                        <Col lg={9}>
+                            <FormControl type={'text'} disabled value={props.hub.hubID}
+                                         style={{backgroundColor: "white"}}/>
+                        </Col>
+                        <Col lg={3} className='mt-1'>
                             <div className='h4'>Status</div>
                         </Col>
+                        <Col lg={9} className='mt-1'>
+                            <FormControl type={'text'} disabled value={props.hub.status}
+                                         style={{backgroundColor: "white"}}/>
+                        </Col>
                     </Row>
-                    <Row className='mx-0'>
+                    <Row className='mx-0 mt-3'>
                         <Col lg={12} className='h4'>Sensor Data</Col>
                         <Col lg={12}>
                             <Row>
@@ -52,8 +63,8 @@ const GarbageHubDetailsModal = (props) => {
                     <Row className='mx-0 mb-5'>
                         <Col lg={10} className='h5'>Collected Weight of garbage:</Col>
                         <Col lg={2}><GarbageHubCollectedWeightsGraphFilter/></Col>
-                        <Col lg={12} className='test border-red mb-5'>
-                            Chart
+                        <Col lg={12} className='mb-5'>
+                            <GarbageHubCollectedWeightsGraph/>
                         </Col>
                     </Row>
                 </Container>

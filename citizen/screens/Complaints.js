@@ -1,13 +1,16 @@
-import React, {useEffect, useState} from 'react';
-import {Text, View, StyleSheet, Dimensions, LogBox, TouchableOpacity, Image, TextInput} from "react-native";
+import React, {useContext, useEffect, useState} from 'react';
+import {Text, View, StyleSheet, Dimensions, LogBox, TouchableOpacity, Image, TextInput, ScrollView, RefreshControl}
+  from "react-native";
 import {VictoryPie} from "victory-native";
 import IconFontAwesome from "react-native-vector-icons/FontAwesome";
 import IconFontAwesome5 from "react-native-vector-icons/FontAwesome5";
 import AntDesign from "react-native-vector-icons/AntDesign";
 import Ionicons from "react-native-vector-icons/Ionicons";
+import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 import {Dialog, CheckBox, Button} from '@rneui/themed';
 import DatePicker from 'react-native-date-picker';
 import SelectDropdown from 'react-native-select-dropdown';
+import {launchImageLibrary} from 'react-native-image-picker';
 
 import FilterImg from '../assets/images/filter.png';
 import CreateImg from '../assets/images/create.png';
@@ -15,18 +18,25 @@ import ViewComplaintImg from '../assets/images/view-complaint.png';
 import FileComplaintImg from '../assets/images/file-complaint.png';
 
 import {Responsive} from "../helpers/Responsive";
-import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
+import Toast from "react-native-toast-message";
+import {getComplaintsByUserId, submitComplaint} from "../api/Complaints";
+import {AuthContext} from "../context/AuthContext";
+import {getHouseIdByEmail} from "../api/Houses";
 
 const HEIGHT = Dimensions.get('window').height;
 const WIDTH = Dimensions.get('window').width;
 const LAUNCH = new Date("2022-01-01");
-const TODAY = new Date();
+const TODAY = new Date("2052-01-01");
 
 LogBox.ignoreLogs([
   "Require cycle: node_modules/victory",
 ]);
 
 const Complaints = () => {
+  const {loggedUser} = useContext(AuthContext);
+
+  const [refreshing, setRefreshing] = useState(false);
+
   const [fromDateFilterOpen, setFromDateFilterOpen] = useState(false);
   const [toDateFilterOpen, setToDateFilterOpen] = useState(false);
 
@@ -46,6 +56,7 @@ const Complaints = () => {
   const [createComplaintModalOpen, setCreateComplaintModalOpen] = useState(false);
   const [newComplaintCategory, setNewComplaintCategory] = useState("Other");
   const [newComplaintHubNFCId, setNewComplaintHubNFCId] = useState("");
+  const [newComplaintImages, setNewComplaintImages] = useState("");
   const [newComplaintDescription, setNewComplaintDescription] = useState("");
 
   const [filterVisible, setFilterVisible] = useState(false);
@@ -53,11 +64,16 @@ const Complaints = () => {
   const [notViewedFilter, setNotViewedFilter] = useState(true);
   const [resolvedFilter, setResolvedFilter] = useState(true);
   const [removedFilter, setRemovedFilter] = useState(true);
-  const [fromDateFilter, setFromDateFilter] = useState(new Date);
-  const [toDateFilter, setToDateFilter] = useState(new Date);
+  const [fromDateFilter, setFromDateFilter] = useState(LAUNCH);
+  const [toDateFilter, setToDateFilter] = useState(TODAY);
 
   const [pageCount, setPageCount] = useState(0);
   const [activePage, setActivePage] = useState(0);
+
+  const [numNotViewedComplaints, setNumNotViewedComplaints] = useState(0);
+  const [numViewedComplaints, setNumViewedComplaints] = useState(0);
+  const [numResolvedComplaints, setNumResolvedComplaints] = useState(0);
+  const [numRemovedComplaints, setNumRemovedComplaints] = useState(0);
 
   const [data, setData] = useState([]);
   const [filteredData, setFilteredData] = useState([
@@ -82,26 +98,86 @@ const Complaints = () => {
   ]);
   const [paginatedData, setPaginatedData] = useState([]);
 
-  // useEffect(() => {
-  //   // TODO: Get data
-  //   console.log('GET DATA');
-  // }, []);
-
-  // useEffect(() => {
-  //   // TODO: Apply filters and push eligible complaints into filtered data
-  //   console.log('FILTER DATA');
-  // }, [data]);
+  useEffect(() => {
+    getData();
+  }, []);
 
   useEffect(() => {
-    // TODO: Divide filtered data into pages
-    const pc = Math.ceil(filteredData.length / 5);
+    filterData();
+  }, [data]);
+
+  useEffect(() => {
+    paginateData();
+  }, [filteredData]);
+
+  const getData = () => {
+    getHouseIdByEmail(loggedUser)
+      .then((result) => {
+        getComplaintsByUserId(result.data.id[0].id, loggedUser)
+          .then((result2) => {
+            const complaintsArr = [];
+            let tempNumViewedComplaints = 0;
+            let tempNumNotViewedComplaints = 0;
+            let tempNumResolvedComplaints = 0;
+            let tempNumRemovedComplaints = 0;
+            result2.data.complaints.map((comp) => {
+              let tempComplaint = {
+                category: comp.category,
+                date: comp.createdAt,
+                description: comp.description,
+                hubornfcid: comp.hubornfcid,
+                id: 'COMP-' + comp.id,
+                remarks: comp.remarks,
+                status: comp.status,
+                files: [], // TODO: Change this later
+              };
+              switch (tempComplaint.status) {
+                case "Viewed":
+                  tempNumViewedComplaints += 1;
+                  break;
+                case "Not Viewed":
+                  tempNumNotViewedComplaints += 1;
+                  break;
+                case "Resolved":
+                  tempNumResolvedComplaints += 1;
+                  break;
+                case "Removed":
+                  tempNumRemovedComplaints += 1;
+              }
+              setNumViewedComplaints(tempNumViewedComplaints);
+              setNumNotViewedComplaints(tempNumNotViewedComplaints);
+              setNumResolvedComplaints(tempNumResolvedComplaints);
+              setNumRemovedComplaints(tempNumRemovedComplaints);
+              complaintsArr.push(tempComplaint);
+            });
+            setData(complaintsArr);
+          });
+      });
+  }
+
+  const filterData = () => {
+    let complaintStatusOptions = [];
+    viewedFilter && complaintStatusOptions.push("Viewed");
+    notViewedFilter && complaintStatusOptions.push("Not Viewed");
+    resolvedFilter && complaintStatusOptions.push("Resolved");
+    removedFilter && complaintStatusOptions.push("Removed");
+    let tempFilteredData = data.filter(comp => complaintStatusOptions.includes(comp.status));
+    if (tempFilteredData.length > 0) {
+      tempFilteredData = tempFilteredData.filter(comp => new Date(comp.date) >= new Date(fromDateFilter));
+      tempFilteredData = tempFilteredData.filter(comp => new Date(comp.date) <= new Date(toDateFilter));
+    }
+    setFilteredData(tempFilteredData);
+  }
+
+  const paginateData = () => {
+    const pc = Math.ceil(filteredData.length / 7);
     setPageCount(pc);
     setActivePage(pc > 0 ? 1 : 0);
     let ind = 1;
     const tempPaginatedData = [];
     outer:
       for (let i = 1; i <= pc; i++) { // Page
-        for (let j = 1; j <= 5; j++) { // Index
+        for (let j = 1; j <= 7; j++) { // Index
           if (ind > filteredData.length)
             break outer;
           tempPaginatedData.push({
@@ -109,28 +185,115 @@ const Complaints = () => {
             index: ind,
             id: filteredData[ind - 1].id,
             date: filteredData[ind - 1].date,
-            status: filteredData[ind - 1].status
+            status: filteredData[ind - 1].status,
+            category: filteredData[ind - 1].category,
+            description: filteredData[ind - 1].description,
+            files: filteredData[ind - 1].files,
+            remarks: filteredData[ind - 1].remarks,
           });
           ind++;
         }
       }
     setPaginatedData(tempPaginatedData);
-  }, [filteredData]);
-
-  const handleOnClickFilterBtn = () => {
-
+    if (tempPaginatedData.length > 0) {
+      console.log("PAGINATED DATA: ", tempPaginatedData[0]);
+    }
   }
 
-  const TableRow = (index, id, date, status) => {
+  const openGallery = async () => {
+    await launchImageLibrary({
+      mediaType: 'photo',
+      quality: 1,
+    }, (res) => {
+      if (!res.didCancel) {
+        setNewComplaintImages(res.assets[0]);
+      }
+    });
+  }
+
+  const handleOnCreateComplaint = () => {
+    if (newComplaintDescription.length === 0) {
+      setCreateComplaintModalOpen(false);
+      return Toast.show({
+        type: 'error',
+        text1: 'Incomplete form data',
+        text2: 'Please enter the complaint description',
+        topOffset: 10,
+      });
+    }
+    if (
+      (newComplaintCategory === "Garbage hub" || newComplaintCategory === "NFC tags") &&
+      (newComplaintHubNFCId.length === 0)
+    ) {
+      setCreateComplaintModalOpen(false);
+      return Toast.show({
+        type: 'error',
+        text1: 'Incomplete form data',
+        text2: 'Please enter the Hub / NFC Id',
+        topOffset: 10,
+      });
+    }
+    getHouseIdByEmail(loggedUser)
+      .then((result) => {
+        const formData = {
+          category: newComplaintCategory,
+          id: newComplaintHubNFCId,
+          description: newComplaintDescription,
+          HouseId: result.data.id[0].id,
+          file: {
+            uri: newComplaintImages.uri,
+            type: newComplaintImages.type,
+            name: newComplaintImages.fileName,
+          },
+        };
+        submitComplaint(formData, loggedUser)
+          .then(() => {
+            setNewComplaintCategory("Other");
+            setNewComplaintDescription("");
+            setNewComplaintHubNFCId("");
+            setNewComplaintImages("");
+            setCreateComplaintModalOpen(false);
+            return Toast.show({
+              type: 'success',
+              text1: 'Success!',
+              text2: 'Your complaint has been submitted successfully',
+              topOffset: 10,
+            });
+          })
+          .catch((err) => {
+            return Toast.show({
+              type: 'error',
+              text1: 'Oops!',
+              text2: 'Something went wrong. Please try again.',
+              topOffset: 10,
+            });
+          });
+      });
+  }
+
+  const TableRow = (index, id, date, status, category, description, files, remarks) => {
+    let fullDay = date.split('T')[0].split('-');
+    let formattedDate = `${fullDay[2]}/${fullDay[1]}/${fullDay[0]}`;
     return (
       <TouchableOpacity
         key={index}
         style={styles.complaints.table.content.row}
-        onPress={() => setViewComplaintModalOpen(true)}
+        onPress={() => {
+          setViewedComplaint({
+            id: id,
+            category: category,
+            status: status,
+            date: formattedDate,
+            description: description,
+            files: files,
+            remarks: remarks,
+          });
+          setViewComplaintModalOpen(true);
+        }}
       >
         <Text style={styles.complaints.table.content.row.index}>{index}</Text>
         <Text style={styles.complaints.table.content.row.id}>{id}</Text>
-        <Text style={styles.complaints.table.content.row.date}>{date}</Text>
+        <Text style={styles.complaints.table.content.row.date}>{formattedDate}</Text>
         <Text style={
           status === 'Viewed' ? styles.complaints.table.content.row.status.viewed :
             status === 'Not Viewed' ? styles.complaints.table.content.row.status.notViewed :
@@ -152,14 +315,14 @@ const Complaints = () => {
         radius={Responsive(20, WIDTH)}
         innerRadius={Responsive(5, WIDTH)}
         padAngle={5}
-        categories={{x: ["dogs", "cats", "mice"]}}
+        categories={{x: ["Viewed", "Not Viewed", "Resolved", "Removed"]}}
         colorScale={["#03989E", "#68ADCA", "#ABC2E4", "#075061",]}
         responsive={true}
         data={[
-          {x: '1', y: 1},
-          {x: '3', y: 3},
-          {x: '2', y: 2},
-          {x: '2', y: 2},
+          {x: numViewedComplaints, y: numViewedComplaints},
+          {x: numNotViewedComplaints, y: numNotViewedComplaints},
+          {x: numResolvedComplaints, y: numResolvedComplaints},
+          {x: numRemovedComplaints, y: numRemovedComplaints},
         ]}
       />
     );
@@ -238,8 +401,8 @@ const Complaints = () => {
               <DatePicker
                 modal
                 mode="date"
-                minimumDate={LAUNCH}
-                maximumDate={toDateFilter > TODAY ? toDateFilter : TODAY}
+                // minimumDate={LAUNCH}
+                // maximumDate={fromDateFilter > TODAY ? fromDateFilter : TODAY}
                 open={fromDateFilterOpen}
                 date={fromDateFilter}
                 onConfirm={(date) => {
@@ -265,8 +428,8 @@ const Complaints = () => {
               <DatePicker
                 modal
                 mode="date"
-                minimumDate={LAUNCH < fromDateFilter ? LAUNCH : fromDateFilter}
-                maximumDate={TODAY}
+                // minimumDate={LAUNCH < toDateFilter ? LAUNCH : toDateFilter}
+                // maximumDate={TODAY}
                 open={toDateFilterOpen}
                 date={toDateFilter}
                 onConfirm={(date) => {
@@ -284,6 +447,10 @@ const Complaints = () => {
             size='sm'
             color={'#228693'}
             buttonStyle={{borderRadius: 5, width: Responsive(20, WIDTH),}}
+            onPress={() => {
+              filterData();
+              setFilterVisible(false);
+            }}
           >
             <AntDesign name='filter' size={20} color={'white'}/>
             Filter
@@ -346,7 +513,7 @@ const Complaints = () => {
           <View style={styles.complaints.createComplaintModal.content.inputSet}>
             <Text style={styles.complaints.createComplaintModal.content.inputSet.label}>Complaint Category</Text>
             <SelectDropdown
-              data={["Garage hub", "NFC tags", "Mobile app", "Other"]}
+              data={["Garbage hub", "NFC tags", "Mobile app", "Other"]}
               defaultValue="Other"
               defaultButtonText="Complaint type"
               onSelect={(selectedItem) => setNewComplaintCategory(selectedItem)}
@@ -374,7 +541,9 @@ const Complaints = () => {
               dropdownIconPosition="right"
             />
           </View>
-          <View style={styles.complaints.createComplaintModal.content.inputSet}>
+          {(newComplaintCategory === "Garbage hub" || newComplaintCategory === "NFC tags") && <View
+            style={styles.complaints.createComplaintModal.content.inputSet}
+          >
             <Text style={styles.complaints.createComplaintModal.content.inputSet.label}>Hub / NFC ID</Text>
             <TextInput
               style={styles.complaints.createComplaintModal.content.inputSet.txtInput}
@@ -382,7 +551,7 @@ const Complaints = () => {
               value={newComplaintHubNFCId}
               keyboardType="text"
             />
-          </View>
+          </View>}
           <View style={styles.complaints.createComplaintModal.content.inputSet}>
             <Text style={styles.complaints.createComplaintModal.content.inputSet.label}>Your Complaint</Text>
             <TextInput
@@ -394,24 +563,37 @@ const Complaints = () => {
           </View>
           <View style={styles.complaints.createComplaintModal.content.inputSet}>
             <Text style={styles.complaints.createComplaintModal.content.inputSet.label}>Upload images</Text>
-            <TouchableOpacity style={styles.complaints.createComplaintModal.content.inputSet.imgInput}>
-              <FontAwesome5
-                name={'file-upload'}
-                size={18}
-                color={'#228693'}
-                style={styles.complaints.createComplaintModal.content.inputSet.imgInput.img}
-              />
-              <Text
-                style={styles.complaints.createComplaintModal.content.inputSet.imgInput.txt1}
-              >Browse files</Text>
-              <Text
-                style={styles.complaints.createComplaintModal.content.inputSet.imgInput.txt2}
-              >Support JPEG and PNG files</Text>
+            <TouchableOpacity
+              style={styles.complaints.createComplaintModal.content.inputSet.imgInput}
+              onPress={() => openGallery()}
+            >
+              {newComplaintImages !== '' ? <>
+                <Image
+                  source={{uri: newComplaintImages.uri}}
+                  style={{width: Responsive(14, HEIGHT), height: Responsive(14, HEIGHT),}}
+                />
+              </> : <>
+                <FontAwesome5
+                  name={'file-upload'}
+                  size={18}
+                  color={'#228693'}
+                  style={styles.complaints.createComplaintModal.content.inputSet.imgInput.img}
+                />
+                <Text
+                  style={styles.complaints.createComplaintModal.content.inputSet.imgInput.txt1}
+                >Browse files</Text>
+                <Text
+                  style={styles.complaints.createComplaintModal.content.inputSet.imgInput.txt2}
+                >Support JPEG and PNG files</Text>
+              </>}
             </TouchableOpacity>
           </View>
         </View>
         <View style={styles.complaints.createComplaintModal.last}>
-          <TouchableOpacity style={styles.complaints.createComplaintModal.last.btn1}>
+          <TouchableOpacity
+            style={styles.complaints.createComplaintModal.last.btn1}
+            onPress={() => handleOnCreateComplaint()}
+          >
             <Text style={styles.complaints.createComplaintModal.last.btn1.txt}>Save</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.complaints.createComplaintModal.last.btn2}>
@@ -438,7 +620,7 @@ const Complaints = () => {
           />
         </View>
         <View style={styles.complaints.viewComplaintModal.imgContainer}>
-          <Image source={ViewComplaintImg} style={styles.complaints.viewComplaintModal.imgContainer.img} />
+          <Image source={ViewComplaintImg} style={styles.complaints.viewComplaintModal.imgContainer.img}/>
         </View>
         <View style={styles.complaints.viewComplaintModal.dataFields}>
           <View style={styles.complaints.viewComplaintModal.dataFields.inputSet}>
@@ -491,7 +673,7 @@ const Complaints = () => {
               </Text>
             </View>
           </View>
-          <View style={styles.complaints.viewComplaintModal.dataFields.inputSet}>
+          {viewedComplaint.files.length > 0 && <View style={styles.complaints.viewComplaintModal.dataFields.inputSet}>
             <Text style={styles.complaints.viewComplaintModal.dataFields.inputSet.label}>Uploaded Files</Text>
             <View style={styles.complaints.viewComplaintModal.dataFields.inputSet.imgContainer}>
               <TouchableOpacity
@@ -501,7 +683,7 @@ const Complaints = () => {
                 <Text style={styles.complaints.viewComplaintModal.dataFields.inputSet.imgContainer.btn.txt}>Open</Text>
               </TouchableOpacity>
             </View>
-          </View>
+          </View>}
           <View style={styles.complaints.viewComplaintModal.dataFields.inputSet}>
             <Text style={styles.complaints.viewComplaintModal.dataFields.inputSet.label}>Remarks</Text>
             <View
@@ -513,11 +695,11 @@ const Complaints = () => {
             </View>
           </View>
         </View>
-        <View style={styles.complaints.viewComplaintModal.last}>
+        {viewedComplaint.status === "Not Viewed" && <View style={styles.complaints.viewComplaintModal.last}>
           <TouchableOpacity style={styles.complaints.viewComplaintModal.last.btn}>
             <Text style={styles.complaints.viewComplaintModal.last.btn.txt}>Remove the complaint</Text>
           </TouchableOpacity>
-        </View>
+        </View>}
       </Dialog>
     );
   }
@@ -531,25 +713,32 @@ const Complaints = () => {
       >
         <View style={styles.complaints.viewImagesModal.top}>
           <Text style={styles.complaints.viewImagesModal.top.txt}>View images</Text>
-          <AntDesign name='closecircle' color='#7CB6B8' size={15} onPress={() => setViewImagesModalOpen(false)} />
+          <AntDesign name='closecircle' color='#7CB6B8' size={15} onPress={() => setViewImagesModalOpen(false)}/>
         </View>
         <View style={styles.complaints.viewImagesModal.body}>
           <View style={styles.complaints.viewImagesModal.body.btn}>
-            <AntDesign name='caretleft' color='#7CB6B8' size={15} onPress={() => setViewImagesModalOpen(false)} />
+            <AntDesign name='caretleft' color='#7CB6B8' size={15} onPress={() => setViewImagesModalOpen(false)}/>
           </View>
           <View style={styles.complaints.viewImagesModal.body.imgContainer}>
-            <Image source={ViewComplaintImg} style={styles.complaints.viewImagesModal.body.imgContainer.img} />
+            <Image source={ViewComplaintImg} style={styles.complaints.viewImagesModal.body.imgContainer.img}/>
           </View>
           <View style={styles.complaints.viewImagesModal.body.btn}>
-            <AntDesign name='caretright' color='#7CB6B8' size={15} onPress={() => setViewImagesModalOpen(false)} />
+            <AntDesign name='caretright' color='#7CB6B8' size={15} onPress={() => setViewImagesModalOpen(false)}/>
           </View>
         </View>
       </Dialog>
     );
   }
 
+  const onRefresh = () => {
+    // setRefreshing(true);
+  }
+
   return (
-    <View style={styles.complaints}>
+    <ScrollView
+      style={styles.complaints}
+      refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh}/>}
+    >
       {Filter()}
       {ViewComplaintModal()}
       {CreateComplaintModal()}
@@ -559,10 +748,10 @@ const Complaints = () => {
       </View>
       <View style={styles.complaints.statistics}>
         <View style={styles.complaints.statistics.section1}>
-          {Card('Viewed', '1')}
-          {Card('Not Viewed', '6')}
-          {Card('Resolved', '3')}
-          {Card('Removed', '2')}
+          {Card('Viewed', numViewedComplaints)}
+          {Card('Not Viewed', numNotViewedComplaints)}
+          {Card('Resolved', numResolvedComplaints)}
+          {Card('Removed', numRemovedComplaints)}
         </View>
         <View style={styles.complaints.statistics.section2}>
           {PieChart()}
@@ -579,7 +768,8 @@ const Complaints = () => {
         <View style={styles.complaints.table.content}>
           {paginatedData.map((complaint) => {
             if (complaint.page === activePage)
-              return TableRow(complaint.index, complaint.id, complaint.date, complaint.status);
+              return TableRow(complaint.index, complaint.id, complaint.date, complaint.status, complaint.category,
+                complaint.description, complaint.files, complaint.remarks);
           })}
         </View>
         <View style={styles.complaints.table.last}>
@@ -595,7 +785,7 @@ const Complaints = () => {
           {Paginator()}
         </View>
       </View>
-    </View>
+    </ScrollView>
   );
 }
 
@@ -996,7 +1186,7 @@ const styles = StyleSheet.create({
             borderWidth: 2,
             borderColor: '#E8F5F6',
             borderRadius: 10,
-            height: Responsive(5, HEIGHT),
+            height: Responsive(6, HEIGHT),
             color: '#707070',
             paddingLeft: 10,
           },
