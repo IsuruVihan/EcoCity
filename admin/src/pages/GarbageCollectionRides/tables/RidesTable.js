@@ -1,14 +1,19 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Col, Container, Image, Modal, Row, Table} from "react-bootstrap";
-import close from "../../../assets/images/icons/close.png";
-import ViewComplaintModal from "../../Complaints/modals/ViewComplaintModal";
+
 import "../../../assets/styles/GarbageCollectionRides/tables/table.css";
+import ViewRideModal from "../modals/ViewRideModal";
 
 import leftarrow from "../../../assets/images/icons/leftarrow.png";
 import rightarrow from "../../../assets/images/icons/rightarrow.png";
 import create from "../../../assets/images/icons/create.png";
+import close from "../../../assets/images/icons/close.png";
 
 const RidesTable = () => {
+    const [show, setShow] = useState(false);
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+
     let status = 'assigned';
     const changeColor=(status)=>{
         let classes = 'pt-1 pb-1 pe-2 px-2 label ' ;
@@ -43,7 +48,7 @@ const RidesTable = () => {
                           </tr>
                           </thead>
                           <tbody>
-                          <tr style={{borderBottom:'1px solid #BFDDDE', cursor:'pointer'}} >
+                          <tr style={{borderBottom:'1px solid #BFDDDE', cursor:'pointer'}} onClick={handleShow}>
                               <th scope="row" style={{color:'#B9B9B9'}}>1.</th>
                               <td>1234</td>
                               <td>Harith Kumar</td>
@@ -54,6 +59,18 @@ const RidesTable = () => {
                               <td>0/2</td>
                               <td>-</td>
                           </tr>
+                          <Modal show={show} onHide={handleClose}>
+                              <Modal.Header style={{border:'none'}}>
+                                  <Row>
+                                      <Col style={{ marginLeft:430}}>
+                                          <Image src={close} onClick={handleClose} width="70%"/>
+                                      </Col>
+                                  </Row>
+                              </Modal.Header>
+                              <Modal.Body>
+                                    <ViewRideModal/>
+                              </Modal.Body>
+                          </Modal>
                           </tbody>
                       </Table>
                   </Row>
