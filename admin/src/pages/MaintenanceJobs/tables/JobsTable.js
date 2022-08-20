@@ -1,9 +1,15 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Col, Container, Image, Modal, Row, Table, Button} from "react-bootstrap";
 
 import {FiArrowLeft, FiArrowRight, FiEdit} from "react-icons/fi";
+import ViewJobModal from '../modals/ViewJobModal';
+import close from "../../../assets/images/icons/close.png";
+//import './JobsTable.css'
 
 const JobsTable = () => {
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
   return (
     <Container>
       <Row className='p-2 m-0'>
@@ -20,7 +26,7 @@ const JobsTable = () => {
               </tr>
           </thead>
           <tbody>
-            <tr style={{borderBottom:'1px solid #BFDDDE', cursor:'pointer'}}>
+            <tr style={{borderBottom:'1px solid #BFDDDE', cursor:'pointer'}} onClick={handleShow}> 
               <th scope="row" style={{color:'#d6d6c2'}}>1.</th>
               <td>123</td>
               <td>Harith Kumar</td>
@@ -29,6 +35,18 @@ const JobsTable = () => {
               <td>01/07/2022</td>
               <td>Paper</td>
             </tr>
+            <Modal className={'m-0 p-0'} show={show} onHide={handleClose} style={{width:'100%', margin:'auto'}} size='lg'>
+              <Modal.Header className={'m-0 p-0'}>
+                <Row className={'m-0 p-0 mt-3'}>
+                  <Col style={{marginLeft:430, display:'flex', alignItems:'center', justifyContent:'right'}}>
+                    <Image src={close} onClick={handleClose} width="10%" style={{cursor:'pointer'}}/>
+                  </Col>
+                </Row>
+              </Modal.Header>
+              <Modal.Body className={'m-0 p-0'}>
+                <ViewJobModal/>
+              </Modal.Body>
+            </Modal>
             <tr style={{borderBottom:'1px solid #BFDDDE', cursor:'pointer'}}>
               <th scope="row" style={{color:'#d6d6c2'}}>2.</th>
               <td>123</td>

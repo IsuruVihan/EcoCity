@@ -1,0 +1,12 @@
+.login-content {
+    /*top: calc(65px) !important;*/
+    height: calc(100vh) !important;
+}
+
+.login-background {
+    background-image: url("../../images/login-side-image.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+
+}

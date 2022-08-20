@@ -1,13 +1,14 @@
 import React, {useState} from 'react';
 import {Col, Container, Image, Modal, Row, Table} from "react-bootstrap";
-import close from "../../../assets/images/icons/close.png";
-import ViewRideModal  from "../modals/ViewRideModal";
+
 import AssignRideModal from "../modals/AssignRideModal";
 import "../../../assets/styles/GarbageCollectionRides/tables/table.css";
+import ViewRideModal from "../modals/ViewRideModal";
 
 import leftarrow from "../../../assets/images/icons/leftarrow.png";
 import rightarrow from "../../../assets/images/icons/rightarrow.png";
 import create from "../../../assets/images/icons/create.png";
+import close from "../../../assets/images/icons/close.png";
 
 
 const RidesTable = () => {
@@ -18,7 +19,6 @@ const RidesTable = () => {
     const [showassign, setShowassign] = useState(false);
     const handleassignClose = () => setShowassign(false);
     const handleassingShow = () => setShowassign(true);
-
     let status = 'assigned';
     const changeColor=(status)=>{
         let classes = 'pt-1 pb-1 pe-2 px-2 label ' ;
