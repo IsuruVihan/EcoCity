@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Col, Container, Row} from "react-bootstrap";
+import {Col, Container, Image, Row} from "react-bootstrap";
 import '../../../assets/styles/Database/database.css';
 import '../../../assets/styles/Database/GarbageHubs/GarbageHubs.css';
 
@@ -13,6 +13,8 @@ import UpdateGarbageHubModal from "./modals/UpdateGarbageHubModal";
 import Header from "../../../common/Header";
 import {FiFilter} from "react-icons/fi";
 
+//Temporary imports
+import mapImage from '../../../assets/images/temp/databaseMaps.png';
 
 const GarbageHubs = () => {
 
@@ -43,7 +45,10 @@ const GarbageHubs = () => {
                     <GarbageHubsTable onCreateClicked={setShowCreateHubForm}/>
                     <CreateGarbageHubModal onHide={handleClose} show={showCreateHubForm}/>
                 </Col>
-                <Col lg={4} className='box-shadow'>Map</Col>
+                <Col lg={4} className='box-shadow px-0'>
+
+                    <Image src={mapImage} fluid/>
+                </Col>
             </Row>
         </Col>
 
