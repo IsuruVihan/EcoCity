@@ -18,13 +18,13 @@ const deleteGarbageBinModal = (props) => {
                 <Modal.Title>Delete Confirmation</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                <div className="alert alert-danger">{'message'}</div>
+                <div className="alert alert-danger">{'Delete bin ?'}</div>
             </Modal.Body>
             <Modal.Footer>
                 <Button variant="default" onClick={props.onHide}>
                     Cancel
                 </Button>
-                <Button variant="danger">
+                <Button variant="danger" onClick={props.onConfirm}>
                     Delete
                 </Button>
             </Modal.Footer>

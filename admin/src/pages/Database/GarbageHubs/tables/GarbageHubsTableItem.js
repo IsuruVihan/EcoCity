@@ -42,6 +42,9 @@ const GarbageHubsTableItem = (props) => {
         e.stopPropagation();
     }
 
+    const handleOnBinDeleted = () => {
+        setIsDeleteBinVisible(false);
+    }
     return (
         <Fragment>
             <tbody onClick={() => {
@@ -83,7 +86,8 @@ const GarbageHubsTableItem = (props) => {
             }
             </tbody>
             <UpdateGarbageHubModal show={isEditHubDetailsVisible} onHide={handleOnHubCloseClicked}/>
-            <DeleteGarbagBinModal show={isDeleteBinVisible} onHide={handleOnEditBinClicked}/>
+            <DeleteGarbagBinModal show={isDeleteBinVisible} onHide={handleOnEditBinClicked}
+                                  onConfirm={handleOnBinDeleted}/>
         </Fragment>
     );
 }
