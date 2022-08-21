@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
 import {Col, Container, Image, Modal, Row, Table} from "react-bootstrap";
-
 import AssignRideModal from "../modals/AssignRideModal";
 import "../../../assets/styles/GarbageCollectionRides/tables/table.css";
 import ViewRideModal from "../modals/ViewRideModal";
@@ -11,6 +10,7 @@ import create from "../../../assets/images/icons/create.png";
 import close from "../../../assets/images/icons/close.png";
 
 
+
 const RidesTable = () => {
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
@@ -19,6 +19,7 @@ const RidesTable = () => {
     const [showassign, setShowassign] = useState(false);
     const handleassignClose = () => setShowassign(false);
     const handleassingShow = () => setShowassign(true);
+
     let status = 'assigned';
     const changeColor=(status)=>{
         let classes = 'pt-1 pb-1 pe-2 px-2 label ' ;
@@ -131,3 +132,4 @@ const RidesTable = () => {
 }
 
 export default RidesTable;
+
