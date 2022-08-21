@@ -25,3 +25,14 @@ export const getComplaintsByUserId = async (id, loggedUser) => {
     }
   });
 }
+
+export const removeComplaint = async (id, loggedUser) => {
+  return await axios.put(`${BASE_URL}/complaints`, {
+    id: id,
+  }, {
+    headers: {
+      accessToken: loggedUser.accessToken,
+      refreshToken: loggedUser.refreshToken,
+    }
+  });
+}

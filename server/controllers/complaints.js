@@ -34,3 +34,23 @@ exports.getComplaintsByUserId = async (req, res) => {
       });
     });
 }
+
+exports.removeComplaint = async (req, res) => {
+  const {id} = req.body;
+  Complaint.update({status: "Removed"}, {
+    where: {
+      id: id
+    }
+  })
+    .then((complaint) => {
+      return res.status(200).json({
+        complaint: complaint,
+      });
+    })
+    .catch((err) => {
+      console.log("REMOVE COMPLAINT ERROR: ", err);
+      return res.status(400).json({
+        error: err,
+      });
+    });
+}
