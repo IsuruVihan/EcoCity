@@ -20,7 +20,7 @@ const OurMission = () => {
               Sri lanka with our solution
           </Row>
         </Col>
-        <Col sm={2} className="p-0 m-0 d-flex">
+        <Col sm={2} className="p-0 m-0">
           <img src={garbageTruck} width='100%' className='p-0' style={{width:'210px', height:'230px'}} fluid/>
         </Col>
       </Row>
