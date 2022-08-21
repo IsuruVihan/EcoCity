@@ -19,7 +19,7 @@ import FileComplaintImg from '../assets/images/file-complaint.png';
 
 import {Responsive} from "../helpers/Responsive";
 import Toast from "react-native-toast-message";
-import {getComplaintsByUserId, submitComplaint} from "../api/Complaints";
+import {getComplaintsByUserId, removeComplaint, submitComplaint} from "../api/Complaints";
 import {AuthContext} from "../context/AuthContext";
 import {getHouseIdByEmail} from "../api/Houses";
 
@@ -268,6 +268,31 @@ const Complaints = () => {
               topOffset: 10,
             });
           });
+      });
+  }
+
+  const handleOnRemoveComplaint = (id) => {
+    removeComplaint(id.split("-")[1], loggedUser)
+      .then(() => {
+        setViewComplaintModalOpen(false);
+        getData();
+        filterData();
+        paginateData();
+        return Toast.show({
+          type: 'success',
+          text1: 'Success!',
+          text2: `Complaint (ID: ${id.split("-")[1]}) has been removed successfully.`,
+          topOffset: 10,
+        });
+      })
+      .catch(() => {
+        setViewComplaintModalOpen(false);
+        return Toast.show({
+          type: 'error',
+          text1: 'Oops!',
+          text2: 'Something went wrong. Please try again.',
+          topOffset: 10,
+        });
       });
   }
 
@@ -696,7 +721,7 @@ const Complaints = () => {
           </View>
         </View>
         {viewedComplaint.status === "Not Viewed" && <View style={styles.complaints.viewComplaintModal.last}>
-          <TouchableOpacity style={styles.complaints.viewComplaintModal.last.btn}>
+          <TouchableOpacity style={styles.complaints.viewComplaintModal.last.btn} onPress={() => handleOnRemoveComplaint(viewedComplaint.id)}>
             <Text style={styles.complaints.viewComplaintModal.last.btn.txt}>Remove the complaint</Text>
           </TouchableOpacity>
         </View>}
