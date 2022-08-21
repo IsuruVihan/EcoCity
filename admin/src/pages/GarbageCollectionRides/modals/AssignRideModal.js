@@ -6,7 +6,7 @@ import AssignRideForm from "../forms/AssignRideForm";
 const AssignRideModal = () => {
   return (
     <Container>
-      Assign ride modal
+      <AssignRideForm/>
     </Container>
   );
 }
