@@ -60,8 +60,8 @@ const GarbageHubDetailsModal = (props) => {
                     </Row>
                     <Row className='mx-0'>
                         <Col lg={12} className='h4'>Location</Col>
-                        <Col lg={12}>
-                            <Image src={popupMapImage} fluid/>
+                        <Col lg={12} className=' modal-map' style={{height: "300px", borderRadius: "15px"}}>
+
                         </Col>
                     </Row>
                     <Row className='mx-0 my-5'>
