@@ -3,6 +3,7 @@ import {Container} from "react-bootstrap";
 import UpdateGarbageHubForm from "../forms/UpdateGarbageHubForm";
 import Modal from "react-bootstrap/Modal";
 
+
 const UpdateGarbageHubModal = (props) => {
     return (
         <Modal
@@ -12,6 +13,7 @@ const UpdateGarbageHubModal = (props) => {
             centered
             backdrop="static"
             keyboard={false}
+            scrollable={true}
         >
             <Modal.Header closeButton>
                 <Modal.Title>Edit Garbage bin</Modal.Title>
