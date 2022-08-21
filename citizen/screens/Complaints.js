@@ -721,7 +721,10 @@ const Complaints = () => {
           </View>
         </View>
         {viewedComplaint.status === "Not Viewed" && <View style={styles.complaints.viewComplaintModal.last}>
-          <TouchableOpacity style={styles.complaints.viewComplaintModal.last.btn} onPress={() => handleOnRemoveComplaint(viewedComplaint.id)}>
+          <TouchableOpacity
+            style={styles.complaints.viewComplaintModal.last.btn}
+            onPress={() => handleOnRemoveComplaint(viewedComplaint.id)}
+          >
             <Text style={styles.complaints.viewComplaintModal.last.btn.txt}>Remove the complaint</Text>
           </TouchableOpacity>
         </View>}
@@ -756,7 +759,11 @@ const Complaints = () => {
   }
 
   const onRefresh = () => {
-    // setRefreshing(true);
+    setRefreshing(true);
+    getData();
+    filterData();
+    paginateData();
+    setRefreshing(false);
   }
 
   return (
