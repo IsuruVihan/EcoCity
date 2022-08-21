@@ -3,6 +3,7 @@ import {Row, Table} from "react-bootstrap";
 import {FiEdit, FiTrash} from "react-icons/fi";
 
 import UpdateGarbageHubModal from "../modals/UpdateGarbageHubModal";
+import DeleteGarbagBinModal from "../modals/DeleteGarbagBinModal";
 
 
 const GarbageHubsTableItem = (props) => {
@@ -10,6 +11,7 @@ const GarbageHubsTableItem = (props) => {
     const bins = hub.bins;
 
     const [isEditHubDetailsVisible, setIsEditHubDetailsVisible] = useState(false);
+    const [isDeleteBinVisible, setIsDeleteBinVisible] = useState(false);
 
     const getFillLevelClasses = (level) => {
         let classes = 'px-2 label ';
@@ -27,12 +29,16 @@ const GarbageHubsTableItem = (props) => {
     const handleOnHubCloseClicked = () => {
         setIsEditHubDetailsVisible(false);
     }
+    const handleOnEditBinClicked = () => {
+        setIsDeleteBinVisible(false);
+    }
 
     const handleOnGarbageBinEditClicked = (e) => {
         setIsEditHubDetailsVisible(true);
         e.stopPropagation();
     }
     const handleOnGarbageBinDeleteClicked = (e) => {
+        setIsDeleteBinVisible(true);
         e.stopPropagation();
     }
 
@@ -68,17 +74,16 @@ const GarbageHubsTableItem = (props) => {
                             <td>
                                 <div className='action-item-group'>
                                     <FiEdit id={1} onClick={handleOnGarbageBinEditClicked}/>
-                                    <FiTrash onClick={handleOnGarbageBinDeleteClicked}/>
+                                    <FiTrash id={1} onClick={handleOnGarbageBinDeleteClicked}/>
                                 </div>
                             </td>
                         </tr>
                     }
                 })
             }
-
             </tbody>
             <UpdateGarbageHubModal show={isEditHubDetailsVisible} onHide={handleOnHubCloseClicked}/>
-
+            <DeleteGarbagBinModal show={isDeleteBinVisible} onHide={handleOnEditBinClicked}/>
         </Fragment>
     );
 }
