@@ -1,5 +1,5 @@
 import React from 'react';
-import {Col, Container, FormControl, Modal, Row} from "react-bootstrap";
+import {Col, Container, FormControl, Image, Modal, Row} from "react-bootstrap";
 
 import GarbageBinDetailsCard from "../cards/GarbageBinDetailsCard";
 import GarbageHubLocationMap from "../maps/GarbageHubLocationMap";
@@ -7,6 +7,10 @@ import GarbageHubCollectedWeightsGraph from "../graphs/GarbageHubCollectedWeight
 import GarbageHubCollectedWeightsGraphFilter from "../filters/GarbageHubCollectedWeightsGraphFilter";
 import {AiFillCloseCircle} from "react-icons/ai";
 import '../../../../assets/styles/Comp1.css';
+
+//temp imports
+import popupMapImage from '../../../../assets/images/temp/popupMap.png';
+
 
 const GarbageHubDetailsModal = (props) => {
     const bins = props.hub.bins;
@@ -57,10 +61,10 @@ const GarbageHubDetailsModal = (props) => {
                     <Row className='mx-0'>
                         <Col lg={12} className='h4'>Location</Col>
                         <Col lg={12}>
-                            Map goes here
+                            <Image src={popupMapImage} fluid/>
                         </Col>
                     </Row>
-                    <Row className='mx-0 mb-5'>
+                    <Row className='mx-0 my-5'>
                         <Col lg={10} className='h5'>Collected Weight of garbage:</Col>
                         <Col lg={2}><GarbageHubCollectedWeightsGraphFilter/></Col>
                         <Col lg={12} className='mb-5'>
