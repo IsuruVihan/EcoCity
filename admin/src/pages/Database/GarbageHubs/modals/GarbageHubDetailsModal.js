@@ -1,36 +1,23 @@
 import React from 'react';
-import {Col, Container, Modal, Row} from "react-bootstrap";
+import {Col, Container, FormControl, Modal, Row} from "react-bootstrap";
 
 import GarbageBinDetailsCard from "../cards/GarbageBinDetailsCard";
 import GarbageHubLocationMap from "../maps/GarbageHubLocationMap";
 import GarbageHubCollectedWeightsGraph from "../graphs/GarbageHubCollectedWeightsGraph";
 import GarbageHubCollectedWeightsGraphFilter from "../filters/GarbageHubCollectedWeightsGraphFilter";
 import {AiFillCloseCircle} from "react-icons/ai";
+import '../../../../assets/styles/Comp1.css';
 
 const GarbageHubDetailsModal = (props) => {
+    const bins = props.hub.bins;
+    console.log(props.hub)
     return (
-        // <Container
-        //     className='position-absolute border-red garbage-hub-details-wrapper d-flex justify-content-center align-items-center'>
-        //     <Row className='garbage-hub-details border-red h-75 w-35'>
-        //         <Row className='mx-0 border-red h-10'>
-        //             <span>Garbage Hub Details</span>
-        //             <span onClick={props.onClose}>close</span>
-        //         </Row>
-        //         <Row className='mx-0 border-red h-90 garbage-hub-details-body'>
-        //             <div>Hub Id</div>
-        //             <div>Status</div>
-        //             <div>Sensor data section</div>
-        //             <div>Location</div>
-        //             <div>Collected weight of garbage section</div>
-        //         </Row>
-        //     </Row>
-        // </Container>
-
         <Modal
             {...props}
-            size="md"
+            size="lg"
             aria-labelledby="contained-modal-title-vcenter"
             centered
+            scrollable={true}
         >
             <Modal.Header closeButton>
                 <Modal.Title id="contained-modal-title-vcenter">
@@ -40,20 +27,30 @@ const GarbageHubDetailsModal = (props) => {
 
             <Modal.Body>
                 <Container>
-                    <Row className='mx-0'>
-                        <Col>
+                    <Row className='mx-0 align-items-center d-flex'>
+                        <Col lg={3}>
                             <div className='h4'>Hub Id</div>
+                        </Col>
+                        <Col lg={9}>
+                            <FormControl type={'text'} disabled value={props.hub.hubID}
+                                         style={{backgroundColor: "white"}}/>
+                        </Col>
+                        <Col lg={3} className='mt-1'>
                             <div className='h4'>Status</div>
                         </Col>
+                        <Col lg={9} className='mt-1'>
+                            <FormControl type={'text'} disabled value={props.hub.status}
+                                         style={{backgroundColor: "white"}}/>
+                        </Col>
                     </Row>
-                    <Row className='mx-0'>
+                    <Row className='mx-0 mt-3'>
                         <Col lg={12} className='h4'>Sensor Data</Col>
                         <Col lg={12}>
                             <Row>
-                                <Col lg={6}>Bin 1</Col>
-                                <Col lg={6}>Bin 2</Col>
-                                <Col lg={6}>Bin 3</Col>
-                                <Col lg={6}>Bin 4</Col>
+                                <Col lg={6} className={'my-2'}><GarbageBinDetailsCard bin={bins[0]}/></Col>
+                                <Col lg={6} className={'my-2'}><GarbageBinDetailsCard bin={bins[1]}/></Col>
+                                <Col lg={6} className={'my-2'}><GarbageBinDetailsCard bin={bins[2]}/></Col>
+                                <Col lg={6} className={'my-2'}><GarbageBinDetailsCard bin={bins[3]}/></Col>
                             </Row>
                         </Col>
                     </Row>
@@ -63,11 +60,11 @@ const GarbageHubDetailsModal = (props) => {
                             Map goes here
                         </Col>
                     </Row>
-                    <Row className='mx-0'>
-                        <Col lg={11} className='h4'>Collected Weight of garbage:</Col>
-                        <Col lg={1}>Filter</Col>
-                        <Col lg={12}>
-                            Chart
+                    <Row className='mx-0 mb-5'>
+                        <Col lg={10} className='h5'>Collected Weight of garbage:</Col>
+                        <Col lg={2}><GarbageHubCollectedWeightsGraphFilter/></Col>
+                        <Col lg={12} className='mb-5'>
+                            <GarbageHubCollectedWeightsGraph/>
                         </Col>
                     </Row>
                 </Container>

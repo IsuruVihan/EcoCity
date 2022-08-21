@@ -38,7 +38,9 @@ const GarbageHubsTableItem = (props) => {
 
     return (
         <Fragment>
-            <tbody onClick={props.onClick}>
+            <tbody onClick={() => {
+                props.onClick(hub.hubID)
+            }} id={hub.hubID}>
             <tr>
                 <td rowSpan={4}>{props.index + 1}</td>
                 <td rowSpan={4}>{hub.hubID}</td>
