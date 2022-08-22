@@ -25,14 +25,14 @@ const MyProfile = () => {
   const [fontSize, setFontSize] = useState(10);
 
   const [isVisibleProfileDetailsModal, setIsVisibleProfileDetailsModal] = useState(false);
-  const [homeId, setHomeId] = useState('');
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [nic, setNic] = useState('');
-  const [address, setAddress] = useState('');
-  const [email, setEmail] = useState('');
-  const [currentPassword, setCurrentPassword] = useState('');
-  const [newPassword, setNewPassword] = useState('');
+  const [homeId, setHomeId] = useState('#1234');
+  const [firstName, setFirstName] = useState('Isuru');
+  const [lastName, setLastName] = useState('Harischandra');
+  const [nic, setNic] = useState('992462698v');
+  const [address, setAddress] = useState('634/21, Athurugiriya');
+  const [email, setEmail] = useState('isuruvihan@gmail.com');
+  const [currentPassword, setCurrentPassword] = useState('Isuru@123');
+  const [newPassword, setNewPassword] = useState('Isuru@123');
 
   const openModals = (label) => {
     console.log("OPEN: ", label);
@@ -123,7 +123,7 @@ const MyProfile = () => {
   }
 
   const ProfileDetailsModal = () => {
-    const Item = (label, onChange, value) => {
+    const Item = (label, onChange, value, secure) => {
       return (
         <View style={styles.myProfile.profile.section.item}>
           <View style={styles.myProfile.profile.section.item.part1}>
@@ -132,6 +132,7 @@ const MyProfile = () => {
               style={styles.myProfile.profile.section.item.part1.field}
               onChangeText={onChange}
               value={value}
+              secureTextEntry={secure}
             />
           </View>
           <View style={styles.myProfile.profile.section.item.part2}>
@@ -159,19 +160,19 @@ const MyProfile = () => {
         <View style={styles.myProfile.profile.space}/>
         <View style={styles.myProfile.profile.section}>
           <Text style={styles.myProfile.profile.section.topic}>PUBLIC INFORMATION</Text>
-          {Item('Home ID', setHomeId, homeId)}
-          {Item('First Name', setFirstName, firstName)}
-          {Item('Last Name', setLastName, lastName)}
-          {Item('NIC', setNic, nic)}
-          {Item('Address', setAddress, address)}
-          {Item('Email', setEmail, email)}
+          {Item('Home ID', setHomeId, homeId, false)}
+          {Item('First Name', setFirstName, firstName, false)}
+          {Item('Last Name', setLastName, lastName, false)}
+          {Item('NIC', setNic, nic, false)}
+          {Item('Address', setAddress, address, false)}
+          {Item('Email', setEmail, email, false)}
         </View>
         <Button title="Save" buttonStyle={styles.myProfile.profile.section.btn}/>
         <View style={styles.myProfile.profile.space}/>
         <View style={styles.myProfile.profile.section}>
           <Text style={styles.myProfile.profile.section.topic}>PASSWORD</Text>
-          {Item('Current Password', setCurrentPassword, currentPassword)}
-          {Item('New Password', setNewPassword, newPassword)}
+          {Item('Current Password', setCurrentPassword, currentPassword, true)}
+          {Item('New Password', setNewPassword, newPassword, true)}
         </View>
         <Button title="Change Password" buttonStyle={styles.myProfile.profile.section.btn}/>
       </Dialog>
