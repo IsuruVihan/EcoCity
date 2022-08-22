@@ -4,6 +4,7 @@ import Spinner from "react-native-loading-spinner-overlay/src";
 import {Button} from "@rneui/base";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import Octicons from "react-native-vector-icons/Octicons";
+import FeatherIcons from "react-native-vector-icons/Feather";
 
 import {AuthContext} from "../context/AuthContext";
 import {Responsive} from "../helpers/Responsive";
@@ -14,6 +15,27 @@ const HEIGHT = Dimensions.get('window').height;
 
 const MyProfile = () => {
   const {loading, loggedUser, logout} = useContext(AuthContext);
+
+  const openModals = (label) => {
+    console.log("OPEN: ", label);
+  }
+
+  const Link = (iconType, iconName, label) => {
+    return (
+      <TouchableOpacity style={styles.myProfile.links.section} onPress={() => openModals(label)}>
+        <View style={styles.myProfile.links.section.box1}>
+          {iconType === 'feather' && <FeatherIcons name={iconName} size={25} color={'#042434'}/>}
+          {iconType === 'material' && <MaterialIcons name={iconName} size={25} color={'#042434'}/>}
+        </View>
+        <View style={styles.myProfile.links.section.box2}>
+          <Text style={styles.myProfile.links.section.box2.txt}>{label}</Text>
+        </View>
+        <View style={styles.myProfile.links.section.box3}>
+          <FeatherIcons name={'chevron-right'} size={25} color={'#042434'}/>
+        </View>
+      </TouchableOpacity>
+    );
+  }
 
   return (
     <View style={styles.myProfile}>
@@ -45,25 +67,18 @@ const MyProfile = () => {
       </View>
       <View style={styles.myProfile.space}/>
       <View style={styles.myProfile.links}>
-        <TouchableOpacity style={styles.myProfile.links.section}>
-          <View style={styles.myProfile.links.section.box1}></View>
-          <View style={styles.myProfile.links.section.box2}></View>
-          <View style={styles.myProfile.links.section.box3}></View>
-        </TouchableOpacity>
+        {Link('feather', 'user', 'Profile')}
+        {Link('feather', 'settings', 'Settings')}
+        {Link('material', 'nfc', 'My NFC Tags')}
       </View>
-      {/*<Spinner visible={loading}/>*/}
-      {/*<View>*/}
-      {/*  <Text>Welcome {loggedUser.email}</Text>*/}
-      {/*  <Button onPress={logout} title={'Logout'}/>*/}
-      {/*</View>*/}
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   myProfile: {
-    borderWidth: 2,
-    borderColor: 'orange',
+    // borderWidth: 2,
+    // borderColor: 'orange',
     height: Responsive(83, HEIGHT),
     paddingHorizontal: 10,
     space: {
@@ -72,14 +87,14 @@ const styles = StyleSheet.create({
       height: '2%',
     },
     topic: {
-      borderWidth: 2,
-      borderColor: 'red',
+      // borderWidth: 2,
+      // borderColor: 'red',
       height: '8%',
       display: 'flex',
       justifyContent: 'center',
       txt: {
-        borderWidth: 2,
-        borderColor: 'green',
+        // borderWidth: 2,
+        // borderColor: 'green',
         color: '#042434',
         fontSize: 30,
         fontWeight: '600',
@@ -147,28 +162,37 @@ const styles = StyleSheet.create({
       },
     },
     links: {
-      borderWidth: 2,
-      borderColor: 'red',
+      // borderWidth: 2,
+      // borderColor: 'red',
       height: '66%',
       section: {
-        borderWidth: 2,
-        borderColor: 'blue',
+        // borderWidth: 2,
+        // borderColor: 'blue',
         height: '18%',
         display: 'flex',
         flexDirection: 'row',
-        justifyContent: 'center',
+        justifyContent: 'space-around',
         alignItems: 'center',
+        paddingHorizontal: 10,
         box1: {
-          borderWidth: 2,
-          borderColor: 'green',
+          // borderWidth: 2,
+          // borderColor: 'green',
+          width: '10%',
         },
         box2: {
-          borderWidth: 2,
-          borderColor: 'green',
+          // borderWidth: 2,
+          // borderColor: 'green',
+          width: '50%',
+          txt: {
+            color: '#042434',
+            fontSize: 18,
+            fontWeight: '500',
+          },
         },
         box3: {
-          borderWidth: 2,
-          borderColor: 'green',
+          // borderWidth: 2,
+          // borderColor: 'green',
+          width: '10%',
         },
       },
     },
