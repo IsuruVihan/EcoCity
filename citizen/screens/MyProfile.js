@@ -34,8 +34,9 @@ const MyProfile = () => {
   const [currentPassword, setCurrentPassword] = useState('Isuru@123');
   const [newPassword, setNewPassword] = useState('Isuru@123');
 
+  const [isVisibleNFCModal, setIsVisibleNFCModal] = useState(false);
+
   const openModals = (label) => {
-    console.log("OPEN: ", label);
     switch (label) {
       case "Profile":
         setIsVisibleProfileDetailsModal(true);
@@ -44,6 +45,8 @@ const MyProfile = () => {
         setIsVisibleSettingsModal(true);
         break;
       case "My NFC Tags":
+        setIsVisibleNFCModal(true);
+
     }
   }
 
@@ -179,10 +182,42 @@ const MyProfile = () => {
     );
   }
 
+  const NFCTagsModal = () => {
+    return (
+      <Dialog
+        isVisible={isVisibleNFCModal}
+        style={styles.myProfile.nfc}
+      >
+        <View style={styles.myProfile.nfc.first}>
+          <MaterialIcons
+            size={25}
+            color={'black'}
+            name={'chevron-left'}
+            onPress={() => setIsVisibleNFCModal(false)}
+          />
+          <Text style={styles.myProfile.nfc.first.txt}>MY NFC TAGS</Text>
+          <MaterialIcons size={25} color={'black'} name={'done'}/>
+        </View>
+        {/*<View style={styles.myProfile.nfc.space}/>*/}
+        <View>
+          <Text style={styles.myProfile.nfc.topic}>NFC Tags</Text>
+        </View>
+        <View style={styles.myProfile.nfc.card}>
+          <View style={styles.myProfile.nfc.card.section1}></View>
+          <View style={styles.myProfile.nfc.card.section2}>
+            <Text></Text>
+          </View>
+          <View style={styles.myProfile.nfc.card.section2}></View>
+        </View>
+      </Dialog>
+    );
+  }
+
   return (
     <View style={styles.myProfile}>
       {SettingsModal()}
       {ProfileDetailsModal()}
+      {NFCTagsModal()}
       <View style={styles.myProfile.space}/>
       <View style={styles.myProfile.topic}>
         <Text style={styles.myProfile.topic.txt}>My Profile</Text>
@@ -440,6 +475,54 @@ const styles = StyleSheet.create({
       },
       space: {
         height: '2%',
+      },
+    },
+    nfc: {
+      first: {
+        borderBottomColor: '#BFDDDE',
+        borderBottomWidth: 2,
+        height: Responsive(5, HEIGHT),
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        icon: {
+
+        },
+        txt: {
+          color: '#042434',
+          fontSize: 15,
+        },
+      },
+      space: {
+        height: '2%',
+      },
+      topic: {
+        color: '#707070',
+        fontWeight: '600',
+        marginVertical: 5,
+        fontSize: 12,
+      },
+      card: {
+        borderColor: 'red',
+        borderWidth: 2,
+        borderRadius: 10,
+        height: Responsive(8, HEIGHT),
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        alignItems: 'center',
+        paddingVertical: 10,
+        section1: {
+          borderColor: 'orange',
+          borderWidth: 2,
+          width: '20%',
+          height: '100%',
+        },
+        section2: {
+          borderColor: 'orange',
+          borderWidth: 2,
+        },
       },
     },
   },
