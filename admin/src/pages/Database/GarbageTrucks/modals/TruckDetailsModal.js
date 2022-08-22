@@ -125,7 +125,12 @@ const TruckDetailsModal = (props) => {
                         <Row className='mx-0'>
                             <Col className='px-0 fw-bold' lg={10}>Job Details</Col>
                             <Col className='px-0' lg={2}><JobsGraphFilter/></Col>
-
+                        </Row>
+                        <Row className='mx-0 mt-3'>
+                            <Col lg={6} className='p-3'>
+                                <JobsPieGraph/>
+                            </Col>
+                            <Col lg={6} className='px-0'>Completed Job Percentage</Col>
                         </Row>
 
 
