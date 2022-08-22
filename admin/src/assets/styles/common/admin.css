@@ -6,3 +6,8 @@
     width: 90vw; /* Occupy the 90% of the screen width */
     max-width: 70vw;
 }
+
+.modal-60w {
+    width: 90vw; /* Occupy the 90% of the screen width */
+    max-width: 60vw;
+}

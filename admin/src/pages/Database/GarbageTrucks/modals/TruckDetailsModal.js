@@ -19,7 +19,7 @@ const TruckDetailsModal = (props) => {
             size="lg"
             aria-labelledby="contained-modal-title-vcenter"
             centered
-            dialogClassName="modal-70w"
+            dialogClassName="modal-60w"
         >
             <Modal.Header closeButton>
                 <Modal.Title id="contained-modal-title-vcenter">
@@ -129,8 +129,12 @@ const TruckDetailsModal = (props) => {
                         <Row className='mx-0 mt-3'>
                             <Col lg={6} className='p-3'>
                                 <JobsPieGraph/>
+                                <div className='position-absolute ms-5  fw-bolder'
+                                     style={{color: "#042434", top: "26%", right: "31%", fontSize: "65px"}}>
+                                    <label className='ms-4 mb-5'>76</label><label className='fs-5'>%</label>
+                                </div>
                             </Col>
-                            <Col lg={6} className='px-0'>Completed Job Percentage</Col>
+                            <Col lg={6} className='px-0 d-flex fs-3 align-items-center'>Completed Job Percentage</Col>
                         </Row>
 
 
