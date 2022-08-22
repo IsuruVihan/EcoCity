@@ -132,6 +132,36 @@ const Welcome = () => {
     );
   }
 
+  const Chart = () => {
+    return (
+      <VictoryChart
+        animate={{duration: 2000, onLoad: {duration: 1000}}}
+        minDomain={{y: 0}}
+        height={Responsive(25, HEIGHT)}
+        width={Responsive(50, HEIGHT)}
+      >
+        <VictoryLine
+          data={[
+            {x: "Jan", y: 2},
+            {x: "Feb", y: 3},
+            {x: "Mar", y: 5},
+            {x: "Apr", y: 4},
+            {x: "May", y: 7},
+            {x: "Jun", y: 4},
+            {x: "Jul", y: 7},
+          ]}
+          style={{
+            data: {
+              stroke: "#85BBBD",
+              strokeWidth: 2,
+            },
+          }}
+          interpolation="linear"
+        />
+      </VictoryChart>
+    );
+  }
+
   return (
     <ScrollView style={styles.welcome}>
       {Filter()}
@@ -198,31 +228,7 @@ const Welcome = () => {
             </Text>
           </View>
           <View style={styles.welcome.stat.graph.second}>
-            <VictoryChart
-              animate={{duration: 2000, onLoad: {duration: 1000}}}
-              minDomain={{y: 0}}
-              height={Responsive(25, HEIGHT)}
-              width={Responsive(50, HEIGHT)}
-            >
-              <VictoryLine
-                data={[
-                  {x: "Jan", y: 2},
-                  {x: "Feb", y: 3},
-                  {x: "Mar", y: 5},
-                  {x: "Apr", y: 4},
-                  {x: "May", y: 7},
-                  {x: "Jun", y: 4},
-                  {x: "Jul", y: 7},
-                ]}
-                style={{
-                  data: {
-                    stroke: "#85BBBD",
-                    strokeWidth: 2,
-                  },
-                }}
-                interpolation="linear"
-              />
-            </VictoryChart>
+            {Chart()}
           </View>
         </View>
       </View>
