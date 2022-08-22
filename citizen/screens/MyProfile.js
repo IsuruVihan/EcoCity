@@ -1,5 +1,5 @@
 import React, {useContext} from 'react';
-import {Dimensions, Image, StyleSheet, Text, View} from "react-native";
+import {Dimensions, Image, StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import Spinner from "react-native-loading-spinner-overlay/src";
 import {Button} from "@rneui/base";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
@@ -40,10 +40,17 @@ const MyProfile = () => {
           <Text style={styles.myProfile.status.second.txt2}>Citizen ID: 1234</Text>
         </View>
         <View style={styles.myProfile.status.third}>
-          <MaterialIcons name={'logout'} size={25} color={'#075061'}/>
+          <MaterialIcons name={'logout'} size={25} color={'#075061'} onPress={logout}/>
         </View>
       </View>
-      <View style={styles.myProfile.links}></View>
+      <View style={styles.myProfile.space}/>
+      <View style={styles.myProfile.links}>
+        <TouchableOpacity style={styles.myProfile.links.section}>
+          <View style={styles.myProfile.links.section.box1}></View>
+          <View style={styles.myProfile.links.section.box2}></View>
+          <View style={styles.myProfile.links.section.box3}></View>
+        </TouchableOpacity>
+      </View>
       {/*<Spinner visible={loading}/>*/}
       {/*<View>*/}
       {/*  <Text>Welcome {loggedUser.email}</Text>*/}
@@ -142,7 +149,28 @@ const styles = StyleSheet.create({
     links: {
       borderWidth: 2,
       borderColor: 'red',
-      height: '68%',
+      height: '66%',
+      section: {
+        borderWidth: 2,
+        borderColor: 'blue',
+        height: '18%',
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        box1: {
+          borderWidth: 2,
+          borderColor: 'green',
+        },
+        box2: {
+          borderWidth: 2,
+          borderColor: 'green',
+        },
+        box3: {
+          borderWidth: 2,
+          borderColor: 'green',
+        },
+      },
     },
   },
 });
