@@ -3,6 +3,7 @@ import {Row, Table} from "react-bootstrap";
 import {FiCircle, FiEdit, FiTrash} from "react-icons/fi";
 import {FaCircle} from "react-icons/fa";
 import UpdateTruckDriverModal from "../modals/UpdateTruckDriverModal";
+import DeleteTruckDriverModal from "../modals/DeleteTruckDriverModal";
 
 
 const GarbageHubsTableItem = (props) => {
@@ -41,9 +42,9 @@ const GarbageHubsTableItem = (props) => {
         e.stopPropagation();
     }
     //
-    // const handleOnBinDeleted = () => {
-    //     setIsDeleteBinVisible(false);
-    // }
+    const handleOnDriverDeleted = () => {
+        setIsDeleteDriverVisible(false);
+    }
     return (
         <Fragment>
             <tr className='c-pointer' style={{height: "42px"}} onClick={props.onClick}>
@@ -67,8 +68,8 @@ const GarbageHubsTableItem = (props) => {
 
 
             <UpdateTruckDriverModal show={isEditDriverDetailsVisible} onHide={handleOnDriverCloseClicked}/>
-            {/*/!*<DeleteGarbagBinModal show={isDeleteBinVisible} onHide={handleOnEditBinClicked}*!/*/}
-            {/*/!*                      onConfirm={handleOnBinDeleted}/>*!/*/}
+            <DeleteTruckDriverModal show={isDeleteDriverVisible} onHide={handleOnDriverDeleted}
+                                    onConfirm={handleOnDriverDeleted}/>
         </Fragment>
     );
 }
