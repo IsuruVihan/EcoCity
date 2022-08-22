@@ -37,7 +37,7 @@ const GarbageTrucks = () => {
                             Filter
                             <FiFilter color='#228693' size='20px'/>
                         </span>
-                        {isTableFilterVisible && <GarbageHubsTableFilter/>}
+                        {isTableFilterVisible && <TrucksTableFilter/>}
                     </div>
                     <TrucksTable onCreateClicked={setShowCreateTruckForm}/>
                     <CreateTruckModal onHide={handleClose} show={showCreateTruckForm}/>
