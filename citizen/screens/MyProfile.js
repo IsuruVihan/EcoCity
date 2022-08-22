@@ -1,5 +1,5 @@
 import React, {useContext, useState} from 'react';
-import {Dimensions, Image, StyleSheet, Text, TouchableOpacity, View} from "react-native";
+import {Dimensions, Image, StyleSheet, Text, TouchableOpacity, View, TextInput} from "react-native";
 import {Dialog, Switch} from "@rneui/themed";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import Octicons from "react-native-vector-icons/Octicons";
@@ -13,6 +13,7 @@ import {Responsive} from "../helpers/Responsive";
 
 import HouseImg from '../assets/images/house-profile.png';
 import Feather from "react-native-vector-icons/Feather";
+import {Button} from "@rneui/base";
 
 const HEIGHT = Dimensions.get('window').height;
 
@@ -20,14 +21,24 @@ const MyProfile = () => {
   const {loading, loggedUser, logout} = useContext(AuthContext);
 
   const [isVisibleSettingsModal, setIsVisibleSettingsModal] = useState(false);
-
   const [darkModeOn, setDarkModeOn] = useState(false);
   const [fontSize, setFontSize] = useState(10);
+
+  const [isVisibleProfileDetailsModal, setIsVisibleProfileDetailsModal] = useState(false);
+  const [homeId, setHomeId] = useState('');
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [nic, setNic] = useState('');
+  const [address, setAddress] = useState('');
+  const [email, setEmail] = useState('');
+  const [currentPassword, setCurrentPassword] = useState('');
+  const [newPassword, setNewPassword] = useState('');
 
   const openModals = (label) => {
     console.log("OPEN: ", label);
     switch (label) {
       case "Profile":
+        setIsVisibleProfileDetailsModal(true);
         break;
       case "Settings":
         setIsVisibleSettingsModal(true);
@@ -56,7 +67,15 @@ const MyProfile = () => {
   const SettingsModal = () => {
     return (
       <Dialog
-        overlayStyle={{width: '100%', marginTop: 'auto', borderTopLeftRadius: 60, borderTopRightRadius: 60, paddingTop: 60, paddingBottom: 40, paddingHorizontal: 50,}}
+        overlayStyle={{
+          width: '100%',
+          marginTop: 'auto',
+          borderTopLeftRadius: 60,
+          borderTopRightRadius: 60,
+          paddingTop: 60,
+          paddingBottom: 40,
+          paddingHorizontal: 50,
+        }}
         isVisible={isVisibleSettingsModal}
         onBackdropPress={() => setIsVisibleSettingsModal(false)}
         style={styles.myProfile.settings}
@@ -103,9 +122,66 @@ const MyProfile = () => {
     );
   }
 
+  const ProfileDetailsModal = () => {
+    const Item = (label, onChange, value) => {
+      return (
+        <View style={styles.myProfile.profile.section.item}>
+          <View style={styles.myProfile.profile.section.item.part1}>
+            <Text style={styles.myProfile.profile.section.item.part1.label}>{label}</Text>
+            <TextInput
+              style={styles.myProfile.profile.section.item.part1.field}
+              onChangeText={onChange}
+              value={value}
+            />
+          </View>
+          <View style={styles.myProfile.profile.section.item.part2}>
+            <MaterialIcons size={20} color={'#AFCACB'} name={'done'}/>
+          </View>
+        </View>
+      );
+    }
+
+    return (
+      <Dialog
+        isVisible={isVisibleProfileDetailsModal}
+        style={styles.myProfile.profile}
+      >
+        <View style={styles.myProfile.profile.first}>
+          <MaterialIcons
+            size={25}
+            color={'black'}
+            name={'chevron-left'}
+            onPress={() => setIsVisibleProfileDetailsModal(false)}
+          />
+          <Text style={styles.myProfile.profile.first.txt}>EDIT PROFILE</Text>
+          <MaterialIcons size={25} color={'black'} name={'done'}/>
+        </View>
+        <View style={styles.myProfile.profile.space}/>
+        <View style={styles.myProfile.profile.section}>
+          <Text style={styles.myProfile.profile.section.topic}>PUBLIC INFORMATION</Text>
+          {Item('Home ID', setHomeId, homeId)}
+          {Item('First Name', setFirstName, firstName)}
+          {Item('Last Name', setLastName, lastName)}
+          {Item('NIC', setNic, nic)}
+          {Item('Address', setAddress, address)}
+          {Item('Email', setEmail, email)}
+        </View>
+        <Button title="Save" buttonStyle={styles.myProfile.profile.section.btn}/>
+        <View style={styles.myProfile.profile.space}/>
+        <View style={styles.myProfile.profile.section}>
+          <Text style={styles.myProfile.profile.section.topic}>PASSWORD</Text>
+          {Item('Current Password', setCurrentPassword, currentPassword)}
+          {Item('New Password', setNewPassword, newPassword)}
+        </View>
+        <Button title="Change Password" buttonStyle={styles.myProfile.profile.section.btn}/>
+      </Dialog>
+    );
+  }
+
   return (
     <View style={styles.myProfile}>
       {SettingsModal()}
+      {ProfileDetailsModal()}
       <View style={styles.myProfile.space}/>
       <View style={styles.myProfile.topic}>
         <Text style={styles.myProfile.topic.txt}>My Profile</Text>
@@ -298,6 +374,71 @@ const styles = StyleSheet.create({
             width: Responsive(12, HEIGHT),
           },
         },
+      },
+    },
+    profile: {
+      first: {
+        borderBottomColor: '#BFDDDE',
+        borderBottomWidth: 2,
+        height: Responsive(5, HEIGHT),
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        icon: {
+
+        },
+        txt: {
+          color: '#042434',
+          fontSize: 15,
+        },
+      },
+      section: {
+        // borderColor: 'blue',
+        // borderWidth: 2,
+        topic: {
+          color: '#707070',
+          fontWeight: '600',
+          marginVertical: 5,
+          fontSize: 12,
+        },
+        item: {
+          borderColor: '#E8F5F6',
+          borderWidth: 2,
+          marginBottom: 5,
+          borderRadius: 10,
+          paddingHorizontal: 10,
+          paddingVertical: 5,
+          display: 'flex',
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          part1: {
+            label: {
+              // borderColor: 'orange',
+              // borderWidth: 2,
+              color: '#707070',
+              fontSize: 12,
+            },
+            field: {
+              // borderColor: 'orange',
+              // borderWidth: 2,
+              padding: 0,
+              color: '#042434',
+            },
+          },
+          part2: {
+            // borderColor: 'orange',
+            // borderWidth: 2,
+          },
+        },
+        btn: {
+          backgroundColor: '#228693',
+          borderRadius: 10,
+        },
+      },
+      space: {
+        height: '2%',
       },
     },
   },
