@@ -120,89 +120,16 @@ const TruckDetailsModal = (props) => {
                                 </tbody>
                             </Table>
                         </Row>
+                    </Col>
+                    <Col lg={6} className=''>
+                        <Row className='mx-0'>
+                            <Col className='px-0 fw-bold' lg={10}>Job Details</Col>
+                            <Col className='px-0' lg={2}><JobsGraphFilter/></Col>
+
+                        </Row>
+
 
                     </Col>
-                    {/*<Col lg={6} className=''>*/}
-                    {/*    <Row className='mx-0 fs-6'>*/}
-                    {/*        <div className='fs-6 px-0'>NFC Tags</div>*/}
-                    {/*        <Col className='px-0'>*/}
-                    {/*            <Table className='my-0 fs-6 driver-table' borderless>*/}
-                    {/*                <thead>*/}
-                    {/*                <tr className='table-header'>*/}
-                    {/*                    <td>#</td>*/}
-                    {/*                    <td>ID</td>*/}
-                    {/*                    <td>Serial Number</td>*/}
-                    {/*                    <td>Status</td>*/}
-                    {/*                </tr>*/}
-                    {/*                </thead>*/}
-                    {/*                <tbody>*/}
-                    {/*                <tr>*/}
-                    {/*                    <td>1</td>*/}
-                    {/*                    <td>001</td>*/}
-                    {/*                    <td>NFC-1</td>*/}
-                    {/*                    <td>*/}
-                    {/*                        <div className='status status-active'>Active</div>*/}
-                    {/*                    </td>*/}
-                    {/*                </tr>*/}
-                    {/*                <tr>*/}
-                    {/*                    <td>2</td>*/}
-                    {/*                    <td>002</td>*/}
-                    {/*                    <td>NFC-2</td>*/}
-                    {/*                    <td>*/}
-                    {/*                        <div className='status status-active'>Active</div>*/}
-                    {/*                    </td>*/}
-
-                    {/*                </tr>*/}
-                    {/*                </tbody>*/}
-                    {/*            </Table>*/}
-                    {/*        </Col>*/}
-                    {/*    </Row>*/}
-                    {/*    <Row className='mx-0 mt-2'>*/}
-                    {/*        <div className='fs-6 px-0'>Job Details</div>*/}
-                    {/*        <Table className='my-0 driver-table' borderless>*/}
-                    {/*            <thead>*/}
-                    {/*            <tr className='table-header'>*/}
-                    {/*                <td>#</td>*/}
-                    {/*                <td>ID</td>*/}
-                    {/*                <td>Date</td>*/}
-                    {/*                <td>Status</td>*/}
-                    {/*                <td>Action</td>*/}
-                    {/*            </tr>*/}
-                    {/*            </thead>*/}
-                    {/*            <tbody>*/}
-                    {/*            <tr>*/}
-                    {/*                <td>1</td>*/}
-                    {/*                <td>001</td>*/}
-                    {/*                <td>2022/08/24</td>*/}
-                    {/*                <td>*/}
-                    {/*                    <div className='status status-ongoing'>Ongoing</div>*/}
-                    {/*                </td>*/}
-                    {/*                <td>*/}
-                    {/*                    <div className='status view'>View</div>*/}
-                    {/*                </td>*/}
-                    {/*            </tr>*/}
-                    {/*            <tr>*/}
-                    {/*                <td>2</td>*/}
-                    {/*                <td>002</td>*/}
-                    {/*                <td>2022/08/25</td>*/}
-                    {/*                <td>*/}
-                    {/*                    <div className='status status-assigned'>Assigned</div>*/}
-                    {/*                </td>*/}
-                    {/*                <td>*/}
-                    {/*                    <div className='status view'>View</div>*/}
-                    {/*                </td>*/}
-                    {/*            </tr>*/}
-                    {/*            </tbody>*/}
-                    {/*        </Table>*/}
-                    {/*    </Row>*/}
-                    {/*    <Row className='mx-0 mt-2'>*/}
-                    {/*        <Col lg={10} className='h6 px-0'>Total number of collected jobs:</Col>*/}
-                    {/*        <Col lg={2} className={'px-0'}><JobsGraphFilter/></Col>*/}
-                    {/*        <Col lg={12} className='mb-5'>*/}
-                    {/*            <JobsGraph/>*/}
-                    {/*        </Col>*/}
-                    {/*    </Row>*/}
-                    {/*</Col>*/}
                 </Row>
             </Modal.Body>
         </Modal>
