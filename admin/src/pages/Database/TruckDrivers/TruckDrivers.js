@@ -43,7 +43,7 @@ const TruckDrivers = () => {
                         {isTableFilterVisible && <GarbageHubsTableFilter/>}
                     </div>
                     <TruckDriversTable onCreateClicked={setShowCreateHubForm}/>
-                    <CreateGarbageHubModal onHide={handleClose} show={showCreateHubForm}/>
+                    <CreateTruckDriverModal onHide={handleClose} show={showCreateHubForm}/>
                 </Col>
                 <Col lg={4} className='box-shadow px-0'>
                     <Image src={mapImage} fluid/>

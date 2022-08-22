@@ -48,3 +48,22 @@
 .driver-table tr td:last-child {
     width: 100px;
 }
+
+/*Modal Buttons*/
+
+.modal-button {
+    width: 100px;
+    vertical-align: middle !important;
+    border-radius: 10px;
+    display: table-cell;
+}
+
+.save {
+    background-color: #228693;
+    color: white;
+}
+
+.cancel {
+    color: #228693;
+    border: 2px solid #b9b9b9;
+}
