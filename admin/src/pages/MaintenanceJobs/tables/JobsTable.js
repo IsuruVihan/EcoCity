@@ -4,12 +4,18 @@ import { Col, Container, Image, Modal, Row, Table, Button} from "react-bootstrap
 import {FiArrowLeft, FiArrowRight, FiEdit} from "react-icons/fi";
 import ViewJobModal from '../modals/ViewJobModal';
 import close from "../../../assets/images/icons/close.png";
+import AssignJobModal from '../modals/AssignJobModal';
 //import './JobsTable.css'
 
 const JobsTable = () => {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  const [showassign, setShowassign] = useState(false);
+  const handleassignClose = () => setShowassign(false);
+  const handleassingShow = () => setShowassign(true);
+
   return (
     <Container>
       <Row className='p-2 m-0'>
@@ -35,8 +41,8 @@ const JobsTable = () => {
               <td>01/07/2022</td>
               <td>Paper</td>
             </tr>
-            <Modal className={'m-0 p-0'} show={show} onHide={handleClose} style={{width:'100%', margin:'auto'}} size='lg'>
-              <Modal.Header className={'m-0 p-0'}>
+            <Modal className={'m-0 p-0'} show={show} onHide={handleClose} style={{width:'100%', margin:'auto', border:'none'}} size='lg'>
+              <Modal.Header className={'m-0 p-0'} style={{border:'none'}}>
                 <Row className={'m-0 p-0 mt-3'}>
                   <Col style={{marginLeft:430, display:'flex', alignItems:'center', justifyContent:'right'}}>
                     <Image src={close} onClick={handleClose} width="10%" style={{cursor:'pointer'}}/>
@@ -96,8 +102,20 @@ const JobsTable = () => {
       </Row>
       <Row classname='p-2 m-0' style={{dislay:'flex',alignItems:'center',justifyContent:'center'}}>
         <Col className=' m-2' lg={9}>
-          <Button className=' p-2' style={{borderRadius:'10px',boxShadow: `5px 6px 8px #9999ff`,}}><FiEdit/> Assign</Button>
+          <Button className=' p-2' style={{borderRadius:'10px',boxShadow: `5px 6px 8px #9999ff`}} onClick={handleassingShow}><FiEdit/> Assign</Button>
         </Col>
+        <Modal show={showassign} onHide={handleassignClose} size='lg'>
+          <Modal.Header className='p-0 m-0' style={{border:'none'}}>
+            <Row>
+              <Col style={{ marginLeft:740, marginTop:10}}>
+                <Image src={close} onClick={handleassignClose} width="50%"/>
+              </Col>
+            </Row>
+          </Modal.Header>
+          <Modal.Body className='p-0 m-0'>
+            <AssignJobModal/>
+          </Modal.Body>
+        </Modal>
         <Col classname='p-0 m-0' style={{dislay:'flex',alignItems:'center',justifyContent:'center'}}>
           <Row classname='p-0 m-0' style={{dislay:'flex',alignItems:'center',justifyContent:'center'}}>
             <Col xs={10}>
