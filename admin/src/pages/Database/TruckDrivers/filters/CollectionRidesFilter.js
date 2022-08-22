@@ -23,7 +23,7 @@ const JobsGraphFilter = () => {
                     </Row>
                 </Col>
             </Row>
-            <Row className="p-0" style={{position: "absolute", right: 543, paddingTop: 15}}>
+            <Row className="p-0" style={{position: "absolute", right: 467, paddingTop: 15}}>
                 <Collapse in={open}>
                     <Container id="example-collapse-text" style={{
                         backgroundColor: "white",
