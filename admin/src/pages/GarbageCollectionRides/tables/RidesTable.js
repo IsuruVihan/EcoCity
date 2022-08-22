@@ -9,8 +9,6 @@ import rightarrow from "../../../assets/images/icons/rightarrow.png";
 import create from "../../../assets/images/icons/create.png";
 import close from "../../../assets/images/icons/close.png";
 
-
-
 const RidesTable = () => {
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
@@ -115,8 +113,10 @@ const RidesTable = () => {
                     </Row>
                     <Row>
                         <Col xs={9}>
-                            <Row style={{width:110, textAlign:'center', backgroundColor:'#228693',borderRadius:8,boxShadow: `0px 4px 8px #BFDDDE`}}>
-                                <Col style={{textAlign:'center',color:'#fff', paddingTop:10,paddingBottom:10,cursor:'pointer'}} onClick={handleassingShow}>
+                            <Row style={{width:110, textAlign:'center', backgroundColor:'#228693',
+                                         borderRadius:8,boxShadow: `0px 4px 8px #BFDDDE`}}>
+                                <Col style={{textAlign:'center',color:'#fff', paddingTop:10,
+                                             paddingBottom:10,cursor:'pointer'}} onClick={handleassingShow}>
                                     <Image src={create} width='20%'/>
                                     Assign
                                 </Col>
@@ -141,7 +141,8 @@ const RidesTable = () => {
                                 </Col>
                                 <Col xs={7}>
                                     <Row>
-                                        <Col style={{border:'1px solid #BFDDDE', marginTop:2, marginBottom:2, marginLeft:5, marginRight:5, textAlign:'center', borderRadius:10}}>
+                                        <Col style={{border:'1px solid #BFDDDE', marginTop:2, marginBottom:2,
+                                                     marginLeft:5, marginRight:5, textAlign:'center', borderRadius:10}}>
                                             1
                                         </Col>
                                         <Col style={{marginTop:2, marginBottom:2, marginLeft:5, marginRight:5, textAlign:'center'}}>
