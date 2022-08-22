@@ -50,7 +50,7 @@ const RidesTable = () => {
                                 <th scope="col">Date</th>
                                 <th scope="col">Bin Type</th>
                                 <th scope="col">Bin Count</th>
-                                <th scope="col">Weight</th>
+                                <th scope="col">Weight(Kg)</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -61,9 +61,42 @@ const RidesTable = () => {
                                 <td>NC-5205</td>
                                 <td><label className={changeColor(status)}>{status}</label></td>
                                 <td>06/07/2022</td>
-                                <td>paper</td>
+                                <td>Paper</td>
                                 <td>0/2</td>
                                 <td>-</td>
+                            </tr>
+                            <tr style={{borderBottom:'1px solid #BFDDDE', cursor:'pointer'}} onClick={handleShow}>
+                                <th scope="row" style={{color:'#B9B9B9'}}>2.</th>
+                                <td>1235</td>
+                                <td>Ashen Perera</td>
+                                <td>XA-0808</td>
+                                <td><label className={changeColor(status)}>{status}</label></td>
+                                <td>30/06/2022</td>
+                                <td>Paper</td>
+                                <td>2/2</td>
+                                <td>1.4</td>
+                            </tr>
+                            <tr style={{borderBottom:'1px solid #BFDDDE', cursor:'pointer'}} onClick={handleShow}>
+                                <th scope="row" style={{color:'#B9B9B9'}}>2.</th>
+                                <td>1235</td>
+                                <td>Andrew Heshan</td>
+                                <td>LB-7644</td>
+                                <td><label className={changeColor(status)}>{status}</label></td>
+                                <td>29/06/2022</td>
+                                <td>Plastic</td>
+                                <td>1/3</td>
+                                <td>-</td>
+                            </tr>
+                            <tr style={{borderBottom:'1px solid #BFDDDE', cursor:'pointer'}} onClick={handleShow}>
+                                <th scope="row" style={{color:'#B9B9B9'}}>2.</th>
+                                <td>1235</td>
+                                <td>Dasun Hathiyaldeniya</td>
+                                <td>CAC-0207</td>
+                                <td><label className={changeColor(status)}>{status}</label></td>
+                                <td>29/06/2022</td>
+                                <td>Organic</td>
+                                <td>2/4</td>
+                                <td>2.3</td>
                             </tr>
                             <Modal show={show} onHide={handleClose}>
                                 <Modal.Header style={{border:'none'}}>
