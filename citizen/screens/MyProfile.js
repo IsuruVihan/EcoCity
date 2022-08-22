@@ -1,23 +1,39 @@
-import React, {useContext} from 'react';
+import React, {useContext, useState} from 'react';
 import {Dimensions, Image, StyleSheet, Text, TouchableOpacity, View} from "react-native";
-import Spinner from "react-native-loading-spinner-overlay/src";
-import {Button} from "@rneui/base";
+import {Dialog, Switch} from "@rneui/themed";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import Octicons from "react-native-vector-icons/Octicons";
 import FeatherIcons from "react-native-vector-icons/Feather";
+import FontAwesomeIcons from "react-native-vector-icons/FontAwesome";
+import FontAwesome5Icons from "react-native-vector-icons/FontAwesome5";
+import Slider from '@react-native-community/slider';
 
 import {AuthContext} from "../context/AuthContext";
 import {Responsive} from "../helpers/Responsive";
 
 import HouseImg from '../assets/images/house-profile.png';
+import Feather from "react-native-vector-icons/Feather";
 
 const HEIGHT = Dimensions.get('window').height;
 
 const MyProfile = () => {
   const {loading, loggedUser, logout} = useContext(AuthContext);
 
+  const [isVisibleSettingsModal, setIsVisibleSettingsModal] = useState(false);
+
+  const [darkModeOn, setDarkModeOn] = useState(false);
+  const [fontSize, setFontSize] = useState(10);
+
   const openModals = (label) => {
     console.log("OPEN: ", label);
+    switch (label) {
+      case "Profile":
+        break;
+      case "Settings":
+        setIsVisibleSettingsModal(true);
+        break;
+      case "My NFC Tags":
+    }
   }
 
   const Link = (iconType, iconName, label) => {
@@ -37,8 +53,59 @@ const MyProfile = () => {
     );
   }
 
+  const SettingsModal = () => {
+    return (
+      <Dialog
+        overlayStyle={{width: '100%', marginTop: 'auto', borderTopLeftRadius: 60, borderTopRightRadius: 60, paddingTop: 60, paddingBottom: 40, paddingHorizontal: 50,}}
+        isVisible={isVisibleSettingsModal}
+        onBackdropPress={() => setIsVisibleSettingsModal(false)}
+        style={styles.myProfile.settings}
+      >
+        <View style={styles.myProfile.settings.linkRow}>
+          <View style={styles.myProfile.settings.linkRow.column}>
+            <Feather name={'globe'} size={25} color={'#042434'}/>
+            <Text style={styles.myProfile.settings.linkRow.column.txt}>Language</Text>
+          </View>
+          <View style={styles.myProfile.settings.linkRow.column}>
+            <TouchableOpacity style={styles.myProfile.settings.linkRow.column.container}>
+              <Text style={styles.myProfile.settings.linkRow.column.container.langTxt}>English</Text>
+              <FeatherIcons name={'chevron-right'} size={18} color={'#6F6F6F'}/>
+            </TouchableOpacity>
+          </View>
+        </View>
+        <View style={styles.myProfile.settings.linkRow}>
+          <View style={styles.myProfile.settings.linkRow.column}>
+            <Feather name={'moon'} size={25} color={'#042434'}/>
+            <Text style={styles.myProfile.settings.linkRow.column.txt}>Dark Mode</Text>
+          </View>
+          <View style={styles.myProfile.settings.linkRow.column}>
+            <Switch value={darkModeOn} color={'#228693'} onValueChange={() => setDarkModeOn(!darkModeOn)}/>
+          </View>
+        </View>
+        <View style={styles.myProfile.settings.linkRow}>
+          <View style={styles.myProfile.settings.linkRow.column}>
+            <FontAwesomeIcons name={'font'} size={25} color={'#042434'}/>
+            <Text style={styles.myProfile.settings.linkRow.column.txt}>Font Size</Text>
+          </View>
+          <View style={styles.myProfile.settings.linkRow.column}>
+            <FontAwesome5Icons name={'font'} color={'black'}/>
+            <Slider
+              style={styles.myProfile.settings.linkRow.column.slider}
+              minimumValue={1}
+              maximumValue={10}
+              onValueChange={(value) => setFontSize(Math.floor(value))}
+              thumbTintColor='#228693'
+            />
+            <FontAwesome5Icons name={'font'} color={'black'} size={25}/>
+          </View>
+        </View>
+      </Dialog>
+    );
+  }
+
   return (
     <View style={styles.myProfile}>
+      {SettingsModal()}
       <View style={styles.myProfile.space}/>
       <View style={styles.myProfile.topic}>
         <Text style={styles.myProfile.topic.txt}>My Profile</Text>
@@ -193,6 +260,43 @@ const styles = StyleSheet.create({
           // borderWidth: 2,
           // borderColor: 'green',
           width: '10%',
+        },
+      },
+    },
+    settings: {
+      linkRow: {
+        // borderColor: 'red',
+        // borderWidth: 2,
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        marginVertical: 12,
+        column: {
+          // borderColor: 'blue',
+          // borderWidth: 2,
+          display: 'flex',
+          flexDirection: 'row',
+          justifyContent: 'center',
+          alignItems: 'center',
+          txt: {
+            marginLeft: 10,
+            fontSize: 18,
+            color: '#042434',
+          },
+          container: {
+            display: 'flex',
+            flexDirection: 'row',
+            alignItems: 'center',
+            langTxt: {
+              marginRight: 5,
+              color: '#6F6F6F',
+              fontSize: 18,
+            },
+          },
+          slider: {
+            width: Responsive(12, HEIGHT),
+          },
         },
       },
     },
