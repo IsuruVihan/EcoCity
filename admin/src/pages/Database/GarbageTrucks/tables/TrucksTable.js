@@ -5,6 +5,7 @@ import ViewTruckDriverModal from "../../TruckDrivers/modals/ViewTruckDriverModal
 import TruckDriversTableItem from "../../TruckDrivers/tables/TruckDriversTableItem";
 import {FiArrowLeft, FiArrowRight, FiEdit} from "react-icons/fi";
 import TrucksTableItem from "./TrucksTableItem";
+import TruckDetailsModal from "../modals/TruckDetailsModal";
 
 const TrucksTable = (props) => {
     const trucks = truckDetails.trucks;
@@ -145,8 +146,8 @@ const TrucksTable = (props) => {
 
     return (
         <Row className='mx-0'>
-            <ViewTruckDriverModal show={isTruckDetailsVisible} onHide={() => setIsTruckDetailsVisible(false)}
-                                  driver={currentSelectedTruck}/>
+            <TruckDetailsModal show={isTruckDetailsVisible} onHide={() => setIsTruckDetailsVisible(false)}
+                               truck={currentSelectedTruck}/>
             <Table className='my-0 garbage-hubs-table' borderless>
                 <thead>
                 <tr className='table-header'>
