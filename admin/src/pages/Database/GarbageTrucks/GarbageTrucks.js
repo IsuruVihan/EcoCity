@@ -23,10 +23,10 @@ const GarbageTrucks = () => {
         setIsTableFilterVisible(newState);
     }
 
-    const [showCreateHubForm, setShowCreateHubForm] = useState(false);
+    const [showCreateTruckForm, setShowCreateTruckForm] = useState(false);
 
-    const handleClose = () => setShowCreateHubForm(false);
-    const handleShow = () => setShowCreateHubForm(true);
+    const handleClose = () => setShowCreateTruckForm(false);
+    const handleShow = () => setShowCreateTruckForm(true);
     return (
         <Col className='' lg={10}>
             <Row className='mx-0 section-header '>Garbage Trucks</Row>
@@ -39,8 +39,8 @@ const GarbageTrucks = () => {
                         </span>
                         {isTableFilterVisible && <GarbageHubsTableFilter/>}
                     </div>
-                    <TrucksTable onCreateClicked={setShowCreateHubForm}/>
-                    <CreateTruckDriverModal onHide={handleClose} show={showCreateHubForm}/>
+                    <TrucksTable onCreateClicked={setShowCreateTruckForm}/>
+                    <CreateTruckModal onHide={handleClose} show={showCreateTruckForm}/>
                 </Col>
                 <Col lg={4} className='box-shadow px-0'>
                     <Image src={mapImage} fluid/>

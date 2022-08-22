@@ -2,6 +2,7 @@ import React, {Fragment, useState} from 'react';
 import {Row, Table} from "react-bootstrap";
 import {FiCircle, FiEdit, FiTrash} from "react-icons/fi";
 import {FaCircle} from "react-icons/fa";
+import UpdateTruckModal from "../modals/UpdateTruckModal";
 
 
 const GarbageHubsTableItem = (props) => {
@@ -9,8 +10,8 @@ const GarbageHubsTableItem = (props) => {
     const truck = props.truck;
     console.log(truck);
     //
-    const [isEditDriverDetailsVisible, setIsEditDriverDetailsVisible] = useState(false);
-    const [isDeleteDriverVisible, setIsDeleteDriverVisible] = useState(false);
+    const [isEditTruckDetailsVisible, setIsEditTruckDetailsVisible] = useState(false);
+    const [isDeleteTruckVisible, setIsDeleteTruckVisible] = useState(false);
     //
     // const getFillLevelClasses = (level) => {
     //     let classes = 'px-2 label ';
@@ -25,24 +26,24 @@ const GarbageHubsTableItem = (props) => {
     //     return classes;
     // }
     //
-    const handleOnDriverCloseClicked = () => {
-        setIsEditDriverDetailsVisible(false);
+    const handleOnTruckCloseClicked = () => {
+        setIsEditTruckDetailsVisible(false);
     }
     // const handleOnEditBinClicked = () => {
     //     setIsDeleteBinVisible(false);
     // }
     //
     const handleOnDriverEditClicked = (e) => {
-        setIsEditDriverDetailsVisible(true);
+        setIsEditTruckDetailsVisible(true);
         e.stopPropagation();
     }
     const handleOnDriverDeleteClicked = (e) => {
-        setIsDeleteDriverVisible(true);
+        setIsDeleteTruckVisible(true);
         e.stopPropagation();
     }
     //
     const handleOnDriverDeleted = () => {
-        setIsDeleteDriverVisible(false);
+        setIsDeleteTruckVisible(false);
     }
     return (
         <Fragment>
@@ -62,7 +63,7 @@ const GarbageHubsTableItem = (props) => {
             </tr>
 
 
-            {/*<UpdateTruckDriverModal show={isEditDriverDetailsVisible} onHide={handleOnDriverCloseClicked}/>*/}
+            <UpdateTruckModal show={isEditTruckDetailsVisible} onHide={handleOnTruckCloseClicked}/>
             {/*<DeleteTruckDriverModal show={isDeleteDriverVisible} onHide={handleOnDriverDeleted}*/}
             {/*                        onConfirm={handleOnDriverDeleted}/>*/}
         </Fragment>
