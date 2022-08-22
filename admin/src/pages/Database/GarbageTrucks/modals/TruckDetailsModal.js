@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import {Col, Container, FormControl, Modal, Row, Table} from "react-bootstrap";
 
 import CollectionRidesTable from "../tables/CollectionRidesTable";
@@ -12,7 +12,7 @@ import CollectionRidesFilter from "../../TruckDrivers/filters/CollectionRidesFil
 
 const TruckDetailsModal = (props) => {
     const truck = props.truck;
-    console.log(truck);
+    const collectionArr = Array.from(Array(7).keys());
     return (
         <Modal
             {...props}
@@ -61,61 +61,25 @@ const TruckDetailsModal = (props) => {
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>J-001</td>
-                                    <td>22/08/2022</td>
-                                    <td>
-                                        <div className='status status-active py-1'>Ongoing</div>
-                                    </td>
-                                    <td>
-                                        <div className='status view py-1 px-3 c-pointer'>View</div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>J-001</td>
-                                    <td>22/08/2022</td>
-                                    <td>
-                                        <div className='status status-active py-1'>Ongoing</div>
-                                    </td>
-                                    <td>
-                                        <div className='status view py-1 px-3 c-pointer'>View</div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>J-001</td>
-                                    <td>22/08/2022</td>
-                                    <td>
-                                        <div className='status status-active py-1'>Ongoing</div>
-                                    </td>
-                                    <td>
-                                        <div className='status view py-1 px-3 c-pointer'>View</div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>J-001</td>
-                                    <td>22/08/2022</td>
-                                    <td>
-                                        <div className='status status-active py-1'>Ongoing</div>
-                                    </td>
-                                    <td>
-                                        <div className='status view py-1 px-3 c-pointer'>View</div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>J-001</td>
-                                    <td>22/08/2022</td>
-                                    <td>
-                                        <div className='status status-active py-1 '>Ongoing</div>
-                                    </td>
-                                    <td>
-                                        <div className='status view py-1 px-3 c-pointer'>View</div>
-                                    </td>
-                                </tr>
+                                <Fragment>
+
+                                    {
+                                        collectionArr.map((item, idx) => {
+                                            return <tr>
+                                                <td>{idx + 1}</td>
+                                                <td>J-001</td>
+                                                <td>22/08/2022</td>
+                                                <td>
+                                                    <div className='status status-active py-1 '>Ongoing</div>
+                                                </td>
+                                                <td>
+                                                    <div className='status view py-1 px-3 c-pointer'>View</div>
+                                                </td>
+                                            </tr>
+                                        })
+                                    }
+                                </Fragment>
+
 
                                 </tbody>
                             </Table>
@@ -137,7 +101,10 @@ const TruckDetailsModal = (props) => {
                             <Col lg={6} className='px-0 d-flex fs-3 align-items-center'>Completed Job Percentage</Col>
                         </Row>
 
-
+                        <Row className='mx-0'>
+                            <div>Total number of collected jobs</div>
+                            <JobsLineGraph/>
+                        </Row>
                     </Col>
                 </Row>
             </Modal.Body>
