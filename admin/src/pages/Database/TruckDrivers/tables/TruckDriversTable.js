@@ -10,7 +10,7 @@ import ViewTruckDriverModal from "../modals/ViewTruckDriverModal";
 const TruckDriversTable = (props) => {
     const drivers = driverDetails.truckDrivers;
     const driverCount = drivers.length;
-    const driversPerPage = 10;
+    const driversPerPage = 9;
     const pageCount = Math.ceil(driverCount / driversPerPage);
     const [currentPage, setCurrentPage] = useState(1);
     const [startIndex, setStartIndex] = useState(0);
@@ -147,7 +147,7 @@ const TruckDriversTable = (props) => {
     return (
         <Row className='mx-0'>
             <ViewTruckDriverModal show={isDriverDetailsVisible} onHide={() => setIsDriverDetailsVisible(false)}
-                                  hub={currentSelectedDriver}/>
+                                  driver={currentSelectedDriver}/>
             <Table className='my-0 garbage-hubs-table' borderless>
                 <thead>
                 <tr className='table-header'>
@@ -164,7 +164,8 @@ const TruckDriversTable = (props) => {
                 <Fragment>
                     {
                         filteredDrivers.map((driver, index) => {
-                            return <TruckDriversTableItem driver={driver} index={index}/>
+                            return <TruckDriversTableItem driver={driver} index={index}
+                                                          onClick={handleOnDriverClicked}/>
                         })
                     }
                 </Fragment>

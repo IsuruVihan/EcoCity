@@ -1,0 +1,50 @@
+.driver-table {
+
+}
+
+.driver-table td {
+    padding-top: 0px;
+    padding-bottom: 0px;
+    font-size: 14px !important;
+    color: #707070;
+}
+
+.job-graph {
+    height: 50px !important;
+    width: 100%;
+}
+
+.driver-table .status {
+    font-size: 12px !important;
+    width: max-content;
+    padding: 1px 10px;
+    margin: 1px 0;
+    border-radius: 8px;
+}
+
+.driver-table .status-active {
+    color: #00c186;
+    background-color: #e0f8e3;
+}
+
+.driver-table .status-ongoing {
+    color: #f29900;
+    background-color: #fff6e9;
+}
+
+.driver-table .status-assigned {
+    color: #008bd1;
+    background-color: #e1f0ff;
+}
+
+.driver-table .view {
+    color: #042434;
+    background-color: #E9E8EF;
+}
+
+
+/*Column widths*/
+
+.driver-table tr td:last-child {
+    width: 100px;
+}
