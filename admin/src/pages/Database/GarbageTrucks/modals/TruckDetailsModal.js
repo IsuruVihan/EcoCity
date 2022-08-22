@@ -7,6 +7,8 @@ import JobsPieGraph from "../graphs/JobsPieGraph";
 import JobsLineGraph from "../graphs/JobsLineGraph";
 import JobsGraphFilter from "../filters/JobsGraphFilter";
 import JobsGraph from "../../TruckDrivers/graphs/JobsGraph";
+import '../../../../assets/styles/Database/Truck Driver/truckDriver.css';
+import CollectionRidesFilter from "../../TruckDrivers/filters/CollectionRidesFilter";
 
 const TruckDetailsModal = (props) => {
     const truck = props.truck;
@@ -45,8 +47,10 @@ const TruckDetailsModal = (props) => {
                                              style={{backgroundColor: "white", color: "#a3a3a3"}}/>
                             </Col>
                         </Row>
-                        <Row className='mx-0'>
-                            <Table>
+                        <Row className='mx-0 mt-3'>
+                            <Col className='px-0 fw-bold' lg={10}>Collection Rides</Col>
+                            <Col className='px-0' lg={2}><CollectionRidesFilter/></Col>
+                            <Table borderless>
                                 <thead>
                                 <tr>
                                     <td>#</td>
@@ -61,36 +65,56 @@ const TruckDetailsModal = (props) => {
                                     <td>1</td>
                                     <td>J-001</td>
                                     <td>22/08/2022</td>
-                                    <td>Ongoing</td>
-                                    <td>View</td>
+                                    <td>
+                                        <div className='status status-active py-1'>Ongoing</div>
+                                    </td>
+                                    <td>
+                                        <div className='status view py-1 px-3 c-pointer'>View</div>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>1</td>
                                     <td>J-001</td>
                                     <td>22/08/2022</td>
-                                    <td>Ongoing</td>
-                                    <td>View</td>
+                                    <td>
+                                        <div className='status status-active py-1'>Ongoing</div>
+                                    </td>
+                                    <td>
+                                        <div className='status view py-1 px-3 c-pointer'>View</div>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>1</td>
                                     <td>J-001</td>
                                     <td>22/08/2022</td>
-                                    <td>Ongoing</td>
-                                    <td>View</td>
+                                    <td>
+                                        <div className='status status-active py-1'>Ongoing</div>
+                                    </td>
+                                    <td>
+                                        <div className='status view py-1 px-3 c-pointer'>View</div>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>1</td>
                                     <td>J-001</td>
                                     <td>22/08/2022</td>
-                                    <td>Ongoing</td>
-                                    <td>View</td>
+                                    <td>
+                                        <div className='status status-active py-1'>Ongoing</div>
+                                    </td>
+                                    <td>
+                                        <div className='status view py-1 px-3 c-pointer'>View</div>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>1</td>
                                     <td>J-001</td>
                                     <td>22/08/2022</td>
-                                    <td>Ongoing</td>
-                                    <td>View</td>
+                                    <td>
+                                        <div className='status status-active py-1 '>Ongoing</div>
+                                    </td>
+                                    <td>
+                                        <div className='status view py-1 px-3 c-pointer'>View</div>
+                                    </td>
                                 </tr>
 
                                 </tbody>
