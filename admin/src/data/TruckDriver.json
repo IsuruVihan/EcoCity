@@ -1,0 +1,132 @@
+{
+  "truckDrivers": [
+    {
+      "id": "123",
+      "name": "Amal Biso",
+      "nic": "200124200890",
+      "email": "amalbiso@gmail.com",
+      "jobs": 5,
+      "status": "Active"
+    },
+    {
+      "id": "123",
+      "name": "Amal Biso",
+      "nic": "200124200890",
+      "email": "amalbiso@gmail.com",
+      "jobs": 5,
+      "status": "Removed"
+    },
+    {
+      "id": "123",
+      "name": "Amal Biso",
+      "nic": "200124200890",
+      "email": "amalbiso@gmail.com",
+      "jobs": 5,
+      "status": "Active"
+    },
+    {
+      "id": "123",
+      "name": "Amal Biso",
+      "nic": "200124200890",
+      "email": "amalbiso@gmail.com",
+      "jobs": 5,
+      "status": "Removed"
+    },
+    {
+      "id": "123",
+      "name": "Amal Biso",
+      "nic": "200124200890",
+      "email": "amalbiso@gmail.com",
+      "jobs": 5,
+      "status": "Active"
+    },
+    {
+      "id": "123",
+      "name": "Amal Biso",
+      "nic": "200124200890",
+      "email": "amalbiso@gmail.com",
+      "jobs": 5,
+      "status": "Removed"
+    },
+    {
+      "id": "123",
+      "name": "Amal Biso",
+      "nic": "200124200890",
+      "email": "amalbiso@gmail.com",
+      "jobs": 5,
+      "status": "Active"
+    },
+    {
+      "id": "123",
+      "name": "Amal Biso",
+      "nic": "200124200890",
+      "email": "amalbiso@gmail.com",
+      "jobs": 5,
+      "status": "Removed"
+    },
+    {
+      "id": "123",
+      "name": "Amal Biso",
+      "nic": "200124200890",
+      "email": "amalbiso@gmail.com",
+      "jobs": 5,
+      "status": "Active"
+    },
+    {
+      "id": "123",
+      "name": "Amal Biso",
+      "nic": "200124200890",
+      "email": "amalbiso@gmail.com",
+      "jobs": 5,
+      "status": "Removed"
+    },
+    {
+      "id": "123",
+      "name": "Amal Biso",
+      "nic": "200124200890",
+      "email": "amalbiso@gmail.com",
+      "jobs": 5,
+      "status": "Active"
+    },
+    {
+      "id": "123",
+      "name": "Amal Biso",
+      "nic": "200124200890",
+      "email": "amalbiso@gmail.com",
+      "jobs": 5,
+      "status": "Removed"
+    },
+    {
+      "id": "123",
+      "name": "Amal Biso",
+      "nic": "200124200890",
+      "email": "amalbiso@gmail.com",
+      "jobs": 5,
+      "status": "Active"
+    },
+    {
+      "id": "123",
+      "name": "Amal Biso",
+      "nic": "200124200890",
+      "email": "amalbiso@gmail.com",
+      "jobs": 5,
+      "status": "Removed"
+    },
+    {
+      "id": "123",
+      "name": "Amal Biso",
+      "nic": "200124200890",
+      "email": "amalbiso@gmail.com",
+      "jobs": 5,
+      "status": "Active"
+    },
+    {
+      "id": "123",
+      "name": "Amal Biso",
+      "nic": "200124200890",
+      "email": "amalbiso@gmail.com",
+      "jobs": 5,
+      "status": "Removed"
+    }
+  ]
+}
