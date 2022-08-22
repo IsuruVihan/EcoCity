@@ -14,7 +14,7 @@
     width: 100%;
 }
 
-.driver-table .status {
+.status {
     font-size: 12px !important;
     width: max-content;
     padding: 1px 10px;
@@ -22,22 +22,22 @@
     border-radius: 8px;
 }
 
-.driver-table .status-active {
+.status-active {
     color: #00c186;
     background-color: #e0f8e3;
 }
 
-.driver-table .status-ongoing {
+.status-ongoing {
     color: #f29900;
     background-color: #fff6e9;
 }
 
-.driver-table .status-assigned {
+.status-assigned {
     color: #008bd1;
     background-color: #e1f0ff;
 }
 
-.driver-table .view {
+.view {
     color: #042434;
     background-color: #E9E8EF;
 }

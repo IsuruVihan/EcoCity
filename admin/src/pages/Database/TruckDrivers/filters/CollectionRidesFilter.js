@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Col, Collapse, Container, Image, Row} from "react-bootstrap";
+import {Col, Collapse, Container, FormCheck, Image, Row} from "react-bootstrap";
 import filterIcon from "../../../../assets/images/icons/filter.png";
 import fromDate from "../../../../assets/images/icons/from-date.png";
 import toDate from "../../../../assets/images/icons/to-date.png";
@@ -23,7 +23,7 @@ const JobsGraphFilter = () => {
                     </Row>
                 </Col>
             </Row>
-            <Row className="p-0" style={{position: "absolute", right: 35, paddingTop: 15}}>
+            <Row className="p-0" style={{position: "absolute", right: 467, paddingTop: 15}}>
                 <Collapse in={open}>
                     <Container id="example-collapse-text" style={{
                         backgroundColor: "white",
@@ -31,7 +31,15 @@ const JobsGraphFilter = () => {
                         borderBottomLeftRadius: 10,
                         borderBottomRightRadius: 10
                     }}>
+                        <Row className='mx-0 mt-3 mb-1'>
+                            <Col lg={12}>Status</Col>
+                            <Col lg={12} className='px-0 ms-4 w-auto mt-2'>
+                                <FormCheck type={'checkbox'} id={'Started'} label={'Started'}/>
+                                <FormCheck type={'checkbox'} id={'In-Progress'} label={'In-Progress'}/>
+                                <FormCheck type={'checkbox'} id={'Collected'} label={'Collected'}/>
 
+                            </Col>
+                        </Row>
                         <Row className="p-0" style={{width: 230}}>
                             <Col className="p-0" lg={12}>
                                 <Row className="m-0 mt-3" lg={12}>
