@@ -3,6 +3,7 @@ import {Row, Table} from "react-bootstrap";
 import {FiCircle, FiEdit, FiTrash} from "react-icons/fi";
 import {FaCircle} from "react-icons/fa";
 import UpdateHouseModal from "../modals/UpdateHouseModal";
+import DeleteHouseModal from "../modals/DeleteHouseModal";
 
 // import DeleteTruckDriverModal from "../modals/DeleteTruckDriverModal";
 
@@ -11,8 +12,8 @@ const MaintennaceCrewTableItem = (props) => {
 
     const house = props.house;
     //
-    const [isEditMemberDetailsVisible, setIsEditMemberDetailsVisible] = useState(false);
-    const [isDeleteDriverVisible, setIsDeleteDriverVisible] = useState(false);
+    const [isEditHouseDetailsVisible, setIsEditHouseDetailsVisible] = useState(false);
+    const [isDeleteHouseVisible, setIsDeleteHouseVisible] = useState(false);
     //
     // const getFillLevelClasses = (level) => {
     //     let classes = 'px-2 label ';
@@ -28,23 +29,23 @@ const MaintennaceCrewTableItem = (props) => {
     // }
     //
     const handleOnHouseCloseClicked = () => {
-        setIsEditMemberDetailsVisible(false);
+        setIsEditHouseDetailsVisible(false);
     }
     // const handleOnEditBinClicked = () => {
     //     setIsDeleteBinVisible(false);
     // }
     //
     const handleOnHouseEditClicked = (e) => {
-        setIsEditMemberDetailsVisible(true);
+        setIsEditHouseDetailsVisible(true);
         e.stopPropagation();
     }
     const handleOnHouseDeleteClicked = (e) => {
-        setIsDeleteDriverVisible(true);
+        setIsDeleteHouseVisible(true);
         e.stopPropagation();
     }
     //
-    const handleOnDriverDeleted = () => {
-        setIsDeleteDriverVisible(false);
+    const handleOnHouseDeleted = () => {
+        setIsDeleteHouseVisible(false);
     }
     return (
         <Fragment>
@@ -66,9 +67,9 @@ const MaintennaceCrewTableItem = (props) => {
                 </td>
             </tr>
 
-            <UpdateHouseModal show={isEditMemberDetailsVisible} onHide={handleOnHouseCloseClicked}/>
-            {/*<DeleteCrewMemberModal show={isDeleteDriverVisible} onHide={handleOnDriverDeleted}*/}
-            {/*                       onConfirm={handleOnDriverDeleted}/>*/}
+            <UpdateHouseModal show={isEditHouseDetailsVisible} onHide={handleOnHouseCloseClicked}/>
+            <DeleteHouseModal show={isDeleteHouseVisible} onHide={handleOnHouseDeleted}
+                              onConfirm={handleOnHouseDeleted}/>
         </Fragment>
     );
 }
