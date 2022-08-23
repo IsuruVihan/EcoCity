@@ -1,22 +1,23 @@
 import React, {Fragment, useEffect, useState} from 'react';
 import {Button, Col, Container, Row, Table} from "react-bootstrap";
-import HouseDetails from "../../../../data/Houses.json";
+import NFCDetails from "../../../../data/NFCTags.json";
 import ViewHouseModal from "../../Houses/modals/ViewHouseModal";
 import HouseTableItem from "../../Houses/tables/HouseTableItem";
 import {FiArrowLeft, FiArrowRight, FiEdit} from "react-icons/fi";
+import TagsTableItem from "./TagsTableItem";
 
 const NFCTagsTable = (props) => {
-    const trucks = HouseDetails.crew;
+    const trucks = NFCDetails.tags;
     const truckCount = trucks.length;
     const trucksPerPage = 9;
     const pageCount = Math.ceil(truckCount / trucksPerPage);
     const [currentPage, setCurrentPage] = useState(1);
     const [startIndex, setStartIndex] = useState(0);
     const [endIndex, setEndIndex] = useState(trucksPerPage);
-    const [filteredHouse, setFilteredHouse] = useState(trucks.slice(startIndex, endIndex));
-    const [isHouseDetailsVisible, setIsHouseDetailsVisible] = useState(false);
-    const [currentSelectedHouseID, setCurrentSelectedHouseID] = useState('');
-    const [currentSelectedHouse, setCurrentSelectedHouse] = useState(filteredHouse[0]);
+    const [filteredNFCTags, setFilteredNFCTags] = useState(trucks.slice(startIndex, endIndex));
+    const [isTagDetailsVisible, setIsTagDetailsVisible] = useState(false);
+    const [currentSelectedTagID, setCurrentSelectedTagID] = useState('');
+    const [currentSelectedTag, setCurrentSelectedTag] = useState(filteredNFCTags[0]);
 
     const calculateStartIndex = () => {
         setStartIndex((currentPage - 1) * trucksPerPage);
@@ -50,7 +51,7 @@ const NFCTagsTable = (props) => {
         if (startIndex > endIndex) {
             return;
         }
-        setFilteredHouse(trucks.slice(startIndex, endIndex));
+        setFilteredNFCTags(trucks.slice(startIndex, endIndex));
     }, [endIndex]);
 
     const pageNumbers = range(1, pageCount).map((item) => {
@@ -126,36 +127,35 @@ const NFCTagsTable = (props) => {
     // }
 
     const handleOnMemberClicked = (hubId) => {
-        setCurrentSelectedHouseID(hubId);
-        const newState = !isHouseDetailsVisible;
-        setIsHouseDetailsVisible(newState);
+        setCurrentSelectedTagID(hubId);
+        const newState = !isTagDetailsVisible;
+        setIsTagDetailsVisible(newState);
     }
 
     useEffect(() => {
-        for (let i = 0; i < filteredHouse.length; i++) {
-            if (currentSelectedHouseID === filteredHouse[i].id) {
-                setCurrentSelectedHouse(filteredHouse[i]);
+        for (let i = 0; i < filteredNFCTags.length; i++) {
+            if (currentSelectedTagID === filteredNFCTags[i].id) {
+                setCurrentSelectedTag(filteredNFCTags[i]);
             }
         }
-    }, [currentSelectedHouseID])
+    }, [currentSelectedTagID])
 
     const handleOnHubCloseClicked = () => {
-        setIsHouseDetailsVisible(false);
+        setIsTagDetailsVisible(false);
     }
 
     return (
         <Row className='mx-0'>
-            <ViewHouseModal show={isHouseDetailsVisible}
-                            onHide={() => setIsHouseDetailsVisible(false)}
-                            house={currentSelectedHouse}/>
+            <ViewHouseModal show={isTagDetailsVisible}
+                            onHide={() => setIsTagDetailsVisible(false)}
+                            house={currentSelectedTag}/>
             <Table className='my-0 garbage-hubs-table' borderless>
                 <thead>
                 <tr className='table-header'>
                     <td>#</td>
-                    <td>ID</td>
+                    <td>NFC Serial</td>
                     <td>Name</td>
-                    <td>NIC</td>
-                    <td>Email</td>
+                    <td>User Type</td>
                     <td>Status</td>
                     <td>Action</td>
                 </tr>
@@ -163,9 +163,9 @@ const NFCTagsTable = (props) => {
                 <Fragment>
 
                     {
-                        filteredHouse.map((house, index) => {
-                            return <HouseTableItem house={house} index={index}
-                                                   onClick={handleOnMemberClicked}/>
+                        filteredNFCTags.map((tag, index) => {
+                            return <TagsTableItem tag={tag} index={index}
+                                                  onClick={handleOnMemberClicked}/>
                         })
                     }
                 </Fragment>
