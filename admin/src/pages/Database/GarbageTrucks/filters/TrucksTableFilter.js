@@ -16,12 +16,6 @@ const TrucksTableFilter = () => {
         console.log(object)
     }
 
-    const binTypeOptions = [
-        {value: 'chocolate', label: 'Chocolate'},
-        {value: 'strawberry', label: 'Strawberry'},
-        {value: 'vanilla', label: 'Vanilla'}
-    ]
-
     return (
         <div className='position-absolute garbage-hubs-table-filter-wrapper me-3'>
             <form id='garbageHubTableFilter'>
