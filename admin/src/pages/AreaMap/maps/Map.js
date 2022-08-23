@@ -1,10 +1,12 @@
 import React from 'react';
-import {Container} from "react-bootstrap";
+import {Container, Image} from "react-bootstrap";
+
+import map from "../../../assets/images/area-map.png";
 
 const Map = () => {
   return (
     <Container>
-      Map
+      <Image src={map} height="40%"/>
     </Container>
   );
 }

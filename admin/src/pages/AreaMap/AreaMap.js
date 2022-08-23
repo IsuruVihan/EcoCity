@@ -57,7 +57,9 @@ const AreaMap = () => {
           </Row>
         </Col>
       </Row>
-      <Row className='p-0 m-0' style={{height: '488px'}}></Row>
+      <Row className='p-0 m-0' style={{height: '488px'}}>
+        <Map/>
+      </Row>
     </Col>
     // <Container className='mx-0 px-0 h-100 overflow-hidden' fluid>
     //     <Header/>
