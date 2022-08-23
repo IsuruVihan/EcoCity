@@ -24,7 +24,7 @@ const Dashboard = () => {
                     <Row className="m-0">
                         <Col lg={12} className="p-0 mt-3 ms-3"
                              style={{fontWeight: 600, fontSize: 20, color: '#042434'}}>Garbage Collection Weight</Col>
-                        <Col lg={12} className="p-0"><GarbageCollectionWeightFilter/></Col>
+                        <Col lg={12} className="py-0 pe-3"><GarbageCollectionWeightFilter/></Col>
                         <Col lg={12} className="p-0">
                             <Row className="m-0">
                                 <Col lg={4} className="p-0"><WeightCard/></Col>
