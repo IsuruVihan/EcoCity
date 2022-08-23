@@ -2,6 +2,7 @@ import React, {Fragment, useState} from 'react';
 import {Row, Table} from "react-bootstrap";
 import {FiCircle, FiEdit, FiTrash} from "react-icons/fi";
 import {FaCircle} from "react-icons/fa";
+import UpdateHouseModal from "../modals/UpdateHouseModal";
 
 // import DeleteTruckDriverModal from "../modals/DeleteTruckDriverModal";
 
@@ -26,18 +27,18 @@ const MaintennaceCrewTableItem = (props) => {
     //     return classes;
     // }
     //
-    const handleOnDriverCloseClicked = () => {
+    const handleOnHouseCloseClicked = () => {
         setIsEditMemberDetailsVisible(false);
     }
     // const handleOnEditBinClicked = () => {
     //     setIsDeleteBinVisible(false);
     // }
     //
-    const handleOnDriverEditClicked = (e) => {
+    const handleOnHouseEditClicked = (e) => {
         setIsEditMemberDetailsVisible(true);
         e.stopPropagation();
     }
-    const handleOnDriverDeleteClicked = (e) => {
+    const handleOnHouseDeleteClicked = (e) => {
         setIsDeleteDriverVisible(true);
         e.stopPropagation();
     }
@@ -59,13 +60,13 @@ const MaintennaceCrewTableItem = (props) => {
                 </td>
                 <td>
                     <div className='action-item-group'>
-                        <FiEdit id={1} onClick={handleOnDriverEditClicked} cl/>
-                        <FiTrash id={1} onClick={handleOnDriverDeleteClicked}/>
+                        <FiEdit id={1} onClick={handleOnHouseEditClicked} cl/>
+                        <FiTrash id={1} onClick={handleOnHouseDeleteClicked}/>
                     </div>
                 </td>
             </tr>
 
-            {/*<UpdateMaintenanceCrewMemberModal show={isEditMemberDetailsVisible} onHide={handleOnDriverCloseClicked}/>*/}
+            <UpdateHouseModal show={isEditMemberDetailsVisible} onHide={handleOnHouseCloseClicked}/>
             {/*<DeleteCrewMemberModal show={isDeleteDriverVisible} onHide={handleOnDriverDeleted}*/}
             {/*                       onConfirm={handleOnDriverDeleted}/>*/}
         </Fragment>
