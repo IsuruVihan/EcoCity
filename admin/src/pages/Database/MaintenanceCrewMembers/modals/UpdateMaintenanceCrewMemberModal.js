@@ -16,7 +16,7 @@ const UpdateMaintenanceCrewMemberModal = (props) => {
             keyboard={false}
         >
             <Modal.Header closeButton>
-                <Modal.Title>New Crew Member</Modal.Title>
+                <Modal.Title>Update Crew Member</Modal.Title>
             </Modal.Header>
             <Modal.Body>
                 <UpdateMaintenanceCrewMemberForm/>
