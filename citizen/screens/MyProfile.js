@@ -7,13 +7,14 @@ import FeatherIcons from "react-native-vector-icons/Feather";
 import FontAwesomeIcons from "react-native-vector-icons/FontAwesome";
 import FontAwesome5Icons from "react-native-vector-icons/FontAwesome5";
 import Slider from '@react-native-community/slider';
+import Feather from "react-native-vector-icons/Feather";
+import {Button} from "@rneui/base";
 
 import {AuthContext} from "../context/AuthContext";
 import {Responsive} from "../helpers/Responsive";
 
 import HouseImg from '../assets/images/house-profile.png';
-import Feather from "react-native-vector-icons/Feather";
-import {Button} from "@rneui/base";
+import NFCImg from '../assets/images/nfc-tag.png';
 
 const HEIGHT = Dimensions.get('window').height;
 
@@ -203,11 +204,17 @@ const MyProfile = () => {
           <Text style={styles.myProfile.nfc.topic}>NFC Tags</Text>
         </View>
         <View style={styles.myProfile.nfc.card}>
-          <View style={styles.myProfile.nfc.card.section1}></View>
-          <View style={styles.myProfile.nfc.card.section2}>
-            <Text></Text>
+          <View style={styles.myProfile.nfc.card.section1}>
+            <Image source={NFCImg} style={styles.myProfile.nfc.card.section1.img}/>
           </View>
-          <View style={styles.myProfile.nfc.card.section2}></View>
+          <View style={styles.myProfile.nfc.card.section2}>
+            <Text style={styles.myProfile.nfc.card.section2.first}>ID</Text>
+            <Text style={styles.myProfile.nfc.card.section2.second}>#12345</Text>
+          </View>
+          <View style={styles.myProfile.nfc.card.section2}>
+            <Text style={styles.myProfile.nfc.card.section2.first}>Status</Text>
+            <Text style={styles.myProfile.nfc.card.section2.second}>Active</Text>
+          </View>
         </View>
       </Dialog>
     );
@@ -504,9 +511,10 @@ const styles = StyleSheet.create({
         fontSize: 12,
       },
       card: {
-        borderColor: 'red',
+        borderColor: '#E8F5F6',
         borderWidth: 2,
         borderRadius: 10,
+        backgroundColor: '#E8F5F6',
         height: Responsive(8, HEIGHT),
         display: 'flex',
         flexDirection: 'row',
@@ -514,14 +522,32 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         paddingVertical: 10,
         section1: {
-          borderColor: 'orange',
+          borderColor: 'white',
           borderWidth: 2,
-          width: '20%',
+          borderRadius: 10,
+          backgroundColor: 'white',
+          width: '25%',
           height: '100%',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          padding: 1,
+          img: {
+            width: Responsive(6, HEIGHT),
+            height: Responsive(2, HEIGHT),
+          },
         },
         section2: {
-          borderColor: 'orange',
-          borderWidth: 2,
+          // borderColor: 'orange',
+          // borderWidth: 2,
+          first: {
+            fontSize: 12,
+            color: '#042434',
+          },
+          second: {
+            fontSize: 12,
+            color: '#7CB6B8',
+          },
         },
       },
     },
