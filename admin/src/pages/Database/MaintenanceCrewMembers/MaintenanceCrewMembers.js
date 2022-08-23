@@ -15,6 +15,7 @@ import TrucksTableFilter from "../GarbageTrucks/filters/TrucksTableFilter";
 import TrucksTable from "../GarbageTrucks/tables/TrucksTable";
 import CreateTruckModal from "../GarbageTrucks/modals/CreateTruckModal";
 import mapImage from "../../../assets/images/temp/databaseMaps.png";
+import JobsTable from "../../MaintenanceJobs/tables/JobsTable";
 
 const MaintenanceCrewMembers = () => {
     const [isTableFilterVisible, setIsTableFilterVisible] = useState(false);
@@ -40,8 +41,8 @@ const MaintenanceCrewMembers = () => {
                         </span>
                         {isTableFilterVisible && <MaintenanceCrewTableFilter/>}
                     </div>
-                    <TrucksTable onCreateClicked={setShowCreateCrewMemberForm}/>
-                    <CreateTruckModal onHide={handleClose} show={showCreateCrewMemberForm}/>
+                    <MaintenanceCrewTable onCreateClicked={setShowCreateCrewMemberForm}/>
+                    <CreateMaintenanceCrewMemberModal onHide={handleClose} show={showCreateCrewMemberForm}/>
                 </Col>
                 <Col lg={4} className='box-shadow px-0'>
                     <Image src={mapImage} fluid/>
