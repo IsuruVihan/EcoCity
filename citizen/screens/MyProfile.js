@@ -1,6 +1,6 @@
 import React, {useContext, useState} from 'react';
 import {Dimensions, Image, StyleSheet, Text, TouchableOpacity, View, TextInput} from "react-native";
-import {Dialog, Switch} from "@rneui/themed";
+import {CheckBox, Dialog, Switch} from "@rneui/themed";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import Octicons from "react-native-vector-icons/Octicons";
 import FeatherIcons from "react-native-vector-icons/Feather";
@@ -15,8 +15,13 @@ import {Responsive} from "../helpers/Responsive";
 
 import HouseImg from '../assets/images/house-profile.png';
 import NFCImg from '../assets/images/nfc-tag.png';
+import FilterImg from "../assets/images/filter.png";
+import IconFontAwesome5 from "react-native-vector-icons/FontAwesome5";
+import DatePicker from "react-native-date-picker";
+import AntDesign from "react-native-vector-icons/AntDesign";
 
 const HEIGHT = Dimensions.get('window').height;
+const WIDTH = Dimensions.get('window').width;
 
 const MyProfile = () => {
   const {loading, loggedUser, logout} = useContext(AuthContext);
@@ -36,6 +41,14 @@ const MyProfile = () => {
   const [newPassword, setNewPassword] = useState('Isuru@123');
 
   const [isVisibleNFCModal, setIsVisibleNFCModal] = useState(false);
+
+  const [nfcFilterVisible, setNFCFilterVisible] = useState(false);
+
+  const [nfcTagsTableFilterVisible, setNFCTagsTableFilterVisible] = useState(false);
+  const [nfcTagsTableFromDateFilterVisible, setNFCTagsTableFromDateFilterVisible] = useState(false);
+  const [nfcTagsTableToDateFilterVisible, setNFCTagsTableToDateFilterVisible] = useState(false);
+  const [fromDateFilter, setFromDateFilter] = useState(new Date());
+  const [toDateFilter, setToDateFilter] = useState(new Date());
 
   const openModals = (label) => {
     switch (label) {
@@ -183,6 +196,91 @@ const MyProfile = () => {
     );
   }
 
+  const NFCTagsTableFilter = () => {
+    return (
+      <Dialog
+        isVisible={nfcTagsTableFilterVisible}
+        onBackdropPress={() => setNFCTagsTableFilterVisible(false)}
+        style={styles.myProfile.filter}
+      >
+        <View style={styles.myProfile.filter.title}>
+          <Text style={styles.myProfile.filter.title.txt}>NFC Tag Usage Filter</Text>
+        </View>
+        <View style={styles.myProfile.filter.dates}>
+          <TouchableOpacity
+            style={styles.myProfile.filter.dates.date}
+            onPress={() => setNFCTagsTableFromDateFilterVisible(true)}
+          >
+            <IconFontAwesome5
+              name="calendar-alt"
+              size={30}
+              color={"#228693"}
+            />
+            <View style={styles.myProfile.filter.dates.date.texts}>
+              <Text style={styles.myProfile.filter.dates.date.texts.txtOne}>From</Text>
+              <Text style={styles.myProfile.filter.dates.date.texts.txtTwo}>{fromDateFilter.toDateString()}</Text>
+              <DatePicker
+                modal
+                mode="date"
+                // minimumDate={LAUNCH}
+                // maximumDate={fromDateFilter > TODAY ? fromDateFilter : TODAY}
+                open={nfcTagsTableFromDateFilterVisible}
+                date={fromDateFilter}
+                onConfirm={(date) => {
+                  setNFCTagsTableFromDateFilterVisible(false);
+                  setFromDateFilter(date);
+                }}
+                onCancel={() => setNFCTagsTableFromDateFilterVisible(false)}
+              />
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.myProfile.filter.dates.date}
+            onPress={() => setNFCTagsTableToDateFilterVisible(true)}
+          >
+            <IconFontAwesome5
+              name="calendar-alt"
+              size={30}
+              color={"#228693"}
+            />
+            <View style={styles.myProfile.filter.dates.date.texts}>
+              <Text style={styles.myProfile.filter.dates.date.texts.txtOne}>To</Text>
+              <Text style={styles.myProfile.filter.dates.date.texts.txtTwo}>{toDateFilter.toDateString()}</Text>
+              <DatePicker
+                modal
+                mode="date"
+                // minimumDate={LAUNCH < toDateFilter ? LAUNCH : toDateFilter}
+                // maximumDate={TODAY}
+                open={nfcTagsTableToDateFilterVisible}
+                date={toDateFilter}
+                onConfirm={(date) => {
+                  setNFCTagsTableToDateFilterVisible(false);
+                  setToDateFilter(date);
+                }}
+                onCancel={() => setNFCTagsTableToDateFilterVisible(false)}
+              />
+            </View>
+          </TouchableOpacity>
+        </View>
+        <View style={styles.myProfile.filter.last}>
+          <Button
+            type="solid"
+            size='sm'
+            color={'#228693'}
+            buttonStyle={{borderRadius: 5, width: Responsive(20, WIDTH),}}
+            onPress={() => {
+              // filterData();
+              // setFilterVisible(false);
+            }}
+          >
+            <AntDesign name='filter' size={20} color={'white'}/>
+            Filter
+          </Button>
+        </View>
+      </Dialog>
+    );
+  }
+
   const NFCTagsModal = () => {
     return (
       <Dialog
@@ -216,6 +314,15 @@ const MyProfile = () => {
             <Text style={styles.myProfile.nfc.card.section2.second}>Active</Text>
           </View>
         </View>
+        <View style={styles.myProfile.nfc.filterContainer}>
+          <TouchableOpacity
+            style={styles.myProfile.nfc.filterContainer.filter}
+            onPress={() => setNFCTagsTableFilterVisible(true)}
+          >
+            <Text style={styles.myProfile.nfc.filterContainer.filter.txt}>Filter</Text>
+            <Image source={FilterImg} style={styles.myProfile.nfc.filterContainer.filter.icon}/>
+          </TouchableOpacity>
+        </View>
       </Dialog>
     );
   }
@@ -225,6 +332,7 @@ const MyProfile = () => {
       {SettingsModal()}
       {ProfileDetailsModal()}
       {NFCTagsModal()}
+      {NFCTagsTableFilter()}
       <View style={styles.myProfile.space}/>
       <View style={styles.myProfile.topic}>
         <Text style={styles.myProfile.topic.txt}>My Profile</Text>
@@ -549,6 +657,74 @@ const styles = StyleSheet.create({
             color: '#7CB6B8',
           },
         },
+      },
+      filterContainer: {
+        display: 'flex',
+        alignItems: 'flex-end',
+        filter: {
+          borderWidth: 1,
+          borderColor: '#BFDDDE',
+          borderRadius: 5,
+          // height: '100%',
+          width: Responsive(23, WIDTH),
+          display: 'flex',
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          paddingVertical: 3,
+          paddingHorizontal: 10,
+          txt: {
+            color: '#042434',
+          },
+          icon: {
+            width: 20,
+            height: '100%',
+          },
+        },
+      },
+    },
+    filter: {
+      title: {
+        txt: {
+          color: '#042434',
+          fontSize: 15,
+          fontWeight: '600',
+        },
+      },
+      options: {
+        paddingVertical: 5,
+      },
+      dates: {
+        borderColor: '#BFDDDE',
+        borderTopWidth: 2,
+        borderBottomWidth: 2,
+        paddingVertical: 5,
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        date: {
+          display: 'flex',
+          flexDirection: 'row',
+          justifyContent: 'center',
+          alignItems: 'center',
+          marginVertical: 5,
+          texts: {
+            marginLeft: 30,
+            txtOne: {
+              color: '#BFDDDE',
+            },
+            txtTwo: {
+              color: '#228693',
+            },
+          },
+        },
+      },
+      last: {
+        marginVertical: 10,
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'flex-end',
+        alignItems: 'center',
       },
     },
   },
