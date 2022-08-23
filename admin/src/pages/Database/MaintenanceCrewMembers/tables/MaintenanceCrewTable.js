@@ -162,7 +162,8 @@ const MaintenanceCrewTable = (props) => {
                 </tr>
                 </thead>
                 <Fragment>
-                    {
+
+                {
                         filteredMembers.map((member, index) => {
                             return <MaintennaceCrewTableItem member={member} index={index}
                                                              onClick={handleOnMemberClicked}/>

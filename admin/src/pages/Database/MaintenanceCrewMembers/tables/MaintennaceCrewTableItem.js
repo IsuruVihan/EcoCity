@@ -2,7 +2,7 @@ import React, {Fragment, useState} from 'react';
 import {Row, Table} from "react-bootstrap";
 import {FiCircle, FiEdit, FiTrash} from "react-icons/fi";
 import {FaCircle} from "react-icons/fa";
-// import UpdateTruckDriverModal from "../modals/UpdateTruckDriverModal";
+import UpdateMaintenanceCrewMemberModal from "../modals/UpdateMaintenanceCrewMemberModal";
 // import DeleteTruckDriverModal from "../modals/DeleteTruckDriverModal";
 
 
@@ -67,7 +67,7 @@ const MaintennaceCrewTableItem = (props) => {
             </tr>
 
 
-            {/*<UpdateTruckDriverModal show={isEditMemberDetailsVisible} onHide={handleOnDriverCloseClicked}/>*/}
+            <UpdateMaintenanceCrewMemberModal show={isEditMemberDetailsVisible} onHide={handleOnDriverCloseClicked}/>
             {/*<DeleteTruckDriverModal show={isDeleteDriverVisible} onHide={handleOnDriverDeleted}*/}
             {/*                        onConfirm={handleOnDriverDeleted}/>*/}
         </Fragment>
