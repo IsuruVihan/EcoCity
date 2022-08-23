@@ -119,24 +119,6 @@ const CreateHouseForm = () => {
                     <div className='modal-button save py-2 text-center c-pointer'>Save</div>
                 </Col>
             </Row>
-
-
-            {/*<Col lg={3} className='d-flex align-items-center '>*/}
-            {/*    <div>Password</div>*/}
-            {/*</Col>*/}
-            {/*<Col lg={9} className='my-2'>*/}
-            {/*    <FormControl type={'text'} value={''}*/}
-            {/*                 style={{backgroundColor: "white", color: "#a3a3a3"}}/>*/}
-            {/*</Col>*/}
-            {/*<Col lg={3} className='d-flex align-items-center '>*/}
-            {/*    <div>Re-enter Password</div>*/}
-            {/*</Col>*/}
-            {/*<Col lg={9} className='my-2'>*/}
-            {/*    <FormControl type={'password'} value={''}*/}
-            {/*                 style={{backgroundColor: "white", color: "#a3a3a3"}}/>*/}
-            {/*</Col>*/}
-
-
         </Row>
     </Container>);
 }
