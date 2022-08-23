@@ -171,11 +171,11 @@ const NFCTagsTable = (props) => {
                 </Fragment>
 
             </Table>
-            <Row className='bottom-0 mb-3 w-50 d-flex pe-0 position-absolute align-items-end'>
+            <Row className='bottom-0 mb-3 w-75 d-flex pe-0 position-absolute align-items-end'>
                 <Col className='' lg={2}>
                     <Button onClick={props.onCreateClicked}><FiEdit/> Create</Button>
                 </Col>
-                <Col className='d-flex justify-content-end pe-1 pagination-group' lg={10}>
+                <Col className='d-flex justify-content-end me-2 pagination-group' lg={9}>
                     <FiArrowLeft color='#228693' size='23px' id='prev' onClick={handleOnPageNumberChange}/>
                     {
                         pageNumbers.map((pageNumber, idx) => {
