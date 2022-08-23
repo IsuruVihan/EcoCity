@@ -32,7 +32,7 @@ const GarbageHubs = () => {
     return (
 
         <Col className='' lg={10}>
-            <Row className='mx-0 section-header '>Garbage Hubs</Row>
+            <Row className='mx-0 section-header'>Garbage Hubs</Row>
             <Row className='mx-0 section-contents d-flex px-0 justify-content-evenly'>
                 <Col lg={8} className='column-left box-shadow me-3'>
                     <div className='mt-2 d-flex justify-content-end'>
