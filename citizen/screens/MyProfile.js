@@ -21,6 +21,7 @@ import HouseImg from '../assets/images/house-profile.png';
 import NFCImg from '../assets/images/nfc-tag.png';
 import FilterImg from "../assets/images/filter.png";
 import Ionicons from "react-native-vector-icons/Ionicons";
+import IconFontAwesome from "react-native-vector-icons/FontAwesome";
 
 const HEIGHT = Dimensions.get('window').height;
 const WIDTH = Dimensions.get('window').width;
@@ -49,6 +50,39 @@ const MyProfile = () => {
   const [nfcTagsTableToDateFilterVisible, setNFCTagsTableToDateFilterVisible] = useState(false);
   const [fromDateFilter, setFromDateFilter] = useState(new Date());
   const [toDateFilter, setToDateFilter] = useState(new Date());
+
+  const [paginatedData, setPaginatedData] = useState([
+    {id: 'CMB-07-123', date: '23/06/2022', status: 'Viewed'},
+    {id: 'CMB-07-124', date: '24/06/2022', status: 'Not Viewed'},
+    {id: 'CMB-07-125', date: '25/06/2022', status: 'Resolved'},
+    {id: 'CMB-07-126', date: '26/06/2022', status: 'Removed'},
+    {id: 'CMB-07-127', date: '27/06/2022', status: 'Viewed'},
+    {id: 'CMB-07-128', date: '28/06/2022', status: 'Viewed'},
+    {id: 'CMB-07-123', date: '23/06/2022', status: 'Viewed'},
+    {id: 'CMB-07-124', date: '24/06/2022', status: 'Not Viewed'},
+    // {id: 'CMB-07-125', date: '25/06/2022', status: 'Resolved'},
+    // {id: 'CMB-07-126', date: '26/06/2022', status: 'Removed'},
+    // {id: 'CMB-07-127', date: '27/06/2022', status: 'Viewed'},
+    // {id: 'CMB-07-128', date: '28/06/2022', status: 'Viewed'},
+    // {id: 'CMB-07-123', date: '23/06/2022', status: 'Viewed'},
+    // {id: 'CMB-07-124', date: '24/06/2022', status: 'Not Viewed'},
+    // {id: 'CMB-07-125', date: '25/06/2022', status: 'Resolved'},
+    // {id: 'CMB-07-126', date: '26/06/2022', status: 'Removed'},
+    // {id: 'CMB-07-127', date: '27/06/2022', status: 'Viewed'},
+    // {id: 'CMB-07-128', date: '28/06/2022', status: 'Viewed'},
+  ]);
+  const [viewedComplaint, setViewedComplaint] = useState({
+    id: 'CMB - 1',
+    category: 'Garbage Hub',
+    status: 'Viewed',
+    date: '16/08/2022',
+    description: 'Hub lid is not functioning after tapping the NFC card',
+    files: [],
+    remarks: 'We will fix th issue as soon as possible',
+  });
+  const [viewComplaintModalOpen, setViewComplaintModalOpen] = useState(false);
+  const [activePage, setActivePage] = useState(1);
+  const [pageCount, setPageCount] = useState(0);
 
   const openModals = (label) => {
     switch (label) {
@@ -363,7 +397,75 @@ const MyProfile = () => {
             <Image source={FilterImg} style={styles.myProfile.nfc.filterContainer.filter.icon}/>
           </TouchableOpacity>
         </View>
+        <View style={styles.myProfile.nfc.tableContainer}>
+          {paginatedData.map((complaint, idx) => {
+            // if (complaint.page === activePage)
+              return TableRow(idx, complaint.id, complaint.date, complaint.status);
+          })}
+        </View>
+        <View style={styles.myProfile.nfc.paginationContainer}>
+          <IconFontAwesome
+            name="arrow-left"
+            size={15}
+            color={activePage === 1 ? "#BFDDDE" : "#228693"}
+            onPress={() => setActivePage(activePage === 1 ? activePage : activePage - 1)}
+            style={styles.myProfile.nfc.paginationContainer.arrowLeft}
+          />
+          {
+            activePage - 1 > 0 && <TouchableOpacity
+              style={styles.myProfile.nfc.paginationContainer.prevPageNo}
+              onPress={() => setActivePage(activePage - 1)}
+            ><Text>{activePage - 1}</Text>
+            </TouchableOpacity>
+          }
+          <Text style={styles.myProfile.nfc.paginationContainer.pageNo}>{activePage}</Text>
+          {
+            activePage + 1 <= pageCount && <TouchableOpacity
+              style={styles.myProfile.nfc.paginationContainer.prevPageNo}
+              onPress={() => setActivePage(activePage + 1)}
+            ><Text>{activePage + 1}</Text>
+            </TouchableOpacity>
+          }
+          <IconFontAwesome
+            name="arrow-right"
+            size={15}
+            color={activePage < pageCount ? "#228693" : "#BFDDDE"}
+            onPress={() => setActivePage(activePage === pageCount ? activePage : activePage + 1)}
+            style={styles.myProfile.nfc.paginationContainer.arrowRight}
+          />
+        </View>
       </Dialog>
+    );
+  }
+
+  const TableRow = (idx, id, date, status) => {
+    let fullDay = date.split('T')[0].split('-');
+    let formattedDate = `${fullDay[2]}/${fullDay[1]}/${fullDay[0]}`;
+    return (
+      <TouchableOpacity
+        key={idx}
+        style={styles.myProfile.nfc.tableContainer.row}
+        onPress={() => {
+          setViewedComplaint({
+            id: id,
+            status: status,
+            date: formattedDate,
+          });
+          setViewComplaintModalOpen(true);
+        }}
+      >
+        <Text style={
+          status === 'Viewed' ? styles.myProfile.nfc.tableContainer.row.binType.viewed :
+            status === 'Not Viewed' ? styles.myProfile.nfc.tableContainer.row.binType.notViewed :
+              status === 'Resolved' ? styles.myProfile.nfc.tableContainer.row.binType.resolved :
+                styles.myProfile.nfc.tableContainer.row.binType.removed
+        }><FontAwesomeIcons name={'trash-o'} size={20}/></Text>
+        <Text style={styles.myProfile.nfc.tableContainer.row.nfcId}>1</Text>
+        <Text style={styles.myProfile.nfc.tableContainer.row.nfcId}>1</Text>
+        <Text style={styles.myProfile.nfc.tableContainer.row.nfcId}>1</Text>
+        <Text style={styles.myProfile.nfc.tableContainer.row.id}>23/08/2022</Text>
+        {/*<Text style={styles.myProfile.nfc.tableContainer.row.date}>{formattedDate}</Text>*/}
+      </TouchableOpacity>
     );
   }
 
@@ -411,6 +513,203 @@ const MyProfile = () => {
 
 const styles = StyleSheet.create({
   myProfile: {
+    nfc: {
+      tableContainer: {
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-evenly',
+        row: {
+          borderBottomColor: '#EDFBFC',
+          borderBottomWidth: 2,
+          height: Responsive(6, HEIGHT),
+          display: 'flex',
+          flexDirection: 'row',
+          alignItems: 'center',
+          nfcId: {
+            flex: 1,
+            textAlignVertical: 'center',
+            textAlign: 'center',
+            color: '#707070',
+          },
+          id: {
+            flex: 2,
+            textAlignVertical: 'center',
+            textAlign: 'center',
+            color: '#707070',
+          },
+          date: {
+            flex: 3,
+            textAlignVertical: 'center',
+            textAlign: 'center',
+            color: '#707070',
+          },
+          binType: {
+            viewed: {
+              flex: 1,
+              textAlignVertical: 'center',
+              textAlign: 'center',
+              borderRadius: 5,
+              color: '#008BD1',
+              backgroundColor: '#E1F0FF',
+              height: '75%',
+            },
+            notViewed: {
+              flex: 1,
+              textAlignVertical: 'center',
+              textAlign: 'center',
+              borderRadius: 5,
+              color: '#FF9900',
+              backgroundColor: '#FFF6E9',
+              height: '75%',
+            },
+            resolved: {
+              flex: 1,
+              textAlignVertical: 'center',
+              textAlign: 'center',
+              borderRadius: 5,
+              color: '#00C186',
+              backgroundColor: '#E0F8E3',
+              height: '75%',
+            },
+            removed: {
+              flex: 1,
+              textAlignVertical: 'center',
+              textAlign: 'center',
+              borderRadius: 5,
+              color: 'red',
+              backgroundColor: 'pink',
+              height: '75%',
+            },
+          },
+        },
+      },
+      paginationContainer: {
+        // height: '80%',
+        borderWidth: 2,
+        borderColor: 'red',
+        width: '50%',
+        height: '6%',
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        alignItems: 'center',
+        marginLeft: 'auto',
+        pageNo: {
+          marginHorizontal: 5,
+          fontSize: 15,
+          fontWeight: '700',
+          color: '#7CB6B8',
+          borderColor: '#7CB6B8',
+          borderRadius: 5,
+          borderWidth: 2,
+          padding: 5,
+          textAlign: 'center',
+        },
+        prevPageNo: {
+          marginHorizontal: 5,
+          fontSize: 15,
+          fontWeight: '700',
+          color: '#A3A3A3',
+          padding: 5,
+          textAlign: 'center',
+        },
+        arrowLeft: {
+          marginRight: 10,
+        },
+        arrowRight: {
+          marginLeft: 10,
+        },
+      },
+      first: {
+        borderBottomColor: '#BFDDDE',
+        borderBottomWidth: 2,
+        height: Responsive(5, HEIGHT),
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        icon: {
+
+        },
+        txt: {
+          color: '#042434',
+          fontSize: 15,
+        },
+      },
+      space: {
+        height: '2%',
+      },
+      topic: {
+        color: '#707070',
+        fontWeight: '600',
+        marginVertical: 5,
+        fontSize: 12,
+      },
+      card: {
+        borderColor: '#E8F5F6',
+        borderWidth: 2,
+        borderRadius: 10,
+        backgroundColor: '#E8F5F6',
+        height: Responsive(8, HEIGHT),
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        alignItems: 'center',
+        paddingVertical: 10,
+        section1: {
+          borderColor: 'white',
+          borderWidth: 2,
+          borderRadius: 10,
+          backgroundColor: 'white',
+          width: '25%',
+          height: '100%',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          padding: 1,
+          img: {
+            width: Responsive(6, HEIGHT),
+            height: Responsive(2, HEIGHT),
+          },
+        },
+        section2: {
+          // borderColor: 'orange',
+          // borderWidth: 2,
+          first: {
+            fontSize: 12,
+            color: '#042434',
+          },
+          second: {
+            fontSize: 12,
+            color: '#7CB6B8',
+          },
+        },
+      },
+      filterContainer: {
+        display: 'flex',
+        alignItems: 'flex-end',
+        filter: {
+          borderWidth: 1,
+          borderColor: '#BFDDDE',
+          borderRadius: 5,
+          // height: '100%',
+          width: Responsive(23, WIDTH),
+          display: 'flex',
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          paddingVertical: 3,
+          paddingHorizontal: 10,
+          txt: {
+            color: '#042434',
+          },
+          icon: {
+            width: 20,
+            height: '100%',
+          },
+        },
+      },
+    },
     // borderWidth: 2,
     // borderColor: 'orange',
     height: Responsive(83, HEIGHT),
@@ -630,97 +929,6 @@ const styles = StyleSheet.create({
       },
       space: {
         height: '2%',
-      },
-    },
-    nfc: {
-      first: {
-        borderBottomColor: '#BFDDDE',
-        borderBottomWidth: 2,
-        height: Responsive(5, HEIGHT),
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        icon: {
-
-        },
-        txt: {
-          color: '#042434',
-          fontSize: 15,
-        },
-      },
-      space: {
-        height: '2%',
-      },
-      topic: {
-        color: '#707070',
-        fontWeight: '600',
-        marginVertical: 5,
-        fontSize: 12,
-      },
-      card: {
-        borderColor: '#E8F5F6',
-        borderWidth: 2,
-        borderRadius: 10,
-        backgroundColor: '#E8F5F6',
-        height: Responsive(8, HEIGHT),
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'space-around',
-        alignItems: 'center',
-        paddingVertical: 10,
-        section1: {
-          borderColor: 'white',
-          borderWidth: 2,
-          borderRadius: 10,
-          backgroundColor: 'white',
-          width: '25%',
-          height: '100%',
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          padding: 1,
-          img: {
-            width: Responsive(6, HEIGHT),
-            height: Responsive(2, HEIGHT),
-          },
-        },
-        section2: {
-          // borderColor: 'orange',
-          // borderWidth: 2,
-          first: {
-            fontSize: 12,
-            color: '#042434',
-          },
-          second: {
-            fontSize: 12,
-            color: '#7CB6B8',
-          },
-        },
-      },
-      filterContainer: {
-        display: 'flex',
-        alignItems: 'flex-end',
-        filter: {
-          borderWidth: 1,
-          borderColor: '#BFDDDE',
-          borderRadius: 5,
-          // height: '100%',
-          width: Responsive(23, WIDTH),
-          display: 'flex',
-          flexDirection: 'row',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          paddingVertical: 3,
-          paddingHorizontal: 10,
-          txt: {
-            color: '#042434',
-          },
-          icon: {
-            width: 20,
-            height: '100%',
-          },
-        },
       },
     },
     filter: {
