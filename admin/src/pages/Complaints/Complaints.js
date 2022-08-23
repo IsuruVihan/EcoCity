@@ -46,7 +46,7 @@ const Complaints = () => {
                         </Collapse>
                     </Row>
                     <Row>
-                        <Col style={{border: "1px solid #BFDDDE",}} className="m-4">
+                        <Col className="m-4">
                             <ComplaintsTable/>
                         </Col>
                     </Row>
