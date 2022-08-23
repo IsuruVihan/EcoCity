@@ -13,9 +13,9 @@ const CreateNFCTagForm = () => {
                 </Col>
                 <Col lg={9} className='my-2'>
                     <FormSelect>
-                        <option>Driver</option>
-                        <option>Maintenance</option>
-                        <option>House</option>
+                        <option value='Driver'>Driver</option>
+                        <option value='Maintenance'>Maintenance</option>
+                        <option value='House'>House</option>
                     </FormSelect>
                 </Col>
                 <Col lg={3} className='d-flex align-items-center '>
