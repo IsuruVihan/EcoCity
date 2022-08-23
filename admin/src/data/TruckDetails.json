@@ -1,0 +1,88 @@
+{
+  "trucks": [
+    {
+      "id": 1,
+      "numberPlate": "HG-4791",
+      "status": "Active",
+      "jobCount": "12",
+      "availability": "unavailable"
+    },
+    {
+      "id": 1,
+      "numberPlate": "HG-4791",
+      "status": "Active",
+      "jobCount": "12",
+      "availability": "unavailable"
+    },
+    {
+      "id": 1,
+      "numberPlate": "HG-4791",
+      "status": "Active",
+      "jobCount": "12",
+      "availability": "unavailable"
+    },
+    {
+      "id": 1,
+      "numberPlate": "HG-4791",
+      "status": "Active",
+      "jobCount": "12",
+      "availability": "unavailable"
+    },
+    {
+      "id": 1,
+      "numberPlate": "HG-4791",
+      "status": "Active",
+      "jobCount": "12",
+      "availability": "unavailable"
+    },
+    {
+      "id": 1,
+      "numberPlate": "HG-4791",
+      "status": "Active",
+      "jobCount": "12",
+      "availability": "unavailable"
+    },
+    {
+      "id": 1,
+      "numberPlate": "HG-4791",
+      "status": "Active",
+      "jobCount": "12",
+      "availability": "unavailable"
+    },
+    {
+      "id": 1,
+      "numberPlate": "HG-4791",
+      "status": "Active",
+      "jobCount": "12",
+      "availability": "unavailable"
+    },
+    {
+      "id": 1,
+      "numberPlate": "HG-4791",
+      "status": "Active",
+      "jobCount": "12",
+      "availability": "unavailable"
+    },
+    {
+      "id": 1,
+      "numberPlate": "HG-4791",
+      "status": "Active",
+      "jobCount": "12",
+      "availability": "unavailable"
+    },
+    {
+      "id": 1,
+      "numberPlate": "HG-4791",
+      "status": "Active",
+      "jobCount": "12",
+      "availability": "unavailable"
+    },
+    {
+      "id": 1,
+      "numberPlate": "HG-4791",
+      "status": "Active",
+      "jobCount": "12",
+      "availability": "unavailable"
+    }
+  ]
+}

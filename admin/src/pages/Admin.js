@@ -3,6 +3,9 @@ import {Container, Row} from "react-bootstrap";
 import Header from "../common/Header";
 import SideNav from "../common/SideNav";
 import {Outlet} from "react-router-dom";
+import '../assets/styles/temp.css';
+import '../assets/styles/common/admin.css';
+
 
 const Home = () => {
     return (

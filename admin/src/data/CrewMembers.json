@@ -1,0 +1,84 @@
+{
+  "crew": [
+    {
+      "id": 123,
+      "name": "Ashen Perera",
+      "nic": 20015498746,
+      "email": "ashen@gmail.com",
+      "jobs": 10,
+      "status": "Active"
+    },
+    {
+      "id": 123,
+      "name": "Ashen Perera",
+      "nic": 20015498746,
+      "email": "ashen@gmail.com",
+      "jobs": 10,
+      "status": "Removed"
+    },
+    {
+      "id": 123,
+      "name": "Ashen Perera",
+      "nic": 20015498746,
+      "email": "ashen@gmail.com",
+      "jobs": 10,
+      "status": "Active"
+    },
+    {
+      "id": 123,
+      "name": "Ashen Perera",
+      "nic": 20015498746,
+      "email": "ashen@gmail.com",
+      "jobs": 10,
+      "status": "Removed"
+    },
+    {
+      "id": 123,
+      "name": "Ashen Perera",
+      "nic": 20015498746,
+      "email": "ashen@gmail.com",
+      "jobs": 10,
+      "status": "Active"
+    },
+    {
+      "id": 123,
+      "name": "Ashen Perera",
+      "nic": 20015498746,
+      "email": "ashen@gmail.com",
+      "jobs": 10,
+      "status": "Removed"
+    },
+    {
+      "id": 123,
+      "name": "Ashen Perera",
+      "nic": 20015498746,
+      "email": "ashen@gmail.com",
+      "jobs": 10,
+      "status": "Active"
+    },
+    {
+      "id": 123,
+      "name": "Ashen Perera",
+      "nic": 20015498746,
+      "email": "ashen@gmail.com",
+      "jobs": 10,
+      "status": "Removed"
+    },
+    {
+      "id": 123,
+      "name": "Ashen Perera",
+      "nic": 20015498746,
+      "email": "ashen@gmail.com",
+      "jobs": 10,
+      "status": "Active"
+    },
+    {
+      "id": 123,
+      "name": "Ashen Perera",
+      "nic": 20015498746,
+      "email": "ashen@gmail.com",
+      "jobs": 10,
+      "status": "Removed"
+    }
+  ]
+}

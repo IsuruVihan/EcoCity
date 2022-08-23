@@ -70,10 +70,10 @@ export const AuthProvider = ({children}) => {
           .catch((error) => {
             setLoading(false);
             Toast.show({
-              type: 'error',
-              text1: 'Oops!',
-              text2: 'Something went wrong when you try to login. Please try again.',
-              topOffset: 10,
+                type: 'error',
+                text1: 'Oops!',
+                text2: 'Something went wrong when you try to login. Please try again.',
+                topOffset: 10,
             });
             console.log("LOGIN ERROR: ", error);
           });
