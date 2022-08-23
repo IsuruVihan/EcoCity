@@ -6,6 +6,7 @@ import TotalNFCTagUsageLineGraph from "../graphs/TotalNFCTagUsageLineGraph";
 import TotalNFCTagUsageLineGraphFilter from "../filters/TotalNFCTagUsageLineGraphFilter";
 import DisposedGarbageWeightTableFilter from "../../Houses/filters/DisposedGarbageWeightTableFilter";
 import {FiTrash2} from "react-icons/fi";
+import MaintenanceJobLineGraph from "../../MaintenanceCrewMembers/graphs/MaintenanceJobLineGraph";
 
 const NFCTagViewModal = (props) => {
     const tag = props.tag;
@@ -112,62 +113,17 @@ const NFCTagViewModal = (props) => {
                         </Row>
 
 
-                        <Row className='mx-0 mt-3'>
+                        <Row className='mx-0 mt-3 mb-5'>
                             <Col lg={10} className='h6 px-0'>Total number of NFC tag uses:</Col>
                             <Col lg={2} className={'px-0'}>
                                 <TotalNFCTagUsageLineGraphFilter/>
                             </Col>
-                        </Row>
-
-                        <Row className='mx-0 fs-6'>
-                            <Col className='px-0 mt-3'>
-                                <Table className='my-0 fs-6' borderless>
-                                    <thead>
-                                    <tr className='table-header'>
-                                        <td>#</td>
-                                        <td>Bin Type</td>
-                                        <td>Type</td>
-                                        <td>Weight (KG)</td>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td><FiTrash2 size='20px' color='#4FA7FF' style={{opacity: "1"}}/></td>
-                                        <td>Glass</td>
-                                        <td>
-                                            1
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td><FiTrash2 size='20px' color='#FFAF3F' style={{opacity: "1"}}/></td>
-                                        <td>Paper</td>
-                                        <td>
-                                            0.8
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td><FiTrash2 size='20px' color='#00E17F' style={{opacity: "1"}}/></td>
-                                        <td>Organic</td>
-                                        <td>
-                                            1.2
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td><FiTrash2 size='20px' color='#FA7A7A' style={{opacity: "1"}}/></td>
-                                        <td>Plastic</td>
-                                        <td>
-                                            0.73
-                                        </td>
-                                    </tr>
-
-                                    </tbody>
-                                </Table>
+                            <Col lg={12} className='mb-5'>
+                                <TotalNFCTagUsageLineGraph/>
                             </Col>
                         </Row>
+
+
                     </Col>
                 </Row>
             </Modal.Body>
