@@ -64,27 +64,27 @@ const JobsTable = () => {
             </tr>
             <tr style={{borderBottom:'1px solid #BFDDDE', cursor:'pointer'}}>
               <th scope="row" style={{color:'#d6d6c2'}}>3.</th>
-              <td>123</td>
-              <td>Harith Kumar</td>
-              <td>CMB-7-12</td>
+              <td>125</td>
+              <td>Ashen Perera</td>
+              <td>CMB-5-4</td>
               <td style={{textAlign:'center'}}><p className='m-0 p-1' style={{color:'#ffa64d', backgroundColor:'#ffe0cc', width:'100px', borderRadius:'8px', fontWeight: 700}}>In progress</p></td>
               <td>01/07/2022</td>
               <td>Paper</td>
             </tr>
             <tr style={{borderBottom:'1px solid #BFDDDE', cursor:'pointer'}}>
               <th scope="row" style={{color:'#d6d6c2'}}>5.</th>
-              <td>123</td>
-              <td>Harith Kumar</td>
-              <td>CMB-7-12</td>
+              <td>103</td>
+              <td>Sanath Weerakoon</td>
+              <td>CMB-6-1</td>
               <td style={{textAlign:'center'}}><p className='m-0 p-1' style={{color:'#3377ff', backgroundColor:'#BFDDDE', width:'100px', borderRadius:'8px', fontWeight: 700}}>Assigned</p></td>
               <td>01/07/2022</td>
               <td>Paper</td>
             </tr>
             <tr style={{borderBottom:'1px solid #BFDDDE', cursor:'pointer'}}>
               <th scope="row" style={{color:'#d6d6c2'}}>6.</th>
-              <td>123</td>
-              <td>Harith Kumar</td>
-              <td>CMB-7-12</td>
+              <td>120</td>
+              <td>Gihan Kumara</td>
+              <td>CMB-2-11</td>
               <td style={{textAlign:'center'}}><p className='m-0 p-1' 
               style={{
                 color:'#00b300', 
