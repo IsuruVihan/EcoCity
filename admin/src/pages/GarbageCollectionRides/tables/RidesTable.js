@@ -104,6 +104,32 @@ const RidesTable = () => {
                                 <td>2/4</td>
                                 <td>2.3</td>
                             </tr>
+                            <tr style={{borderBottom:'1px solid #BFDDDE', cursor:'pointer'}} onClick={handleShow}>
+                                <th scope="row" style={{color:'#B9B9B9'}}>1.</th>
+                                <td>1532</td>
+                                <td>Dasun Hathiyaldeniya</td>
+                                <td>LB-7644</td>
+                                <td style={{textAlign:'center'}}><p className='m-0 p-1'
+                                    style={{color:'#008BD1', backgroundColor:'#E1F0FF', width:'100px', borderRadius:'8px',
+                                    fontWeight: 700}}>Assigned</p></td>
+                                <td>29/06/2022</td>
+                                <td>Organic</td>
+                                <td>0/5</td>
+                                <td>-</td>
+                            </tr>
+                            <tr style={{borderBottom:'1px solid #BFDDDE', cursor:'pointer'}} onClick={handleShow}>
+                                <th scope="row" style={{color:'#B9B9B9'}}>2.</th>
+                                <td>1221</td>
+                                <td>Waruna Gihan</td>
+                                <td>CBA-0001</td>
+                                <td style={{textAlign:'center'}}><p className='m-0 p-1'
+                                    style={{color:'#00C186', backgroundColor:'#E0F8E3', width:'100px', borderRadius:'8px',
+                                    fontWeight: 700}}>Completed</p></td>
+                                <td>15/06/2022</td>
+                                <td>Glass</td>
+                                <td>1/1</td>
+                                <td>1.1</td>
+                            </tr>
                             <Modal show={show} onHide={handleClose}>
                                 <Modal.Header style={{border:'none'}}>
                                     <Row>

@@ -7,6 +7,7 @@ import AssignRideMap from "../maps/AssignRideMap";
 import "../../../assets/styles/GarbageCollectionRides/forms/assignrideform.css";
 
 import filtericon from "../../../assets/images/icons/filter.png";
+import map from "../../../assets/images/popup-model-map.png";
 
 const AssignRideForm = () => {
     const styles = {
@@ -44,12 +45,12 @@ const AssignRideForm = () => {
     const [open, setOpen] = useState(false);
   return (
     <Container>
-      <Row style={{border:'1px solid red'}}>
+      <Row>
           <Col className='loc'>
               Location
           </Col>
           <Col>
-              <Row style={{width:100, border:'2px solid #BFDDDE',marginLeft:110, borderRadius:10, cursor:'pointer'}}
+              <Row style={{width:100, border:'2px solid #BFDDDE', marginLeft:110, borderRadius:10, cursor:'pointer'}}
                    onClick={() => setOpen(!open)}>
                   <Col aria-controls="example-collapse-text" aria-expanded={open}>
                       Filter
@@ -68,8 +69,8 @@ const AssignRideForm = () => {
           </Col>
       </Row>
       <Row>
-          <Col style={{border:'1px solid blue'}}>
-              <AssignRideMap/>
+          <Col style={{marginTop: 10, marginBottom: 10}}>
+              <Image src={map} width="100%"/>
           </Col>
       </Row>
       <Row>
@@ -83,7 +84,7 @@ const AssignRideForm = () => {
                                       Garbage Hub ID
                                   </label>
                               </Row>
-                              <Row style={{ marginLeft:1 ,border:'2px solid #E8F5F6', borderRadius:8 , outline:'none' }}>
+                              <Row style={{ marginLeft: 1 ,border:'2px solid #E8F5F6', borderRadius: 8, outline:'none', marginBottom: 10}}>
                                   {/*<Multiselect*/}
                                   {/*    customArrow={{}}*/}
                                   {/*    hidePlaceholder*/}
@@ -118,7 +119,7 @@ const AssignRideForm = () => {
                               </Row>
                               <Row>
                                   <Col>
-                                  <Row style={{marginLeft:1, border:'2px solid #E8F5F6', borderRadius:8,paddingTop:2, paddingBottom:4, color:'#042434', fontSize:13,marginBottom:4}}>
+                                  <Row style={{marginLeft:1, border:'2px solid #E8F5F6', borderRadius: 8, paddingTop: 2, paddingBottom: 4, color: '#042434', fontSize: 13, marginBottom:10}}>
                                       <Col xs={8}>
                                           <select className='select' >
                                               <option value='value1'>--select--</option>
@@ -140,10 +141,10 @@ const AssignRideForm = () => {
                               </Row>
                               <Row>
                                   <Col>
-                                  <Row style={{marginLeft:1, border:'2px solid #E8F5F6', borderRadius:8,paddingTop:2, paddingBottom:4, color:'#042434', fontSize:13,marginBottom:4}}>
+                                  <Row style={{marginLeft:1, border:'2px solid #E8F5F6', borderRadius: 8, paddingTop: 2, paddingBottom: 4, color: '#042434', fontSize: 13, marginBottom: 10}}>
                                       <Col xs={8}>
                                           <select className='select'>
-                                              <option value=''></option>
+                                              <option value=''>--select--</option>
                                               <option value='organic'>Organic</option>
                                               <option value='glass'>Glass</option>
                                               <option value='paper'>Paper</option>
@@ -164,7 +165,7 @@ const AssignRideForm = () => {
                                       Date
                                   </label>
                               </Row>
-                              <Row style={{ marginLeft:1}}>
+                              <Row style={{ marginLeft: 1, marginBottom: 10}}>
                                   <input type='date' style={{border:'2px solid #E8F5F6',outline:'none', borderRadius:8,paddingTop:2, paddingBottom:4, color:'#042434', fontSize:13,marginBottom:4  }}/>
                               </Row>
                           </Col>
@@ -178,10 +179,10 @@ const AssignRideForm = () => {
                               </Row>
                               <Row>
                                   <Col>
-                                  <Row style={{marginLeft:1, border:'2px solid #E8F5F6', borderRadius:8,paddingTop:2, paddingBottom:4, color:'#042434', fontSize:13,marginBottom:4}}>
+                                  <Row style={{marginLeft:1, border:'2px solid #E8F5F6', borderRadius: 8,paddingTop: 2, paddingBottom: 4, color: '#042434', fontSize: 13, marginBottom: 10}}>
                                       <Col xs={8}>
                                           <select className='select1'>
-                                              <option value='value1'></option>
+                                              <option value='value1'>--select--</option>
                                               <option value='value2'>value2</option>
                                               <option value='value3'>value3</option>
                                               <option value='value4'>value4</option>
