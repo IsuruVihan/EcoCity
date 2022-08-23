@@ -38,7 +38,7 @@ const NFCTags = () => {
                         </span>
                         {isTableFilterVisible && <HousesTableFilter/>}
                     </div>
-                    <HousesTable onCreateClicked={setShowCreateHouseForm}/>
+                    <NFCTagsTable onCreateClicked={setShowCreateHouseForm}/>
                     <CreateHouseModal onHide={handleClose} show={showCreateHouseForm}/>
                 </Col>
 
