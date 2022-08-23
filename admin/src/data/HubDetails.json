@@ -8,33 +8,33 @@
           "binID": "",
           "binType": "Organic",
           "status": "Active",
-          "temperature": "10",
+          "temperature": "8",
           "humidity": "20%",
-          "level": "95"
+          "level": "90"
         },
         {
           "binID": "",
           "binType": "Glass",
           "status": "Active",
-          "temperature": "5",
-          "humidity": "3%",
-          "level": "23"
+          "temperature": "10",
+          "humidity": "13%",
+          "level": "20"
         },
         {
           "binID": "",
           "binType": "Paper",
           "status": "Active",
-          "temperature": "3",
-          "humidity": "5%",
+          "temperature": "26",
+          "humidity": "34%",
           "level": "56"
         },
         {
           "binID": "",
           "binType": "Plastic",
           "status": "Active",
-          "temperature": "3",
-          "humidity": "2%",
-          "level": "21"
+          "temperature": "41",
+          "humidity": "12%",
+          "level": "22"
         }
       ]
     },
@@ -46,33 +46,33 @@
           "binID": "",
           "binType": "Organic",
           "status": "Active",
-          "temperature": "10",
-          "humidity": "20%",
-          "level": "95"
+          "temperature": "11",
+          "humidity": "28%",
+          "level": "97"
         },
         {
           "binID": "",
           "binType": "Glass",
           "status": "Active",
-          "temperature": "5",
-          "humidity": "3%",
-          "level": "23"
+          "temperature": "32",
+          "humidity": "63%",
+          "level": "43"
         },
         {
           "binID": "",
           "binType": "Paper",
           "status": "Active",
-          "temperature": "3",
-          "humidity": "5%",
-          "level": "56"
+          "temperature": "39",
+          "humidity": "55%",
+          "level": "12"
         },
         {
           "binID": "",
           "binType": "Plastic",
           "status": "Active",
-          "temperature": "3",
-          "humidity": "2%",
-          "level": "21"
+          "temperature": "49",
+          "humidity": "37%",
+          "level": "98"
         }
       ]
     },
@@ -84,25 +84,25 @@
           "binID": "",
           "binType": "Organic",
           "status": "Active",
-          "temperature": "10",
-          "humidity": "20%",
-          "level": "95"
+          "temperature": "18",
+          "humidity": "24%",
+          "level": "85"
         },
         {
           "binID": "",
           "binType": "Glass",
           "status": "Active",
-          "temperature": "5",
-          "humidity": "3%",
-          "level": "23"
+          "temperature": "4",
+          "humidity": "2%",
+          "level": "20"
         },
         {
           "binID": "",
           "binType": "Paper",
           "status": "Active",
-          "temperature": "3",
-          "humidity": "5%",
-          "level": "56"
+          "temperature": "30",
+          "humidity": "15%",
+          "level": "95"
         },
         {
           "binID": "",
@@ -122,8 +122,8 @@
           "binID": "",
           "binType": "Organic",
           "status": "Active",
-          "temperature": "10",
-          "humidity": "20%",
+          "temperature": "13",
+          "humidity": "26%",
           "level": "95"
         },
         {

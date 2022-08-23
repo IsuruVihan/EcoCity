@@ -2,16 +2,16 @@
   "crew": [
     {
       "id": 123,
-      "name": "Ashen Perera",
+      "name": "Danny Frazier",
       "nic": 20015498746,
-      "email": "ashen@gmail.com",
+      "email": "danny@gmail.com",
       "status": "Active"
     },
     {
       "id": 123,
-      "name": "Ashen Perera",
+      "name": "Leon Mitchelle",
       "nic": 20015498746,
-      "email": "ashen@gmail.com",
+      "email": "leon@gmail.com",
       "status": "Inactive"
     },
     {
@@ -23,65 +23,65 @@
     },
     {
       "id": 123,
-      "name": "Ashen Perera",
+      "name": "Mabel oliver",
       "nic": 20015498746,
-      "email": "ashen@gmail.com",
+      "email": "mabel.oli@gmail.com",
       "status": "Inactive"
     },
     {
       "id": 123,
-      "name": "Ashen Perera",
+      "name": "Emily Green",
       "nic": 20015498746,
-      "email": "ashen@gmail.com",
+      "email": "emily.green@gmail.com",
       "status": "Active"
     },
     {
       "id": 123,
-      "name": "Ashen Perera",
+      "name": "Cathy Carr",
       "nic": 20015498746,
-      "email": "ashen@gmail.com",
+      "email": "Cathy.carr@gmail.com",
       "status": "Inactive"
     },
     {
       "id": 123,
-      "name": "Ashen Perera",
+      "name": "Dustin Willson",
       "nic": 20015498746,
-      "email": "ashen@gmail.com",
+      "email": "dustin.wil@gmail.com",
       "status": "Active"
     },
     {
       "id": 123,
-      "name": "Ashen Perera",
+      "name": "Ruban Hunter",
       "nic": 20015498746,
-      "email": "ashen@gmail.com",
+      "email": "Ruban@gmail.com",
       "status": "Inactive"
     },
     {
       "id": 123,
-      "name": "Ashen Perera",
+      "name": "Isaiah ward",
       "nic": 20015498746,
-      "email": "ashen@gmail.com",
+      "email": "isaiah@gmail.com",
       "status": "Active"
     },
     {
       "id": 123,
-      "name": "Ashen Perera",
+      "name": "Perry Jenkins",
       "nic": 20015498746,
-      "email": "ashen@gmail.com",
+      "email": "Perry@gmail.com",
       "status": "Inactive"
     },
     {
       "id": 123,
-      "name": "Ashen Perera",
+      "name": "Ricky Soto",
       "nic": 20015498746,
-      "email": "ashen@gmail.com",
+      "email": "ricky@gmail.com",
       "status": "Active"
     },
     {
       "id": 123,
-      "name": "Ashen Perera",
+      "name": "Owan Stewart",
       "nic": 20015498746,
-      "email": "ashen@gmail.com",
+      "email": "owan@gmail.com",
       "status": "Inactive"
     }
   ]
