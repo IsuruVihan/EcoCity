@@ -33,7 +33,7 @@ const NFCTagViewModal = (props) => {
                                 <div>NFC Tag ID</div>
                             </Col>
                             <Col lg={9} className='px-0'>
-                                <FormControl type={'text'} disabled value={tag.id}
+                                <FormControl type={'text'} disabled value={tag.serial}
                                              style={{backgroundColor: "white", color: "#a3a3a3"}}/>
                             </Col>
                         </Row>
@@ -61,7 +61,7 @@ const NFCTagViewModal = (props) => {
                                 <div>Last Name</div>
                             </Col>
                             <Col lg={9} className='px-0'>
-                                <FormControl type={'text'} disabled value={tag.nic}
+                                <FormControl type={'text'} disabled value={tag.name}
                                              style={{backgroundColor: "white", color: "#a3a3a3"}}/>
                             </Col>
                         </Row>
@@ -70,7 +70,7 @@ const NFCTagViewModal = (props) => {
                                 <div>User Type</div>
                             </Col>
                             <Col lg={9} className='px-0'>
-                                <FormSelect disabled>
+                                <FormSelect disabled value={tag.userType}>
                                     <option value='Driver'>Driver</option>
                                     <option value='Maintenance'>Maintenance</option>
                                     <option value='House'>House</option>
