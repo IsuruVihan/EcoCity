@@ -14,6 +14,7 @@ const CreateHouseModal = (props) => {
             centered
             backdrop="static"
             keyboard={false}
+            dialogClassName='modal-60w'
         >
             <Modal.Header closeButton>
                 <Modal.Title>New House</Modal.Title>
