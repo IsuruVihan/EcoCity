@@ -5,6 +5,7 @@ import RideMap from "../maps/RideMap";
 import "../../../assets/styles/GarbageCollectionRides/tables/table.css";
 
 import view_collection_ride from "../../../assets/images/view-collection-ride.png";
+import map from "../../../assets/images/popup-model-map.png";
 
 const ViewRideModal = () => {
     const ride = {
@@ -33,14 +34,17 @@ const ViewRideModal = () => {
     }
 
     return (
-        <Container style={{border:'1px solid red'}}>
-            <Row style={{border:'1px solid green'}}>
+        <Container>
+            <Row>
                 <Col style={{textAlign:'center'}}>
                     <Image src={view_collection_ride} width='35%'/>
                 </Col>
             </Row>
             <Row>
-                <RideMap/>
+                <label style={{fontSize:14, fontWeight:'bold',paddingBottom:4}}>Location</label>
+            </Row>
+            <Row style={{marginBottom: 10}}>
+                <Image src={map} />
             </Row>
             <Row>
                 <Col style={{ marginRight:12}}>
@@ -49,7 +53,7 @@ const ViewRideModal = () => {
                             <Row>
                                 <label style={{fontSize:14, fontWeight:'bold',paddingBottom:4, }}>Job Status</label>
                             </Row>
-                            <Row style={{ marginLeft:1}}>
+                            <Row style={{ marginLeft: 1, marginBottom: 10}}>
                                 <label className={changeColor(status)}
                                        style={{border:'2px solid #E8F5F6', borderRadius:8,paddingTop:2, paddingBottom:4,width:80, fontSize:13,marginBottom:4 }}>
                                     {status}
@@ -62,7 +66,7 @@ const ViewRideModal = () => {
                             <Row>
                                 <label style={{fontSize:14, fontWeight:'bold',paddingBottom:4}}>Garbage Hub ID</label>
                             </Row>
-                            <Row style={{ marginLeft:1}}>
+                            <Row style={{ marginLeft:1, marginBottom: 10}}>
                                 <label style={{border:'2px solid #E8F5F6', borderRadius:8,paddingTop:2, paddingBottom:4, color:'#042434', fontSize:13,marginBottom:4  }}>
                                     {ride.garbage_hub_id}
                                 </label>
@@ -74,7 +78,7 @@ const ViewRideModal = () => {
                             <Row>
                                 <label style={{fontSize:14, fontWeight:'bold',paddingBottom:4}}>Driver ID</label>
                             </Row>
-                            <Row style={{ marginLeft:1}}>
+                            <Row style={{ marginLeft:1, marginBottom: 10}}>
                                 <label style={{border:'2px solid #E8F5F6', borderRadius:8,paddingTop:2, paddingBottom:4, color:'#042434', fontSize:13,marginBottom:4  }}>
                                     {ride.driver_id}
                                 </label>
@@ -86,7 +90,7 @@ const ViewRideModal = () => {
                             <Row>
                                 <label style={{fontSize:14, fontWeight:'bold',paddingBottom:4}}>Bin Type</label>
                             </Row>
-                            <Row style={{ marginLeft:1}}>
+                            <Row style={{ marginLeft:1, marginBottom: 10}}>
                                 <label style={{border:'2px solid #E8F5F6', borderRadius:8,paddingTop:2, paddingBottom:4, color:'#042434', fontSize:13,marginBottom:4  }}>
                                     {ride.bin_type}
                                 </label>
@@ -100,7 +104,7 @@ const ViewRideModal = () => {
                             <Row>
                                 <label style={{fontSize:14, fontWeight:'bold',paddingBottom:4}}>Job ID</label>
                             </Row>
-                            <Row style={{ marginLeft:1}}>
+                            <Row style={{ marginLeft:1, marginBottom: 10}}>
                                 <label style={{border:'2px solid #E8F5F6', borderRadius:8,paddingTop:2, paddingBottom:4, color:'#042434', fontSize:13,marginBottom:4  }}>
                                     {ride.job_id}
                                 </label>
@@ -112,7 +116,7 @@ const ViewRideModal = () => {
                             <Row>
                                 <label style={{fontSize:14, fontWeight:'bold',paddingBottom:4}}>Date</label>
                             </Row>
-                            <Row style={{ marginLeft:1}}>
+                            <Row style={{ marginLeft:1, marginBottom: 10}}>
                                 <label style={{border:'2px solid #E8F5F6', borderRadius:8,paddingTop:2, paddingBottom:4, color:'#042434', fontSize:13,marginBottom:4  }}>
                                     {ride.date}
                                 </label>
@@ -124,7 +128,7 @@ const ViewRideModal = () => {
                             <Row>
                                 <label style={{fontSize:14, fontWeight:'bold',paddingBottom:4}}>Truck Plate Number</label>
                             </Row>
-                            <Row style={{ marginLeft:1}}>
+                            <Row style={{ marginLeft:1, marginBottom: 10}}>
                                 <label style={{border:'2px solid #E8F5F6', borderRadius:8,paddingTop:2, paddingBottom:4, color:'#042434', fontSize:13,marginBottom:4  }}>
                                     {ride.truck_plate_number}
                                 </label>

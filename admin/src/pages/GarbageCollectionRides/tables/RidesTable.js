@@ -39,7 +39,7 @@ const RidesTable = () => {
                     <Row>
                         <Table>
                             <thead>
-                            <tr style={{borderBottom:'1px solid #BFDDDE'}}>
+                            <tr style={{borderBottom:'1px solid #BFDDDE', fontSize: 18}}>
                                 <th scope="col">#</th>
                                 <th scope="col">Job ID</th>
                                 <th scope="col">Driver Name</th>
@@ -133,7 +133,7 @@ const RidesTable = () => {
                                 <Modal.Header style={{border:'none'}}>
                                     <Row>
                                         <Col style={{ marginLeft:430}}>
-                                            <Image src={close} onClick={handleassignClose} width="70%"/>
+                                            <Image src={close} onClick={handleassignClose} width="50%" style={{cursor: "pointer"}}/>
                                         </Col>
                                     </Row>
                                 </Modal.Header>
