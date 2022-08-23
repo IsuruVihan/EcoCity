@@ -36,7 +36,6 @@ const Notifications = () => {
                         ))
                     }
                 </>
-
             </Row>}
 
             <Row className='fs-6 mx-0 mt-2'>
