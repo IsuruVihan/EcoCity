@@ -1,6 +1,6 @@
 import React, {useContext, useState} from 'react';
 import {Dimensions, Image, StyleSheet, Text, TouchableOpacity, View, TextInput} from "react-native";
-import {CheckBox, Dialog, Switch} from "@rneui/themed";
+import {Dialog, Switch} from "@rneui/themed";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import Octicons from "react-native-vector-icons/Octicons";
 import FeatherIcons from "react-native-vector-icons/Feather";
@@ -9,6 +9,10 @@ import FontAwesome5Icons from "react-native-vector-icons/FontAwesome5";
 import Slider from '@react-native-community/slider';
 import Feather from "react-native-vector-icons/Feather";
 import {Button} from "@rneui/base";
+import IconFontAwesome5 from "react-native-vector-icons/FontAwesome5";
+import DatePicker from "react-native-date-picker";
+import AntDesign from "react-native-vector-icons/AntDesign";
+import SelectDropdown from 'react-native-select-dropdown';
 
 import {AuthContext} from "../context/AuthContext";
 import {Responsive} from "../helpers/Responsive";
@@ -16,9 +20,7 @@ import {Responsive} from "../helpers/Responsive";
 import HouseImg from '../assets/images/house-profile.png';
 import NFCImg from '../assets/images/nfc-tag.png';
 import FilterImg from "../assets/images/filter.png";
-import IconFontAwesome5 from "react-native-vector-icons/FontAwesome5";
-import DatePicker from "react-native-date-picker";
-import AntDesign from "react-native-vector-icons/AntDesign";
+import Ionicons from "react-native-vector-icons/Ionicons";
 
 const HEIGHT = Dimensions.get('window').height;
 const WIDTH = Dimensions.get('window').width;
@@ -41,8 +43,6 @@ const MyProfile = () => {
   const [newPassword, setNewPassword] = useState('Isuru@123');
 
   const [isVisibleNFCModal, setIsVisibleNFCModal] = useState(false);
-
-  const [nfcFilterVisible, setNFCFilterVisible] = useState(false);
 
   const [nfcTagsTableFilterVisible, setNFCTagsTableFilterVisible] = useState(false);
   const [nfcTagsTableFromDateFilterVisible, setNFCTagsTableFromDateFilterVisible] = useState(false);
@@ -205,6 +205,46 @@ const MyProfile = () => {
       >
         <View style={styles.myProfile.filter.title}>
           <Text style={styles.myProfile.filter.title.txt}>NFC Tag Usage Filter</Text>
+        </View>
+        <View style={styles.myProfile.filter.fields}>
+          <View style={styles.myProfile.filter.fields.field}>
+            <Text style={styles.myProfile.filter.fields.field.label}>Bin Type</Text>
+            <SelectDropdown
+              data={["Organic", "Paper", "Plastic", "Glass"]}
+              defaultValue="Organic"
+              // onSelect={(selectedItem) => setNewComplaintCategory(selectedItem)}
+              buttonTextAfterSelection={(selectedItem) => selectedItem}
+              rowTextForSelection={(item) => item}
+              buttonStyle={{
+                width: '70%',
+                height: Responsive(4, HEIGHT),
+                borderBottomWidth: 1,
+                borderBottomColor: '#E9E8EF',
+                marginVertical: 3,
+                backgroundColor: 'white',
+                color: '#7CB6B8',
+              }}
+              buttonTextStyle={{fontSize: 12, color: '#7CB6B8', backgroundColor: 'white',}}
+              dropdownStyle={{backgroundColor: 'white', height: Responsive(20, HEIGHT), borderRadius: 10,}}
+              rowStyle={{
+                height: Responsive(5, HEIGHT),
+                paddingVertical: 5,
+                borderBottomColor: '#E8F5F6',
+                borderBottomWidth: 1,
+              }}
+              rowTextStyle={{color: '#7CB6B8', fontSize: 15,}}
+              renderDropdownIcon={() => <Ionicons name={'caret-down-circle'} color="#7CB6B8"/>}
+              dropdownIconPosition="right"
+            />
+          </View>
+          <View style={styles.myProfile.filter.fields.field}>
+            <Text style={styles.myProfile.filter.fields.field.label}>Hub ID</Text>
+            <TextInput style={styles.myProfile.filter.fields.field.txtInput}/>
+          </View>
+          <View style={styles.myProfile.filter.fields.field}>
+            <Text style={styles.myProfile.filter.fields.field.label}>NFC Id</Text>
+            <TextInput style={styles.myProfile.filter.fields.field.txtInput}/>
+          </View>
         </View>
         <View style={styles.myProfile.filter.dates}>
           <TouchableOpacity
@@ -689,6 +729,31 @@ const styles = StyleSheet.create({
           color: '#042434',
           fontSize: 15,
           fontWeight: '600',
+        },
+      },
+      fields: {
+        marginVertical: 10,
+        field: {
+          // borderColor: 'red',
+          // borderWidth: 2,
+          height: Responsive(5, HEIGHT),
+          display: 'flex',
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          label: {
+            color: '#042434',
+          },
+          txtInput: {
+            borderBottomWidth: 1,
+            borderBottomColor: '#E9E8EF',
+            padding: 0,
+            width: '70%',
+            color: '#7CB6B8',
+            fontSize: 12,
+            height: Responsive(4, HEIGHT),
+            textAlign: 'center',
+          },
         },
       },
       options: {
