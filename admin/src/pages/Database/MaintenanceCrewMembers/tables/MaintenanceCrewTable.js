@@ -5,6 +5,7 @@ import TruckDetailsModal from "../../GarbageTrucks/modals/TruckDetailsModal";
 import TrucksTableItem from "../../GarbageTrucks/tables/TrucksTableItem";
 import {FiArrowLeft, FiArrowRight, FiEdit} from "react-icons/fi";
 import MaintennaceCrewTableItem from "./MaintennaceCrewTableItem";
+import MaintenanceCrewMemberViewModal from "../modals/MaintenanceCrewMemberViewModal";
 
 const MaintenanceCrewTable = (props) => {
     const trucks = memberDetails.crew;
@@ -146,8 +147,9 @@ const MaintenanceCrewTable = (props) => {
 
     return (
         <Row className='mx-0'>
-            <TruckDetailsModal show={isMemberDetailsVisible} onHide={() => setIsMemberkDetailsVisible(false)}
-                               truck={currentSelectedMember}/>
+            <MaintenanceCrewMemberViewModal show={isMemberDetailsVisible}
+                                            onHide={() => setIsMemberkDetailsVisible(false)}
+                                            truck={currentSelectedMember}/>
             <Table className='my-0 garbage-hubs-table' borderless>
                 <thead>
                 <tr className='table-header'>
