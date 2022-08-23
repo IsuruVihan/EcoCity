@@ -7,6 +7,7 @@ import DisposedGarbageWeightTableFilter from "../filters/DisposedGarbageWeightTa
 import DisposedGarbageWeightTable from "../tables/DisposedGarbageWeightTable";
 import MaintenanceJobLineGraphFilter from "../../MaintenanceCrewMembers/filters/MaintenanceJobLineGraphFilter";
 import MaintenanceJobLineGraph from "../../MaintenanceCrewMembers/graphs/MaintenanceJobLineGraph";
+import {FiTrash2} from "react-icons/fi";
 
 const ViewHouseModal = (props) => {
     const house = props.house;
@@ -92,7 +93,7 @@ const ViewHouseModal = (props) => {
                         <Row className='mx-0 fs-6'>
                             <div className='fs-6 px-0'>NFC Tags</div>
                             <Col className='px-0'>
-                                <Table className='my-0 fs-6 driver-table' borderless>
+                                <Table className='my-0 fs-6' borderless>
                                     <thead>
                                     <tr className='table-header'>
                                         <td>#</td>
@@ -124,11 +125,59 @@ const ViewHouseModal = (props) => {
                             </Col>
                         </Row>
 
+
                         <Row className='mx-0 mt-3'>
                             <Col lg={10} className='h6 px-0'>Weight of disposed garbage:</Col>
                             <Col lg={2} className={'px-0'}><DisposedGarbageWeightTableFilter/></Col>
-                            <Col lg={12} className='mb-5'>
-                                <MaintenanceJobLineGraph/>
+                        </Row>
+
+                        <Row className='mx-0 fs-6'>
+                            <Col className='px-0 mt-3'>
+                                <Table className='my-0 fs-6' borderless>
+                                    <thead>
+                                    <tr className='table-header'>
+                                        <td>#</td>
+                                        <td>Bin Type</td>
+                                        <td>Type</td>
+                                        <td>Weight (KG)</td>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td><FiTrash2 size='20px' color='#EDFBFC' style={{opacity: "1"}}/></td>
+                                        <td>Glass</td>
+                                        <td>
+                                            1
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>1</td>
+                                        <td><FiTrash2 size='20px' color='#EDFBFC' style={{opacity: "1"}}/></td>
+                                        <td>Paper</td>
+                                        <td>
+                                            0.8
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>1</td>
+                                        <td><FiTrash2 size='20px' color='#EDFBFC' style={{opacity: "1"}}/></td>
+                                        <td>Organic</td>
+                                        <td>
+                                            1.2
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>1</td>
+                                        <td><FiTrash2 size='20px' color='#EDFBFC' style={{opacity: "1"}}/></td>
+                                        <td>Plastic</td>
+                                        <td>
+                                            0.73
+                                        </td>
+                                    </tr>
+
+                                    </tbody>
+                                </Table>
                             </Col>
                         </Row>
                     </Col>
