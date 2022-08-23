@@ -5,6 +5,7 @@ import MaintenanceCrewMemberViewModal from "../../MaintenanceCrewMembers/modals/
 import MaintennaceCrewTableItem from "../../MaintenanceCrewMembers/tables/MaintennaceCrewTableItem";
 import {FiArrowLeft, FiArrowRight, FiEdit} from "react-icons/fi";
 import HouseTableItem from "./HouseTableItem";
+import ViewHouseModal from "../modals/ViewHouseModal";
 
 const HousesTable = (props) => {
     const trucks = HouseDetails.crew;
@@ -146,9 +147,9 @@ const HousesTable = (props) => {
 
     return (
         <Row className='mx-0'>
-            <MaintenanceCrewMemberViewModal show={isHouseDetailsVisible}
-                                            onHide={() => setIsHouseDetailsVisible(false)}
-                                            truck={currentSelectedHouse}/>
+            <ViewHouseModal show={isHouseDetailsVisible}
+                            onHide={() => setIsHouseDetailsVisible(false)}
+                            house={currentSelectedHouse}/>
             <Table className='my-0 garbage-hubs-table' borderless>
                 <thead>
                 <tr className='table-header'>
