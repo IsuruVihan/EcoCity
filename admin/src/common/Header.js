@@ -11,7 +11,7 @@ const Header = () => {
     const location = useLocation();
     const [url, setUrl] = useState(null);
     const [isLoggedIn, setIsLoggedIn] = useState(true);
-    const notificationCount = 4;
+    const [notificationCount, setNotificationCount] = useState(0);
     const [isNotificationsVisible, setIsNotificationsVisible] = useState(false);
 
     //update the url when the location changes

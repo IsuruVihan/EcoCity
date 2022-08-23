@@ -31,8 +31,8 @@ const Notifications = () => {
                 <Col className='px-0 text-end'>Mark all as read</Col>
                 <>
                     {
-                        newNotifications.map(item => (
-                            <NotificationMessage item={item}/>
+                        newNotifications.map((item, index) => (
+                            <NotificationMessage item={item} key={index}/>
                         ))
                     }
                 </>
@@ -43,8 +43,8 @@ const Notifications = () => {
                 <Col className='px-0'>Earlier</Col>
                 <>
                     {
-                        oldNotifications.map(item => (
-                            <NotificationMessage item={item}/>
+                        oldNotifications.map((item, index) => (
+                            <NotificationMessage item={item} key={index}/>
                         ))
                     }
                 </>
