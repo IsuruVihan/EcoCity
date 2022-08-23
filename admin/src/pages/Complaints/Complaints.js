@@ -20,7 +20,7 @@ const Complaints = () => {
         <Col lg={10}>
             <Row className="px-3 pb-3 pt-2 d-flex align-items-center">
                 <Col className=" p-0 m-0"
-                     style={{textAlign: 'left', fontSize: 30, fontWeight: '700', color: '#042434',}}>
+                     style={{textAlign: 'left', fontSize: 30, fontWeight: '800', color: '#042434',}}>
                     Complaints
                 </Col>
             </Row>
