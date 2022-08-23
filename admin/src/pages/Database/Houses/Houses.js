@@ -23,10 +23,10 @@ const Houses = () => {
         setIsTableFilterVisible(newState);
     }
 
-    const [showCreateCrewMemberForm, setShowCreateCrewMemberForm] = useState(false);
+    const [showCreateHouseForm, setShowCreateHouseForm] = useState(false);
 
-    const handleClose = () => setShowCreateCrewMemberForm(false);
-    const handleShow = () => setShowCreateCrewMemberForm(true);
+    const handleClose = () => setShowCreateHouseForm(false);
+    const handleShow = () => setShowCreateHouseForm(true);
     return (
         <Col className='' lg={10}>
             <Row className='mx-0 section-header '>Houses</Row>
@@ -39,8 +39,8 @@ const Houses = () => {
                         </span>
                         {isTableFilterVisible && <HousesTableFilter/>}
                     </div>
-                    <HousesTable onCreateClicked={setShowCreateCrewMemberForm}/>
-                    <CreateMaintenanceCrewMemberModal onHide={handleClose} show={showCreateCrewMemberForm}/>
+                    <HousesTable onCreateClicked={setShowCreateHouseForm}/>
+                    <CreateHouseModal onHide={handleClose} show={showCreateHouseForm}/>
                 </Col>
                 <Col lg={4} className='box-shadow px-0'>
                     <Image src={mapImage} fluid/>
