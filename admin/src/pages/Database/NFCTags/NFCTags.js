@@ -39,7 +39,7 @@ const NFCTags = () => {
                         {isTableFilterVisible && <NFCTagsTableFilter/>}
                     </div>
                     <NFCTagsTable onCreateClicked={setShowCreateHouseForm}/>
-                    <CreateHouseModal onHide={handleClose} show={showCreateHouseForm}/>
+                    <CreateNFCTagModal onHide={handleClose} show={showCreateHouseForm}/>
                 </Col>
 
             </Row>
