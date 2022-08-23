@@ -37,7 +37,7 @@ const Houses = () => {
                             Filter
                             <FiFilter color='#228693' size='20px'/>
                         </span>
-                        {isTableFilterVisible && <MaintenanceCrewTableFilter/>}
+                        {isTableFilterVisible && <HousesTableFilter/>}
                     </div>
                     <HousesTable onCreateClicked={setShowCreateCrewMemberForm}/>
                     <CreateMaintenanceCrewMemberModal onHide={handleClose} show={showCreateCrewMemberForm}/>
