@@ -11,6 +11,7 @@ const ComplaintsTableFilter = () => {
           <Col style={{
               borderBottomRightRadius: 15,
               borderBottomLeftRadius: 15,
+              backgroundColor: "white",
               boxShadow: `0px 4px 8px #707070`,
           }} lg={5}>
               <Row className="m-1">

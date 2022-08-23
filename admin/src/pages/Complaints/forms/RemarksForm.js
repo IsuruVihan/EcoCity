@@ -8,9 +8,9 @@ const RemarksForm = () => {
     <Container>
         <Row>
             <Col >
-                <Row style={{border:'1px solid red', }}>
-                    <Col style={{height:300}} className="overflow-auto">
-                        <Row >
+                <Row>
+                    <Col style={{height:400}} className="overflow-auto">
+                        <Row>
                             <Col style={{marginRight:15 , marginLeft:15 , fontSize:13, fontWeight:'bold', paddingBottom:5}}>
                                 <Row style={{paddingBottom:5}}>Complaint ID</Row>
                                 <Row>
@@ -91,7 +91,7 @@ const RemarksForm = () => {
                 </Row>
                 <Row>
                     <Col
-                        style={{border:'1px solid green', marginLeft:110, marginRight:110, display:'flex', justifyContent:'space-evenly'}}>
+                        style={{marginLeft:110, marginRight:110, display:'flex', justifyContent:'space-evenly'}}>
                         <button
                             style={{width:100 ,fontSize:15, padding:5, borderRadius:8, border:'none'}}>
                             Reject

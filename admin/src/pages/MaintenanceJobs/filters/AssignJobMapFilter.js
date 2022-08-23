@@ -81,7 +81,6 @@ const AssignJobMapFilter = () => {
                             display: "flex",
                             textAlign: "center",
                             alignItems: "center",
-                            textAlign: "center",
                             marginBottom: "10px",
                             marginTop: "10px",
                           }}

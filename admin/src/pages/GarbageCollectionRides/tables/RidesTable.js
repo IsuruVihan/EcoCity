@@ -175,9 +175,8 @@ const RidesTable = () => {
                                 </Col>
                                 <Col xs={7}>
                                     <Row>
-                                        <Col style={{border:'1px solid #BFDDDE', marginTop:2, marginBottom:2,
-                                             marginLeft:5, marginRight:5, textAlign:'center',
-                                             borderRadius: 10, cursor:'pointer'}}>
+                                        <Col className="p-0" style={{border:'1px solid #BFDDDE', textAlign:'center',
+                                             borderRadius: 10, cursor:'pointer', marginTop:2, marginBottom:2, marginLeft:5, marginRight:5}}>
                                             1
                                         </Col>
                                         <Col style={{marginTop:2, marginBottom:2, marginLeft:5, marginRight:5,

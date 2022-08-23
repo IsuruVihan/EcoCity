@@ -31,43 +31,45 @@ const AreaMap = () => {
         <Col sm={4} className='pr-2 m-0'></Col>
         <Col sm={2} className='p-1' style={{margin: 'auto'}}>
           <Row className='p-0 m-0 areamap-filter'
-               style={{borderRadius: '10px', boxShadow: '2px 4px 8px lightgray', cursor: 'pointer', backgroundColor: isActive1 ? '#effbfc' : ''}} onClick={() => setIsActive1(!isActive1)}>
+               style={{borderRadius: '10px', boxShadow: '2px 4px 8px lightgray', cursor: 'pointer',
+                 backgroundColor: isActive1 ? '#effbfc' : ''}} onClick={() => setIsActive1(!isActive1)}>
             <Col sm={4} className='p-1 m-0'
-                 style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}><img src={hubArea}width='38px'/></Col>
+                 style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+              <img src={hubArea}width='38px'/></Col>
             <Col sm={8} className='p-0 m-0'
-                 style={{display: 'flex', alignItems: 'center', fontSize: 13, fontWeight: 600, color: '#7CB6B8'}}>Garbage Hubs</Col>
+                 style={{display: 'flex', alignItems: 'center', fontSize: 13, fontWeight: 600, color: '#7CB6B8'}}>
+                 Garbage Hubs</Col>
           </Row>
         </Col>
         <Col sm={2} className='p-1' style={{margin: 'auto'}}>
           <Row className='p-0 m-0 areamap-filter'
-               style={{borderRadius: '10px', boxShadow: '2px 4px 8px lightgray', cursor: 'pointer', backgroundColor: isActive2 ? '#effbfc' : ''}} onClick={() => setIsActive2(!isActive2)}>
+               style={{borderRadius: '10px', boxShadow: '2px 4px 8px lightgray', cursor: 'pointer',
+                 backgroundColor: isActive2 ? '#effbfc' : ''}} onClick={() => setIsActive2(!isActive2)}>
             <Col sm={4} className='p-1 m-0'
-                 style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}><img src={garbageTruck}width='40px'/></Col>
+                 style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+              <img src={garbageTruck}width='40px'/></Col>
             <Col sm={8} className='p-0 m-0'
-                 style={{display: 'flex', alignItems: 'center', fontSize: 13, fontWeight: 600, color: '#7CB6B8'}}>Garbage Trucks</Col>
+                 style={{display: 'flex', alignItems: 'center', fontSize: 13, fontWeight: 600, color: '#7CB6B8'}}>
+                 Garbage Trucks</Col>
           </Row>
         </Col>
         <Col sm={2} className='p-1' style={{margin: 'auto'}}>
           <Row className='p-0 m-0 areamap-filter'
-               style={{borderRadius: '10px', boxShadow: '2px 4px 8px lightgray', cursor: 'pointer', backgroundColor: isActive3 ? '#effbfc' : ''}} onClick={() => setIsActive3(!isActive3)}>
+               style={{borderRadius: '10px', boxShadow: '2px 4px 8px lightgray', cursor: 'pointer',
+                 backgroundColor: isActive3 ? '#effbfc' : ''}} onClick={() => setIsActive3(!isActive3)}>
             <Col sm={4} className='p-1 m-0'
-                 style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}><img src={maintenanceTruck}width='40px'/></Col>
+                 style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+              <img src={maintenanceTruck} width='40px'/></Col>
             <Col sm={8} className='p-0 m-0'
-                 style={{display: 'flex', alignItems: 'center', fontSize: 13, fontWeight: 600, color: '#7CB6B8'}}>Maintenance Crew</Col>
+                 style={{display: 'flex', alignItems: 'center', fontSize: 13, fontWeight: 600, color: '#7CB6B8'}}>
+                 Maintenance Crew</Col>
           </Row>
         </Col>
       </Row>
-      <Row className='p-0 m-0' style={{height: '488px'}}></Row>
+      <Row className='p-0 m-0' style={{height: '488px'}}>
+        <Map/>
+      </Row>
     </Col>
-    // <Container className='mx-0 px-0 h-100 overflow-hidden' fluid>
-    //     <Header/>
-    //     <Row className='mx-0 mt-72 container-section' >
-    //         <SideNav/>
-    //         <Col className='' lg={10}>
-    //             Area Map
-    //         </Col>
-    //     </Row>
-    // </Container>
   );
 }
 

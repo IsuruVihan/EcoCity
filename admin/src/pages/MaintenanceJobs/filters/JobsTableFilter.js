@@ -27,12 +27,12 @@ const JobsTableFilter = () => {
         </Row>
         <Row style={{
           position: 'absolute',
-          right: 25,
+          right: 100,
           paddingTop: 8,
           width:'400px',
           zIndex:1}}>
           <Collapse in={open}>
-            <Container  id="example-collapse-text">
+            <Container  id="example-collapse-text" style={{backgroundColor: 'white', boxShadow: '0px 8px 24px rgba(149, 157, 165, 0.2)'}}>
               <Row >
                 <Col style={{
                   borderBottomRightRadius: 15,

@@ -55,36 +55,36 @@ const JobsTable = () => {
             </Modal>
             <tr style={{borderBottom:'1px solid #BFDDDE', cursor:'pointer'}}>
               <th scope="row" style={{color:'#d6d6c2'}}>2.</th>
-              <td>123</td>
-              <td>Harith Kumar</td>
-              <td>CMB-7-12</td>
+              <td>122</td>
+              <td>Ashen Deshapriya</td>
+              <td>CMB-1-11</td>
               <td style={{textAlign:'center'}}><p className='m-0 p-1' style={{color: '#00C186', backgroundColor: '#E0F8E3', width:'100px', borderRadius:'8px', fontWeight: 700}}>Resolved</p></td>
-              <td>01/07/2022</td>
-              <td>Paper</td>
+              <td>19/08/2022</td>
+              <td>Organic</td>
             </tr>
             <tr style={{borderBottom:'1px solid #BFDDDE', cursor:'pointer'}}>
               <th scope="row" style={{color:'#d6d6c2'}}>3.</th>
-              <td>123</td>
-              <td>Harith Kumar</td>
-              <td>CMB-7-12</td>
+              <td>121</td>
+              <td>Nishath Perera</td>
+              <td>CMB-5-1</td>
               <td style={{textAlign:'center'}}><p className='m-0 p-1' style={{color: '#FF9900', backgroundColor: '#FFF6E9', width:'100px', borderRadius:'8px', fontWeight: 700}}>In progress</p></td>
-              <td>01/07/2022</td>
-              <td>Paper</td>
+              <td>20/08/2022</td>
+              <td>Organic</td>
             </tr>
             <tr style={{borderBottom:'1px solid #BFDDDE', cursor:'pointer'}}>
               <th scope="row" style={{color:'#d6d6c2'}}>5.</th>
-              <td>123</td>
-              <td>Harith Kumar</td>
-              <td>CMB-7-12</td>
+              <td>119</td>
+              <td>Hasitha Bandara</td>
+              <td>CMB-2-12</td>
               <td style={{textAlign:'center'}}><p className='m-0 p-1' style={{color:'#008BD1', backgroundColor: '#E1F0FF', width:'100px', borderRadius:'8px', fontWeight: 700}}>Assigned</p></td>
-              <td>01/07/2022</td>
-              <td>Paper</td>
+              <td>19/08/2022</td>
+              <td>Glass</td>
             </tr>
             <tr style={{borderBottom:'1px solid #BFDDDE', cursor:'pointer'}}>
               <th scope="row" style={{color:'#d6d6c2'}}>6.</th>
-              <td>123</td>
-              <td>Harith Kumar</td>
-              <td>CMB-7-12</td>
+              <td>113</td>
+              <td>Nisal Dias</td>
+              <td>CMB-1-12</td>
               <td style={{textAlign:'center'}}><p className='m-0 p-1' 
               style={{
                 color:'#00C186',
@@ -94,7 +94,7 @@ const JobsTable = () => {
                 fontWeight: 700
                 }}>
                   Resolved</p></td>
-              <td>01/07/2022</td>
+              <td>23/08/2022</td>
               <td>Paper</td>
             </tr> 
           </tbody>

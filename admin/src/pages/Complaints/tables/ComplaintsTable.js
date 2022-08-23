@@ -19,23 +19,23 @@ const ComplaintsTable = () => {
                     <Row>
                         <Table>
                             <thead>
-                            <tr style={{borderBottom:'1px solid #BFDDDE'}}>
+                            <tr style={{borderBottom:'1px solid #BFDDDE', fontSize: 18}}>
                                 <th scope="col">#</th>
                                 <th scope="col">Complaint ID</th>
                                 <th scope="col">Name</th>
                                 <th scope="col">Complaint Category</th>
-                                <th scope="col">Hub ID</th>
+                                <th scope="col">ID</th>
                                 <th scope="col">Date</th>
                             </tr>
                             </thead>
                             <tbody>
                             <tr style={{borderBottom:'1px solid #BFDDDE', cursor:'pointer'}} onClick={handleShow}>
-                                <th scope="row" >1</th>
+                                <th scope="row" style={{color:'#d6d6c2'}}>1.</th>
                                 <td>1234</td>
                                 <td>Harith kumar</td>
-                                <td>hub</td>
+                                <td>Hub</td>
                                 <td>CMB-7-12</td>
-                                <td>CMB-7-12</td>
+                                <td>10/08/2022</td>
                             </tr>
                             <Modal show={show} onHide={handleClose}>
                                 <Modal.Header style={{border:'none'}}>
@@ -50,62 +50,62 @@ const ComplaintsTable = () => {
                                 </Modal.Body>
                             </Modal>
                             <tr style={{borderBottom:'1px solid #BFDDDE', cursor:'pointer'}}>
-                                <th scope="row" >2</th>
-                                <td>1234</td>
-                                <td>Harith kumar</td>
-                                <td>hub</td>
-                                <td>CMB-7-12</td>
-                                <td>CMB-7-12</td>
+                                <th scope="row" style={{color:'#d6d6c2'}}>2.</th>
+                                <td>1221</td>
+                                <td>Shan Perera</td>
+                                <td>Hub</td>
+                                <td>CMB-7-1</td>
+                                <td>11/08/2022</td>
                             </tr>
                             <tr style={{borderBottom:'1px solid #BFDDDE', cursor:'pointer'}}>
-                                <th scope="row" >3</th>
-                                <td>1234</td>
-                                <td>Harith kumar</td>
-                                <td>hub</td>
-                                <td>CMB-7-12</td>
-                                <td>CMB-7-12</td>
+                                <th scope="row" style={{color:'#d6d6c2'}}>3.</th>
+                                <td>1211</td>
+                                <td>Dasun Hathiyaldeniya</td>
+                                <td>Hub</td>
+                                <td>CMB-2-1</td>
+                                <td>15/08/2022</td>
                             </tr>
                             <tr style={{borderBottom:'1px solid #BFDDDE', cursor:'pointer'}}>
-                                <th scope="row" >4</th>
-                                <td>1234</td>
-                                <td>Harith kumar</td>
-                                <td>hub</td>
-                                <td>CMB-7-12</td>
-                                <td>CMB-7-12</td>
+                                <th scope="row" style={{color:'#d6d6c2'}}>4.</th>
+                                <td>1144</td>
+                                <td>Waruna Gihan</td>
+                                <td>Hub</td>
+                                <td>CMB-1-12</td>
+                                <td>16/08/2022</td>
                             </tr>
                             <tr style={{borderBottom:'1px solid #BFDDDE', cursor:'pointer'}}>
-                                <th scope="row" >5</th>
-                                <td>1234</td>
-                                <td>Harith kumar</td>
-                                <td>hub</td>
-                                <td>CMB-7-12</td>
-                                <td>CMB-7-12</td>
+                                <th scope="row" style={{color:'#d6d6c2'}}>5.</th>
+                                <td>1245</td>
+                                <td>Sanath Weerakoon</td>
+                                <td>NFC</td>
+                                <td>-</td>
+                                <td>16/08/2022</td>
                             </tr>
                             <tr style={{borderBottom:'1px solid #BFDDDE', cursor:'pointer'}}>
-                                <th scope="row" >6</th>
-                                <td>1234</td>
+                                <th scope="row" style={{color:'#d6d6c2'}}>6.</th>
+                                <td>1233</td>
                                 <td>Harith kumar</td>
-                                <td>hub</td>
-                                <td>CMB-7-12</td>
-                                <td>CMB-7-12</td>
+                                <td>NFC</td>
+                                <td>-</td>
+                                <td>18/08/2022</td>
                             </tr>
                             <tr style={{borderBottom:'1px solid #BFDDDE', cursor:'pointer'}}>
-                                <th scope="row" >7</th>
+                                <th scope="row" style={{color:'#d6d6c2'}}>7.</th>
                                 <td>1234</td>
-                                <td>Harith kumar</td>
-                                <td>hub</td>
-                                <td>CMB-7-12</td>
-                                <td>CMB-7-12</td>
+                                <td>Ajith Bandara</td>
+                                <td>NFC</td>
+                                <td>-</td>
+                                <td>20/08/2022</td>
                             </tr>
                             </tbody>
                         </Table>
                     </Row>
-                    <Row style={{border:'1px solid red'}}>
-                        <Col style={{border:'1px solid blue'}} xs={9}></Col>
-                        <Col style={{border:'1px solid green'}}>
+                    <Row>
+                        <Col xs={9}></Col>
+                        <Col>
                             <Row>
                                 <Col style={{textAlign:'right', cursor:'pointer'}}>
-                                    <Image width='80%' src={leftarrow}/>
+                                    <Image width='50%' src={leftarrow}/>
                                 </Col>
                                 <Col xs={7}>
                                     <Row>
@@ -121,7 +121,7 @@ const ComplaintsTable = () => {
                                     </Row>
                                 </Col>
                                 <Col style={{textAlign:'left' , cursor:'pointer'}}>
-                                    <Image width='80%' src={rightarrow}/>
+                                    <Image width='50%' src={rightarrow}/>
                                 </Col>
                             </Row>
                         </Col>
