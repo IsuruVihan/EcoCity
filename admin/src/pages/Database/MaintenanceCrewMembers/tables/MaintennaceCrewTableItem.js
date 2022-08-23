@@ -3,6 +3,7 @@ import {Row, Table} from "react-bootstrap";
 import {FiCircle, FiEdit, FiTrash} from "react-icons/fi";
 import {FaCircle} from "react-icons/fa";
 import UpdateMaintenanceCrewMemberModal from "../modals/UpdateMaintenanceCrewMemberModal";
+import DeleteCrewMemberModal from "../modals/DeleteCrewMemberModal";
 // import DeleteTruckDriverModal from "../modals/DeleteTruckDriverModal";
 
 
@@ -66,10 +67,9 @@ const MaintennaceCrewTableItem = (props) => {
                 </td>
             </tr>
 
-
             <UpdateMaintenanceCrewMemberModal show={isEditMemberDetailsVisible} onHide={handleOnDriverCloseClicked}/>
-            {/*<DeleteTruckDriverModal show={isDeleteDriverVisible} onHide={handleOnDriverDeleted}*/}
-            {/*                        onConfirm={handleOnDriverDeleted}/>*/}
+            <DeleteCrewMemberModal show={isDeleteDriverVisible} onHide={handleOnDriverDeleted}
+                                   onConfirm={handleOnDriverDeleted}/>
         </Fragment>
     );
 }
