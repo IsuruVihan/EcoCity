@@ -5,7 +5,9 @@ import {FiArrowLeft, FiArrowRight, FiEdit} from "react-icons/fi";
 import ViewJobModal from '../modals/ViewJobModal';
 import close from "../../../assets/images/icons/close.png";
 import AssignJobModal from '../modals/AssignJobModal';
-//import './JobsTable.css'
+
+import "../../../assets/styles/Maintenance/table/table.css";
+import create from "../../../assets/images/icons/create.png";
 
 const JobsTable = () => {
   const [show, setShow] = useState(false);
@@ -16,6 +18,21 @@ const JobsTable = () => {
   const handleassignClose = () => setShowassign(false);
   const handleassingShow = () => setShowassign(true);
 
+
+  let status = 'In-Progress';
+  const changeColor=(status)=>{
+    let classes = 'pt-1 pb-1 pe-2 px-2 label ' ;
+    if(status === 'assigned') {
+      classes += 'state-assigned'
+    }
+    else if(status === 'In-Progress') {
+      classes += 'state-inprogress'
+    }
+    else {
+      classes += 'state-resolved'
+    }
+    return  classes;
+  }
   return (
     <Container>
       <Row className='p-2 m-0'>
@@ -23,7 +40,7 @@ const JobsTable = () => {
           <thead>
             <tr style={{borderBottom:'1px solid #BFDDDE'}}>
               <th scope="col">#</th>
-              <th scope="col">job ID</th>
+              <th scope="col">Job ID</th>
               <th scope="col">Name</th>
               <th scope="col">Hub ID</th>
               <th scope="col">Job Status</th>
@@ -37,11 +54,12 @@ const JobsTable = () => {
               <td>123</td>
               <td>Harith Kumar</td>
               <td>CMB-7-12</td>
-              <td style={{textAlign:'center'}}><p className='m-0 p-1' style={{color:'#3377ff', backgroundColor:'#BFDDDE', width:'100px', borderRadius:'8px', fontWeight: 700}}>Assigned</p></td>
+              <td><label className={changeColor(status)}>{status}</label></td>
               <td>01/07/2022</td>
               <td>Paper</td>
             </tr>
-            <Modal className={'m-0 p-0'} show={show} onHide={handleClose} style={{width:'100%', margin:'auto', border:'none'}} size='lg'>
+            <Modal className={'m-0 p-0'} show={show} onHide={handleClose}
+                   style={{width:'100%', border:'none',paddingLeft:10, paddingRight:10}} size='lg'>
               <Modal.Header className={'m-0 p-0'} style={{border:'none'}}>
                 <Row className={'m-0 p-0 mt-3'}>
                   <Col style={{marginLeft:430, display:'flex', alignItems:'center', justifyContent:'right'}}>
@@ -53,56 +71,26 @@ const JobsTable = () => {
                 <ViewJobModal/>
               </Modal.Body>
             </Modal>
-            <tr style={{borderBottom:'1px solid #BFDDDE', cursor:'pointer'}}>
-              <th scope="row" style={{color:'#d6d6c2'}}>2.</th>
+            <tr style={{borderBottom:'1px solid #BFDDDE', cursor:'pointer'}} onClick={handleShow}>
+              <th scope="row" style={{color:'#d6d6c2'}}>1.</th>
               <td>123</td>
               <td>Harith Kumar</td>
               <td>CMB-7-12</td>
-              <td style={{textAlign:'center'}}><p className='m-0 p-1' style={{color:'#00b300', backgroundColor:'#ccffcc', width:'100px', borderRadius:'8px', fontWeight: 700}}>Resolved</p></td>
+              <td><label className={changeColor(status)}>{status}</label></td>
               <td>01/07/2022</td>
               <td>Paper</td>
             </tr>
-            <tr style={{borderBottom:'1px solid #BFDDDE', cursor:'pointer'}}>
-              <th scope="row" style={{color:'#d6d6c2'}}>3.</th>
-              <td>123</td>
-              <td>Harith Kumar</td>
-              <td>CMB-7-12</td>
-              <td style={{textAlign:'center'}}><p className='m-0 p-1' style={{color:'#ffa64d', backgroundColor:'#ffe0cc', width:'100px', borderRadius:'8px', fontWeight: 700}}>In progress</p></td>
-              <td>01/07/2022</td>
-              <td>Paper</td>
-            </tr>
-            <tr style={{borderBottom:'1px solid #BFDDDE', cursor:'pointer'}}>
-              <th scope="row" style={{color:'#d6d6c2'}}>5.</th>
-              <td>123</td>
-              <td>Harith Kumar</td>
-              <td>CMB-7-12</td>
-              <td style={{textAlign:'center'}}><p className='m-0 p-1' style={{color:'#3377ff', backgroundColor:'#BFDDDE', width:'100px', borderRadius:'8px', fontWeight: 700}}>Assigned</p></td>
-              <td>01/07/2022</td>
-              <td>Paper</td>
-            </tr>
-            <tr style={{borderBottom:'1px solid #BFDDDE', cursor:'pointer'}}>
-              <th scope="row" style={{color:'#d6d6c2'}}>6.</th>
-              <td>123</td>
-              <td>Harith Kumar</td>
-              <td>CMB-7-12</td>
-              <td style={{textAlign:'center'}}><p className='m-0 p-1' 
-              style={{
-                color:'#00b300', 
-                backgroundColor:'#ccffcc', 
-                width:'100px', 
-                borderRadius:'8px', 
-                fontWeight: 700
-                }}>
-                  Resolved</p></td>
-              <td>01/07/2022</td>
-              <td>Paper</td>
-            </tr> 
           </tbody>
         </Table>
       </Row>
       <Row classname='p-2 m-0' style={{dislay:'flex',alignItems:'center',justifyContent:'center'}}>
         <Col className=' m-2' lg={9}>
-          <Button className=' p-2' style={{borderRadius:'10px',boxShadow: `5px 6px 8px #9999ff`}} onClick={handleassingShow}><FiEdit/> Assign</Button>
+            <Row style={{width:110, textAlign:'center',marginLeft:1, backgroundColor:'#228693',borderRadius:8,boxShadow: `0px 4px 8px #BFDDDE`}}>
+              <Col style={{textAlign:'center',color:'#fff', paddingTop:10,paddingBottom:10,cursor:'pointer'}} onClick={handleassingShow}>
+                <Image src={create} width='20%'/>
+                Assign
+              </Col>
+            </Row>
         </Col>
         <Modal show={showassign} onHide={handleassignClose} size='lg'>
           <Modal.Header className='p-0 m-0' style={{border:'none'}}>
@@ -122,37 +110,15 @@ const JobsTable = () => {
               <Row className='p-0 m-0'>
                 <Col lg={4}><FiArrowLeft color='#228693' size='23px' /></Col>
                 <Col lg={2} className='p-0 m-0' 
-                style={{
-                  border:'1px solid #BFDDDE', 
-                  marginTop:2, marginBottom:2, 
-                  marginLeft:5, 
-                  marginRight:5, 
-                  textAlign:'center', 
-                  borderRadius:10, 
-                  cursor:'pointer' 
-                  }}>
+                style={{border:'1px solid #BFDDDE', marginTop:2, marginBottom:2, marginLeft:5, marginRight:5, textAlign:'center', borderRadius:10, cursor:'pointer'}}>
                   1
                 </Col>
                 <Col lg={2} className='p-0 m-0' 
-                style={{
-                  marginTop:2, 
-                  marginBottom:2, 
-                  marginLeft:5, 
-                  marginRight:5, 
-                  textAlign:'center', 
-                  cursor:'pointer' 
-                  }}>
+                style={{marginTop:2, marginBottom:2, marginLeft:5, marginRight:5, textAlign:'center', cursor:'pointer'}}>
                   2
                 </Col>
                 <Col lg={2} className='p-0 m-0' 
-                style={{
-                  marginTop:2, 
-                  marginBottom:2, 
-                  marginLeft:5, 
-                  marginRight:5, 
-                  textAlign:'center', 
-                  cursor:'pointer'
-                  }}>
+                style={{marginTop:2, marginBottom:2, marginLeft:5, marginRight:5, textAlign:'center', cursor:'pointer'}}>
                   3
                 </Col>
                 <Col lg={2}><FiArrowRight color='#228693' size='23px'/></Col>

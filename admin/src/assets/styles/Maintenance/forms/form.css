@@ -1,0 +1,11 @@
+.select{
+    border: none;
+    outline: none;
+    background-color: #fff;
+    appearance: none;
+    width: 170px;
+    -webkit-appearance: none;
+    background-image: url("../../../images/icons/dropdownicon.png");
+    background-repeat: no-repeat;
+    background-position:right;
+}
