@@ -37,7 +37,7 @@ const ViewRideModal = () => {
         <Container>
             <Row>
                 <Col style={{textAlign:'center'}}>
-                    <Image src={view_collection_ride} width='35%'/>
+                    <Image src={view_collection_ride} width='25%'/>
                 </Col>
             </Row>
             <Row>
