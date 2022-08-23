@@ -11,3 +11,53 @@
     width: 90vw; /* Occupy the 90% of the screen width */
     max-width: 60vw;
 }
+
+/*Page numbers*/
+
+.single-page-number {
+    border-radius: 8px;
+    border: 2px solid transparent;
+
+}
+
+.single-page-number:hover {
+    cursor: pointer;
+    border: 2px solid #7CB6B8;
+    /*transform: scale(1.2);*/
+}
+
+.active-page-number {
+    background-color: #7CB6B8;
+    transition: transform .2s;
+}
+
+.inactive-pagination-arrow {
+    color: #BFDDDE !important;
+    cursor: default !important;
+}
+
+
+.filter-box {
+    border: 2px solid #BFDDDE;
+    border-radius: 8px;
+}
+
+.filter-box svg {
+    margin-left: 13px;
+}
+
+.filter-box:hover {
+    cursor: pointer;
+}
+
+.active-arrow {
+
+}
+
+.inactive-arrow {
+    color: #BFDDDE;
+}
+
+.pagination-group svg:hover {
+    cursor: pointer;
+}

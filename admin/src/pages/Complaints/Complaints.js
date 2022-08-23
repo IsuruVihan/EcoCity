@@ -25,7 +25,7 @@ const Complaints = () => {
                 </Col>
             </Row>
             <Row>
-                <Col style={{border: "1px solid #BFDDDE", borderRadius: 10}} className="m-2">
+                <Col style={{border: "1px solid #BFDDDE", borderRadius: 10, height: "555px"}} className="m-2">
                     <Row className="d-flex">
                         <Col>
                             <div className='mt-2 d-flex justify-content-end'>
