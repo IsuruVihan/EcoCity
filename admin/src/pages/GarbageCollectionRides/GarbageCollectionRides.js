@@ -13,8 +13,8 @@ const GarbageCollectionRides = () => {
     const [open, setOpen] = useState(false);
 
   return (
-      <Col lg={10} style={{border:'1px solid red'}}>
-          <Row className="ps-3 pb-3 pt-2">
+      <Col lg={10}>
+          <Row className="p-0 m-0 mt-4 ps-3">
               <Col className=" p-0 m-0" style={{textAlign: 'left', fontSize: 30, fontWeight: '900', color: '#042434',}}>
                   Garbage Collection Rides
               </Col>
