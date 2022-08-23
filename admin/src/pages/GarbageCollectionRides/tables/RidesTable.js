@@ -57,7 +57,9 @@ const RidesTable = () => {
                                 <td>1234</td>
                                 <td>Harith Kumar</td>
                                 <td>NC-5205</td>
-                                <td><label className={changeColor(status)}>{status}</label></td>
+                                <td style={{textAlign:'center'}}><p className='m-0 p-1'
+                                    style={{color:'#008BD1', backgroundColor:'#E1F0FF', width:'100px', borderRadius:'8px',
+                                    fontWeight: 700}}>Assigned</p></td>
                                 <td>06/07/2022</td>
                                 <td>Paper</td>
                                 <td>0/2</td>
@@ -68,7 +70,9 @@ const RidesTable = () => {
                                 <td>1235</td>
                                 <td>Ashen Perera</td>
                                 <td>XA-0808</td>
-                                <td><label className={changeColor(status)}>{status}</label></td>
+                                <td style={{textAlign:'center'}}><p className='m-0 p-1'
+                                    style={{color:'#00C186', backgroundColor:'#E0F8E3', width:'100px', borderRadius:'8px',
+                                    fontWeight: 700}}>Completed</p></td>
                                 <td>30/06/2022</td>
                                 <td>Paper</td>
                                 <td>2/2</td>
@@ -79,7 +83,9 @@ const RidesTable = () => {
                                 <td>1235</td>
                                 <td>Andrew Heshan</td>
                                 <td>LB-7644</td>
-                                <td><label className={changeColor(status)}>{status}</label></td>
+                                <td style={{textAlign:'center'}}><p className='m-0 p-1'
+                                    style={{color:'#FF9900', backgroundColor:'#FFF6E9', width:'100px', borderRadius:'8px',
+                                    fontWeight: 700}}>On Going</p></td>
                                 <td>29/06/2022</td>
                                 <td>Plastic</td>
                                 <td>1/3</td>
@@ -90,7 +96,9 @@ const RidesTable = () => {
                                 <td>1235</td>
                                 <td>Dasun Hathiyaldeniya</td>
                                 <td>CAC-0207</td>
-                                <td><label className={changeColor(status)}>{status}</label></td>
+                                <td style={{textAlign:'center'}}><p className='m-0 p-1'
+                                    style={{color:'#FF9900', backgroundColor:'#FFF6E9', width:'100px', borderRadius:'8px',
+                                    fontWeight: 700}}>On Going</p></td>
                                 <td>29/06/2022</td>
                                 <td>Organic</td>
                                 <td>2/4</td>
@@ -134,27 +142,27 @@ const RidesTable = () => {
                                 </Modal.Body>
                             </Modal>
                         </Col>
-                        <Col style={{border:'1px solid green',paddingTop:5}}>
+                        <Col style={{paddingTop:5}}>
                             <Row>
                                 <Col style={{textAlign:'right', cursor:'pointer'}}>
-                                    <Image width='80%' src={leftarrow}/>
+                                    <Image width='50%' src={leftarrow}/>
                                 </Col>
                                 <Col xs={7}>
                                     <Row>
                                         <Col style={{border:'1px solid #BFDDDE', marginTop:2, marginBottom:2,
-                                                     marginLeft:5, marginRight:5, textAlign:'center', borderRadius:10}}>
+                                                     marginLeft:5, marginRight:5, textAlign:'center', borderRadius:10, cursor:'pointer'}}>
                                             1
                                         </Col>
-                                        <Col style={{marginTop:2, marginBottom:2, marginLeft:5, marginRight:5, textAlign:'center'}}>
+                                        <Col style={{marginTop:2, marginBottom:2, marginLeft:5, marginRight:5, textAlign:'center', cursor:'pointer'}}>
                                             2
                                         </Col>
-                                        <Col style={{marginTop:2, marginBottom:2, marginLeft:5, marginRight:5, textAlign:'center'}}>
+                                        <Col style={{marginTop:2, marginBottom:2, marginLeft:5, marginRight:5, textAlign:'center', cursor:'pointer'}}>
                                             3
                                         </Col>
                                     </Row>
                                 </Col>
                                 <Col style={{textAlign:'left' , cursor:'pointer'}}>
-                                    <Image width='80%' src={rightarrow}/>
+                                    <Image width='50%' src={rightarrow}/>
                                 </Col>
                             </Row>
                         </Col>
