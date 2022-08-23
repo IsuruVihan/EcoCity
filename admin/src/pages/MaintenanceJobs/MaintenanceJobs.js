@@ -23,7 +23,7 @@ const MaintenanceJobs = () => {
       </Row>
       <Row
         className="p-4 m-3"
-        style={{ border: "2px solid #BFDDDE", borderRadius: 10 }}
+        style={{ border: "2px solid #BFDDDE", borderRadius: 10, backgroundColor: "white"}}
       >
         <Row className="p-0 m-0" d-flex border>
           <Col sm={10} className="p-0 m-0"></Col>

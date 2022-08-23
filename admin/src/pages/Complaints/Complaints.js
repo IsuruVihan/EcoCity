@@ -22,7 +22,7 @@ const Complaints = () => {
             </Col>
           </Row>
           <Row>
-            <Col style={{border:"1px solid #BFDDDE" , borderRadius:10}} className="m-2">
+            <Col style={{border:"1px solid #BFDDDE", backgroundColor: "white", borderRadius:10}} className="m-2">
               <Row className="d-flex border">
                 <Col xs={10}></Col>
                 <Col className='pt-3 mx-3 me-2'>
@@ -44,7 +44,7 @@ const Complaints = () => {
                 </Collapse>
               </Row>
               <Row>
-                <Col style={{border:"1px solid #BFDDDE",}} className="m-4">
+                <Col className="m-4">
                   <ComplaintsTable/>
                 </Col>
               </Row>
