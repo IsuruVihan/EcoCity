@@ -5,6 +5,7 @@ import ViewHouseModal from "../../Houses/modals/ViewHouseModal";
 import HouseTableItem from "../../Houses/tables/HouseTableItem";
 import {FiArrowLeft, FiArrowRight, FiEdit} from "react-icons/fi";
 import TagsTableItem from "./TagsTableItem";
+import NFCTagViewModal from "../modals/NFCTagViewModal";
 
 const NFCTagsTable = (props) => {
     const trucks = NFCDetails.tags;
@@ -146,9 +147,9 @@ const NFCTagsTable = (props) => {
 
     return (
         <Row className='mx-0'>
-            <ViewHouseModal show={isTagDetailsVisible}
-                            onHide={() => setIsTagDetailsVisible(false)}
-                            house={currentSelectedTag}/>
+            <NFCTagViewModal show={isTagDetailsVisible}
+                             onHide={() => setIsTagDetailsVisible(false)}
+                             tag={currentSelectedTag}/>
             <Table className='my-0 garbage-hubs-table' borderless>
                 <thead>
                 <tr className='table-header'>

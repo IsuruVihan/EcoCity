@@ -63,7 +63,6 @@ const TagsTableItem = (props) => {
                     </div>
                 </td>
             </tr>
-
             <UpdateNFCTagModal show={isEditTagDetailsVisible} onHide={handleOnTagCloseClicked}/>
             <DeleteNFCTagModal show={isDeleteTagVisible} onHide={handleOnTagDeleted}
                                onConfirm={handleOnTagDeleted}/>

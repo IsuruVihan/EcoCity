@@ -23,7 +23,7 @@ const ViewHouseModal = (props) => {
         >
             <Modal.Header closeButton>
                 <Modal.Title id="contained-modal-title-vcenter">
-                    House Details
+                    NFC Tag Details
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body>
