@@ -3,6 +3,7 @@ import {Row, Table} from "react-bootstrap";
 import {FiCircle, FiEdit, FiTrash} from "react-icons/fi";
 import {FaCircle} from "react-icons/fa";
 import UpdateNFCTagModal from "../modals/UpdateNFCTagModal";
+import DeleteNFCTagModal from "../modals/DeleteNFCTagModal";
 
 
 // import DeleteTruckDriverModal from "../modals/DeleteTruckDriverModal";
@@ -64,8 +65,8 @@ const TagsTableItem = (props) => {
             </tr>
 
             <UpdateNFCTagModal show={isEditTagDetailsVisible} onHide={handleOnTagCloseClicked}/>
-            {/*<DeleteHouseModal show={isDeleteTagVisible} onHide={handleOnTagDeleted}*/}
-            {/*                  onConfirm={handleOnTagDeleted}/>*/}
+            <DeleteNFCTagModal show={isDeleteTagVisible} onHide={handleOnTagDeleted}
+                               onConfirm={handleOnTagDeleted}/>
         </Fragment>
     );
 }
