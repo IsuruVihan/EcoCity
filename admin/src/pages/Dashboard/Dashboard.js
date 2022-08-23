@@ -14,7 +14,7 @@ const Dashboard = () => {
     const formatDate = Moment().format('MMMM Do, YYYY');
 
     return (
-        <Col className='' lg={10}>
+        <Col lg={10}>
             <Row className="m-0">
                 <Col className="p-0 mt-4" style={{
                     fontWeight: 800, fontSize: 30, color: '#075061'
@@ -34,7 +34,9 @@ const Dashboard = () => {
                     </Row>
                 </Col>
                 <Col lg={2} className="p-0" style={{display: "flex", flexDirection: "column"}}>
-                    <Row className="m-0 ms-3"><CountCard/></Row>
+                    <Row className="m-0 ms-3">
+                        <CountCard/>
+                    </Row>
                 </Col>
             </Row>
         </Col>
