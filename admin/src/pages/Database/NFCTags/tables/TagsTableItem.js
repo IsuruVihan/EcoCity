@@ -2,6 +2,7 @@ import React, {Fragment, useState} from 'react';
 import {Row, Table} from "react-bootstrap";
 import {FiCircle, FiEdit, FiTrash} from "react-icons/fi";
 import {FaCircle} from "react-icons/fa";
+import UpdateNFCTagModal from "../modals/UpdateNFCTagModal";
 
 
 // import DeleteTruckDriverModal from "../modals/DeleteTruckDriverModal";
@@ -56,13 +57,13 @@ const TagsTableItem = (props) => {
                 <td>{tag.status}</td>
                 <td>
                     <div className='action-item-group'>
-                        <FiEdit id={1} onClick={handleOnTagEditClicked} cl/>
+                        <FiEdit id={1} onClick={handleOnTagEditClicked}/>
                         <FiTrash id={1} onClick={handleOnTagDeleteClicked}/>
                     </div>
                 </td>
             </tr>
 
-            {/*<UpdateHouseModal show={isEditTagDetailsVisible} onHide={handleOnTagCloseClicked}/>*/}
+            <UpdateNFCTagModal show={isEditTagDetailsVisible} onHide={handleOnTagCloseClicked}/>
             {/*<DeleteHouseModal show={isDeleteTagVisible} onHide={handleOnTagDeleted}*/}
             {/*                  onConfirm={handleOnTagDeleted}/>*/}
         </Fragment>

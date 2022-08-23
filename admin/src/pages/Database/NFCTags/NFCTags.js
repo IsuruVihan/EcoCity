@@ -22,10 +22,10 @@ const NFCTags = () => {
         setIsTableFilterVisible(newState);
     }
 
-    const [showCreateHouseForm, setShowCreateHouseForm] = useState(false);
+    const [showCreateTagForm, setShowCreateTagForm] = useState(false);
 
-    const handleClose = () => setShowCreateHouseForm(false);
-    const handleShow = () => setShowCreateHouseForm(true);
+    const handleClose = () => setShowCreateTagForm(false);
+    const handleShow = () => setShowCreateTagForm(true);
     return (
         <Col className='' lg={10}>
             <Row className='mx-0 section-header '>NFC Tags</Row>
@@ -38,10 +38,9 @@ const NFCTags = () => {
                         </span>
                         {isTableFilterVisible && <NFCTagsTableFilter/>}
                     </div>
-                    <NFCTagsTable onCreateClicked={setShowCreateHouseForm}/>
-                    <CreateNFCTagModal onHide={handleClose} show={showCreateHouseForm}/>
+                    <NFCTagsTable onCreateClicked={setShowCreateTagForm}/>
+                    <CreateNFCTagModal onHide={handleClose} show={showCreateTagForm}/>
                 </Col>
-
             </Row>
         </Col>
     );

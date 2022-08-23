@@ -161,7 +161,6 @@ const NFCTagsTable = (props) => {
                 </tr>
                 </thead>
                 <Fragment>
-
                     {
                         filteredNFCTags.map((tag, index) => {
                             return <TagsTableItem tag={tag} index={index}
