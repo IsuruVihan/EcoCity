@@ -12,7 +12,7 @@
     appearance: none;
     width: 170px;
     -webkit-appearance: none;
-    background-image: url("../../../images/icons/dropdownicon.png");
+    /*background-image: url("../../../images/icons/dropdownicon.png");*/
     background-repeat: no-repeat;
     background-position:right;
 }
@@ -24,7 +24,7 @@
     appearance: none;
     width: 165px;
     -webkit-appearance: none;
-    background-image: url("../../../images/icons/dropdownicon.png");
+    /*background-image: url("../../../images/icons/dropdownicon.png");*/
     background-repeat: no-repeat;
     background-position:right;
 }
@@ -36,7 +36,7 @@
     background-color: #fff;
     appearance: none;
     -webkit-appearance: none;
-    background-image: url("../../../images/icons/dropdownicon.png");
+    /*background-image: url("../../../images/icons/dropdownicon.png");*/
     background-repeat: no-repeat;
     background-position: right;
 }

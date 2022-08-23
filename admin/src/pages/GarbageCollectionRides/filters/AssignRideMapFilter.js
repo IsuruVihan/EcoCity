@@ -4,7 +4,7 @@ import "../../../assets/styles/GarbageCollectionRides/forms/assignrideform.css";
 
 const AssignRideMapFilter = () => {
   return (
-    <Row style={{border:'1px solid red', marginRight:5, paddingLeft:6, paddingRight:6}}>
+    <Row style={{marginRight:5, paddingLeft:6, paddingRight:6}}>
         <Col>
             <Row style={{fontSize:14}}>
                 Bin Type

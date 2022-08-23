@@ -229,10 +229,7 @@ const AssignJobForm = () => {
       </Row>
       <Row className="p-3 pt-1 m-0" style={{ height: 200 }}>
         <Col
-          className="p-0 m-0"
-          style={{ borderRadius: 10, border: "3px solid #E8F5F6" }}
-        >
-          <AssignJobMap />
+          className="p-0 m-0" style={{borderRadius: 10}}><AssignJobMap />
         </Col>
       </Row>
       <Row className="m-0 p-3 pt-0">
@@ -242,8 +239,10 @@ const AssignJobForm = () => {
             className=" p-2"
             style={{
               borderRadius: "10px",
-              boxShadow: `5px 6px 8px #9999ff`,
+              boxShadow: `5px 6px 8px #78C5D0`,
               width: "100%",
+              backgroundColor: '#228693',
+              border: "none"
             }}
           >
             Assign

@@ -21,15 +21,15 @@ const JobsTable = () => {
       <Row className='p-2 m-0'>
         <Table>
           <thead>
-            <tr style={{borderBottom:'1px solid #BFDDDE'}}>
+            <tr style={{borderBottom:'1px solid #BFDDDE', fontSize: 18}}>
               <th scope="col">#</th>
-              <th scope="col">job ID</th>
+              <th scope="col">Job ID</th>
               <th scope="col">Name</th>
               <th scope="col">Hub ID</th>
               <th scope="col">Job Status</th>
               <th scope="col">Date</th>
               <th scope="col">Bin Type</th>
-              </tr>
+            </tr>
           </thead>
           <tbody>
             <tr style={{borderBottom:'1px solid #BFDDDE', cursor:'pointer'}} onClick={handleShow}> 
@@ -37,7 +37,7 @@ const JobsTable = () => {
               <td>123</td>
               <td>Harith Kumar</td>
               <td>CMB-7-12</td>
-              <td style={{textAlign:'center'}}><p className='m-0 p-1' style={{color:'#3377ff', backgroundColor:'#BFDDDE', width:'100px', borderRadius:'8px', fontWeight: 700}}>Assigned</p></td>
+              <td style={{textAlign:'center'}}><p className='m-0 p-1' style={{color:'#008BD1', backgroundColor: '#E1F0FF', width:'100px', borderRadius:'8px', fontWeight: 700}}>Assigned</p></td>
               <td>01/07/2022</td>
               <td>Paper</td>
             </tr>
@@ -58,37 +58,37 @@ const JobsTable = () => {
               <td>123</td>
               <td>Harith Kumar</td>
               <td>CMB-7-12</td>
-              <td style={{textAlign:'center'}}><p className='m-0 p-1' style={{color:'#00b300', backgroundColor:'#ccffcc', width:'100px', borderRadius:'8px', fontWeight: 700}}>Resolved</p></td>
+              <td style={{textAlign:'center'}}><p className='m-0 p-1' style={{color: '#00C186', backgroundColor: '#E0F8E3', width:'100px', borderRadius:'8px', fontWeight: 700}}>Resolved</p></td>
               <td>01/07/2022</td>
               <td>Paper</td>
             </tr>
             <tr style={{borderBottom:'1px solid #BFDDDE', cursor:'pointer'}}>
               <th scope="row" style={{color:'#d6d6c2'}}>3.</th>
-              <td>125</td>
-              <td>Ashen Perera</td>
-              <td>CMB-5-4</td>
-              <td style={{textAlign:'center'}}><p className='m-0 p-1' style={{color:'#ffa64d', backgroundColor:'#ffe0cc', width:'100px', borderRadius:'8px', fontWeight: 700}}>In progress</p></td>
+              <td>123</td>
+              <td>Harith Kumar</td>
+              <td>CMB-7-12</td>
+              <td style={{textAlign:'center'}}><p className='m-0 p-1' style={{color: '#FF9900', backgroundColor: '#FFF6E9', width:'100px', borderRadius:'8px', fontWeight: 700}}>In progress</p></td>
               <td>01/07/2022</td>
               <td>Paper</td>
             </tr>
             <tr style={{borderBottom:'1px solid #BFDDDE', cursor:'pointer'}}>
               <th scope="row" style={{color:'#d6d6c2'}}>5.</th>
-              <td>103</td>
-              <td>Sanath Weerakoon</td>
-              <td>CMB-6-1</td>
-              <td style={{textAlign:'center'}}><p className='m-0 p-1' style={{color:'#3377ff', backgroundColor:'#BFDDDE', width:'100px', borderRadius:'8px', fontWeight: 700}}>Assigned</p></td>
+              <td>123</td>
+              <td>Harith Kumar</td>
+              <td>CMB-7-12</td>
+              <td style={{textAlign:'center'}}><p className='m-0 p-1' style={{color:'#008BD1', backgroundColor: '#E1F0FF', width:'100px', borderRadius:'8px', fontWeight: 700}}>Assigned</p></td>
               <td>01/07/2022</td>
               <td>Paper</td>
             </tr>
             <tr style={{borderBottom:'1px solid #BFDDDE', cursor:'pointer'}}>
               <th scope="row" style={{color:'#d6d6c2'}}>6.</th>
-              <td>120</td>
-              <td>Gihan Kumara</td>
-              <td>CMB-2-11</td>
+              <td>123</td>
+              <td>Harith Kumar</td>
+              <td>CMB-7-12</td>
               <td style={{textAlign:'center'}}><p className='m-0 p-1' 
               style={{
-                color:'#00b300', 
-                backgroundColor:'#ccffcc', 
+                color:'#00C186',
+                backgroundColor:'#E0F8E3',
                 width:'100px', 
                 borderRadius:'8px', 
                 fontWeight: 700
@@ -100,9 +100,9 @@ const JobsTable = () => {
           </tbody>
         </Table>
       </Row>
-      <Row classname='p-2 m-0' style={{dislay:'flex',alignItems:'center',justifyContent:'center'}}>
+      <Row classname='p-2 m-0' style={{dislay: 'flex',alignItems: 'center',justifyContent: 'center'}}>
         <Col className=' m-2' lg={9}>
-          <Button className=' p-2' style={{borderRadius:'10px',boxShadow: `5px 6px 8px #9999ff`}} onClick={handleassingShow}><FiEdit/> Assign</Button>
+          <Button className=' p-2' style={{border: 'none', borderRadius:'10px',boxShadow: `5px 6px 8px #8FCFD8`, backgroundColor: '#228693'}} onClick={handleassingShow}><FiEdit/>Assign</Button>
         </Col>
         <Modal show={showassign} onHide={handleassignClose} size='lg'>
           <Modal.Header className='p-0 m-0' style={{border:'none'}}>
