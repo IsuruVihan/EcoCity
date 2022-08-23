@@ -145,7 +145,7 @@ const ViewHouseModal = (props) => {
                                     <tbody>
                                     <tr>
                                         <td>1</td>
-                                        <td><FiTrash2 size='20px' color='#EDFBFC' style={{opacity: "1"}}/></td>
+                                        <td><FiTrash2 size='20px' color='#4FA7FF' style={{opacity: "1"}}/></td>
                                         <td>Glass</td>
                                         <td>
                                             1
@@ -153,7 +153,7 @@ const ViewHouseModal = (props) => {
                                     </tr>
                                     <tr>
                                         <td>1</td>
-                                        <td><FiTrash2 size='20px' color='#EDFBFC' style={{opacity: "1"}}/></td>
+                                        <td><FiTrash2 size='20px' color='#FFAF3F' style={{opacity: "1"}}/></td>
                                         <td>Paper</td>
                                         <td>
                                             0.8
@@ -161,7 +161,7 @@ const ViewHouseModal = (props) => {
                                     </tr>
                                     <tr>
                                         <td>1</td>
-                                        <td><FiTrash2 size='20px' color='#EDFBFC' style={{opacity: "1"}}/></td>
+                                        <td><FiTrash2 size='20px' color='#00E17F' style={{opacity: "1"}}/></td>
                                         <td>Organic</td>
                                         <td>
                                             1.2
@@ -169,7 +169,7 @@ const ViewHouseModal = (props) => {
                                     </tr>
                                     <tr>
                                         <td>1</td>
-                                        <td><FiTrash2 size='20px' color='#EDFBFC' style={{opacity: "1"}}/></td>
+                                        <td><FiTrash2 size='20px' color='#FA7A7A' style={{opacity: "1"}}/></td>
                                         <td>Plastic</td>
                                         <td>
                                             0.73
