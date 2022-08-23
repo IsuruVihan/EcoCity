@@ -371,7 +371,7 @@ const MyProfile = () => {
           <Text style={styles.myProfile.nfc.first.txt}>MY NFC TAGS</Text>
           <MaterialIcons size={25} color={'black'} name={'done'}/>
         </View>
-        {/*<View style={styles.myProfile.nfc.space}/>*/}
+        <View style={styles.myProfile.nfc.space}/>
         <View>
           <Text style={styles.myProfile.nfc.topic}>NFC Tags</Text>
         </View>
@@ -388,6 +388,7 @@ const MyProfile = () => {
             <Text style={styles.myProfile.nfc.card.section2.second}>Active</Text>
           </View>
         </View>
+        <View style={styles.myProfile.nfc.space}/>
         <View style={styles.myProfile.nfc.filterContainer}>
           <TouchableOpacity
             style={styles.myProfile.nfc.filterContainer.filter}
@@ -397,12 +398,21 @@ const MyProfile = () => {
             <Image source={FilterImg} style={styles.myProfile.nfc.filterContainer.filter.icon}/>
           </TouchableOpacity>
         </View>
+        <View style={styles.myProfile.nfc.space}/>
         <View style={styles.myProfile.nfc.tableContainer}>
+          <View style={styles.myProfile.nfc.tableContainer.headerContainer}>
+            <Text style={styles.myProfile.nfc.tableContainer.headerContainer.label}>Bin</Text>
+            <Text style={styles.myProfile.nfc.tableContainer.headerContainer.label}>Hub</Text>
+            <Text style={styles.myProfile.nfc.tableContainer.headerContainer.label}>NFC</Text>
+            <Text style={styles.myProfile.nfc.tableContainer.headerContainer.label}>Weight</Text>
+            <Text style={styles.myProfile.nfc.tableContainer.headerContainer.label2}>Date</Text>
+          </View>
           {paginatedData.map((complaint, idx) => {
             // if (complaint.page === activePage)
               return TableRow(idx, complaint.id, complaint.date, complaint.status);
           })}
         </View>
+        <View style={styles.myProfile.nfc.space}/>
         <View style={styles.myProfile.nfc.paginationContainer}>
           <IconFontAwesome
             name="arrow-left"
@@ -464,7 +474,6 @@ const MyProfile = () => {
         <Text style={styles.myProfile.nfc.tableContainer.row.nfcId}>1</Text>
         <Text style={styles.myProfile.nfc.tableContainer.row.nfcId}>1</Text>
         <Text style={styles.myProfile.nfc.tableContainer.row.id}>23/08/2022</Text>
-        {/*<Text style={styles.myProfile.nfc.tableContainer.row.date}>{formattedDate}</Text>*/}
       </TouchableOpacity>
     );
   }
@@ -582,21 +591,41 @@ const styles = StyleSheet.create({
             },
           },
         },
+        headerContainer: {
+          // borderWidth: 2,
+          // borderColor: 'red',
+          display: 'flex',
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          label: {
+            color: '#042434',
+            fontSize: 12,
+            textAlign: 'center',
+            flex: 1,
+          },
+          label2: {
+            color: '#042434',
+            fontSize: 12,
+            textAlign: 'center',
+            flex: 2,
+          },
+        },
       },
       paginationContainer: {
         // height: '80%',
-        borderWidth: 2,
-        borderColor: 'red',
+        // borderWidth: 2,
+        // borderColor: 'red',
         width: '50%',
-        height: '6%',
+        height: '5%',
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'space-around',
         alignItems: 'center',
         marginLeft: 'auto',
         pageNo: {
-          marginHorizontal: 5,
-          fontSize: 15,
+          marginHorizontal: 3,
+          fontSize: 12,
           fontWeight: '700',
           color: '#7CB6B8',
           borderColor: '#7CB6B8',
