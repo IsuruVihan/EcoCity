@@ -3,6 +3,7 @@ import {Col, Container, Row} from "react-bootstrap";
 
 import CreateGarbageHubForm from "../forms/CreateGarbageHubForm";
 import Modal from "react-bootstrap/Modal";
+import UpdateGarbageHubForm from "../forms/UpdateGarbageHubForm";
 
 const CreateGarbageHubModal = (props) => {
     return (
@@ -13,9 +14,10 @@ const CreateGarbageHubModal = (props) => {
             centered
             backdrop="static"
             keyboard={false}
+            scrollable={true}
         >
             <Modal.Header closeButton>
-                <Modal.Title>New Garbage Hub</Modal.Title>
+                <Modal.Title>Create Garbage bin</Modal.Title>
             </Modal.Header>
             <Modal.Body>
                 <CreateGarbageHubForm/>
