@@ -1,12 +1,11 @@
 import React from 'react';
-import {Container} from "react-bootstrap";
+import {Container, Image} from "react-bootstrap";
+import image from '../../../assets/images/popup-model-map.png';
 
 const JobMap = () => {
-  return (
-    <Container>
-      Job map
-    </Container>
-  );
+    return (
+        <Image src={image} fluid/>
+    );
 }
 
 export default JobMap;
