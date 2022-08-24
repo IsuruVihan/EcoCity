@@ -11,7 +11,7 @@ const Login = () => {
         <Container className=' login-container px-0' fluid>
             <Header/>
             <Row className='login-content mx-0'>
-                <Col lg={6} className='login-background'/>
+                <Col lg={6} className='login-background' style={{backgroundColor: "#d4e8ec"}}/>
                 <Col lg={6} className='d-flex align-items-center'>
                     <LoginForm/>
                 </Col>
