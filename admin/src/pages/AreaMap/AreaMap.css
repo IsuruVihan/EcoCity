@@ -1,3 +1,8 @@
-.areamap-filter:hover{
+.areamap-filter:hover {
     background-color: #effbfc;
+}
+
+.aream-map {
+    background-image: url("../../assets/images/area-map.png");
+    background-size: cover;
 }

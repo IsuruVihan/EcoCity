@@ -14,7 +14,7 @@ const Dashboard = () => {
     const formatDate = Moment().format('MMMM Do, YYYY');
 
     return (
-        <Col className='' lg={10}>
+        <Col lg={10}>
             <Row className="m-0">
                 <Col className="p-0 mt-4" style={{
                     fontWeight: 800, fontSize: 30, color: '#075061'
@@ -24,7 +24,7 @@ const Dashboard = () => {
                     <Row className="m-0">
                         <Col lg={12} className="p-0 mt-3 ms-3"
                              style={{fontWeight: 600, fontSize: 20, color: '#042434'}}>Garbage Collection Weight</Col>
-                        <Col lg={12} className="p-0"><GarbageCollectionWeightFilter/></Col>
+                        <Col lg={12} className="py-0 pe-3"><GarbageCollectionWeightFilter/></Col>
                         <Col lg={12} className="p-0">
                             <Row className="m-0">
                                 <Col lg={4} className="p-0"><WeightCard/></Col>
@@ -34,7 +34,9 @@ const Dashboard = () => {
                     </Row>
                 </Col>
                 <Col lg={2} className="p-0" style={{display: "flex", flexDirection: "column"}}>
-                    <Row className="m-0 ms-3"><CountCard/></Row>
+                    <Row className="m-0 ms-3">
+                        <CountCard/>
+                    </Row>
                 </Col>
             </Row>
         </Col>

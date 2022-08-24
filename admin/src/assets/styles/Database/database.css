@@ -1,5 +1,12 @@
 .section-header {
     height: 60px;
+    display: flex;
+    align-items: center;
+    font-weight: 700;
+    color: #042434;
+    font-size: 25px
+
+
 }
 
 .section-contents {
