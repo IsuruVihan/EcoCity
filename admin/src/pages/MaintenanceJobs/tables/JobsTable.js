@@ -48,7 +48,8 @@ const JobsTable = () => {
                         <td>Paper</td>
                     </tr>
                     <Modal className={'m-0 p-0'} show={show} onHide={handleClose}
-                           style={{width: '100%', margin: 'auto', border: 'none'}} size='lg'>
+                           style={{width: '100%', margin: 'auto', border: 'none'}} size='lg' centered backdrop="static"
+                           scrollable>
                         <Modal.Header className={'m-0 p-0'} style={{border: 'none'}}>
                             <Row className={'m-0 p-0 mt-3'}>
                                 <Col style={{
@@ -138,11 +139,11 @@ const JobsTable = () => {
                         backgroundColor: '#228693'
                     }} onClick={handleassingShow}><FiEdit/>Assign</Button>
                 </Col>
-                <Modal show={showassign} onHide={handleassignClose} size='lg'>
-                    <Modal.Header className='p-0 m-0' style={{border: 'none'}}>
+                <Modal show={showassign} onHide={handleassignClose} size='lg' backdrop="static" centered>
+                    <Modal.Header className='p-0 m-0 border-red' style={{border: 'none'}}>
                         <Row>
                             <Col style={{marginLeft: 740, marginTop: 10}}>
-                                <Image src={close} onClick={handleassignClose} width="50%"/>
+                                <Image src={close} onClick={handleassignClose} width="20%"/>
                             </Col>
                         </Row>
                     </Modal.Header>

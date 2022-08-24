@@ -34,7 +34,7 @@ const MaintenanceJobs = () => {
                         <JobsTableFilter/>
                     </Col>
                 </Row>
-                <Row className="p-0 m-0 mt-2">
+                <Row className="p-0 m-0 mt-2 ">
                     <JobsTable/>
                 </Row>
             </Row>
