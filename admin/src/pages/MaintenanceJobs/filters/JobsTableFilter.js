@@ -37,7 +37,8 @@ const JobsTableFilter = () => {
                 <Col style={{
                   borderBottomRightRadius: 15,
                   borderBottomLeftRadius: 15,
-                  boxShadow: `0px 4px 8px #707070`
+                  boxShadow: `0px 4px 8px #707070`,
+                  backgroundColor: 'white',
                   }}>
                   <Row className="m-1">
                     <Col sm={8}>
