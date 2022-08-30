@@ -1,5 +1,9 @@
 import React, {useState} from 'react';
-import {Text, View, StyleSheet, TouchableOpacity} from "react-native";
+import {Text, View, StyleSheet, TouchableOpacity, Image, Dimensions} from "react-native";
+
+import MaintenanceAll from '../assets/images/maintenance-all.png';
+
+import {Responsive} from "../helpers/Responsive";
 
 const tabs = [
   {id: 0, label: 'All'},
@@ -7,6 +11,7 @@ const tabs = [
   {id: 2, label: 'Ongoing'},
   {id: 3, label: 'Completed'},
 ];
+const HEIGHT = Dimensions.get('window').height;
 
 const MaintenanceJobs = () => {
   const [viewedTab, setViewedTab] = useState(0);
@@ -14,8 +19,12 @@ const MaintenanceJobs = () => {
   const AllScreen = () => {
     return (
       <View style={styles.maintenance.two.screens.screen.screen1}>
-        <View style={styles.maintenance.two.screens.screen.screen1.totalContainer}></View>
-        <View style={styles.maintenance.two.screens.screen.screen1.imgContainer}></View>
+        <View style={styles.maintenance.two.screens.screen.screen1.totalContainer}>
+          <Text style={styles.maintenance.two.screens.screen.screen1.totalContainer.txt}>Total 6 jobs</Text>
+        </View>
+        <View style={styles.maintenance.two.screens.screen.screen1.imgContainer}>
+          <Image style={styles.maintenance.two.screens.screen.screen1.imgContainer.img} source={MaintenanceAll}/>
+        </View>
         <View style={styles.maintenance.two.screens.screen.screen1.filterContainer}></View>
         <View style={styles.maintenance.two.screens.screen.screen1.listContainer}></View>
         <View style={styles.maintenance.two.screens.screen.screen1.paginationContainer}></View>
@@ -152,11 +161,23 @@ const styles = StyleSheet.create({
               borderWidth: 2,
               borderColor: 'green',
               flex: 0.5,
+              display: 'flex',
+              justifyContent: 'center',
+              txt: {
+                color: '#707070',
+              },
             },
             imgContainer: {
               borderWidth: 2,
               borderColor: 'green',
               flex: 3,
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              img: {
+                height: Responsive(17, HEIGHT),
+                width: Responsive(17, HEIGHT),
+              },
             },
             filterContainer: {
               borderWidth: 2,
