@@ -11,6 +11,38 @@ const tabs = [
 const MaintenanceJobs = () => {
   const [viewedTab, setViewedTab] = useState(0);
 
+  const AllScreen = () => {
+    return (
+      <View style={styles.maintenance.two.screens.screen.all}>
+        <Text>All</Text>
+      </View>
+    );
+  }
+
+  const AssignedScreen = () => {
+    return (
+      <View style={styles.maintenance.two.screens.screen.assigned}>
+        <Text>Assigned</Text>
+      </View>
+    );
+  }
+
+  const OngoingScreen = () => {
+    return (
+      <View style={styles.maintenance.two.screens.screen.ongoing}>
+        <Text>Ongoing</Text>
+      </View>
+    );
+  }
+
+  const CompletedScreen = () => {
+    return (
+      <View style={styles.maintenance.two.screens.screen.completed}>
+        <Text>Completed</Text>
+      </View>
+    );
+  }
+
   return (
     <View style={styles.maintenance}>
       <View style={styles.maintenance.one}>
@@ -27,10 +59,12 @@ const MaintenanceJobs = () => {
           })}
         </View>
         <View style={styles.maintenance.two.screens}>
-          {viewedTab === 0 && <View style={styles.maintenance.two.screens.screen}><Text>0</Text></View>}
-          {viewedTab === 1 && <View style={styles.maintenance.two.screens.screen}><Text>1</Text></View>}
-          {viewedTab === 2 && <View style={styles.maintenance.two.screens.screen}><Text>2</Text></View>}
-          {viewedTab === 3 && <View style={styles.maintenance.two.screens.screen}><Text>3</Text></View>}
+          <View style={styles.maintenance.two.screens.screen}>
+            {viewedTab === 0 && AllScreen()}
+            {viewedTab === 1 && AssignedScreen()}
+            {viewedTab === 2 && OngoingScreen()}
+            {viewedTab === 3 && CompletedScreen()}
+          </View>
         </View>
       </View>
     </View>
@@ -102,7 +136,10 @@ const styles = StyleSheet.create({
         borderColor: 'blue',
         flex: 15,
         screen: {
-
+          all: {},
+          assigned: {},
+          ongoing: {},
+          completed: {},
         },
       },
     },
