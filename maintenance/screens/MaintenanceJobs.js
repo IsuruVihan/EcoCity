@@ -1,27 +1,15 @@
 import React, {useState} from 'react';
-import {Text, View, StyleSheet} from "react-native";
-import {Tab, TabView} from "@rneui/themed";
+import {Text, View, StyleSheet, TouchableOpacity} from "react-native";
+
+const tabs = [
+  {id: 0, label: 'All'},
+  {id: 1, label: 'Assigned'},
+  {id: 2, label: 'Ongoing'},
+  {id: 3, label: 'Completed'},
+];
 
 const MaintenanceJobs = () => {
-  const [index, setIndex] = useState(0);
-
-  const TabItem = (title, id, width) => {
-    return (
-      <Tab.Item
-        title={title}
-        containerStyle={{
-          backgroundColor: "white",
-          height: 50,
-          display: 'flex',
-          justifyContent: 'center',
-          borderBottomWidth: 2,
-          borderBottomColor: id === index ? '#228693' : '#EDFBFC',
-          maxWidth: width,
-        }}
-        titleStyle={{fontSize: 12, color: "#042434", fontWeight: '300',}}
-      />
-    );
-  }
+  const [viewedTab, setViewedTab] = useState(0);
 
   return (
     <View style={styles.maintenance}>
@@ -29,26 +17,21 @@ const MaintenanceJobs = () => {
         <Text style={styles.maintenance.one.txt}>Maintenance Jobs</Text>
       </View>
       <View style={styles.maintenance.two}>
-        <Tab value={index} onChange={(e) => setIndex(e)} indicatorStyle={{backgroundColor: 'white', height: 0,}}>
-          {TabItem('All', 0, '17.9%')}
-          {TabItem('Assigned', 1, '28%')}
-          {TabItem('Ongoing', 2, '27%')}
-          {TabItem('Finished', 3, '27%')}
-        </Tab>
-        <TabView value={index} onChange={setIndex}>
-          <TabView.Item style={{backgroundColor: 'white', width: '100%', borderWidth: 2, borderColor: 'blue',}}>
-            <Text>All</Text>
-          </TabView.Item>
-          <TabView.Item style={{backgroundColor: 'white', width: '100%'}}>
-            <Text>Assigned</Text>
-          </TabView.Item>
-          <TabView.Item style={{backgroundColor: 'white', width: '100%'}}>
-            <Text>Ongoing</Text>
-          </TabView.Item>
-          <TabView.Item style={{backgroundColor: 'white', width: '100%'}}>
-            <Text>Finished</Text>
-          </TabView.Item>
-        </TabView>
+        <View style={styles.maintenance.two.nav}>
+          {tabs.map((tab) => {
+            return <TouchableOpacity key={tab.id} style={styles.maintenance.two.nav.pageLink}>
+              <Text style={viewedTab === tab.id ? styles.maintenance.two.nav.pageLink.txt2 :
+                  styles.maintenance.two.nav.pageLink.txt
+              } onPress={() => setViewedTab(tab.id)}>{tab.label}</Text>
+            </TouchableOpacity>
+          })}
+        </View>
+        <View style={styles.maintenance.two.screens}>
+          {viewedTab === 0 && <View style={styles.maintenance.two.screens.screen}><Text>0</Text></View>}
+          {viewedTab === 1 && <View style={styles.maintenance.two.screens.screen}><Text>1</Text></View>}
+          {viewedTab === 2 && <View style={styles.maintenance.two.screens.screen}><Text>2</Text></View>}
+          {viewedTab === 3 && <View style={styles.maintenance.two.screens.screen}><Text>3</Text></View>}
+        </View>
       </View>
     </View>
   );
@@ -80,6 +63,48 @@ const styles = StyleSheet.create({
       borderColor: 'orange',
       flex: 11,
       width: '100%',
+      nav: {
+        borderWidth: 2,
+        borderColor: 'blue',
+        flex: 1,
+        display: 'flex',
+        flexDirection: 'row',
+        pageLink: {
+          // borderWidth: 2,
+          // borderColor: 'red',
+          flex: 1,
+          justifyContent: 'center',
+          alignItems: 'center',
+          txt: {
+            color: '#042434',
+            fontSize: 16,
+            borderBottomWidth: 2,
+            borderBottomColor: 'green',
+            width: '100%',
+            height: '100%',
+            textAlign: 'center',
+            textAlignVertical: 'center',
+          },
+          txt2: {
+            color: '#042434',
+            fontSize: 16,
+            borderBottomWidth: 2,
+            borderBottomColor: 'red',
+            width: '100%',
+            height: '100%',
+            textAlign: 'center',
+            textAlignVertical: 'center',
+          },
+        },
+      },
+      screens: {
+        borderWidth: 2,
+        borderColor: 'blue',
+        flex: 15,
+        screen: {
+
+        },
+      },
     },
   },
 });
