@@ -13,15 +13,19 @@ const MaintenanceJobs = () => {
 
   const AllScreen = () => {
     return (
-      <View style={styles.maintenance.two.screens.screen.all}>
-        <Text>All</Text>
+      <View style={styles.maintenance.two.screens.screen.screen1}>
+        <View style={styles.maintenance.two.screens.screen.screen1.totalContainer}></View>
+        <View style={styles.maintenance.two.screens.screen.screen1.imgContainer}></View>
+        <View style={styles.maintenance.two.screens.screen.screen1.filterContainer}></View>
+        <View style={styles.maintenance.two.screens.screen.screen1.listContainer}></View>
+        <View style={styles.maintenance.two.screens.screen.screen1.paginationContainer}></View>
       </View>
     );
   }
 
   const AssignedScreen = () => {
     return (
-      <View style={styles.maintenance.two.screens.screen.assigned}>
+      <View style={styles.maintenance.two.screens.screen.screen1}>
         <Text>Assigned</Text>
       </View>
     );
@@ -29,7 +33,7 @@ const MaintenanceJobs = () => {
 
   const OngoingScreen = () => {
     return (
-      <View style={styles.maintenance.two.screens.screen.ongoing}>
+      <View style={styles.maintenance.two.screens.screen.screen2}>
         <Text>Ongoing</Text>
       </View>
     );
@@ -37,7 +41,7 @@ const MaintenanceJobs = () => {
 
   const CompletedScreen = () => {
     return (
-      <View style={styles.maintenance.two.screens.screen.completed}>
+      <View style={styles.maintenance.two.screens.screen.screen1}>
         <Text>Completed</Text>
       </View>
     );
@@ -73,6 +77,8 @@ const MaintenanceJobs = () => {
 
 const styles = StyleSheet.create({
   maintenance: {
+    backgroundColor: 'white',
+    // backgroundColor: 'red',
     height: '100%',
     display: 'flex',
     flexDirection: 'column',
@@ -80,8 +86,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingHorizontal: 10,
     one: {
-      borderWidth: 2,
-      borderColor: 'orange',
+      // borderWidth: 2,
+      // borderColor: 'orange',
       flex: 1,
       width: '100%',
       display: 'flex',
@@ -93,13 +99,13 @@ const styles = StyleSheet.create({
       },
     },
     two: {
-      borderWidth: 2,
-      borderColor: 'orange',
+      // borderWidth: 2,
+      // borderColor: 'orange',
       flex: 11,
       width: '100%',
       nav: {
-        borderWidth: 2,
-        borderColor: 'blue',
+        // borderWidth: 2,
+        // borderColor: 'blue',
         flex: 1,
         display: 'flex',
         flexDirection: 'row',
@@ -113,7 +119,7 @@ const styles = StyleSheet.create({
             color: '#042434',
             fontSize: 16,
             borderBottomWidth: 2,
-            borderBottomColor: 'green',
+            borderBottomColor: '#EDFBFC',
             width: '100%',
             height: '100%',
             textAlign: 'center',
@@ -123,7 +129,7 @@ const styles = StyleSheet.create({
             color: '#042434',
             fontSize: 16,
             borderBottomWidth: 2,
-            borderBottomColor: 'red',
+            borderBottomColor: '#228693',
             width: '100%',
             height: '100%',
             textAlign: 'center',
@@ -132,14 +138,47 @@ const styles = StyleSheet.create({
         },
       },
       screens: {
-        borderWidth: 2,
-        borderColor: 'blue',
+        // borderWidth: 2,
+        // borderColor: 'blue',
         flex: 15,
+        paddingVertical: 5,
         screen: {
-          all: {},
-          assigned: {},
-          ongoing: {},
-          completed: {},
+          screen1: {
+            height: '100%',
+            borderWidth: 2,
+            borderColor: 'red',
+            display: 'flex',
+            totalContainer: {
+              borderWidth: 2,
+              borderColor: 'green',
+              flex: 0.5,
+            },
+            imgContainer: {
+              borderWidth: 2,
+              borderColor: 'green',
+              flex: 3,
+            },
+            filterContainer: {
+              borderWidth: 2,
+              borderColor: 'green',
+              flex: 0.5,
+            },
+            listContainer: {
+              borderWidth: 2,
+              borderColor: 'green',
+              flex: 7,
+            },
+            paginationContainer: {
+              borderWidth: 2,
+              borderColor: 'green',
+              flex: 1,
+            },
+          },
+          screen2: {
+            height: '100%',
+            // borderWidth: 2,
+            // borderColor: 'red',
+          },
         },
       },
     },

@@ -518,6 +518,7 @@ const MyProfile = () => {
 
 const styles = StyleSheet.create({
   myProfile: {
+    backgroundColor: '#FAFAFA',
     nfc: {
       tableContainer: {
         display: 'flex',
