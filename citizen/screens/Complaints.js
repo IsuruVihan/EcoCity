@@ -260,7 +260,7 @@ const Complaints = () => {
               topOffset: 10,
             });
           })
-          .catch((err) => {
+          .catch(() => {
             return Toast.show({
               type: 'error',
               text1: 'Oops!',
