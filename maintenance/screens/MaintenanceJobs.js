@@ -69,6 +69,9 @@ const MaintenanceJobs = () => {
   const [pageCount, setPageCount] = useState(0);
   const [activePage, setActivePage] = useState(0);
 
+  const [viewedJob, setViewedJob] = useState(null);
+  const [viewedJobModalOpen, setViewedJobModalOpen] = useState(false);
+
   useEffect(() => {
     getData();
   }, []);
@@ -106,48 +109,57 @@ const MaintenanceJobs = () => {
             id: filteredData[ind - 1].id,
             date: filteredData[ind - 1].date,
             status: filteredData[ind - 1].status,
-            category: filteredData[ind - 1].category,
+            hub: {
+              id: filteredData[ind - 1].hub.id,
+              location: {
+                lat: filteredData[ind - 1].hub.location.lat,
+                long: filteredData[ind - 1].hub.location.long
+              },
+            },
             description: filteredData[ind - 1].description,
-            files: filteredData[ind - 1].files,
-            remarks: filteredData[ind - 1].remarks,
           });
           ind++;
         }
       }
     setPaginatedData(tempPaginatedData);
-    if (tempPaginatedData.length > 0) {
-      console.log("PAGINATED DATA: ", tempPaginatedData[0]);
-    }
+    // if (tempPaginatedData.length > 0) {
+    //   console.log("PAGINATED DATA: ", tempPaginatedData[0]);
+    // }
   }
 
-  const TableRow = (index, id, date, status, category, description, files, remarks) => {
-    let fullDay = date.split('T')[0].split('-');
+  const TableRow = (index, id, date, status, hub, description) => {
+    // let fullDay = date.split('T')[0].split('-');
+    let fullDay = date.split('/');
     let formattedDate = `${fullDay[2]}/${fullDay[1]}/${fullDay[0]}`;
+    console.log(fullDay);
     return (
       <TouchableOpacity
         key={index}
         style={styles.maintenance.two.screens.screen.screen1.listContainer.row}
         onPress={() => {
-          // setViewedComplaint({
-          //   id: id,
-          //   category: category,
-          //   status: status,
-          //   date: formattedDate,
-          //   description: description,
-          //   files: files,
-          //   remarks: remarks,
-          // });
-          // setViewComplaintModalOpen(true);
+          setViewedJob({
+            id: id,
+            date: formattedDate,
+            status: status,
+            hub: {
+              id: hub.id,
+              location: {
+                lat: hub.location.lat,
+                long: hub.location.long,
+              },
+            },
+            description: description,
+          });
+          setViewedJobModalOpen(true);
         }}
       >
         <Text style={styles.maintenance.two.screens.screen.screen1.listContainer.row.index}>{index}</Text>
         <Text style={styles.maintenance.two.screens.screen.screen1.listContainer.row.id}>{id}</Text>
-        {/*<Text style={styles.maintenance.two.screens.screen.screen1.listContainer.row.date}>{formattedDate}</Text>*/}
+        <Text style={styles.maintenance.two.screens.screen.screen1.listContainer.row.date}>{formattedDate}</Text>
         <Text style={
-          status === 'Viewed' ? styles.maintenance.two.screens.screen.screen1.listContainer.row.status.viewed :
-            status === 'Not Viewed' ? styles.maintenance.two.screens.screen.screen1.listContainer.row.status.notViewed :
-              status === 'Resolved' ? styles.maintenance.two.screens.screen.screen1.listContainer.row.status.resolved :
-                styles.maintenance.two.screens.screen.screen1.listContainer.row.status.removed
+          status === 'Not Started' ? styles.maintenance.two.screens.screen.screen1.listContainer.row.status.notStarted :
+            status === 'Ongoing' ? styles.maintenance.two.screens.screen.screen1.listContainer.row.status.ongoing :
+              styles.maintenance.two.screens.screen.screen1.listContainer.row.status.completed
         }>{status}</Text>
       </TouchableOpacity>
     );
@@ -479,7 +491,7 @@ const styles = StyleSheet.create({
                   color: '#707070',
                 },
                 status: {
-                  viewed: {
+                  notStarted: {
                     flex: 2,
                     textAlignVertical: 'center',
                     textAlign: 'center',
@@ -488,7 +500,7 @@ const styles = StyleSheet.create({
                     backgroundColor: '#E1F0FF',
                     height: '75%',
                   },
-                  notViewed: {
+                  ongoing: {
                     flex: 2,
                     textAlignVertical: 'center',
                     textAlign: 'center',
@@ -497,22 +509,13 @@ const styles = StyleSheet.create({
                     backgroundColor: '#FFF6E9',
                     height: '75%',
                   },
-                  resolved: {
+                  completed: {
                     flex: 2,
                     textAlignVertical: 'center',
                     textAlign: 'center',
                     borderRadius: 5,
                     color: '#00C186',
                     backgroundColor: '#E0F8E3',
-                    height: '75%',
-                  },
-                  removed: {
-                    flex: 2,
-                    textAlignVertical: 'center',
-                    textAlign: 'center',
-                    borderRadius: 5,
-                    color: 'red',
-                    backgroundColor: 'pink',
                     height: '75%',
                   },
                 },
