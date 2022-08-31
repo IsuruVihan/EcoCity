@@ -23,7 +23,7 @@ const WIDTH = Dimensions.get('window').width;
 const MaintenanceJobs = () => {
   const [viewedTab, setViewedTab] = useState(0);
 
-  const [filterVisible, setFilterVisible] = useState(true);
+  const [filterVisible, setFilterVisible] = useState(false);
   const [fromDateFilterOpen, setFromDateFilterOpen] = useState(false);
   const [toDateFilterOpen, setToDateFilterOpen] = useState(false);
   const [fromDateFilter, setFromDateFilter] = useState(new Date());
@@ -31,24 +31,38 @@ const MaintenanceJobs = () => {
 
   const [data, setData] = useState([]);
   const [filteredData, setFilteredData] = useState([
-    {id: 'CMB-07-123', date: '23/06/2022', status: 'Viewed'},
-    {id: 'CMB-07-124', date: '24/06/2022', status: 'Not Viewed'},
-    {id: 'CMB-07-125', date: '25/06/2022', status: 'Resolved'},
-    {id: 'CMB-07-126', date: '26/06/2022', status: 'Removed'},
-    {id: 'CMB-07-127', date: '27/06/2022', status: 'Viewed'},
-    {id: 'CMB-07-128', date: '28/06/2022', status: 'Viewed'},
-    {id: 'CMB-07-123', date: '23/06/2022', status: 'Viewed'},
-    {id: 'CMB-07-124', date: '24/06/2022', status: 'Not Viewed'},
-    {id: 'CMB-07-125', date: '25/06/2022', status: 'Resolved'},
-    {id: 'CMB-07-126', date: '26/06/2022', status: 'Removed'},
-    {id: 'CMB-07-127', date: '27/06/2022', status: 'Viewed'},
-    {id: 'CMB-07-128', date: '28/06/2022', status: 'Viewed'},
-    {id: 'CMB-07-123', date: '23/06/2022', status: 'Viewed'},
-    {id: 'CMB-07-124', date: '24/06/2022', status: 'Not Viewed'},
-    {id: 'CMB-07-125', date: '25/06/2022', status: 'Resolved'},
-    {id: 'CMB-07-126', date: '26/06/2022', status: 'Removed'},
-    {id: 'CMB-07-127', date: '27/06/2022', status: 'Viewed'},
-    {id: 'CMB-07-128', date: '28/06/2022', status: 'Viewed'},
+    {
+      id: 'CMB-07-123', date: '23/06/2022', status: 'Ongoing', description: 'Description',
+      hub: {id: '1', location: {lat: '12.432432', long: '43.2432566'}}
+    },
+    {
+      id: 'CMB-07-124', date: '24/06/2022', status: 'Not Started', description: 'Description',
+      hub: {id: '1', location: {lat: '12.432432', long: '43.2432566'}}
+    },
+    {
+      id: 'CMB-07-125', date: '25/06/2022', status: 'Completed', description: 'Description',
+      hub: {id: '1', location: {lat: '12.432432', long: '43.2432566'}}
+    },
+    {
+      id: 'CMB-07-128', date: '28/06/2022', status: 'Ongoing', description: 'Description',
+      hub: {id: '1', location: {lat: '12.432432', long: '43.2432566'}}
+    },
+    {
+      id: 'CMB-07-123', date: '23/06/2022', status: 'Ongoing', description: 'Description',
+      hub: {id: '1', location: {lat: '12.432432', long: '43.2432566'}}
+    },
+    {
+      id: 'CMB-07-124', date: '24/06/2022', status: 'Not Started', description: 'Description',
+      hub: {id: '1', location: {lat: '12.432432', long: '43.2432566'}}
+    },
+    {
+      id: 'CMB-07-125', date: '25/06/2022', status: 'Completed', description: 'Description',
+      hub: {id: '1', location: {lat: '12.432432', long: '43.2432566'}}
+    },
+    {
+      id: 'CMB-07-124', date: '24/06/2022', status: 'Not Started', description: 'Description',
+      hub: {id: '1', location: {lat: '12.432432', long: '43.2432566'}}
+    },
   ]);
   const [paginatedData, setPaginatedData] = useState([]);
 
