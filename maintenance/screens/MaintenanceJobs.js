@@ -5,6 +5,7 @@ import IconFontAwesome5 from "react-native-vector-icons/FontAwesome5";
 import DatePicker from "react-native-date-picker";
 import {Button} from "@rneui/base";
 import AntDesign from "react-native-vector-icons/AntDesign";
+import IconFontAwesome from "react-native-vector-icons/FontAwesome";
 
 import MaintenanceAll from '../assets/images/maintenance-all.png';
 import FilterImg from "../assets/images/filter.png";
@@ -93,14 +94,14 @@ const MaintenanceJobs = () => {
   }
 
   const paginateData = () => {
-    const pc = Math.ceil(filteredData.length / 7);
+    const pc = Math.ceil(filteredData.length / 6);
     setPageCount(pc);
     setActivePage(pc > 0 ? 1 : 0);
     let ind = 1;
     const tempPaginatedData = [];
     outer:
       for (let i = 1; i <= pc; i++) { // Page
-        for (let j = 1; j <= 7; j++) { // Index
+        for (let j = 1; j <= 6; j++) { // Index
           if (ind > filteredData.length)
             break outer;
           tempPaginatedData.push({
@@ -131,7 +132,7 @@ const MaintenanceJobs = () => {
     // let fullDay = date.split('T')[0].split('-');
     let fullDay = date.split('/');
     let formattedDate = `${fullDay[2]}/${fullDay[1]}/${fullDay[0]}`;
-    console.log(fullDay);
+    // console.log(fullDay);
     return (
       <TouchableOpacity
         key={index}
@@ -247,6 +248,44 @@ const MaintenanceJobs = () => {
     );
   }
 
+  const Paginator = () => {
+    return (
+      <View style={styles.maintenance.two.screens.screen.screen1.paginationContainer2.paginationContainer}>
+        <IconFontAwesome
+          name="arrow-left"
+          size={15}
+          color={activePage === 1 ? "#BFDDDE" : "#228693"}
+          onPress={() => setActivePage(activePage === 1 ? activePage : activePage - 1)}
+          style={styles.maintenance.two.screens.screen.screen1.paginationContainer2.paginationContainer.arrowLeft}
+        />
+        {
+          activePage - 1 > 0 && <TouchableOpacity
+            style={styles.maintenance.two.screens.screen.screen1.paginationContainer2.paginationContainer.prevPageNo}
+            onPress={() => setActivePage(activePage - 1)}
+          ><Text>{activePage - 1}</Text>
+          </TouchableOpacity>
+        }
+        <Text style={styles.maintenance.two.screens.screen.screen1.paginationContainer2.paginationContainer.pageNo}>
+          {activePage}
+        </Text>
+        {
+          activePage + 1 <= pageCount && <TouchableOpacity
+            style={styles.maintenance.two.screens.screen.screen1.paginationContainer2.paginationContainer.prevPageNo}
+            onPress={() => setActivePage(activePage + 1)}
+          ><Text>{activePage + 1}</Text>
+          </TouchableOpacity>
+        }
+        <IconFontAwesome
+          name="arrow-right"
+          size={15}
+          color={activePage < pageCount ? "#228693" : "#BFDDDE"}
+          onPress={() => setActivePage(activePage === pageCount ? activePage : activePage + 1)}
+          style={styles.maintenance.two.screens.screen.screen1.paginationContainer2.paginationContainer.arrowRight}
+        />
+      </View>
+    );
+  }
+
   const AllScreen = () => {
     return (
       <View style={styles.maintenance.two.screens.screen.screen1}>
@@ -271,11 +310,13 @@ const MaintenanceJobs = () => {
         <View style={styles.maintenance.two.screens.screen.screen1.listContainer}>
           {paginatedData.map((complaint) => {
             if (complaint.page === activePage)
-              return TableRow(complaint.index, complaint.id, complaint.date, complaint.status, complaint.category,
-                complaint.description, complaint.files, complaint.remarks);
+              return TableRow(complaint.index, complaint.id, complaint.date, complaint.status, complaint.hub,
+                complaint.description);
           })}
         </View>
-        <View style={styles.maintenance.two.screens.screen.screen1.paginationContainer}></View>
+        <View style={styles.maintenance.two.screens.screen.screen1.paginationContainer2}>
+          {Paginator()}
+        </View>
       </View>
     );
   }
@@ -463,7 +504,7 @@ const styles = StyleSheet.create({
               flex: 6.6,
               display: 'flex',
               flexDirection: 'column',
-              justifyContent: 'space-evenly',
+              justifyContent: 'flex-start',
               // padding: 10,
               row: {
                 borderBottomColor: '#EDFBFC',
@@ -521,10 +562,46 @@ const styles = StyleSheet.create({
                 },
               },
             },
-            paginationContainer: {
+            paginationContainer2: {
               borderWidth: 2,
               borderColor: 'green',
               flex: 1,
+              display: 'flex',
+              flexDirection: 'row',
+              alignItems: 'center',
+              justifyContent: 'flex-end',
+              paginationContainer: {
+                height: '80%',
+                display: 'flex',
+                flexDirection: 'row',
+                justifyContent: 'space-around',
+                alignItems: 'center',
+                pageNo: {
+                  marginHorizontal: 5,
+                  fontSize: 15,
+                  fontWeight: '700',
+                  color: '#7CB6B8',
+                  borderColor: '#7CB6B8',
+                  borderRadius: 5,
+                  borderWidth: 2,
+                  padding: 5,
+                  textAlign: 'center',
+                },
+                prevPageNo: {
+                  marginHorizontal: 5,
+                  fontSize: 15,
+                  fontWeight: '700',
+                  color: '#A3A3A3',
+                  padding: 5,
+                  textAlign: 'center',
+                },
+                arrowLeft: {
+                  marginRight: 10,
+                },
+                arrowRight: {
+                  marginLeft: 10,
+                },
+              },
             },
           },
           screen2: {
