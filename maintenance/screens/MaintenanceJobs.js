@@ -27,44 +27,44 @@ const MaintenanceJobs = () => {
   const [filterVisible, setFilterVisible] = useState(false);
   const [fromDateFilterOpen, setFromDateFilterOpen] = useState(false);
   const [toDateFilterOpen, setToDateFilterOpen] = useState(false);
-  const [fromDateFilter, setFromDateFilter] = useState(new Date());
+  const [fromDateFilter, setFromDateFilter] = useState(new Date('1999-08-18T04:48:09.000Z'));
   const [toDateFilter, setToDateFilter] = useState(new Date());
 
-  const [data, setData] = useState([]);
-  const [filteredData, setFilteredData] = useState([
+  const [data, setData] = useState([
     {
-      id: 'CMB-07-123', date: '23/06/2022', status: 'Ongoing', description: 'Description',
+      id: 'CMB-07-123', date: '2022-08-18T04:48:09.000Z', status: 'Ongoing', description: 'Description',
       hub: {id: '1', location: {lat: '12.432432', long: '43.2432566'}}
     },
     {
-      id: 'CMB-07-124', date: '24/06/2022', status: 'Not Started', description: 'Description',
+      id: 'CMB-07-124', date: '2022-08-18T04:48:09.000Z', status: 'Not Started', description: 'Description',
       hub: {id: '1', location: {lat: '12.432432', long: '43.2432566'}}
     },
     {
-      id: 'CMB-07-125', date: '25/06/2022', status: 'Completed', description: 'Description',
+      id: 'CMB-07-125', date: '2022-08-18T04:48:09.000Z', status: 'Completed', description: 'Description',
       hub: {id: '1', location: {lat: '12.432432', long: '43.2432566'}}
     },
     {
-      id: 'CMB-07-128', date: '28/06/2022', status: 'Ongoing', description: 'Description',
+      id: 'CMB-07-128', date: '2022-08-18T04:48:09.000Z', status: 'Ongoing', description: 'Description',
       hub: {id: '1', location: {lat: '12.432432', long: '43.2432566'}}
     },
     {
-      id: 'CMB-07-123', date: '23/06/2022', status: 'Ongoing', description: 'Description',
+      id: 'CMB-07-123', date: '2022-08-18T04:48:09.000Z', status: 'Ongoing', description: 'Description',
       hub: {id: '1', location: {lat: '12.432432', long: '43.2432566'}}
     },
     {
-      id: 'CMB-07-124', date: '24/06/2022', status: 'Not Started', description: 'Description',
+      id: 'CMB-07-124', date: '2022-08-18T04:48:09.000Z', status: 'Not Started', description: 'Description',
       hub: {id: '1', location: {lat: '12.432432', long: '43.2432566'}}
     },
     {
-      id: 'CMB-07-125', date: '25/06/2022', status: 'Completed', description: 'Description',
+      id: 'CMB-07-125', date: '2022-08-18T04:48:09.000Z', status: 'Completed', description: 'Description',
       hub: {id: '1', location: {lat: '12.432432', long: '43.2432566'}}
     },
     {
-      id: 'CMB-07-124', date: '24/06/2022', status: 'Not Started', description: 'Description',
+      id: 'CMB-07-124', date: '2022-08-18T04:48:09.000Z', status: 'Not Started', description: 'Description',
       hub: {id: '1', location: {lat: '12.432432', long: '43.2432566'}}
     },
   ]);
+  const [filteredData, setFilteredData] = useState([]);
   const [paginatedData, setPaginatedData] = useState([]);
 
   const [pageCount, setPageCount] = useState(0);
@@ -90,7 +90,9 @@ const MaintenanceJobs = () => {
   }
 
   const filterData = () => {
-
+    let tempFilteredData = data.filter(job => new Date(job.date) >= new Date(fromDateFilter));
+    tempFilteredData = tempFilteredData.filter(job => new Date(job.date) <= new Date(toDateFilter));
+    setFilteredData(tempFilteredData);
   }
 
   const paginateData = () => {
@@ -129,8 +131,8 @@ const MaintenanceJobs = () => {
   }
 
   const TableRow = (index, id, date, status, hub, description) => {
-    // let fullDay = date.split('T')[0].split('-');
-    let fullDay = date.split('/');
+    let fullDay = date.split('T')[0].split('-');
+    // let fullDay = date.split('/');
     let formattedDate = `${fullDay[2]}/${fullDay[1]}/${fullDay[0]}`;
     // console.log(fullDay);
     return (
@@ -236,7 +238,7 @@ const MaintenanceJobs = () => {
             color={'#228693'}
             buttonStyle={{borderRadius: 5, width: Responsive(20, WIDTH),}}
             onPress={() => {
-              // filterData();
+              filterData();
               setFilterVisible(false);
             }}
           >
@@ -444,8 +446,8 @@ const styles = StyleSheet.create({
         screen: {
           screen1: {
             height: '100%',
-            borderWidth: 2,
-            borderColor: 'red',
+            // borderWidth: 2,
+            // borderColor: 'red',
             display: 'flex',
             totalContainer: {
               // borderWidth: 2,
@@ -460,13 +462,13 @@ const styles = StyleSheet.create({
             imgContainer: {
               // borderWidth: 2,
               // borderColor: 'green',
-              flex: 3,
+              flex: 3.6,
               display: 'flex',
               justifyContent: 'center',
               alignItems: 'center',
               img: {
-                height: Responsive(17, HEIGHT),
-                width: Responsive(17, HEIGHT),
+                height: Responsive(20, HEIGHT),
+                width: Responsive(20, HEIGHT),
               },
             },
             filterContainer: {
@@ -499,9 +501,9 @@ const styles = StyleSheet.create({
               },
             },
             listContainer: {
-              borderWidth: 2,
-              borderColor: 'green',
-              flex: 6.6,
+              // borderWidth: 2,
+              // borderColor: 'green',
+              flex: 6,
               display: 'flex',
               flexDirection: 'column',
               justifyContent: 'flex-start',
@@ -563,8 +565,8 @@ const styles = StyleSheet.create({
               },
             },
             paginationContainer2: {
-              borderWidth: 2,
-              borderColor: 'green',
+              // borderWidth: 2,
+              // borderColor: 'green',
               flex: 1,
               display: 'flex',
               flexDirection: 'row',
