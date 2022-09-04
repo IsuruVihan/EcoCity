@@ -16,7 +16,7 @@ import {Responsive} from "../../helpers/Responsive";
 const HEIGHT = Dimensions.get('window').height;
 const WIDTH = Dimensions.get('window').width;
 
-const AllScreen = () => {
+const AssignedScreen = () => {
   const [filterVisible, setFilterVisible] = useState(false);
   const [fromDateFilterOpen, setFromDateFilterOpen] = useState(false);
   const [toDateFilterOpen, setToDateFilterOpen] = useState(false);
@@ -28,31 +28,11 @@ const AllScreen = () => {
 
   const [data, setData] = useState([
     {
-      id: 'CMB-07-123', date: '2022-08-18T04:48:09.000Z', status: 'Ongoing', description: 'Description',
-      hub: {id: '1', location: {lat: '12.432432', long: '43.2432566'}}
-    },
-    {
       id: 'CMB-07-124', date: '2022-08-18T04:48:09.000Z', status: 'Not Started', description: 'Description',
       hub: {id: '1', location: {lat: '12.432432', long: '43.2432566'}}
     },
     {
-      id: 'CMB-07-125', date: '2022-08-18T04:48:09.000Z', status: 'Completed', description: 'Description',
-      hub: {id: '1', location: {lat: '12.432432', long: '43.2432566'}}
-    },
-    {
-      id: 'CMB-07-128', date: '2022-08-18T04:48:09.000Z', status: 'Ongoing', description: 'Description',
-      hub: {id: '1', location: {lat: '12.432432', long: '43.2432566'}}
-    },
-    {
-      id: 'CMB-07-123', date: '2022-08-18T04:48:09.000Z', status: 'Ongoing', description: 'Description',
-      hub: {id: '1', location: {lat: '12.432432', long: '43.2432566'}}
-    },
-    {
       id: 'CMB-07-124', date: '2022-08-18T04:48:09.000Z', status: 'Not Started', description: 'Description',
-      hub: {id: '1', location: {lat: '12.432432', long: '43.2432566'}}
-    },
-    {
-      id: 'CMB-07-125', date: '2022-08-18T04:48:09.000Z', status: 'Completed', description: 'Description',
       hub: {id: '1', location: {lat: '12.432432', long: '43.2432566'}}
     },
     {
@@ -285,7 +265,7 @@ const AllScreen = () => {
     <View style={styles.screen1}>
       {Filter()}
       <View style={styles.screen1.totalContainer}>
-        <Text style={styles.screen1.totalContainer.txt}>Total {data.length} job{data.length !== 1 && 's'}</Text>
+        <Text style={styles.screen1.totalContainer.txt}>Total 6 jobs</Text>
       </View>
       <View style={styles.screen1.imgContainer}>
         <Image style={styles.screen1.imgContainer.img} source={MaintenanceAll}/>
@@ -514,4 +494,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default AllScreen;
+export default AssignedScreen;
