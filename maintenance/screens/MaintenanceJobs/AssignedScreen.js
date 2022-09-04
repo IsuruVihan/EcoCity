@@ -4,14 +4,15 @@ import {Dimensions, Image, StyleSheet, Text, TouchableOpacity, View} from "react
 import {Dialog} from "@rneui/themed";
 import IconFontAwesome5 from "react-native-vector-icons/FontAwesome5";
 import DatePicker from "react-native-date-picker";
-import {Button} from "@rneui/base";
 import AntDesign from "react-native-vector-icons/AntDesign";
 import IconFontAwesome from "react-native-vector-icons/FontAwesome";
 
 import MaintenanceAssigned from "../../assets/images/maintenance-assigned.png";
 import FilterImg from "../../assets/images/filter.png";
+import ViewComplaintImg from "../../assets/images/view-complaint.png";
 
 import {Responsive} from "../../helpers/Responsive";
+import {Button} from "@rneui/base";
 
 const HEIGHT = Dimensions.get('window').height;
 const WIDTH = Dimensions.get('window').width;
@@ -23,8 +24,10 @@ const AssignedScreen = () => {
   const [fromDateFilter, setFromDateFilter] = useState(new Date('1999-08-18T04:48:09.000Z'));
   const [toDateFilter, setToDateFilter] = useState(new Date());
 
-  const [viewedJob, setViewedJob] = useState(null);
-  const [viewedJobModalOpen, setViewedJobModalOpen] = useState(false);
+  const [viewedJob, setViewedJob] = useState({id: '', date: '', status: '', description: '',
+    hub: {id: '', location: {lat: '', long: ''}}
+  });
+  const [viewJobModalOpen, setViewJobModalOpen] = useState(false);
 
   const [data, setData] = useState([
     {
@@ -126,7 +129,7 @@ const AssignedScreen = () => {
             },
             description: description,
           });
-          setViewedJobModalOpen(true);
+          setViewJobModalOpen(true);
         }}
       >
         <Text style={styles.screen1.listContainer.row.index}>{index}</Text>
@@ -261,9 +264,89 @@ const AssignedScreen = () => {
     );
   }
 
+  const ViewJobModal = () => {
+    return (
+      <Dialog
+        isVisible={viewJobModalOpen}
+        onBackdropPress={() => setViewJobModalOpen(false)}
+        style={styles.screen1.viewJobModal}
+      >
+        <View style={styles.screen1.viewJobModal.cancelBtnContainer}>
+          <AntDesign
+            name={'closecircle'}
+            size={15}
+            color='#7CB6B8'
+            onPress={() => setViewJobModalOpen(false)}
+          />
+        </View>
+        <View style={styles.screen1.viewJobModal.imgContainer}>
+          <Image source={ViewComplaintImg} style={styles.screen1.viewJobModal.imgContainer.img}/>
+        </View>
+        <View style={styles.screen1.viewJobModal.dataFields}>
+          <View style={styles.screen1.viewJobModal.dataFields.inputSet}>
+            <Text style={styles.screen1.viewJobModal.dataFields.inputSet.label}>Job ID</Text>
+            <View
+              style={styles.screen1.viewJobModal.dataFields.inputSet.txtInput}
+            >
+              <Text style={styles.screen1.viewJobModal.dataFields.inputSet.txtInput.txt}>
+                {viewedJob.id}
+              </Text>
+            </View>
+          </View>
+          <View style={styles.screen1.viewJobModal.dataFields.inputSet}>
+            <Text style={styles.screen1.viewJobModal.dataFields.inputSet.label}>Garbage Hub Id</Text>
+            <View
+              style={styles.screen1.viewJobModal.dataFields.inputSet.txtInput}
+            >
+              <Text style={styles.screen1.viewJobModal.dataFields.inputSet.txtInput.txt}>
+                {viewedJob.hub.id}
+              </Text>
+            </View>
+          </View>
+          <View style={styles.screen1.viewJobModal.dataFields.inputSet}>
+            <Text style={styles.screen1.viewJobModal.dataFields.inputSet.label}>Assigned date</Text>
+            <View
+              style={styles.screen1.viewJobModal.dataFields.inputSet.txtInput}
+            >
+              <Text style={styles.screen1.viewJobModal.dataFields.inputSet.txtInput.txt}>
+                {viewedJob.date}
+              </Text>
+            </View>
+          </View>
+          <View style={styles.screen1.viewJobModal.dataFields.inputSet}>
+            <Text style={styles.screen1.viewJobModal.dataFields.inputSet.label}>Description</Text>
+            <View
+              style={styles.screen1.viewJobModal.dataFields.inputSet.txtInput2}
+            >
+              <Text style={styles.screen1.viewJobModal.dataFields.inputSet.txtInput.txt}>
+                {viewedJob.description}
+              </Text>
+            </View>
+          </View>
+          <View style={styles.screen1.viewJobModal.dataFields.inputSet}>
+            <Text style={styles.screen1.viewJobModal.dataFields.inputSet.label}>Location</Text>
+            <View
+              style={styles.screen1.viewJobModal.dataFields.inputSet.txtInput3}
+            >
+            </View>
+          </View>
+          <View style={styles.screen1.viewJobModal.dataFields.last}>
+            <TouchableOpacity style={styles.screen1.viewJobModal.dataFields.last.btn}>
+              <Text style={styles.screen1.viewJobModal.dataFields.last.btn.txt}>Cancel</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.screen1.viewJobModal.dataFields.last.btn2}>
+              <Text style={styles.screen1.viewJobModal.dataFields.last.btn2.txt}>Start</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </Dialog>
+    );
+  }
+
   return (
     <View style={styles.screen1}>
       {Filter()}
+      {ViewJobModal()}
       <View style={styles.screen1.totalContainer}>
         <Text style={styles.screen1.totalContainer.txt}>Total {data.length} job{data.length !== 1 && 's'}</Text>
       </View>
@@ -489,6 +572,136 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'flex-end',
         alignItems: 'center',
+      },
+    },
+    viewJobModal: {
+      cancelBtnContainer: {
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'flex-end',
+        alignItems: 'center',
+      },
+      imgContainer: {
+        display: 'flex',
+        alignItems: 'center',
+        img: {
+          width: Responsive(25, WIDTH),
+          height: Responsive(25, WIDTH),
+        },
+      },
+      dataFields: {
+        inputSet: {
+          paddingVertical: 5,
+          padding: 0,
+          label: {
+            color: '#042434',
+            fontSize: 12,
+          },
+          txtInput: {
+            borderWidth: 2,
+            borderColor: '#E8F5F6',
+            borderRadius: 10,
+            height: Responsive(4, HEIGHT),
+            color: '#707070',
+            paddingLeft: 10,
+            display: 'flex',
+            flexDirection: 'row',
+            justifyContent: 'flex-start',
+            alignItems: 'center',
+            txt: {
+              fontSize: 10,
+            },
+          },
+          txtInput2: {
+            borderWidth: 2,
+            borderColor: '#E8F5F6',
+            borderRadius: 10,
+            height: Responsive(8, HEIGHT),
+            color: '#707070',
+            paddingHorizontal: 10,
+            paddingVertical: 5,
+            display: 'flex',
+            flexDirection: 'row',
+            justifyContent: 'flex-start',
+            alignItems: 'flex-start',
+            txt: {
+              fontSize: 10,
+            },
+          },
+          txtInput3: {
+            borderWidth: 2,
+            borderColor: '#E8F5F6',
+            borderRadius: 10,
+            height: Responsive(32, HEIGHT),
+            color: '#707070',
+            paddingHorizontal: 10,
+            paddingVertical: 5,
+            display: 'flex',
+            flexDirection: 'row',
+            justifyContent: 'flex-start',
+            alignItems: 'flex-start',
+            txt: {
+              fontSize: 10,
+            },
+          },
+          imgContainer: {
+            display: 'flex',
+            flexDirection: 'row',
+            justifyContent: 'center',
+            alignItems: 'center',
+            btn: {
+              backgroundColor: '#228693',
+              paddingHorizontal: 10,
+              paddingVertical: 3,
+              borderRadius: 5,
+              txt: {
+                color: 'white',
+                fontSize: 12,
+              },
+            },
+          },
+        },
+        last: {
+          display: 'flex',
+          flexDirection: 'row',
+          alignItems: 'center',
+          justifyContent: 'center',
+          paddingVertical: 10,
+          btn: {
+            paddingVertical: 3,
+            paddingHorizontal: 6,
+            borderWidth: 2,
+            borderColor: '#E9E8EF',
+            borderRadius: 5,
+            backgroundColor: 'white',
+            marginHorizontal: 5,
+            width: Responsive(20, WIDTH),
+            height: Responsive(10, WIDTH),
+            txt: {
+              textAlign: 'center',
+              textAlignVertical: 'center',
+              color: '#228693',
+              height: '100%',
+              fontWeight: '600',
+            },
+          },
+          btn2: {
+            paddingVertical: 3,
+            paddingHorizontal: 6,
+            borderRadius: 5,
+            backgroundColor: '#228693',
+            marginHorizontal: 5,
+            width: Responsive(20, WIDTH),
+            height: Responsive(10, WIDTH),
+            txt: {
+              textAlign: 'center',
+              textAlignVertical: 'center',
+              color: 'white',
+              height: '100%',
+              fontWeight: '600',
+            },
+          },
+        },
       },
     },
   },
