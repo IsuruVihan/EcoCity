@@ -8,7 +8,7 @@ import {Button} from "@rneui/base";
 import AntDesign from "react-native-vector-icons/AntDesign";
 import IconFontAwesome from "react-native-vector-icons/FontAwesome";
 
-import MaintenanceAll from "../../assets/images/maintenance-all.png";
+import MaintenanceAssigned from "../../assets/images/maintenance-assigned.png";
 import FilterImg from "../../assets/images/filter.png";
 
 import {Responsive} from "../../helpers/Responsive";
@@ -265,10 +265,10 @@ const AssignedScreen = () => {
     <View style={styles.screen1}>
       {Filter()}
       <View style={styles.screen1.totalContainer}>
-        <Text style={styles.screen1.totalContainer.txt}>Total 6 jobs</Text>
+        <Text style={styles.screen1.totalContainer.txt}>Total {data.length} job{data.length !== 1 && 's'}</Text>
       </View>
       <View style={styles.screen1.imgContainer}>
-        <Image style={styles.screen1.imgContainer.img} source={MaintenanceAll}/>
+        <Image style={styles.screen1.imgContainer.img} source={MaintenanceAssigned}/>
       </View>
       <View style={styles.screen1.filterContainer}>
         <TouchableOpacity
@@ -320,8 +320,8 @@ const styles = StyleSheet.create({
       justifyContent: 'center',
       alignItems: 'center',
       img: {
-        height: Responsive(20, HEIGHT),
-        width: Responsive(20, HEIGHT),
+        height: Responsive(18, HEIGHT),
+        width: Responsive(24, HEIGHT),
       },
     },
     filterContainer: {
