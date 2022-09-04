@@ -67,8 +67,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
-    borderLeftRadius: 20,
-    borderRightRadius: 20,
     borderColor: 'lightgray',
     borderWidth: 1,
     icon: {

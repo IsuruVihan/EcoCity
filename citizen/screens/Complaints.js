@@ -162,6 +162,7 @@ const Complaints = () => {
     resolvedFilter && complaintStatusOptions.push("Resolved");
     removedFilter && complaintStatusOptions.push("Removed");
     let tempFilteredData = data.filter(comp => complaintStatusOptions.includes(comp.status));
+    console.log(tempFilteredData[0]);
     if (tempFilteredData.length > 0) {
       tempFilteredData = tempFilteredData.filter(comp => new Date(comp.date) >= new Date(fromDateFilter));
       tempFilteredData = tempFilteredData.filter(comp => new Date(comp.date) <= new Date(toDateFilter));
@@ -260,7 +261,7 @@ const Complaints = () => {
               topOffset: 10,
             });
           })
-          .catch((err) => {
+          .catch(() => {
             return Toast.show({
               type: 'error',
               text1: 'Oops!',

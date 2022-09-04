@@ -30,6 +30,8 @@ const styles = StyleSheet.create({
     // borderBottomColor: 'lightgray',
     // borderBottomWidth: 1,
     backgroundColor: 'white',
+    borderBottomLeftRadius: 10,
+    borderBottomRightRadius: 10,
     imageContainer: {
       // borderColor: 'red',
       // borderWidth: 1,
