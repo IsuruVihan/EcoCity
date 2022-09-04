@@ -3,7 +3,7 @@ import {Tab, TabView} from '@rneui/themed';
 
 import Welcome from "./Welcome";
 import AreaMap from "./AreaMap";
-import MaintenanceJobs from "./MaintenanceJobs";
+import MaintenanceJobs from "./MaintenanceJobs/MaintenanceJobs";
 import MyProfile from "./MyProfile";
 import Header from "../components/Header";
 
