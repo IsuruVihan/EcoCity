@@ -12,7 +12,7 @@ import FilterImg from "../../assets/images/filter.png";
 import ViewComplaintImg from "../../assets/images/view-complaint.png";
 
 import {Responsive} from "../../helpers/Responsive";
-import {Button} from "@rneui/base";
+import {Button} from "@rneui/themed";
 
 const HEIGHT = Dimensions.get('window').height;
 const WIDTH = Dimensions.get('window').width;
@@ -48,6 +48,8 @@ const AssignedScreen = () => {
 
   const [pageCount, setPageCount] = useState(0);
   const [activePage, setActivePage] = useState(0);
+
+  const [startJobErrorModalVisible, setStartJobErrorModalVisible] = useState(false);
 
   useEffect(() => {
     getData();
@@ -104,6 +106,41 @@ const AssignedScreen = () => {
     // if (tempPaginatedData.length > 0) {
     //   console.log("PAGINATED DATA: ", tempPaginatedData[0]);
     // }
+  }
+
+  const startJob = (id) => {
+    // TODO: Check whether there are any ongoing maintenance jobs. If 'yes', prompt the error modal. Else, proceed.
+    console.log("Start job ID: ", id);
+    setStartJobErrorModalVisible(true);
+  }
+
+  const StartJobErrorModal = () => {
+    return (
+      <Dialog
+        isVisible={startJobErrorModalVisible}
+        onBackdropPress={() => setStartJobErrorModalVisible(false)}
+        style={styles.screen1.errorModal}
+        overlayStyle={{
+          borderRadius: 30,
+        }}
+      >
+        <View style={styles.screen1.errorModal.sec1}>
+          <Text style={styles.screen1.errorModal.sec1.txt}>Cannot start the job</Text>
+        </View>
+        <View style={styles.screen1.errorModal.sec2}>
+          <Text style={styles.screen1.errorModal.sec2.txt}>You have an ongoing job.</Text>
+          <Text style={styles.screen1.errorModal.sec2.txt}>Try again after you complete it.</Text>
+        </View>
+        <View style={styles.screen1.errorModal.sec3}>
+          <TouchableOpacity
+            style={styles.screen1.errorModal.sec3.btn}
+            onPress={() => setStartJobErrorModalVisible(false)}
+          >
+            <Text style={styles.screen1.errorModal.sec3.btn.txt}>Cancel</Text>
+          </TouchableOpacity>
+        </View>
+      </Dialog>
+    );
   }
 
   const TableRow = (index, id, date, status, hub, description) => {
@@ -331,10 +368,16 @@ const AssignedScreen = () => {
             </View>
           </View>
           <View style={styles.screen1.viewJobModal.dataFields.last}>
-            <TouchableOpacity style={styles.screen1.viewJobModal.dataFields.last.btn}>
+            <TouchableOpacity
+              style={styles.screen1.viewJobModal.dataFields.last.btn}
+              onPress={() => setViewJobModalOpen(false)}
+            >
               <Text style={styles.screen1.viewJobModal.dataFields.last.btn.txt}>Cancel</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.screen1.viewJobModal.dataFields.last.btn2}>
+            <TouchableOpacity
+              style={styles.screen1.viewJobModal.dataFields.last.btn2}
+              onPress={() => startJob(viewedJob.id)}
+            >
               <Text style={styles.screen1.viewJobModal.dataFields.last.btn2.txt}>Start</Text>
             </TouchableOpacity>
           </View>
@@ -347,6 +390,7 @@ const AssignedScreen = () => {
     <View style={styles.screen1}>
       {Filter()}
       {ViewJobModal()}
+      {StartJobErrorModal()}
       <View style={styles.screen1.totalContainer}>
         <Text style={styles.screen1.totalContainer.txt}>Total {data.length} job{data.length !== 1 && 's'}</Text>
       </View>
@@ -700,6 +744,41 @@ const styles = StyleSheet.create({
               height: '100%',
               fontWeight: '600',
             },
+          },
+        },
+      },
+    },
+    errorModal: {
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'center',
+      alignItems: 'center',
+      sec1: {
+        txt: {
+          textAlign: 'center',
+          fontWeight: '600',
+          fontSize: 18,
+          color: '#228693',
+        },
+      },
+      sec2: {
+        borderBottomWidth: 2,
+        borderBottomColor: '#BFDDDE',
+        paddingVertical: 15,
+        txt: {
+          textAlign: 'center',
+          fontSize: 15,
+          color: '#707070',
+        },
+      },
+      sec3: {
+        paddingVertical: 15,
+        btn: {
+          width: '100%',
+          txt: {
+            textAlign: 'center',
+            fontSize: 15,
+            color: '#228693',
           },
         },
       },
