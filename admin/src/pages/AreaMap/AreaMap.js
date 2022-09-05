@@ -95,7 +95,7 @@ const AreaMap = () => {
                 </Col>
             </Row>
             <Row className='p-0 mx-0 mt-2 d-flex align-items-end bg-white shadow-effect' style={{height: "540px"}}>
-                <div className='aream-map h-100'>ss</div>
+                <Map/>
             </Row>
         </Col>
 
