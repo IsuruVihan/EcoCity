@@ -14,3 +14,24 @@ export const createRecord = async ({player, reason, borrowDate, returnDate, quan
         }
     });
 }
+
+export const getBorrowRecords = async (accessToken, refreshToken) => {
+    return await axios.get(`${process.env.REACT_APP_API}/borrow`, {
+        headers: {
+            accessToken: accessToken,
+            refreshToken: refreshToken
+        }
+    });
+}
+
+export const returnEquipments = async (borrowRecordId, borrowedOn, returnedOn, accessToken, refreshToken) => {
+    return await axios.put(`${process.env.REACT_APP_API}/borrow/return/${borrowRecordId}`, {
+        borrowedOn: borrowedOn,
+        returnedOn: returnedOn
+    }, {
+        headers: {
+            accessToken: accessToken,
+            refreshToken: refreshToken
+        }
+    });
+}
