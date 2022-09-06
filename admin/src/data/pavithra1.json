@@ -2,24 +2,19 @@
   "trucks": [
     {
       "id": 1,
-
       "numberPlate": "VMH-922",
       "status": "Active",
       "jobCount": "2",
-
       "availability": "available"
     },
 
     {
       "id": 2,
       "numberPlate": "7JVK265",
-
       "status": "Active",
       "jobCount": "4",
-
       "availability": "unavailable"
     },
-
     {
       "id": 3,
       "numberPlate": "KDO327",
