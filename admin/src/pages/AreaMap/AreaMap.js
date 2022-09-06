@@ -14,9 +14,9 @@ import './AreaMap.css';
 import areaMap from '../../assets/images/temp/areaMap.png';
 
 const AreaMap = () => {
-    const [isActive1, setIsActive1] = useState(false);
-    const [isActive2, setIsActive2] = useState(false);
-    const [isActive3, setIsActive3] = useState(false);
+    const [isGHubsVisible, setIsGHubsVisible] = useState(true);
+    const [isGTrucksVisible, setIsGTrucksVisible] = useState(false);
+    const [isMMembersVisible, setIsMMembersVisible] = useState(false);
 
     return (
         <Col className='px-4' lg={10}>
@@ -36,8 +36,8 @@ const AreaMap = () => {
                              borderRadius: '10px',
                              boxShadow: '2px 4px 8px lightgray',
                              cursor: 'pointer',
-                             backgroundColor: isActive1 ? '#effbfc' : ''
-                         }} onClick={() => setIsActive1(!isActive1)}>
+                             backgroundColor: isGHubsVisible ? '#effbfc' : ''
+                         }} onClick={() => setIsGHubsVisible(!isGHubsVisible)}>
                         <Col sm={4} className='p-1 m-0'
                              style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}><img
                             src={hubArea} width='38px'/></Col>
@@ -57,8 +57,8 @@ const AreaMap = () => {
                              borderRadius: '10px',
                              boxShadow: '2px 4px 8px lightgray',
                              cursor: 'pointer',
-                             backgroundColor: isActive2 ? '#effbfc' : ''
-                         }} onClick={() => setIsActive2(!isActive2)}>
+                             backgroundColor: isGTrucksVisible ? '#effbfc' : ''
+                         }} onClick={() => setIsGTrucksVisible(!isGTrucksVisible)}>
                         <Col sm={4} className='p-1 m-0'
                              style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}><img
                             src={garbageTruck} width='40px'/></Col>
@@ -78,8 +78,8 @@ const AreaMap = () => {
                              borderRadius: '10px',
                              boxShadow: '2px 4px 8px lightgray',
                              cursor: 'pointer',
-                             backgroundColor: isActive3 ? '#effbfc' : ''
-                         }} onClick={() => setIsActive3(!isActive3)}>
+                             backgroundColor: isMMembersVisible ? '#effbfc' : ''
+                         }} onClick={() => setIsMMembersVisible(!isMMembersVisible)}>
                         <Col sm={4} className='p-1 m-0'
                              style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}><img
                             src={maintenanceTruck} width='40px'/></Col>
@@ -95,7 +95,7 @@ const AreaMap = () => {
                 </Col>
             </Row>
             <Row className='p-0 mx-0 mt-2 d-flex align-items-end bg-white shadow-effect' style={{height: "540px"}}>
-                <Map/>
+                <Map showHubs={isGHubsVisible} showGTrucks={isGTrucksVisible} showMMembers={isMMembersVisible}/>
             </Row>
         </Col>
 
