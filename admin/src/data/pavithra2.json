@@ -1,0 +1,98 @@
+{
+  "crew": [
+    {
+      "id": 123,
+      "name": "Danny Frazier",
+      "nic": 20015498746,
+      "email": "danny@gmail.com",
+      "status": "Active"
+    },
+    {
+      "id": 123,
+      "name": "Leon Mitchelle",
+      "nic": 20015498746,
+      "email": "leon@gmail.com",
+      "status": "Inactive"
+    },
+    {
+      "id": 123,
+      "name": "Ashen Perera",
+      "nic": 20015498746,
+      "email": "ashen@gmail.com",
+      "status": "Active"
+    },
+    {
+      "id": 123,
+      "name": "Mabel oliver",
+      "nic": 20015498746,
+      "email": "mabel.oli@gmail.com",
+      "status": "Inactive"
+    },
+    {
+      "id": 123,
+      "name": "Emily Green",
+      "nic": 20015498746,
+      "email": "emily.green@gmail.com",
+      "status": "Active"
+    },
+    {
+      "id": 123,
+      "name": "Cathy Carr",
+      "nic": 20015498746,
+      "email": "Cathy.carr@gmail.com",
+      "status": "Inactive"
+    },
+    {
+      "id": 123,
+      "name": "Dustin Willson",
+      "nic": 20015498746,
+      "email": "dustin.wil@gmail.com",
+      "status": "Active"
+    },
+    {
+      "id": 123,
+      "name": "Ruban Hunter",
+      "nic": 20015498746,
+      "email": "Ruban@gmail.com",
+      "status": "Inactive"
+    },
+    {
+      "id": 123,
+      "name": "Isaiah ward",
+
+      "nic": 20015498746,
+
+      "email": "isaiah@gmail.com",
+
+      "status": "Active"
+    },
+    {
+      "id": 123,
+      "name": "Perry Jenkins",
+
+      "nic": 20015498746,
+
+      "email": "Perry@gmail.com",
+
+      "status": "Inactive"
+    },
+    {
+      "id": 123,
+      "name": "Ricky Soto",
+
+      "nic": 20015498746,
+
+      "email": "ricky@gmail.com",
+
+      "status": "Active"
+    },
+    {
+      "id": 123,
+      "name": "Owan Stewart",
+
+      "nic": 20015498746,
+      "email": "owan@gmail.com",
+      "status": "Inactive"
+    }
+  ]
+}

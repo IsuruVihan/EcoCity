@@ -1,0 +1,106 @@
+{
+  "trucks": [
+    {
+      "id": 1,
+      "numberPlate": "VMH-922",
+      "status": "Active",
+      "jobCount": "2",
+      "availability": "available"
+    },
+
+    {
+      "id": 2,
+      "numberPlate": "7JVK265",
+      "status": "Active",
+      "jobCount": "4",
+      "availability": "unavailable"
+    },
+    {
+      "id": 3,
+      "numberPlate": "KDO327",
+
+      "status": "Active",
+      "jobCount": "3",
+
+      "availability": "available"
+    },
+
+    {
+      "id": 4,
+      "numberPlate": "2FEB14",
+
+      "status": "Active",
+      "jobCount": "5",
+
+      "availability": "available"
+    },
+
+    {
+      "id": 5,
+      "numberPlate": "DV9WF",
+
+      "status": "Active",
+      "jobCount": "15",
+
+      "availability": "available"
+    },
+
+    {
+      "id": 6,
+      "numberPlate": "XGK6513",
+
+      "status": "Active",
+      "jobCount": "4",
+
+      "availability": "available"
+    },
+
+    {
+      "id": 7,
+      "numberPlate": "UTG9376",
+      "status": "Active",
+      "jobCount": "8",
+      "availability": "unavailable"
+    },
+
+    {
+      "id": 8,
+      "numberPlate": "HWU420",
+      "status": "Active",
+      "jobCount": "10",
+      "availability": "unavailable"
+    },
+
+    {
+      "id": 9,
+      "numberPlate": "HPC240",
+      "status": "Active",
+      "jobCount": "10",
+      "availability": "available"
+    },
+
+    {
+      "id": 10,
+      "numberPlate": "BOM409",
+      "status": "Active",
+      "jobCount": "8",
+      "availability": "available"
+    },
+
+    {
+      "id": 11,
+      "numberPlate": "BPL421",
+      "status": "Active",
+      "jobCount": "9",
+      "availability": "unavailable"
+    },
+
+    {
+      "id": 12,
+      "numberPlate": "JXY893",
+      "status": "Active",
+      "jobCount": "11",
+      "availability": "available"
+    }
+  ]
+}
