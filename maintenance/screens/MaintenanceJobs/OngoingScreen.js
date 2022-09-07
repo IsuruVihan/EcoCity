@@ -1,5 +1,5 @@
 import React from 'react';
-import {Dimensions, Image, StyleSheet, Text, View} from "react-native";
+import {Dimensions, Image, StyleSheet, Text, TouchableOpacity, View} from "react-native";
 
 import ViewComplaint from '../../assets/images/view-complaint.png';
 
@@ -29,7 +29,20 @@ const OngoingScreen = () => {
         </View>
       </View>
       <View style={styles.ongoingScreen.sec2}></View>
-      <View style={styles.ongoingScreen.sec3}></View>
+      <View style={styles.ongoingScreen.sec3}>
+        <TouchableOpacity
+          style={styles.ongoingScreen.sec3.btn}
+          // onPress={() => setViewJobModalOpen(false)}
+        >
+          <Text style={styles.ongoingScreen.sec3.btn.txt}>Reset</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.ongoingScreen.sec3.btn2}
+          // onPress={() => startJob(viewedJob.id)}
+        >
+          <Text style={styles.ongoingScreen.sec3.btn2.txt}>Complete</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 }
@@ -81,9 +94,48 @@ const styles = StyleSheet.create({
       flex: 9,
     },
     sec3: {
-      borderWidth: 2,
-      borderColor: 'orange',
+      // borderWidth: 2,
+      // borderColor: 'orange',
       flex: 1,
+      display: 'flex',
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'center',
+      paddingVertical: 10,
+      btn: {
+        paddingVertical: 3,
+        paddingHorizontal: 6,
+        borderWidth: 2,
+        borderColor: '#E9E8EF',
+        borderRadius: 5,
+        backgroundColor: 'white',
+        marginHorizontal: 10,
+        width: Responsive(25, WIDTH),
+        height: Responsive(10, WIDTH),
+        txt: {
+          textAlign: 'center',
+          textAlignVertical: 'center',
+          color: '#228693',
+          height: '100%',
+          fontWeight: '600',
+        },
+      },
+      btn2: {
+        paddingVertical: 3,
+        paddingHorizontal: 6,
+        borderRadius: 5,
+        backgroundColor: '#228693',
+        marginHorizontal: 10,
+        width: Responsive(25, WIDTH),
+        height: Responsive(10, WIDTH),
+        txt: {
+          textAlign: 'center',
+          textAlignVertical: 'center',
+          color: 'white',
+          height: '100%',
+          fontWeight: '600',
+        },
+      },
     },
   },
 });
