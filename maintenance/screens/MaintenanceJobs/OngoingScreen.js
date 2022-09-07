@@ -1,6 +1,6 @@
 import React from 'react';
 import {Dimensions, Image, StyleSheet, Text, TouchableOpacity, View} from "react-native";
-import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
+import MapView, {Callout, Marker, PROVIDER_GOOGLE} from 'react-native-maps';
 
 import ViewComplaint from '../../assets/images/view-complaint.png';
 
@@ -31,7 +31,7 @@ const OngoingScreen = () => {
       </View>
       <View style={styles.ongoingScreen.sec2}>
         <MapView
-          provider={PROVIDER_GOOGLE} // remove if not using Google Maps
+          provider={PROVIDER_GOOGLE}
           region={{
             latitude: 37.78825,
             longitude: -122.4324,
@@ -39,7 +39,15 @@ const OngoingScreen = () => {
             longitudeDelta: 0.0121,
           }}
           style={styles.ongoingScreen.sec2.map}
-        ></MapView>
+        >
+          <Marker coordinate={{latitude: 37.78825, longitude: -122.4324}}>
+            <Callout>
+              <View>
+                <Text>This is a plain view</Text>
+              </View>
+            </Callout>
+          </Marker>
+        </MapView>
       </View>
       <View style={styles.ongoingScreen.sec3}>
         <TouchableOpacity
