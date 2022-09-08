@@ -52,15 +52,21 @@
     {
       "id": 8,
       "numberPlate": "HWU420",
+
       "status": "Active",
+
       "jobCount": "10",
+
       "availability": "unavailable"
     },
     {
       "id": 9,
       "numberPlate": "HPC240",
+
       "status": "Active",
+
       "jobCount": "10",
+
 
       "availability": "available"
     },
