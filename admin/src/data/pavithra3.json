@@ -63,13 +63,17 @@
       "jobCount": "10",
       "availability": "available"
     },
+
     {
-      "id": 10,
+      "id" : 10,
       "numberPlate": "BOM409",
+
       "status": "Active",
+
       "jobCount": "8",
       "availability": "available"
     },
+
     {
 
       "id": 11,
