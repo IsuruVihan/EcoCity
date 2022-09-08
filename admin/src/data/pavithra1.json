@@ -10,10 +10,13 @@
 
     {
       "id": 2,
-      "numberPlate": "7JVK265",
+
+      "numberPlate" : "7JVK265",
       "status": "Active",
+
       "jobCount": "4",
       "availability": "unavailable"
+
     },
     {
       "id": 3,
