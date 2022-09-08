@@ -71,10 +71,15 @@
       "availability": "available"
     },
     {
+
       "id": 11,
-      "numberPlate": "BPL421",
-      "status": "Active",
+
+      "numberPlate" : "BPL421",
+
+      "status" : "Active",
+
       "jobCount": "9",
+
       "availability": "unavailable"
     },
     {
