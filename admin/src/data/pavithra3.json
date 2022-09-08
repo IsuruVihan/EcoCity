@@ -78,10 +78,15 @@
       "availability": "unavailable"
     },
     {
+
       "id": 12,
-      "numberPlate": "JXY893",
-      "status": "Active",
-      "jobCount": "11",
+
+      "numberPlate" : "JXY893",
+
+      "status":  "Active",
+
+      "jobCount" : "11",
+
       "availability": "available"
     }
   ]
