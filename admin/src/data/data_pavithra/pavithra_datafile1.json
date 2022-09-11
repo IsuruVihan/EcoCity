@@ -98,11 +98,17 @@
     },
     {
       "id": "135",
+
+
+
+
+
       "name": "Danielle Wood",
       "nic": "909188222",
       "email": "danielle.wood@gmail.com",
       "jobs": 3,
-      "status": "Active"
+      "status": "Active",
+
     },
     {
       "id": "136",
@@ -110,12 +116,18 @@
       "nic": "881155014",
       "email": "Hugh.hayes@gmail.com",
       "jobs": 11,
+
+
       "status": "Removed"
     },
+
     {
       "id": "137",
+
       "name": "Esther Fields",
+
       "nic": "993012389",
+
       "email": "esther.fields@gmail.com",
       "jobs": 12,
       "status": "Active"
