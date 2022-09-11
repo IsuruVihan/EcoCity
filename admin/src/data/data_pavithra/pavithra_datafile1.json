@@ -1,0 +1,132 @@
+{
+  "truckDrivers": [
+    {
+      "id": "123",
+      "name": "Ethan Ruiz",
+      "nic": "997060814",
+      "email": "ethan.ruiz@gmail.com",
+      "jobs": 3,
+      "status": "Active"
+    },
+    {
+      "id": "124",
+      "name": "Glen Sullivan",
+      "nic": "988350230",
+      "email": "glen.sullivan@gmail.com",
+      "jobs": 4,
+      "status": "Removed"
+    },
+    {
+      "id": "125",
+      "name": "Allison Scott",
+      "nic": "952343456",
+      "email": "allison.scott@gmail.com",
+      "jobs": 1,
+      "status": "Active"
+    },
+    {
+      "id": "126",
+      "name": "Chloe Mitchelle",
+      "nic": "901080879",
+      "email": "chloe.mitchelle@gmail.com",
+      "jobs": 6,
+      "status": "Removed"
+    },
+    {
+      "id": "127",
+      "name": "Clifford Mendoza",
+      "nic": "935011299",
+      "email": "clifford.mendooza@gmail.com",
+      "jobs": 2,
+      "status": "Active"
+    },
+    {
+      "id": "128",
+      "name": "Florance Williams",
+      "nic": "732130006",
+      "email": "florance.williams@gmail.com",
+      "jobs": 5,
+      "status": "Removed"
+    },
+    {
+      "id": "129",
+      "name": "Henry Hughes",
+      "nic": "985012300",
+      "email": "henry.hughes@gmail.com",
+      "jobs": 2,
+      "status": "Active"
+    },
+    {
+      "id": "130",
+      "name": "Vincent Kim",
+      "nic": "922321125",
+      "email": "vincent.kim@gmail.com",
+      "jobs": 6,
+      "status": "Removed"
+    },
+    {
+      "id": "131",
+      "name": "Marvin Jensen",
+      "nic": "941590231",
+      "email": "marvin.jenson@gmail.com",
+      "jobs": 2,
+      "status": "Active"
+    },
+    {
+      "id": "132",
+      "name": "Derek RObinson",
+      "nic": "952491111",
+      "email": "derek.robinson@gmail.com",
+      "jobs": 4,
+      "status": "Removed"
+    },
+    {
+      "id": "133",
+      "name": "Kitty Harvey",
+      "nic": "992572721",
+      "email": "kitty.harvey@gmail.com",
+      "jobs": 5,
+      "status": "Active"
+    },
+    {
+      "id": "134",
+      "name": "Enrique Henry",
+      "nic": "964120599",
+      "email": "enrique.henry@gmail.com",
+      "jobs": 4,
+      "status": "Removed"
+    },
+    {
+      "id": "135",
+      "name": "Danielle Wood",
+      "nic": "909188222",
+      "email": "danielle.wood@gmail.com",
+      "jobs": 3,
+      "status": "Active"
+    },
+    {
+      "id": "136",
+      "name": "Hugh Hayes",
+      "nic": "881155014",
+      "email": "Hugh.hayes@gmail.com",
+      "jobs": 11,
+      "status": "Removed"
+    },
+    {
+      "id": "137",
+      "name": "Esther Fields",
+      "nic": "993012389",
+      "email": "esther.fields@gmail.com",
+      "jobs": 12,
+      "status": "Active"
+    },
+    {
+      "id": "138",
+      "name": "Eddie Price",
+      "nic": "200124200890",
+      "email": "eddie.price@gmail.com",
+      "jobs": 10,
+      "status": "Removed"
+    }
+  ]
+}
