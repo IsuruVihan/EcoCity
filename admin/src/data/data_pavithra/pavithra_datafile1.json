@@ -83,17 +83,27 @@
     {
       "id": "133",
       "name": "Kitty Harvey",
+
+
       "nic": "992572721",
       "email": "kitty.harvey@gmail.com",
       "jobs": 5,
+
+
       "status": "Active"
+
+
     },
     {
       "id": "134",
       "name": "Enrique Henry",
       "nic": "964120599",
       "email": "enrique.henry@gmail.com",
+
+
       "jobs": 4,
+
+
       "status": "Removed"
     },
     {
