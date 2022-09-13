@@ -63,7 +63,7 @@ const OngoingScreen = () => {
             latitudeDelta: 1,
             longitudeDelta: 1,
           }}
-          minZoomLevel={1}
+          minZoomLevel={12}
           maxZoomLevel={20}
           style={styles.ongoingScreen.sec2.map}
         >
