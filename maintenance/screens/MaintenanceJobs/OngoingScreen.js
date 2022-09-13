@@ -1,15 +1,39 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {Dimensions, Image, StyleSheet, Text, TouchableOpacity, View} from "react-native";
-import MapView, {Callout, Marker, PROVIDER_GOOGLE} from 'react-native-maps';
+import MapView, {Marker, PROVIDER_GOOGLE} from 'react-native-maps';
+import MapViewDirections from "react-native-maps-directions";
+import Geolocation from '@react-native-community/geolocation';
 
 import ViewComplaint from '../../assets/images/view-complaint.png';
+import Hub from '../../assets/images/mobile-unavailable-hubs-resized.png';
+import MC from '../../assets/images/MC_resized.png';
 
 import {Responsive} from "../../helpers/Responsive";
+import {API_TOKEN} from "@env";
 
 const HEIGHT = Dimensions.get('window').height;
 const WIDTH = Dimensions.get('window').width;
+const MC_LOCATION = {latitude: 6.915770, longitude: 79.863721,}
 
 const OngoingScreen = () => {
+  const [hubLocation, setHubLocation] = useState({
+    latitude: 6.915829,
+    longitude: 79.859268,
+  });
+  const [myLocation, setMyLocation] = useState({});
+
+  useEffect(() => {
+    Geolocation.getCurrentPosition((pos) => {
+      const crd = pos.coords;
+      setMyLocation({
+        latitude: crd.latitude,
+        longitude: crd.longitude,
+      });
+    }, (err) => {
+      console.log(err);
+    });
+  }, []);
+
   return (
     <View style={styles.ongoingScreen}>
       <View style={styles.ongoingScreen.sec1}>
@@ -32,21 +56,35 @@ const OngoingScreen = () => {
       <View style={styles.ongoingScreen.sec2}>
         <MapView
           provider={PROVIDER_GOOGLE}
+          showsUserLocation={true}
           region={{
-            latitude: 37.78825,
-            longitude: -122.4324,
-            latitudeDelta: 0.015,
-            longitudeDelta: 0.0121,
+            latitude: 6.915770,
+            longitude: 79.863721,
+            latitudeDelta: 1,
+            longitudeDelta: 1,
           }}
+          minZoomLevel={1}
+          maxZoomLevel={20}
           style={styles.ongoingScreen.sec2.map}
         >
-          <Marker coordinate={{latitude: 37.78825, longitude: -122.4324}}>
-            <Callout>
-              <View>
-                <Text>This is a plain view</Text>
-              </View>
-            </Callout>
-          </Marker>
+          <Marker coordinate={MC_LOCATION} image={MC}/>
+          <Marker coordinate={hubLocation} image={Hub}/>
+          {/*<MapViewDirections*/}
+          {/*  origin={MC_LOCATION}*/}
+          {/*  destination={hubLocation}*/}
+          {/*  apikey={'AIzaSyAyeY6NS2TUD_y-4sqIzqfmcI5K9IyfNqw'}*/}
+          {/*  strokeWidth={4}*/}
+          {/*  strokeColor="#228693"*/}
+          {/*  mode={"WALKING"}*/}
+          {/*/>*/}
+          <MapViewDirections
+            origin={myLocation}
+            destination={hubLocation}
+            apikey={API_TOKEN}
+            strokeWidth={4}
+            strokeColor="#228693"
+            mode={"WALKING"}
+          />
         </MapView>
       </View>
       <View style={styles.ongoingScreen.sec3}>
