@@ -3,6 +3,7 @@ import {Text, View, StyleSheet, TouchableOpacity} from "react-native";
 
 import AllScreen from "./AllScreen";
 import AssignedScreen from "./AssignedScreen";
+import OngoingScreen from "./OngoingScreen";
 import CompletedScreen from "./CompletedScreen";
 
 const tabs = [
@@ -14,14 +15,6 @@ const tabs = [
 
 const MaintenanceJobs = () => {
   const [viewedTab, setViewedTab] = useState(0);
-
-  const OngoingScreen = () => {
-    return (
-      <View style={styles.maintenance.two.screens.screen.screen2}>
-        <Text>Ongoing</Text>
-      </View>
-    );
-  }
 
   return (
     <View style={styles.maintenance}>
@@ -42,7 +35,7 @@ const MaintenanceJobs = () => {
           <View style={styles.maintenance.two.screens.screen}>
             {viewedTab === 0 && <AllScreen/>}
             {viewedTab === 1 && <AssignedScreen/>}
-            {viewedTab === 2 && OngoingScreen()}
+            {viewedTab === 2 && <OngoingScreen/>}
             {viewedTab === 3 && <CompletedScreen/>}
           </View>
         </View>

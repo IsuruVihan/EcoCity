@@ -35,7 +35,7 @@ const NavigatorTab = () => {
   return (
     <>
       <Header email={loggedUser.email}/>
-      <TabView value={index} onChange={setIndex}>
+      <TabView value={index} onChange={setIndex} disableSwipe={true}>
         <TabView.Item style={{backgroundColor: 'white', width: '100%'}}>
           <Welcome/>
         </TabView.Item>
