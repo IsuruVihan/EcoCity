@@ -32,7 +32,10 @@
     {
       "serial": 123,
       "name": "Harith Kumar",
+
+
       "userType": "Driver",
+
       "status": "Active"
     },
     {
@@ -51,20 +54,13 @@
     {
       "serial": 123,
       "name": "Harith Kumar",
-
       "userType": "Driver",
-
       "status": "Active",
-
     },
-
-
 
     {
       "serial": 123,
-
       "name": "Harith Kumar",
-
       "userType": "Driver",
       "status": "Active",
     },

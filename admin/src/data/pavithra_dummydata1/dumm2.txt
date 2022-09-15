@@ -71,26 +71,26 @@ Where a hacker consumes all of a se
 rver’s resources, so there’s nothing for leg
 itimate users to access
 Malware
-Where victims are hit with a worm or virus that renders their devices useless
+Where victims are hit with   a worm or virus that renders their devices useless
 Man in the Middle
 Where a hacker puts himself between a victim’s machine and a router to sniff data packets
 Phishing
-Where a hacker sends a seemingly legitimate-looking email asking users to disclose personal information
-Other types of cyberattacks include cross-site scripting attacks, password attacks, eavesdropping attacks (which can also be physical), SQL-injection attacks, and birthday attacks based on algorithm functions.
+Where a hacker send  s a seemingly legitimate-looking email asking users to disclose personal information
+Other types of cyberat  tacks include cross-site scripting attacks, password attacks, eavesdropping attacks (which can also be physical), SQL-injection attacks, and birthday attacks based on algorithm functions.
 
 
 
-What Motivates Cyber Criminals?
-The main     motive behind the cybercrime is to disrupt regular business activity and critical infrastructure. Cybercriminals also commonly manipulate stolen data to benefit financially, cause financial loss, damage a reputation, achieve military objectives, and propagate religious or political beliefs. Some don’t even need a motive and might hack for fun or simply to showcase their skills.
+What Motivates Cyber Crimina ls?
+The main     motive  behind the cybercrime is to disrupt regular business activity and critical infrastructure. Cybercriminals also commonly manipulate stolen data to benefit financially, cause financial loss, damage a reputation, achieve military objectives, and propagate religious or political beliefs. Some don’t even need a motive and might hack for fun or simply to showcase their skills.
 
-So who are these cybercriminals? Here’s a breakdown of the most common types:
+So who are these cyb  ercriminals? Here’s a breakdown of the most common types:
 
 
 
-Black-Hat Hackers
+Black-Hat H  ackers
 
-Black-hat hackers use fake identities to conduct malicious activities for a profit
-Gray-Hat Hackers
+Black-hat h  ackers use fake identitie  s to conduct malicious activities for a profit
+Gray-Hat Ha  ckers
 
 
 They work both with malicious intent and as legitimate security analysts
