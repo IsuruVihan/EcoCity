@@ -32,9 +32,14 @@ Picture an employee at her computer, working with data. In the background, a hac
 
 It sounds like something out of a movie, but unfortunately, it’s a common occurrence in today’s online landscape. This is why Cyber Security has become such a vital part of any business strategy—and Cyber Security specialists are in demand now more than ever.
 
-In this introduction to Cyber Security, you will learn how Cyber Security works, why it’s needed, what Cyber Security experts do to protect data, and how to become one.
+In this introduction to Cyber Security,
 
-Looking forward to a career in Cyber Security? Then check out the Certified Ethical Hacking Course and get skilled. Enroll now!
+
+you will learn how Cyber Security works, why it’s needed, what Cyber Security experts do to protect data, and how to become one.
+
+Looking forward to a career in
+
+Cyber Security? Then check out the Certified Ethical Hacking Course and get skilled. Enroll now!
 What is Cyber Security?
 Cyber Security is a process that’s designed to protect networks and devices from external threats. Businesses typically employ Cyber Security professionals to protect their confidential information, maintain employee productivity, and enhance customer confidence in products and services.
 
@@ -59,14 +64,22 @@ Phishing
 Where a hacker sends a seemingly legitimate-looking email asking users to disclose personal information
 Other types of cyberattacks include cross-site scripting attacks, password attacks, eavesdropping attacks (which can also be physical), SQL-injection attacks, and birthday attacks based on algorithm functions.
 
+
+
 What Motivates Cyber Criminals?
-The main motive behind the cybercrime is to disrupt regular business activity and critical infrastructure. Cybercriminals also commonly manipulate stolen data to benefit financially, cause financial loss, damage a reputation, achieve military objectives, and propagate religious or political beliefs. Some don’t even need a motive and might hack for fun or simply to showcase their skills.
+The main     motive behind the cybercrime is to disrupt regular business activity and critical infrastructure. Cybercriminals also commonly manipulate stolen data to benefit financially, cause financial loss, damage a reputation, achieve military objectives, and propagate religious or political beliefs. Some don’t even need a motive and might hack for fun or simply to showcase their skills.
 
 So who are these cybercriminals? Here’s a breakdown of the most common types:
 
+
+
 Black-Hat Hackers
+
 Black-hat hackers use fake identities to conduct malicious activities for a profit
 Gray-Hat Hackers
+
+
 They work both with malicious intent and as legitimate security analysts
 White-Hat Hackers
+
 White-hat hackers
