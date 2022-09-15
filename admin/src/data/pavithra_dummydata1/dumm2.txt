@@ -89,7 +89,9 @@ Black-Hat H  ackers
 
 Black-hat h  ackers use fake identitie  s to conduct malicious activities for a profit
 Gray-Hat Ha  ckersScript Kiddies
-                  They are unskilled hackers who run scripts and software created by more experienced hackers
+                  They are unskilled hackers
+
+                   who run scripts and software created by more experienced hackers
                   Cyber Te rrorists
                   They create fear by disrupting large-scale computer networks; motivated by religious or political beliefs
                   State-Spo  nsored Hackers
