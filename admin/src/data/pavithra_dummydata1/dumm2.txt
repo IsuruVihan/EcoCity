@@ -35,27 +35,41 @@ It sounds like something out of a movie, but unfortunately, it’s a common occu
 In this introduction to Cyber Security,
 
 
-you will learn how Cyber Security works, why it’s needed, what Cyber Security experts do to protect data, and how to become one.
+you will learn how   Cyber Security works, why it’s needed, what Cyber Security experts do to protect data, and how to become one.
 
-Looking forward to a career in
+Looking forward to a   career in
 
-Cyber Security? Then check out the Certified Ethical Hacking Course and get skilled. Enroll now!
+Cyber Security? Then   check out the Certified Ethical Hacking Course and get skilled. Enroll now!
 What is Cyber Security?
-Cyber Security is a process that’s designed to protect networks and devices from external threats. Businesses typically employ Cyber Security professionals to protect their confidential information, maintain employee productivity, and enhance customer confidence in products and services.
+Cyber Security is a   process
+that’s designed to protect networks a
+nd devices from external threats. Businesse
+s typically employ Cyber Security professionals to protect t
+heir confidential information, maintain employee productivity, and enhance cu
+stomer confidence in products and services.
 
-The world of Cyber Security revolves around the industry standard of confidentiality, integrity, and availability, or CIA. Privacy means data can be accessed only by authorized parties; integrity means information can be added, altered, or removed only by authorized users; and availability means systems, functions, and data must be available on-demand according to agreed-upon parameters.
+The world of Cyber Security revolves around the industry standard
+ of confidentiality, integrity, and availability, or CIA. Privacy
+  means data can be accessed only by authorized parties; integrity means i
+  nformation can be added, altered, or removed only by authorized users; and availability means systems, functions, and data must be available on-demand according to agreed-upon parameters.
 
-The main element of Cyber Security is the use of authentication mechanisms. For example, a user name identifies an account that a user wants to access, while a password is a mechanism that proves the user is who he claims to be.
+
+The main element of Cyber Security is the use of authentic
+ation mechanisms. For example, a user name identifies an account that a user wants to access, while a password is a mechanism that proves the user is who he claims to be.
 
 Types of Cyber Crimes
 Cybercrime is any unauthorized activity involving a computer, device, or network. The three types are computer-assisted crimes, crimes where the computer itself is a target, and crimes where the computer is incidental to the crime rather than directly related to it.
 
 Cybersecurity Bootcamp
 Certificate and Masterclasses From UCI DCEEXPLORE NOWCybersecurity Bootcamp
-Cybercriminals usually try to profit off of their crimes using a variety of tactics, including:
+Cybercriminals usually try to prof
+it off of their crimes using a varie
+ty of tactics, including:
 
 Denial of Service, or DOS
-Where a hacker consumes all of a server’s resources, so there’s nothing for legitimate users to access
+Where a hacker consumes all of a se
+rver’s resources, so there’s nothing for leg
+itimate users to access
 Malware
 Where victims are hit with a worm or virus that renders their devices useless
 Man in the Middle
