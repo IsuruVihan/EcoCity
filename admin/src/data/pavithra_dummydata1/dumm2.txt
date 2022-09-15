@@ -95,7 +95,7 @@ Gray-Hat Ha  ckersScript Kiddies
                   State-Spo  nsored Hackers
                   They penetrate government networks, gain top-secret information, and damage information systems; paid by a hostile government
                   Hacktivists
-They work both with malicious intent and as legitimate security analysts
+They work both with malicious   intent   and as legitimate security analysts
 White-Hat Hackers
 
 White-hat hackers
