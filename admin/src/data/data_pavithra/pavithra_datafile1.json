@@ -99,11 +99,7 @@
       "name": "Enrique Henry",
       "nic": "964120599",
       "email": "enrique.henry@gmail.com",
-
-
       "jobs": 4,
-
-
       "status": "Removed"
     },
     {
@@ -113,7 +109,6 @@
       "email": "danielle.wood@gmail.com",
       "jobs": 3,
       "status": "Active",
-
     },
     {
       "id": "136",
@@ -128,12 +123,11 @@
 
     {
       "id": "137",
-
       "name": "Esther Fields",
-
       "nic": "993012389",
-
       "email": "esther.fields@gmail.com",
+
+
       "jobs": 12,
       "status": "Active"
     },
@@ -141,8 +135,11 @@
     {
       "id": "138",
       "name": "Eddie Price",
+
       "nic": "200124200890",
+
       "email": "eddie.price@gmail.com",
+
       "jobs": 10,
       "status": "Removed"
     }
