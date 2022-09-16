@@ -87,8 +87,7 @@ environments in which phones, PDAs, laptop computers, digital projectors and oth
 one another and through which people interact with one another. It is about designing interactive systems,
 products and services for the home, for work or to support communities. Here are some examples of recent
 interactive products and systems.
-Example 1: iPhone
-In 2007 Apple Inc. changed the face of mobile technologies when they introduced the iPhone. The
+Examplec. changed the face of mobile technologies when they introduced the iPhone. The
 iPhone had a carefully crafted, purpose-designed interface to make use of the finger as the input
 device. It had a                revolutionary touch-sensitive screen that allowed for multi-touch input. They
 introduced 3D touch also commonly known as force touch with iPhone 6s and 6s Plus in 2015.
