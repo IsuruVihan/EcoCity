@@ -1,0 +1,22 @@
+of user’s password is sufficient, but for recognition a large
+ amount of keystroke data is needed and identification is based on comparisons
+ with the profiles of all other existing users already in the system.     Keystroke
+  features are based on time durations between the keystrokes, inter-key strokes and
+  dwell times, which is the time a key is pressed down, overall typing speed, frequency of
+  errors (use of backspace), use of numpad, order in which user presses shift key to get
+  capital letters and possibly the force with which keys are hit for specially equipped keyboards
+  [4, 5]. Keystroke dynamics is probably the most researched type of HCI-based biometric [6, 7],
+   with novel research taking place in different languages [8], for long text samples, [9, 10] and for email authorship identification [41].     2) Mouse Dynamics: By monitoring all mouse actions produced by the user during interaction with the Graphical User Interface (GUI), a unique profile can be generated which can be used for user re-authentication [11]. Mouse actions of interest include general movement, drag and drop, point and click, and stillness. From those a set of features can be extracted for example average speed against the distance traveled, and average speed against the movement direction [12, 13]. Pusara et al. [11] describe a feature extraction approach in which they split the mouse event data into mouse wheel movements, clicks,  menu and toolbar
+    clicks. Click data is further subdivided into single and double click data.      Gamboa et al. [14, 15] have tried to improve accuracy of mouse-dynamics-based biometrics by restricting the domain of data collection to an online game instead of a more general GUI environment.
+As a result applicability of their results is somewhat restricted and the methodology is more in
+
+
+nstead of seamless data collection during the normal to the user human
+computer interaction. As far as the extracted features, x and y coordinates of the mouse,
+ horizontal velocity, vertical velocity, tangential velocity, tangential acceleration,
+ tangential jerk and angular velocity are utilized with respect to the mouse strokes to
+ create a unique user profile.     3) Haptic:  Haptic systems are computer input/output
+ devices which can provide us with information about direction, pressure, force, angle,
+ speed, and position of user’s interactions [16, 17]. Because so much information is available
+  about the user’s performance a high degree of accuracy can be expected from a haptic based
+  biometrics system. Orozco et al. [16, 17] have created a simple haptic application built on an elastic membrane surface in
