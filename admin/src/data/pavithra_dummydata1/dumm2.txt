@@ -94,8 +94,11 @@ device. It had a                revolutionary touch-sensitive screen that allowe
 introduced 3D touch also commonly known as force touch with iPhone 6s and 6s Plus in 2015.
 Example 2: Wii
 Also, in 2007 Nintendo introduced the Wii. The Wii was a revolutionary new games concept that used infra-red
-sensors attached to a TV or other display device to track a wand that transmitted infra-red signals. The new
-system could, therefore, register different gestures such as a ‘bowling’ action, a ‘tennis shot’ action or a host of
+sensors attached to an this paper we survey the state of the art in direct and indirect human computer interaction based biometrics. Direct HCI biometrics are based on abilities, style, preference, knowledge, or strategy used by people while working with a computer. The indirect HCI-based biometrics are events that can be obtained by monitoring users’ HCI behavior indirectly via observable low-level actions of computer software. We examine current research and analyze the types of features used to describe HCI behavior. After comparing accuracy rates for verification of users using different HCI- based biometric approaches we address privacy issues which arise with the use of HCI dependant biometrics. Finally, we present results of our experiments with direct and
+ indirect HCI-based behavioral biometrics emp
+ loyed as a part of an intrusion detection system TV or other display device to track a wand that transmitted infra-red signals. The new
+system could, therefore, register different gestures such as a ‘bowling’ action, a
+‘tennis shot’ action or a host of
 other movements. The notion of computer games changed radically, from a young person shooting at imaginary
 monsters, or driving imaginary cars, to a family-wide entertainment. When the ‘Wii fit’ was introduced it
 appealed to a new audience of people wanting to keep fit at home.

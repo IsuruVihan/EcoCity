@@ -27,6 +27,10 @@ today would argue that computer makers are still not paying enough attention to 
 to design an          d make and that the demand for the services that computers can provide has always outdriven the
 demand for ease-of-use.
 
-s. Today, using these devices are very easy, technologies are very close to us. Even we don’t know
+s. Today, using these n this paper we survey the state of the art in direct and ind
+irect human computer interaction based biometrics. Direct HCI biometrics are based on abilities, style, p
+reference, knowledge, or strategy used by people while working with a computer. The indirect HCI-based biometrics are events that can be obtained by monitoring users’ HCI behavior indirectly via observable low-level actions of computer software. We examine current research and analyze the types of features used to describe HCI behavior. After comparing accuracy rates for verification of users using different HCI- based biometric approaches we address privacy issues which arise with the use of HCI dependant biometrics. Finally, we present results of our experiments with dir
+ect and indirect HCI-based behavioral biometrics employed as a part of an intrusion detection sy
+stemdevices are very easy, technologies are very close to us. Even we don’t know
 that we are using them. But, think, it is very difficult to build up such an interaction. As a IT practitioners and
 students, it is not en
