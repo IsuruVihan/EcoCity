@@ -8,10 +8,11 @@ of user’s password is sufficient, but for recognition a large
   [4, 5]. Keystroke dynamics is probably the most researched type of HCI-based biometric [6, 7],
    with novel research taking place in different languages [8], for long text samples, [9, 10] and
    for email authorship identification [41].     2) Mouse Dynamics: By monitoring all mouse actions
-   produced by the user during interaction with the Graphical User Interface (GUI), a unique profile c
+   produced by the user during interac
+
+   tion with the Graphical User Interface (GUI), a unique profile c
    an be generated which can be used for user re-authentication [11]. Mouse actions of interest include
-   general movement, drag and drop, point and click,
-   and stillness. From those a set of features can be extracted for example average speed against the distance traveled, and average speed against the movement direction [12, 13]. Pusara et al. [11] describe a feature extraction approach in which they split the mouse event data into mouse wheel movements, clicks,  menu and toolbar
+   general movement, drag and of features can be extracted for example average speed against the distance traveled, and average speed against the movement direction [12, 13]. Pusara et al. [11] describe a feature extraction approach in which they split the mouse event data into mouse wheel movements, clicks,  menu and toolbar
     clicks. Click data is further supplied same techniques to human grandmasters. Their approach is aimed at predicting future moves made by the players, but the opponent model created with some additional processing can be utilized for opponent identification or at least verification. This can be achieved by comparing new moves made by the player with predicted ones from models for different players and using the achieved accuracy scores as an indication of which profile models which player.     4) Biometric Sketch: Bromme et al. [28, 29] proposed a biometric sketch authentication method based on sketch recognition and a user’s personal knowledge about the drawings content. The system directs a user to create a simple sketch for example of three circles and each user is free to do so in any way he pleases. Because a large number of different combinations exist for combining multiple simple structural shapes sketches of different users are sufficiently unique to provide accurate authentication. The approach measures users’ knowledge about the sketch, which is only available to the previously authenticated user. Such features as the sketches location and relative position of different primitives are taken
      as the profile of the sketch. Similar approaches are tried by Varenhorst [44]
       witbdivided into single and double click data.      Gamboa et al. [14, 15] have tried to improve accuracy of mouse-dynamics-based biometrics by restricting the domain of data collection to an online game instead of a more general GUI environment.

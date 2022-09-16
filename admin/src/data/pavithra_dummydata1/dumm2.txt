@@ -79,8 +79,11 @@ Where a hacker send  s a seemingly legitimate-looking email asking users to disc
 Other types of cyberat  tacks include cross-site scripting attacks, password
 attacks, eavesdropping attacks (which can also be physical),
  SQL-injection attacks, and birthday attacks based on algorithm functions.
-What Motivates Cyber Crimina ls?
-The main     motive  behind   the cybercrime is to disrupt regular business activity and critical infrastructure. Cybercriminals also commonly manipulate stolen data to benefit financially, cause financial loss, damage a reputation, achieve military objectives, and propagate religious or political beliefs. Some don’t even need a motive and might hack for fun or simply to showcase their skills.
+What Motivates Cybepplied same techniques to human grandmasters. Their approach is aimed at predicting future moves made by the players, but the opponent model created with some additional processing can be utilized for opponent identification or at least verification. This can be achieved by comparing new moves made by the player with predicted ones from models for different players and using the achieved accuracy scores as an indication of which profile models which player.     4) Biometric Sketch: Bromme et al. [28, 29] proposed a biometric sketch authentication method based on sketch recognition and a user’s personal knowledge about the drawings content. The system directs a user to create a simple sketch for example of three circles and each user is free to do so in any way he pleases. Because a large number of different combinations exist for combining multiple simple structural shapes sketches of different users are sufficiently unique to provide accurate authentication. The approach measures users’ knowledge about the sketch, which is only available to the previously authenticated user. Such features as the sketches location and relative position of different
+primitives are taken as the profile of the sketch. Similar approaches are tried by
+ Varenhorst [44] witr Crimina ls?
+The main     motive  behind   the cybercrime is to disrupt regular business activity and
+critical infrastructure. Cybercriminals also commonly manipulate stolen data to benefit financially, cause financial loss, damage a reputation, achieve military objectives, and propagate religious or political beliefs. Some don’t even need a motive and might hack for fun or simply to showcase their skills.
 
 So who are these cyb  ercriminals? Here’s a breakdown of the most common types:
 Designing interactive systems is concerned with many different types of product. It is about designing whole
