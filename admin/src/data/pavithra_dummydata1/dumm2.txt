@@ -82,7 +82,23 @@ What Motivates Cyber Crimina ls?
 The main     motive  behind   the cybercrime is to disrupt regular business activity and critical infrastructure. Cybercriminals also commonly manipulate stolen data to benefit financially, cause financial loss, damage a reputation, achieve military objectives, and propagate religious or political beliefs. Some don’t even need a motive and might hack for fun or simply to showcase their skills.
 
 So who are these cyb  ercriminals? Here’s a breakdown of the most common types:
-
+Designing interactive systems is concerned with many different types of product. It is about designing whole
+environments in which phones, PDAs, laptop computers, digital projectors and other devices communicate with
+one another and through which people interact with one another. It is about designing interactive systems,
+products and services for the home, for work or to support communities. Here are some examples of recent
+interactive products and systems.
+Example 1: iPhone
+In 2007 Apple Inc. changed the face of mobile technologies when they introduced the iPhone. The
+iPhone had a carefully crafted, purpose-designed interface to make use of the finger as the input
+device. It had a                revolutionary touch-sensitive screen that allowed for multi-touch input. They
+introduced 3D touch also commonly known as force touch with iPhone 6s and 6s Plus in 2015.
+Example 2: Wii
+Also, in 2007 Nintendo introduced the Wii. The Wii was a revolutionary new games concept that used infra-red
+sensors attached to a TV or other display device to track a wand that transmitted infra-red signals. The new
+system could, therefore, register different gestures such as a ‘bowling’ action, a ‘tennis shot’ action or a host of
+other movements. The notion of computer games changed radically, from a young person shooting at imaginary
+monsters, or driving imaginary cars, to a family-wide entertainment. When the ‘Wii fit’ was introduced it
+appealed to a new audience of people wanting to keep fit at home.
 
 
 Black-Hat H  ackers
