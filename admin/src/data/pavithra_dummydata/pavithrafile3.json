@@ -2,23 +2,26 @@
   "tags": [
     {
       "serial": 123,
-
       "name": "Harith Kumar",
 
-      "userType": "Driver",
 
+      "userType": "Driver",
       "status": "Active"
     },
 
     {
       "serial": 123,
-
       "name": "Harith Kumar",
-
       "userType": "Maintenance",
-
       "status": "Active"
     },
+    {
+      "serial": 123,
+      "name": "Harith Kumar",
+      "userType": "Driver",
+      "status": "Active"
+    },
+
     {
       "serial": 123,
 
@@ -26,13 +29,6 @@
 
       "userType": "Driver",
 
-      "status": "Active"
-    },
-
-    {
-      "serial": 123,
-      "name": "Harith Kumar",
-      "userType": "Driver",
       "status": "Active"
     },
 
