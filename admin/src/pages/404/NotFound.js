@@ -5,7 +5,7 @@ import {Container, Row, Col, Image} from "react-bootstrap";
 const NotFoundModal = () => {
     return (
         <Container>
-            ABCDEFGHI
+            ABCDEFGHIJ
         </Container>
     );
 }
