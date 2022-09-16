@@ -1,0 +1,12 @@
+In every time, when you use any type of computing devices, there will be some kind of interaction in between
+you and devices. Today, using these devices are very easy, technologies are very close to us. Even we don’t know
+that we are using them. But, think, it is very difficult to build up such an interaction. As a IT practitioners and
+students, it is not enough to use these technologies. Then, furthermore, you are able to understand the deepest
+levels of such an interaction, how they work, how to make up new interactions and many more. Ok, then, let’s
+start.
+HCI (human-computer interaction) is the study of how people interact with computers and to what extent
+computers are developed for successful interaction with humans. Historically and with some exceptions,
+computer system developers have not paid much attention to computer ease-of-use. Many computer users
+today would argue that computer makers are still not paying enough attention to making their products "userfriendly." However, computer system developers might argue that computers are extremely complex products
+to design and make and that the demand for the services that computers can provide has always outdriven the
+demand for ease-of-use.
