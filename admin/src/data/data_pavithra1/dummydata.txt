@@ -1,0 +1,50 @@
+In every time, when you use any type of computing devices, there will be some kind of interaction in between
+you and devices. Today,  very easy, technologies are very close to us. Even we don’t know
+that we are using them. But, think, it is very difficult to build up such an interaction. As a IT practitioners and
+students, it is n     Designing interactive systems is concerned with many different types of product. It is about designing whole
+                      environments icccccccccccccccccccn which phones, PDAs, laptop computers, digital projectors and other devices communicate with
+                      one another and through which people interact with one another. It is about designing interactive systems,
+                      products and services for the home, for work or to support communities. Here are some examples of recent
+                      interactive products and systems.
+                      Example 1: iPhone
+                      In 2007 A          pple Inc. changed the face of mobile technologies when they introduced the iPhone. The
+                      iPhone had a carefully crafted, purpose-designed interface to make use of the finger as the input
+                      device. It had a revolutionary touch-sensitive screen that allowed for multi-touch input. They
+                      introduced 3D touch also commonly known as force touch with iPhone 6s and 6s Plus in 2015.
+                      Example 2: Wii
+                      Also, in 2007 Nintendo introduced the Wii. The Wii was a revolutionary new games concept that used infra-red
+                      sensors attached to a TV or other display device to track a wand that transmitted infra-red signals. The new
+                      system could, therefore, register different gestures such as a ‘bowling’ action, a ‘tennis shot’ action or a host of
+                      other movements. The notion of computer games changed radically, from a young person shooting at imaginary
+                      monsters, or driving imaginary cars, to a family-wide entertainment. When the ‘Wii fit’ was introduced it
+                      appealed to a new audience of people wanting to keep fit at home.ot enough to use these technologies. Then, furthermore, you are able to understand the deepest
+levels of such an int       eraction, how they work, how to make up new interactions and many more. Ok, then, let’s
+start.
+HCI (human-computer i         nteraction) is the study of how people interact with computers and to what extent
+computers are developed for successful interaction with humans. Historically and with some exceptions,
+computer system deve         lopers have not paid much attention to computer ease-of-use. Many computer users
+today would argue that computer makers are still not paying enough attention to making their products "userfriendly." However, computer system developers might argue that computers are extremely complex products
+to design an          d make and that the demand for the services that computers can provide has always outdriven the
+demand for ease-of-use.
+
+paper we survey the state of the art in direct and ind
+irect human computer interaction based biometrics. Direct HCI biometrics are based on abilities, style, p
+reference, knowledge, or str  ategy used by people while working with a computer. The indirect HCI-based biometrics are events that can be obtained by monitoring users’ HCI behavior indirectly via observable low-level actions of computer software. We examine current research and analyze the types of features used to describe HCI behavior. After comparing accuracy rates for verification of users using different HCI- based biometric approaches we address privacy issues which arise with the use of HCI dependant biometrics. Finally, we present results of our experiments with dir
+ect and indirect HCI-based behavioral biometrics employed as a part of an intrusion detection sy
+stemdevices are very easy, technologies are very close to us. Even we don’t know
+that we are using them. But, think, it is very difficult to build up such an interaction. As a IT practitioners and
+students, it is not en
+oncentrate on reviewing and analyzing all existing HCI-based biometric technologies.      HCI-b
+ased biometrics provide a number of advantages over traditional biometric technologies. They can be c
+ollected non-obtrusively or even without the knowledge of the user. Collection of data usually does not re
+quire any special hardware and is so very cost effective. While HCI-based biometrics are not unique enough
+to provide reliable human identification they have been shown to provide high accuracy identity verification.
+In their interaction with computers human beings employ different strategies, use different style and apply uni
+que abilities and knowledge. Intrusion detection researchers attempt to quantify such HCI-based-biometric
+ traits and use resulting feature profiles to successfully verify user identity and reject intruders. HCI-bas
+ ed biometrics can be subdivided into two different categories known as direct and indirect HCI-based biometrics [3].     First group is made up of those biometrics which are based on direct human interaction with input devices such as keyboard [4-10], computer mouse [11-15], and haptics [16-18] which rely on supposedly innate, unique and stable muscle actions [19] and those biometrics which are based on advanced human behavior such
+as strategy, knowledge or skill exhibited by the user during interaction with different softw
+
+d behavioral biometrics employed as a part of an intrusion detection sy
+stemdevices are very easy, technologies are very close to us. Even we don’t know
+that we are using them. But, think, i

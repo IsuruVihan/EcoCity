@@ -1,0 +1,38 @@
+of user’s password is sufficient, but for recognition a large
+ amount of keystroke data is needed and identification is based on comparisons
+ with the profiles of all other existing users already in the system.     Keystroke
+  features are based on time durations between the keystrokes, inter-key strokes and
+  dwell times, which is the time a key is pressed down, overall typing speed, frequency of
+  errors (use of backspace), use of numpad, order in which user presses shift key to get
+  capital letters and possibly the force with which keys are hit for specially equipped keyboards
+  [4, 5]. Keystroke dynamics is probably the most researched type of HCI-based biometric [6, 7],
+   with novel research taking place in different languages [8], for long text samples, [9, 10] and
+   for email authorship identification [41].     2) Mouse Dynamics: By monitoring all mouse actions
+   produced by the user during interac
+
+   tion with the Graphical User Interface (GUI), a unique profile c
+   an be generated which can be used for user re-authentication [11]. Mouse actions of interest include
+   general movement, drag and of features can be extracted for example average speed against the distance traveled, and average speed against the movement direction [12, 13]. Pusara et al. [11] describe a feature extraction approach in which they split the mouse event data into mouse wheel movements, clicks,  menu and toolbar
+    clicks. Click data is further supplied same techniques to human grandmasters. Their approach is aimed at predicting future moves made by the players, but the opponent model created with some additional processing can be utilized for opponent identification or at least verification. This can be achieved by comparing new moves made by the player with predicted ones from models for different players and using the achieved accuracy scores as an indication of which profile models which player.     4) Biometric Sketch: Bromme et al. [28, 29] proposed a biometric sketch authentication method based on sketch recognition and a user’s personal knowledge about the drawings content. The system directs a user to create a simple sketch for example of three circles and each user is free to do so in any way he pleases. Because a large number of different combinations exist for combining multiple simple structural shapes sketches of different users are sufficiently unique to provide accurate authentication. The approach measures users’ knowledge about the sketch, which is only available to the previously authenticated user. Such features as the sketches location and relative position of different primitives are taken
+     as the profile of the sketch. Similar approaches are tried by Varenhorst [44]
+      witbdivided into single and double click data.      Gamboa et al. [14, 15] have tried to improve accuracy of mouse-dynamics-based biometrics by restricting the domain of data collection to an online game instead of a more general GUI environment.
+As a result applicability of their results is somewhat restricted and the methodology is more in
+
+
+nstead of seamless data collection during the normal to the user human
+computer interaction. As far as the extracted features, x and y coordinates of the mouse,
+ horizontal velocity, vertical velocity, tangenti
+
+
+
+ al velocity, tangential acceleration,
+ tangential jerk and angular velocity arwhich the user is required to navigate a stylus t
+ hrough the maze. The maze has gummy walls and a stretchy floor. The application collects data
+ about the ability of the user to navigate the maze, such as reaction time to release from sticky wall, the route, the velocity, and the pressure applied to the floor. The individual user profiles are made up of such information as 3D world location of the pen, average speed, mean velocity, mean standard deviation, navigation style, angular turns and rounded turns.    In a separate experiment Orozco et al. [18] implement a virtual mobile phone application where the user interacts through a haptic pen to simulate making a phone call via a touch pad. The keystroke duration, pen’s position, and exerted force are used as the raw features collected for user profiling.    B. Software Interaction Based Biometrics     1) Email Behavior: Email sending behavior is not the same for all individuals. Some people work at night and send dozens of emails to many different addresses; others only check mail in the morning and only correspond with one or two people. All this peculiarities can be used to create a behavioral profile which can serve as a behavioral biometric for an individual. Length of the emails, time of the day the mail is sent, how frequently inbox is emptied and of course recipients’ addresses among other variables can all be combined to create a baseline feature vector for the person’s email behavior. Some work in using email behavior modeling was done by Stolfo et al. [20, 21]. They have investigated possibility of detecting virus propagation via email by observing abnormalities in the email sending behavior, such as unusual clique of recipients for the same email. For example sending the same email to your girlfriend and your boss is not an everyday occurrence.     De Vel et al. [42] have applied authorship identification techniques to determine the likely author of an email message. Alongside the typical features used in text authorship identification such as count of function-words and word length frequency distribution authors also used some email specific structural features such as: use of a greeting, farewell acknowledgment, signature, number of attachments, position of re-quoted text within the message body, HTML tag frequency distribution and total number of HTML tags. Overall, almost 200 features are used in the experiment, but some frequently cited features used in text authorship determination are not appropriate in the domain of email messages due to the shorter average size of such communications.     2) Programming Style: With the increasing number of viruses, worms, and Trojan horses it is often useful in a forensic investigation to be able to identify an author of such malware programs based on the analysis of the source code. It is also valuable for the purposes of software debugging and maintenance to know who the original author of a certain code fragment was. Spafford et al. [22] have analyzed a number of features potentially useful for
+ the identification of software authorship. In case only the executable code is
+ avae utilized with respect to the mouse strokes to
+ create a unique user profile.     3) Haptic:  Haptic systems are computer input/output
+ devices which can provide us with information about direction, pressure, force, angle,
+ speed, and position of user’s interactions [16, 17]. Because so much information is available
+  about the user’s performance a high degree of accuracy can be expected from a haptic based
+  biometrics system. Orozco et al. [16, 17] have created a simple haptic application built on an elastic membrane surface in
