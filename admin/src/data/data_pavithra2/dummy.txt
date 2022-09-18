@@ -6,7 +6,10 @@ primitives are taken as the profile of the sketch. Similar approaches are tried 
  Varenhorst [44] witr Crimina ls?
 The main     motive  behind   the cybercrime is to disrupt regular business activity and
 critical infrastructure. Cybercriminals also commonly manipulate stolen data to benefit financially, cause financial loss, damage a reputation, achieve military objectives, and propagate religious or political beliefs. Some don’t even need a motive and might hack for fun or simply to showcase their skills.
-
+hacker send  s a seemingly legitimate-looking email asking users to disclose personal information
+Other types of cyberat  tacks include cross-site scripting attacks, password
+attacks, eavesdropping attacks (which can also be physical),
+ SQL-injection a
 
 people interact with on          e another. It is about designing interactive systems,
 products and services for the home, for work or to support communities. Here are some examples of recent
