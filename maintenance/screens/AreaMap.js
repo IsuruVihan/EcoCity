@@ -45,242 +45,128 @@ const AreaMap = () => {
     });
   }, []);
 
-  const CalloutComponent1 = () => {
+  const CalloutComponent = (toBeRepaired) => {
     return (
-      <Callout style={{width: Responsive(50, WIDTH), borderRadius: 10, padding: 0,}}>
-        <View style={{display: 'flex', flexDirection: 'column', paddingHorizontal: 5, backgroundColor: 'white',}}>
-          <View style={{display: 'flex', flexDirection: 'row', marginVertical: 3,}}>
-            <Text style={{flex: 4, color: '#042434', fontWeight: '600',}}>Hub Id: </Text>
-            <Text style={{flex: 8, textAlign: 'justify'}}>2852</Text>
+      <Callout style={styles.areaMap.sec3.map.callout}>
+        <View style={styles.areaMap.sec3.map.callout.container}>
+          <View style={styles.areaMap.sec3.map.callout.container.group1}>
+            <Text style={styles.areaMap.sec3.map.callout.container.group1.label}>Hub Id: </Text>
+            <Text style={styles.areaMap.sec3.map.callout.container.group1.data}>2852</Text>
           </View>
-          <Text style={{color: '#042434', fontWeight: '600', marginVertical: 3,}}>Bin details</Text>
-          <View style={{display: 'flex', flexDirection: 'row', marginVertical: 4,}}>
-            <View style={{flex: 4, display: 'flex', flexDirection: 'column', padding: 5, backgroundColor: '#E1F0FF', borderRadius: 5, marginRight: 10,}}>
-              <Text style={{color: '#008BD1', flex: 2, textAlign: 'center', textAlignVertical: 'center',}}>
+          {toBeRepaired && <>
+            <View style={styles.areaMap.sec3.map.callout.container.group2}>
+              <Text style={styles.areaMap.sec3.map.callout.container.group2.label}>Description: </Text>
+              <Text style={styles.areaMap.sec3.map.callout.container.group2.data}>
+                Lid doesn't open tapping the NFC card. Need to fix this issue immediately.
+              </Text>
+            </View>
+            <View style={styles.areaMap.sec3.map.callout.container.group3}>
+              <Text style={styles.areaMap.sec3.map.callout.container.group3.label}>Timestamp: </Text>
+              <Text style={styles.areaMap.sec3.map.callout.container.group3.data}>9/17/2022 12:43:00</Text>
+            </View>
+          </>}
+          <Text style={styles.areaMap.sec3.map.callout.container.binTitle}>Bin details</Text>
+          <View style={styles.areaMap.sec3.map.callout.container.bin}>
+            <View style={styles.areaMap.sec3.map.callout.container.bin.sec1}>
+              <Text style={styles.areaMap.sec3.map.callout.container.bin.sec1.part1}>
                 <FontAwesomeIcons name={'trash-o'} size={20}/>
               </Text>
-              <Text style={{color: '#008BD1', flex: 1, textAlign: 'center', textAlignVertical: 'center',}}>Glass</Text>
+              <Text style={styles.areaMap.sec3.map.callout.container.bin.sec1.part2}>Glass</Text>
             </View>
-            <View style={{flex: 8, display: 'flex', flexDirection: 'column',}}>
-              <View style={{display: 'flex', flexDirection: 'row',}}>
-                <Text style={{flex: 8, color: '#042434',}}>Filled: </Text>
-                <Text style={{flex: 4}}>45%</Text>
+            <View style={styles.areaMap.sec3.map.callout.container.bin.sec2}>
+              <View style={styles.areaMap.sec3.map.callout.container.bin.sec2.sec}>
+                <Text style={styles.areaMap.sec3.map.callout.container.bin.sec2.sec.label}>Filled: </Text>
+                <Text style={styles.areaMap.sec3.map.callout.container.bin.sec2.sec.data}>45%</Text>
               </View>
-              <View style={{display: 'flex', flexDirection: 'row',}}>
-                <Text style={{flex: 8, color: '#042434',}}>Humidity: </Text>
-                <Text style={{flex: 4}}>4%</Text>
+              <View style={styles.areaMap.sec3.map.callout.container.bin.sec2.sec}>
+                <Text style={styles.areaMap.sec3.map.callout.container.bin.sec2.sec.label}>Humidity: </Text>
+                <Text style={styles.areaMap.sec3.map.callout.container.bin.sec2.sec.data}>4%</Text>
               </View>
-              <View style={{display: 'flex', flexDirection: 'row',}}>
-                <Text style={{flex: 8, color: '#042434',}}>Temp: </Text>
-                <Text style={{flex: 4}}>28 C</Text>
+              <View style={styles.areaMap.sec3.map.callout.container.bin.sec2.sec}>
+                <Text style={styles.areaMap.sec3.map.callout.container.bin.sec2.sec.label}>Temp: </Text>
+                <Text style={styles.areaMap.sec3.map.callout.container.bin.sec2.sec.data}>28 C</Text>
               </View>
-              <View style={{display: 'flex', flexDirection: 'row',}}>
-                <Text style={{flex: 8, color: '#042434',}}>Methane: </Text>
-                <Text style={{flex: 4}}>55%</Text>
+              <View style={styles.areaMap.sec3.map.callout.container.bin.sec2.sec}>
+                <Text style={styles.areaMap.sec3.map.callout.container.bin.sec2.sec.label}>Methane: </Text>
+                <Text style={styles.areaMap.sec3.map.callout.container.bin.sec2.sec.data}>55%</Text>
               </View>
             </View>
           </View>
-          <View style={{display: 'flex', flexDirection: 'row', marginVertical: 4,}}>
-            <View style={{flex: 4, display: 'flex', flexDirection: 'column', padding: 5, backgroundColor: '#FFF6E9', borderRadius: 5, marginRight: 10,}}>
-              <Text style={{color: '#FF9900', flex: 2, textAlign: 'center', textAlignVertical: 'center',}}>
+          <View style={styles.areaMap.sec3.map.callout.container.bin2}>
+            <View style={styles.areaMap.sec3.map.callout.container.bin2.sec1}>
+              <Text style={styles.areaMap.sec3.map.callout.container.bin2.sec1.part1}>
                 <FontAwesomeIcons name={'trash-o'} size={20}/>
               </Text>
-              <Text style={{color: '#FF9900', flex: 1, textAlign: 'center', textAlignVertical: 'center',}}>Paper</Text>
+              <Text style={styles.areaMap.sec3.map.callout.container.bin2.sec1.part2}>Glass</Text>
             </View>
-            <View style={{flex: 8, display: 'flex', flexDirection: 'column',}}>
-              <View style={{display: 'flex', flexDirection: 'row',}}>
-                <Text style={{flex: 8, color: '#042434',}}>Filled: </Text>
-                <Text style={{flex: 4}}>45%</Text>
+            <View style={styles.areaMap.sec3.map.callout.container.bin2.sec2}>
+              <View style={styles.areaMap.sec3.map.callout.container.bin2.sec2.sec}>
+                <Text style={styles.areaMap.sec3.map.callout.container.bin2.sec2.sec.label}>Filled: </Text>
+                <Text style={styles.areaMap.sec3.map.callout.container.bin2.sec2.sec.data}>45%</Text>
               </View>
-              <View style={{display: 'flex', flexDirection: 'row',}}>
-                <Text style={{flex: 8, color: '#042434',}}>Humidity: </Text>
-                <Text style={{flex: 4}}>4%</Text>
+              <View style={styles.areaMap.sec3.map.callout.container.bin2.sec2.sec}>
+                <Text style={styles.areaMap.sec3.map.callout.container.bin2.sec2.sec.label}>Humidity: </Text>
+                <Text style={styles.areaMap.sec3.map.callout.container.bin2.sec2.sec.data}>4%</Text>
               </View>
-              <View style={{display: 'flex', flexDirection: 'row',}}>
-                <Text style={{flex: 8, color: '#042434',}}>Temp: </Text>
-                <Text style={{flex: 4}}>28 C</Text>
+              <View style={styles.areaMap.sec3.map.callout.container.bin2.sec2.sec}>
+                <Text style={styles.areaMap.sec3.map.callout.container.bin2.sec2.sec.label}>Temp: </Text>
+                <Text style={styles.areaMap.sec3.map.callout.container.bin2.sec2.sec.data}>28 C</Text>
               </View>
-              <View style={{display: 'flex', flexDirection: 'row',}}>
-                <Text style={{flex: 8, color: '#042434',}}>Methane: </Text>
-                <Text style={{flex: 4}}>55%</Text>
+              <View style={styles.areaMap.sec3.map.callout.container.bin2.sec2.sec}>
+                <Text style={styles.areaMap.sec3.map.callout.container.bin2.sec2.sec.label}>Methane: </Text>
+                <Text style={styles.areaMap.sec3.map.callout.container.bin2.sec2.sec.data}>55%</Text>
               </View>
             </View>
           </View>
-          <View style={{display: 'flex', flexDirection: 'row', marginVertical: 4,}}>
-            <View style={{flex: 4, display: 'flex', flexDirection: 'column', padding: 5, backgroundColor: '#E0F8E3', borderRadius: 5, marginRight: 10,}}>
-              <Text style={{color: '#00C186', flex: 2, textAlign: 'center', textAlignVertical: 'center',}}>
+          <View style={styles.areaMap.sec3.map.callout.container.bin3}>
+            <View style={styles.areaMap.sec3.map.callout.container.bin3.sec1}>
+              <Text style={styles.areaMap.sec3.map.callout.container.bin3.sec1.part1}>
                 <FontAwesomeIcons name={'trash-o'} size={20}/>
               </Text>
-              <Text style={{color: '#00C186', flex: 1, textAlign: 'center', textAlignVertical: 'center',}}>Organic</Text>
+              <Text style={styles.areaMap.sec3.map.callout.container.bin3.sec1.part2}>Glass</Text>
             </View>
-            <View style={{flex: 8, display: 'flex', flexDirection: 'column',}}>
-              <View style={{display: 'flex', flexDirection: 'row',}}>
-                <Text style={{flex: 8, color: '#042434',}}>Filled: </Text>
-                <Text style={{flex: 4}}>45%</Text>
+            <View style={styles.areaMap.sec3.map.callout.container.bin3.sec2}>
+              <View style={styles.areaMap.sec3.map.callout.container.bin3.sec2.sec}>
+                <Text style={styles.areaMap.sec3.map.callout.container.bin3.sec2.sec.label}>Filled: </Text>
+                <Text style={styles.areaMap.sec3.map.callout.container.bin3.sec2.sec.data}>45%</Text>
               </View>
-              <View style={{display: 'flex', flexDirection: 'row',}}>
-                <Text style={{flex: 8, color: '#042434',}}>Humidity: </Text>
-                <Text style={{flex: 4}}>4%</Text>
+              <View style={styles.areaMap.sec3.map.callout.container.bin3.sec2.sec}>
+                <Text style={styles.areaMap.sec3.map.callout.container.bin3.sec2.sec.label}>Humidity: </Text>
+                <Text style={styles.areaMap.sec3.map.callout.container.bin3.sec2.sec.data}>4%</Text>
               </View>
-              <View style={{display: 'flex', flexDirection: 'row',}}>
-                <Text style={{flex: 8, color: '#042434',}}>Temp: </Text>
-                <Text style={{flex: 4}}>28 C</Text>
+              <View style={styles.areaMap.sec3.map.callout.container.bin3.sec2.sec}>
+                <Text style={styles.areaMap.sec3.map.callout.container.bin3.sec2.sec.label}>Temp: </Text>
+                <Text style={styles.areaMap.sec3.map.callout.container.bin3.sec2.sec.data}>28 C</Text>
               </View>
-              <View style={{display: 'flex', flexDirection: 'row',}}>
-                <Text style={{flex: 8, color: '#042434',}}>Methane: </Text>
-                <Text style={{flex: 4}}>55%</Text>
+              <View style={styles.areaMap.sec3.map.callout.container.bin3.sec2.sec}>
+                <Text style={styles.areaMap.sec3.map.callout.container.bin3.sec2.sec.label}>Methane: </Text>
+                <Text style={styles.areaMap.sec3.map.callout.container.bin3.sec2.sec.data}>55%</Text>
               </View>
             </View>
           </View>
-          <View style={{display: 'flex', flexDirection: 'row', marginVertical: 4,}}>
-            <View style={{flex: 4, display: 'flex', flexDirection: 'column', padding: 5, backgroundColor: 'pink', borderRadius: 5, marginRight: 10,}}>
-              <Text style={{color: 'red', flex: 2, textAlign: 'center', textAlignVertical: 'center',}}>
+          <View style={styles.areaMap.sec3.map.callout.container.bin4}>
+            <View style={styles.areaMap.sec3.map.callout.container.bin4.sec1}>
+              <Text style={styles.areaMap.sec3.map.callout.container.bin4.sec1.part1}>
                 <FontAwesomeIcons name={'trash-o'} size={20}/>
               </Text>
-              <Text style={{color: 'red', flex: 1, textAlign: 'center', textAlignVertical: 'center',}}>Plastic</Text>
+              <Text style={styles.areaMap.sec3.map.callout.container.bin4.sec1.part2}>Glass</Text>
             </View>
-            <View style={{flex: 8, display: 'flex', flexDirection: 'column',}}>
-              <View style={{display: 'flex', flexDirection: 'row',}}>
-                <Text style={{flex: 8, color: '#042434',}}>Filled: </Text>
-                <Text style={{flex: 4}}>45%</Text>
+            <View style={styles.areaMap.sec3.map.callout.container.bin4.sec2}>
+              <View style={styles.areaMap.sec3.map.callout.container.bin4.sec2.sec}>
+                <Text style={styles.areaMap.sec3.map.callout.container.bin4.sec2.sec.label}>Filled: </Text>
+                <Text style={styles.areaMap.sec3.map.callout.container.bin4.sec2.sec.data}>45%</Text>
               </View>
-              <View style={{display: 'flex', flexDirection: 'row',}}>
-                <Text style={{flex: 8, color: '#042434',}}>Humidity: </Text>
-                <Text style={{flex: 4}}>4%</Text>
+              <View style={styles.areaMap.sec3.map.callout.container.bin4.sec2.sec}>
+                <Text style={styles.areaMap.sec3.map.callout.container.bin4.sec2.sec.label}>Humidity: </Text>
+                <Text style={styles.areaMap.sec3.map.callout.container.bin4.sec2.sec.data}>4%</Text>
               </View>
-              <View style={{display: 'flex', flexDirection: 'row',}}>
-                <Text style={{flex: 8, color: '#042434',}}>Temp: </Text>
-                <Text style={{flex: 4}}>28 C</Text>
+              <View style={styles.areaMap.sec3.map.callout.container.bin4.sec2.sec}>
+                <Text style={styles.areaMap.sec3.map.callout.container.bin4.sec2.sec.label}>Temp: </Text>
+                <Text style={styles.areaMap.sec3.map.callout.container.bin4.sec2.sec.data}>28 C</Text>
               </View>
-              <View style={{display: 'flex', flexDirection: 'row',}}>
-                <Text style={{flex: 8, color: '#042434',}}>Methane: </Text>
-                <Text style={{flex: 4}}>55%</Text>
-              </View>
-            </View>
-          </View>
-        </View>
-      </Callout>
-    );
-  }
-
-  const CalloutComponent2 = () => {
-    return (
-      <Callout style={{width: Responsive(50, WIDTH), borderRadius: 10, padding: 0,}}>
-        <View style={{display: 'flex', flexDirection: 'column', paddingHorizontal: 5, backgroundColor: 'white',}}>
-          <View style={{display: 'flex', flexDirection: 'row', marginVertical: 3,}}>
-            <Text style={{flex: 4, color: '#042434', fontWeight: '600',}}>Hub Id: </Text>
-            <Text style={{flex: 8, textAlign: 'justify'}}>2852</Text>
-          </View>
-          <View style={{display: 'flex', flexDirection: 'column', color: '#042434', fontWeight: '600', marginVertical: 3,}}>
-            <Text style={{color: '#042434', fontWeight: '600',}}>Description: </Text>
-            <Text style={{textAlign: 'justify'}}>Lid doesn't open tapping the NFC card. Need to fix this issue immediately.</Text>
-          </View>
-          <View style={{display: 'flex', flexDirection: 'column', marginVertical: 3,}}>
-            <Text style={{color: '#042434', fontWeight: '600',}}>Timestamp: </Text>
-            <Text style={{textAlign: 'justify'}}>9/17/2022 12:43:00</Text>
-          </View>
-          <Text style={{color: '#042434', fontWeight: '600', marginVertical: 3,}}>Bin details</Text>
-          <View style={{display: 'flex', flexDirection: 'row', marginVertical: 4,}}>
-            <View style={{flex: 4, display: 'flex', flexDirection: 'column', padding: 5, backgroundColor: '#E1F0FF', borderRadius: 5, marginRight: 10,}}>
-              <Text style={{color: '#008BD1', flex: 2, textAlign: 'center', textAlignVertical: 'center',}}>
-                <FontAwesomeIcons name={'trash-o'} size={20}/>
-              </Text>
-              <Text style={{color: '#008BD1', flex: 1, textAlign: 'center', textAlignVertical: 'center',}}>Glass</Text>
-            </View>
-            <View style={{flex: 8, display: 'flex', flexDirection: 'column',}}>
-              <View style={{display: 'flex', flexDirection: 'row',}}>
-                <Text style={{flex: 8, color: '#042434',}}>Filled: </Text>
-                <Text style={{flex: 4}}>45%</Text>
-              </View>
-              <View style={{display: 'flex', flexDirection: 'row',}}>
-                <Text style={{flex: 8, color: '#042434',}}>Humidity: </Text>
-                <Text style={{flex: 4}}>4%</Text>
-              </View>
-              <View style={{display: 'flex', flexDirection: 'row',}}>
-                <Text style={{flex: 8, color: '#042434',}}>Temp: </Text>
-                <Text style={{flex: 4}}>28 C</Text>
-              </View>
-              <View style={{display: 'flex', flexDirection: 'row',}}>
-                <Text style={{flex: 8, color: '#042434',}}>Methane: </Text>
-                <Text style={{flex: 4}}>55%</Text>
-              </View>
-            </View>
-          </View>
-          <View style={{display: 'flex', flexDirection: 'row', marginVertical: 4,}}>
-            <View style={{flex: 4, display: 'flex', flexDirection: 'column', padding: 5, backgroundColor: '#FFF6E9', borderRadius: 5, marginRight: 10,}}>
-              <Text style={{color: '#FF9900', flex: 2, textAlign: 'center', textAlignVertical: 'center',}}>
-                <FontAwesomeIcons name={'trash-o'} size={20}/>
-              </Text>
-              <Text style={{color: '#FF9900', flex: 1, textAlign: 'center', textAlignVertical: 'center',}}>Paper</Text>
-            </View>
-            <View style={{flex: 8, display: 'flex', flexDirection: 'column',}}>
-              <View style={{display: 'flex', flexDirection: 'row',}}>
-                <Text style={{flex: 8, color: '#042434',}}>Filled: </Text>
-                <Text style={{flex: 4}}>45%</Text>
-              </View>
-              <View style={{display: 'flex', flexDirection: 'row',}}>
-                <Text style={{flex: 8, color: '#042434',}}>Humidity: </Text>
-                <Text style={{flex: 4}}>4%</Text>
-              </View>
-              <View style={{display: 'flex', flexDirection: 'row',}}>
-                <Text style={{flex: 8, color: '#042434',}}>Temp: </Text>
-                <Text style={{flex: 4}}>28 C</Text>
-              </View>
-              <View style={{display: 'flex', flexDirection: 'row',}}>
-                <Text style={{flex: 8, color: '#042434',}}>Methane: </Text>
-                <Text style={{flex: 4}}>55%</Text>
-              </View>
-            </View>
-          </View>
-          <View style={{display: 'flex', flexDirection: 'row', marginVertical: 4,}}>
-            <View style={{flex: 4, display: 'flex', flexDirection: 'column', padding: 5, backgroundColor: '#E0F8E3', borderRadius: 5, marginRight: 10,}}>
-              <Text style={{color: '#00C186', flex: 2, textAlign: 'center', textAlignVertical: 'center',}}>
-                <FontAwesomeIcons name={'trash-o'} size={20}/>
-              </Text>
-              <Text style={{color: '#00C186', flex: 1, textAlign: 'center', textAlignVertical: 'center',}}>Organic</Text>
-            </View>
-            <View style={{flex: 8, display: 'flex', flexDirection: 'column',}}>
-              <View style={{display: 'flex', flexDirection: 'row',}}>
-                <Text style={{flex: 8, color: '#042434',}}>Filled: </Text>
-                <Text style={{flex: 4}}>45%</Text>
-              </View>
-              <View style={{display: 'flex', flexDirection: 'row',}}>
-                <Text style={{flex: 8, color: '#042434',}}>Humidity: </Text>
-                <Text style={{flex: 4}}>4%</Text>
-              </View>
-              <View style={{display: 'flex', flexDirection: 'row',}}>
-                <Text style={{flex: 8, color: '#042434',}}>Temp: </Text>
-                <Text style={{flex: 4}}>28 C</Text>
-              </View>
-              <View style={{display: 'flex', flexDirection: 'row',}}>
-                <Text style={{flex: 8, color: '#042434',}}>Methane: </Text>
-                <Text style={{flex: 4}}>55%</Text>
-              </View>
-            </View>
-          </View>
-          <View style={{display: 'flex', flexDirection: 'row', marginVertical: 4,}}>
-            <View style={{flex: 4, display: 'flex', flexDirection: 'column', padding: 5, backgroundColor: 'pink', borderRadius: 5, marginRight: 10,}}>
-              <Text style={{color: 'red', flex: 2, textAlign: 'center', textAlignVertical: 'center',}}>
-                <FontAwesomeIcons name={'trash-o'} size={20}/>
-              </Text>
-              <Text style={{color: 'red', flex: 1, textAlign: 'center', textAlignVertical: 'center',}}>Plastic</Text>
-            </View>
-            <View style={{flex: 8, display: 'flex', flexDirection: 'column',}}>
-              <View style={{display: 'flex', flexDirection: 'row',}}>
-                <Text style={{flex: 8, color: '#042434',}}>Filled: </Text>
-                <Text style={{flex: 4}}>45%</Text>
-              </View>
-              <View style={{display: 'flex', flexDirection: 'row',}}>
-                <Text style={{flex: 8, color: '#042434',}}>Humidity: </Text>
-                <Text style={{flex: 4}}>4%</Text>
-              </View>
-              <View style={{display: 'flex', flexDirection: 'row',}}>
-                <Text style={{flex: 8, color: '#042434',}}>Temp: </Text>
-                <Text style={{flex: 4}}>28 C</Text>
-              </View>
-              <View style={{display: 'flex', flexDirection: 'row',}}>
-                <Text style={{flex: 8, color: '#042434',}}>Methane: </Text>
-                <Text style={{flex: 4}}>55%</Text>
+              <View style={styles.areaMap.sec3.map.callout.container.bin4.sec2.sec}>
+                <Text style={styles.areaMap.sec3.map.callout.container.bin4.sec2.sec.label}>Methane: </Text>
+                <Text style={styles.areaMap.sec3.map.callout.container.bin4.sec2.sec.data}>55%</Text>
               </View>
             </View>
           </View>
@@ -326,7 +212,7 @@ const AreaMap = () => {
                 coordinate={{latitude: hub.latitude, longitude: hub.longitude}}
                 image={AssignedHub}
               >
-                {CalloutComponent2()}
+                {CalloutComponent(true)}
               </Marker>;
             return <Marker
               key={idx}
@@ -334,7 +220,7 @@ const AreaMap = () => {
               coordinate={{latitude: hub.latitude, longitude: hub.longitude}}
               image={AllHub}
             >
-              {CalloutComponent1()}
+              {CalloutComponent(false)}
             </Marker>;
           })}
           <Marker coordinate={MC_LOCATION} image={MC}/>
@@ -354,8 +240,6 @@ const AreaMap = () => {
 
 const styles = StyleSheet.create({
   areaMap: {
-    // borderColor: 'red',
-    // borderWidth: 2,
     height: '100%',
     display: 'flex',
     flexDirection: 'column',
@@ -363,8 +247,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: 5,
     sec1: {
-      // borderColor: 'blue',
-      // borderWidth: 2,
       width: '100%',
       flex: 0.7,
       txt: {
@@ -376,8 +258,6 @@ const styles = StyleSheet.create({
       },
     },
     sec2: {
-      // borderColor: 'blue',
-      // borderWidth: 2,
       width: '100%',
       flex: 0.7,
       display: 'flex',
@@ -401,13 +281,237 @@ const styles = StyleSheet.create({
       },
     },
     sec3: {
-      // borderColor: 'blue',
-      // borderWidth: 2,
       width: '100%',
       flex: 10,
       map: {
         width: '100%',
         height: '100%',
+        callout: {
+          width: Responsive(50, WIDTH),
+          borderRadius: 10,
+          padding: 0,
+          container: {
+            display: 'flex',
+            flexDirection: 'column',
+            paddingHorizontal: 5,
+            backgroundColor: 'white',
+            group1: {
+              display: 'flex',
+              flexDirection: 'row',
+              marginVertical: 3,
+              label: {
+                flex: 4,
+                color: '#042434',
+                fontWeight: '600',
+              },
+              data: {
+                flex: 8,
+                textAlign: 'justify',
+              },
+            },
+            group2: {
+              display: 'flex',
+              flexDirection: 'column',
+              color: '#042434',
+              fontWeight: '600',
+              marginVertical: 3,
+              label: {
+                flex: 4,
+                color: '#042434',
+                fontWeight: '600',
+              },
+              data: {
+                flex: 8,
+                textAlign: 'justify',
+              },
+            },
+            group3: {
+              display: 'flex',
+              flexDirection: 'column',
+              marginVertical: 3,
+              label: {
+                color: '#042434',
+                fontWeight: '600',
+              },
+              data: {
+                textAlign: 'justify',
+              },
+            },
+            binTitle: {
+              color: '#042434',
+              fontWeight: '600',
+              marginVertical: 3,
+            },
+            bin: {
+              display: 'flex',
+              flexDirection: 'row',
+              marginVertical: 4,
+              sec1: {
+                flex: 4,
+                display: 'flex',
+                flexDirection: 'column',
+                padding: 5,
+                backgroundColor: '#E1F0FF',
+                borderRadius: 5,
+                marginRight: 10,
+                part1: {
+                  color: '#008BD1',
+                  flex: 2,
+                  textAlign: 'center',
+                  textAlignVertical: 'center',
+                },
+                part2: {
+                  color: '#008BD1',
+                  flex: 1,
+                  textAlign: 'center',
+                  textAlignVertical: 'center',
+                },
+              },
+              sec2: {
+                flex: 8,
+                display: 'flex',
+                flexDirection: 'column',
+                sec: {
+                  display: 'flex',
+                  flexDirection: 'row',
+                  label: {
+                    flex: 8,
+                    color: '#042434',
+                  },
+                  data: {
+                    flex: 4,
+                  },
+                },
+              },
+            },
+            bin2: {
+              display: 'flex',
+              flexDirection: 'row',
+              marginVertical: 4,
+              sec1: {
+                flex: 4,
+                display: 'flex',
+                flexDirection: 'column',
+                padding: 5,
+                backgroundColor: '#FFF6E9',
+                borderRadius: 5,
+                marginRight: 10,
+                part1: {
+                  color: '#FF9900',
+                  flex: 2,
+                  textAlign: 'center',
+                  textAlignVertical: 'center',
+                },
+                part2: {
+                  color: '#FF9900',
+                  flex: 1,
+                  textAlign: 'center',
+                  textAlignVertical: 'center',
+                },
+              },
+              sec2: {
+                flex: 8,
+                display: 'flex',
+                flexDirection: 'column',
+                sec: {
+                  display: 'flex',
+                  flexDirection: 'row',
+                  label: {
+                    flex: 8,
+                    color: '#042434',
+                  },
+                  data: {
+                    flex: 4,
+                  },
+                },
+              },
+            },
+            bin3: {
+              display: 'flex',
+              flexDirection: 'row',
+              marginVertical: 4,
+              sec1: {
+                flex: 4,
+                display: 'flex',
+                flexDirection: 'column',
+                padding: 5,
+                backgroundColor: '#E0F8E3',
+                borderRadius: 5,
+                marginRight: 10,
+                part1: {
+                  color: '#00C186',
+                  flex: 2,
+                  textAlign: 'center',
+                  textAlignVertical: 'center',
+                },
+                part2: {
+                  color: '#00C186',
+                  flex: 1,
+                  textAlign: 'center',
+                  textAlignVertical: 'center',
+                },
+              },
+              sec2: {
+                flex: 8,
+                display: 'flex',
+                flexDirection: 'column',
+                sec: {
+                  display: 'flex',
+                  flexDirection: 'row',
+                  label: {
+                    flex: 8,
+                    color: '#042434',
+                  },
+                  data: {
+                    flex: 4,
+                  },
+                },
+              },
+            },
+            bin4: {
+              display: 'flex',
+              flexDirection: 'row',
+              marginVertical: 4,
+              sec1: {
+                flex: 4,
+                display: 'flex',
+                flexDirection: 'column',
+                padding: 5,
+                backgroundColor: 'pink',
+                borderRadius: 5,
+                marginRight: 10,
+                part1: {
+                  color: 'red',
+                  flex: 2,
+                  textAlign: 'center',
+                  textAlignVertical: 'center',
+                },
+                part2: {
+                  color: 'red',
+                  flex: 1,
+                  textAlign: 'center',
+                  textAlignVertical: 'center',
+                },
+              },
+              sec2: {
+                flex: 8,
+                display: 'flex',
+                flexDirection: 'column',
+                sec: {
+                  display: 'flex',
+                  flexDirection: 'row',
+                  label: {
+                    flex: 8,
+                    color: '#042434',
+                  },
+                  data: {
+                    flex: 4,
+                  },
+                },
+              },
+            },
+          },
+        },
       },
     },
   },
