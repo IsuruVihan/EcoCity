@@ -2,13 +2,14 @@ import React, {useEffect, useState} from 'react';
 import {Text, View, StyleSheet, Image, Dimensions} from "react-native";
 import MapView, {Callout, Marker, PROVIDER_GOOGLE} from "react-native-maps";
 import MapViewDirections from "react-native-maps-directions";
+import Geolocation from "@react-native-community/geolocation";
+import FontAwesomeIcons from "react-native-vector-icons/FontAwesome";
 
 import AllHub from '../assets/images/mobile-all-hubs-resized.png';
 import AssignedHub from '../assets/images/mobile-assigned-hubs-resized.png';
 import MC from "../assets/images/MC_resized.png";
 
 import {API_TOKEN} from "@env";
-import Geolocation from "@react-native-community/geolocation";
 import {Responsive} from "../helpers/Responsive";
 
 const MC_LOCATION = {latitude: 6.915770, longitude: 79.863721,}
@@ -43,6 +44,250 @@ const AreaMap = () => {
       console.log(err);
     });
   }, []);
+
+  const CalloutComponent1 = () => {
+    return (
+      <Callout style={{width: Responsive(50, WIDTH), borderRadius: 10, padding: 0,}}>
+        <View style={{display: 'flex', flexDirection: 'column', paddingHorizontal: 5, backgroundColor: 'white',}}>
+          <View style={{display: 'flex', flexDirection: 'row', marginVertical: 3,}}>
+            <Text style={{flex: 4, color: '#042434', fontWeight: '600',}}>Hub Id: </Text>
+            <Text style={{flex: 8, textAlign: 'justify'}}>2852</Text>
+          </View>
+          <Text style={{color: '#042434', fontWeight: '600', marginVertical: 3,}}>Bin details</Text>
+          <View style={{display: 'flex', flexDirection: 'row', marginVertical: 4,}}>
+            <View style={{flex: 4, display: 'flex', flexDirection: 'column', padding: 5, backgroundColor: '#E1F0FF', borderRadius: 5, marginRight: 10,}}>
+              <Text style={{color: '#008BD1', flex: 2, textAlign: 'center', textAlignVertical: 'center',}}>
+                <FontAwesomeIcons name={'trash-o'} size={20}/>
+              </Text>
+              <Text style={{color: '#008BD1', flex: 1, textAlign: 'center', textAlignVertical: 'center',}}>Glass</Text>
+            </View>
+            <View style={{flex: 8, display: 'flex', flexDirection: 'column',}}>
+              <View style={{display: 'flex', flexDirection: 'row',}}>
+                <Text style={{flex: 8, color: '#042434',}}>Filled: </Text>
+                <Text style={{flex: 4}}>45%</Text>
+              </View>
+              <View style={{display: 'flex', flexDirection: 'row',}}>
+                <Text style={{flex: 8, color: '#042434',}}>Humidity: </Text>
+                <Text style={{flex: 4}}>4%</Text>
+              </View>
+              <View style={{display: 'flex', flexDirection: 'row',}}>
+                <Text style={{flex: 8, color: '#042434',}}>Temp: </Text>
+                <Text style={{flex: 4}}>28 C</Text>
+              </View>
+              <View style={{display: 'flex', flexDirection: 'row',}}>
+                <Text style={{flex: 8, color: '#042434',}}>Methane: </Text>
+                <Text style={{flex: 4}}>55%</Text>
+              </View>
+            </View>
+          </View>
+          <View style={{display: 'flex', flexDirection: 'row', marginVertical: 4,}}>
+            <View style={{flex: 4, display: 'flex', flexDirection: 'column', padding: 5, backgroundColor: '#FFF6E9', borderRadius: 5, marginRight: 10,}}>
+              <Text style={{color: '#FF9900', flex: 2, textAlign: 'center', textAlignVertical: 'center',}}>
+                <FontAwesomeIcons name={'trash-o'} size={20}/>
+              </Text>
+              <Text style={{color: '#FF9900', flex: 1, textAlign: 'center', textAlignVertical: 'center',}}>Paper</Text>
+            </View>
+            <View style={{flex: 8, display: 'flex', flexDirection: 'column',}}>
+              <View style={{display: 'flex', flexDirection: 'row',}}>
+                <Text style={{flex: 8, color: '#042434',}}>Filled: </Text>
+                <Text style={{flex: 4}}>45%</Text>
+              </View>
+              <View style={{display: 'flex', flexDirection: 'row',}}>
+                <Text style={{flex: 8, color: '#042434',}}>Humidity: </Text>
+                <Text style={{flex: 4}}>4%</Text>
+              </View>
+              <View style={{display: 'flex', flexDirection: 'row',}}>
+                <Text style={{flex: 8, color: '#042434',}}>Temp: </Text>
+                <Text style={{flex: 4}}>28 C</Text>
+              </View>
+              <View style={{display: 'flex', flexDirection: 'row',}}>
+                <Text style={{flex: 8, color: '#042434',}}>Methane: </Text>
+                <Text style={{flex: 4}}>55%</Text>
+              </View>
+            </View>
+          </View>
+          <View style={{display: 'flex', flexDirection: 'row', marginVertical: 4,}}>
+            <View style={{flex: 4, display: 'flex', flexDirection: 'column', padding: 5, backgroundColor: '#E0F8E3', borderRadius: 5, marginRight: 10,}}>
+              <Text style={{color: '#00C186', flex: 2, textAlign: 'center', textAlignVertical: 'center',}}>
+                <FontAwesomeIcons name={'trash-o'} size={20}/>
+              </Text>
+              <Text style={{color: '#00C186', flex: 1, textAlign: 'center', textAlignVertical: 'center',}}>Organic</Text>
+            </View>
+            <View style={{flex: 8, display: 'flex', flexDirection: 'column',}}>
+              <View style={{display: 'flex', flexDirection: 'row',}}>
+                <Text style={{flex: 8, color: '#042434',}}>Filled: </Text>
+                <Text style={{flex: 4}}>45%</Text>
+              </View>
+              <View style={{display: 'flex', flexDirection: 'row',}}>
+                <Text style={{flex: 8, color: '#042434',}}>Humidity: </Text>
+                <Text style={{flex: 4}}>4%</Text>
+              </View>
+              <View style={{display: 'flex', flexDirection: 'row',}}>
+                <Text style={{flex: 8, color: '#042434',}}>Temp: </Text>
+                <Text style={{flex: 4}}>28 C</Text>
+              </View>
+              <View style={{display: 'flex', flexDirection: 'row',}}>
+                <Text style={{flex: 8, color: '#042434',}}>Methane: </Text>
+                <Text style={{flex: 4}}>55%</Text>
+              </View>
+            </View>
+          </View>
+          <View style={{display: 'flex', flexDirection: 'row', marginVertical: 4,}}>
+            <View style={{flex: 4, display: 'flex', flexDirection: 'column', padding: 5, backgroundColor: 'pink', borderRadius: 5, marginRight: 10,}}>
+              <Text style={{color: 'red', flex: 2, textAlign: 'center', textAlignVertical: 'center',}}>
+                <FontAwesomeIcons name={'trash-o'} size={20}/>
+              </Text>
+              <Text style={{color: 'red', flex: 1, textAlign: 'center', textAlignVertical: 'center',}}>Plastic</Text>
+            </View>
+            <View style={{flex: 8, display: 'flex', flexDirection: 'column',}}>
+              <View style={{display: 'flex', flexDirection: 'row',}}>
+                <Text style={{flex: 8, color: '#042434',}}>Filled: </Text>
+                <Text style={{flex: 4}}>45%</Text>
+              </View>
+              <View style={{display: 'flex', flexDirection: 'row',}}>
+                <Text style={{flex: 8, color: '#042434',}}>Humidity: </Text>
+                <Text style={{flex: 4}}>4%</Text>
+              </View>
+              <View style={{display: 'flex', flexDirection: 'row',}}>
+                <Text style={{flex: 8, color: '#042434',}}>Temp: </Text>
+                <Text style={{flex: 4}}>28 C</Text>
+              </View>
+              <View style={{display: 'flex', flexDirection: 'row',}}>
+                <Text style={{flex: 8, color: '#042434',}}>Methane: </Text>
+                <Text style={{flex: 4}}>55%</Text>
+              </View>
+            </View>
+          </View>
+        </View>
+      </Callout>
+    );
+  }
+
+  const CalloutComponent2 = () => {
+    return (
+      <Callout style={{width: Responsive(50, WIDTH), borderRadius: 10, padding: 0,}}>
+        <View style={{display: 'flex', flexDirection: 'column', paddingHorizontal: 5, backgroundColor: 'white',}}>
+          <View style={{display: 'flex', flexDirection: 'row', marginVertical: 3,}}>
+            <Text style={{flex: 4, color: '#042434', fontWeight: '600',}}>Hub Id: </Text>
+            <Text style={{flex: 8, textAlign: 'justify'}}>2852</Text>
+          </View>
+          <View style={{display: 'flex', flexDirection: 'column', color: '#042434', fontWeight: '600', marginVertical: 3,}}>
+            <Text style={{color: '#042434', fontWeight: '600',}}>Description: </Text>
+            <Text style={{textAlign: 'justify'}}>Lid doesn't open tapping the NFC card. Need to fix this issue immediately.</Text>
+          </View>
+          <View style={{display: 'flex', flexDirection: 'column', marginVertical: 3,}}>
+            <Text style={{color: '#042434', fontWeight: '600',}}>Timestamp: </Text>
+            <Text style={{textAlign: 'justify'}}>9/17/2022 12:43:00</Text>
+          </View>
+          <Text style={{color: '#042434', fontWeight: '600', marginVertical: 3,}}>Bin details</Text>
+          <View style={{display: 'flex', flexDirection: 'row', marginVertical: 4,}}>
+            <View style={{flex: 4, display: 'flex', flexDirection: 'column', padding: 5, backgroundColor: '#E1F0FF', borderRadius: 5, marginRight: 10,}}>
+              <Text style={{color: '#008BD1', flex: 2, textAlign: 'center', textAlignVertical: 'center',}}>
+                <FontAwesomeIcons name={'trash-o'} size={20}/>
+              </Text>
+              <Text style={{color: '#008BD1', flex: 1, textAlign: 'center', textAlignVertical: 'center',}}>Glass</Text>
+            </View>
+            <View style={{flex: 8, display: 'flex', flexDirection: 'column',}}>
+              <View style={{display: 'flex', flexDirection: 'row',}}>
+                <Text style={{flex: 8, color: '#042434',}}>Filled: </Text>
+                <Text style={{flex: 4}}>45%</Text>
+              </View>
+              <View style={{display: 'flex', flexDirection: 'row',}}>
+                <Text style={{flex: 8, color: '#042434',}}>Humidity: </Text>
+                <Text style={{flex: 4}}>4%</Text>
+              </View>
+              <View style={{display: 'flex', flexDirection: 'row',}}>
+                <Text style={{flex: 8, color: '#042434',}}>Temp: </Text>
+                <Text style={{flex: 4}}>28 C</Text>
+              </View>
+              <View style={{display: 'flex', flexDirection: 'row',}}>
+                <Text style={{flex: 8, color: '#042434',}}>Methane: </Text>
+                <Text style={{flex: 4}}>55%</Text>
+              </View>
+            </View>
+          </View>
+          <View style={{display: 'flex', flexDirection: 'row', marginVertical: 4,}}>
+            <View style={{flex: 4, display: 'flex', flexDirection: 'column', padding: 5, backgroundColor: '#FFF6E9', borderRadius: 5, marginRight: 10,}}>
+              <Text style={{color: '#FF9900', flex: 2, textAlign: 'center', textAlignVertical: 'center',}}>
+                <FontAwesomeIcons name={'trash-o'} size={20}/>
+              </Text>
+              <Text style={{color: '#FF9900', flex: 1, textAlign: 'center', textAlignVertical: 'center',}}>Paper</Text>
+            </View>
+            <View style={{flex: 8, display: 'flex', flexDirection: 'column',}}>
+              <View style={{display: 'flex', flexDirection: 'row',}}>
+                <Text style={{flex: 8, color: '#042434',}}>Filled: </Text>
+                <Text style={{flex: 4}}>45%</Text>
+              </View>
+              <View style={{display: 'flex', flexDirection: 'row',}}>
+                <Text style={{flex: 8, color: '#042434',}}>Humidity: </Text>
+                <Text style={{flex: 4}}>4%</Text>
+              </View>
+              <View style={{display: 'flex', flexDirection: 'row',}}>
+                <Text style={{flex: 8, color: '#042434',}}>Temp: </Text>
+                <Text style={{flex: 4}}>28 C</Text>
+              </View>
+              <View style={{display: 'flex', flexDirection: 'row',}}>
+                <Text style={{flex: 8, color: '#042434',}}>Methane: </Text>
+                <Text style={{flex: 4}}>55%</Text>
+              </View>
+            </View>
+          </View>
+          <View style={{display: 'flex', flexDirection: 'row', marginVertical: 4,}}>
+            <View style={{flex: 4, display: 'flex', flexDirection: 'column', padding: 5, backgroundColor: '#E0F8E3', borderRadius: 5, marginRight: 10,}}>
+              <Text style={{color: '#00C186', flex: 2, textAlign: 'center', textAlignVertical: 'center',}}>
+                <FontAwesomeIcons name={'trash-o'} size={20}/>
+              </Text>
+              <Text style={{color: '#00C186', flex: 1, textAlign: 'center', textAlignVertical: 'center',}}>Organic</Text>
+            </View>
+            <View style={{flex: 8, display: 'flex', flexDirection: 'column',}}>
+              <View style={{display: 'flex', flexDirection: 'row',}}>
+                <Text style={{flex: 8, color: '#042434',}}>Filled: </Text>
+                <Text style={{flex: 4}}>45%</Text>
+              </View>
+              <View style={{display: 'flex', flexDirection: 'row',}}>
+                <Text style={{flex: 8, color: '#042434',}}>Humidity: </Text>
+                <Text style={{flex: 4}}>4%</Text>
+              </View>
+              <View style={{display: 'flex', flexDirection: 'row',}}>
+                <Text style={{flex: 8, color: '#042434',}}>Temp: </Text>
+                <Text style={{flex: 4}}>28 C</Text>
+              </View>
+              <View style={{display: 'flex', flexDirection: 'row',}}>
+                <Text style={{flex: 8, color: '#042434',}}>Methane: </Text>
+                <Text style={{flex: 4}}>55%</Text>
+              </View>
+            </View>
+          </View>
+          <View style={{display: 'flex', flexDirection: 'row', marginVertical: 4,}}>
+            <View style={{flex: 4, display: 'flex', flexDirection: 'column', padding: 5, backgroundColor: 'pink', borderRadius: 5, marginRight: 10,}}>
+              <Text style={{color: 'red', flex: 2, textAlign: 'center', textAlignVertical: 'center',}}>
+                <FontAwesomeIcons name={'trash-o'} size={20}/>
+              </Text>
+              <Text style={{color: 'red', flex: 1, textAlign: 'center', textAlignVertical: 'center',}}>Plastic</Text>
+            </View>
+            <View style={{flex: 8, display: 'flex', flexDirection: 'column',}}>
+              <View style={{display: 'flex', flexDirection: 'row',}}>
+                <Text style={{flex: 8, color: '#042434',}}>Filled: </Text>
+                <Text style={{flex: 4}}>45%</Text>
+              </View>
+              <View style={{display: 'flex', flexDirection: 'row',}}>
+                <Text style={{flex: 8, color: '#042434',}}>Humidity: </Text>
+                <Text style={{flex: 4}}>4%</Text>
+              </View>
+              <View style={{display: 'flex', flexDirection: 'row',}}>
+                <Text style={{flex: 8, color: '#042434',}}>Temp: </Text>
+                <Text style={{flex: 4}}>28 C</Text>
+              </View>
+              <View style={{display: 'flex', flexDirection: 'row',}}>
+                <Text style={{flex: 8, color: '#042434',}}>Methane: </Text>
+                <Text style={{flex: 4}}>55%</Text>
+              </View>
+            </View>
+          </View>
+        </View>
+      </Callout>
+    );
+  }
 
   return (
     <View style={styles.areaMap}>
@@ -81,19 +326,16 @@ const AreaMap = () => {
                 coordinate={{latitude: hub.latitude, longitude: hub.longitude}}
                 image={AssignedHub}
               >
-                <Callout style={{backgroundColor: 'red'}}>
-                  <View>
-                    <Text>Hub ID:</Text>
-                    <Text>172</Text>
-                  </View>
-                </Callout>
+                {CalloutComponent2()}
               </Marker>;
             return <Marker
               key={idx}
               onPress={() => setRoutingLocation({latitude: hub.latitude, longitude: hub.longitude})}
               coordinate={{latitude: hub.latitude, longitude: hub.longitude}}
               image={AllHub}
-            />;
+            >
+              {CalloutComponent1()}
+            </Marker>;
           })}
           <Marker coordinate={MC_LOCATION} image={MC}/>
           <MapViewDirections
