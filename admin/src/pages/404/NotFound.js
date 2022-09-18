@@ -6,6 +6,7 @@ const NotFoundModal = () => {
     return (
         <Container>
             ABCDEFGHIJKLMNOPQRSTUVWXYZ
+            1
         </Container>
     );
 }
