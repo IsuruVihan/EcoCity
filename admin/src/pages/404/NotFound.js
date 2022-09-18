@@ -16,7 +16,7 @@ const NotFoundModal = () => {
             8
             9
             10
-            11
+            11 12
         </Container>
     );
 }
