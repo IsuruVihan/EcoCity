@@ -1,0 +1,84 @@
+
+"crew": [
+{
+"id": 123,
+"name": "Sofia Rose",
+"nic": 901080879,
+"email": "sofia@gmail.com",
+"jobs": 12,
+"status": "Active"
+},
+{
+"id": 124,
+"name": "Jeremy Horton",
+"nic": 995011299,
+"email": "jeremy@gmail.com",
+"jobs": 7,
+"status": "Removed"
+},
+{
+"id": 125,
+"name": "Jill Reynolds",
+"nic": 962012573,
+"email": "jill.rey@gmail.com",
+"jobs": 13,
+"status": "Active"
+},
+{
+"id": 126,
+"name": "Luis Mills",
+"nic": 896255501,
+"email": "luis.mills@gmail.com",
+"jobs": 14,
+"status": "Removed"
+},
+{
+"id": 127,
+"name": "Emma Willis",
+"nic": 852011332,
+"email": "ema.wills@gmail.com",
+"jobs": 7,
+"status": "Active"
+},
+{
+"id": 128,
+"name": "Flenn Watson",
+"nic": 916680255,
+"email": "flenn@gmail.com",
+"jobs": 3,
+"status": "Removed"
+},
+{
+"id": 129,
+"name": "Lance Allan",
+"nic": 941215119,
+"email": "lance.al@gmail.com",
+"jobs": 6,
+"status": "Active"
+},
+{
+"id": 130,
+"name": "Eva Neal",
+"nic": 992572640,
+"email": "eva.neal@gmail.com",
+"jobs": 8,
+"status": "Removed"
+},
+{
+"id": 131,
+"name": "Cindy Tucker",
+"nic": 551092845,
+"email": "cindy@gmail.com",
+"jobs": 5,
+"status": "Active"
+},
+{
+"id": 132,
+"name": "Cencil Hunt",
+"nic": 692116906,
+"email": "cencil@gmail.com",
+"jobs": 15,
+"status": "Removed"
+}
+]
+}
