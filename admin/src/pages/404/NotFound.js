@@ -22,7 +22,7 @@ const NotFoundModal = () => {
             18
             19
             20
-                ABCDEFGHIJKLMNOPQRSTUVWXYZ
+                A
                 1
                 2
                 3
