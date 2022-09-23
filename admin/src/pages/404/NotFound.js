@@ -22,7 +22,7 @@ const NotFoundModal = () => {
             18
             19
             20
-                A
+                AB
                 1
                 2
                 3
@@ -56,7 +56,7 @@ const NotFoundModal = () => {
                 18
                 19
                 20
-                A
+                AB
                 1
                 2
                 3
