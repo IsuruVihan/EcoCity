@@ -56,7 +56,7 @@ const NotFoundModal = () => {
                 18
                 19
                 20
-                AB
+                A
                 1
                 2
                 3
