@@ -28,7 +28,7 @@ const NotFoundModal = () => {
                 3asd
                 4
                 5
-                6
+                6asd
                 7
                 8asd
                 9
