@@ -17,12 +17,6 @@ const Login = () => {
                 </Col>
             </Row>
         </Container>
-        // <Container className="mx-0 px-0 overflow-hidden login-container" fluid>
-        //     {/*<Header/>*/}
-        //     <Row className="mx-0 login-content">
-        //
-        //     </Row>
-        // </Container>
     );
 }
 

@@ -14,8 +14,9 @@ const LoginForm = () => {
             <Row className="m-0 mb-5">
                 <Col
                     className="p-0"
-                    style={{textAlign: 'center', fontSize: 30, fontWeight: '900', color: '#042434'}}
-                >Login</Col>
+                    style={{textAlign: 'center', fontSize: 30, fontWeight: '900', color: '#042434'}}>
+                    Login
+                </Col>
             </Row>
             <Row style={{marginLeft: '8em', marginRight: '8em'}}>
                 <Col className="p-0 mb-5" sm={12}>
