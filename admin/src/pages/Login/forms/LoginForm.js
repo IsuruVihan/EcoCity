@@ -5,16 +5,22 @@ import AtSign from '../../../assets/images/icons/email.png';
 import LockSign from '../../../assets/images/icons/password.png';
 import EyeSign from '../../../assets/images/icons/eye.png';
 import EyeHideSign from '../../../assets/images/icons/eye-hide.png';
+import {useDispatch} from "react-redux";
+import {login} from "../../../redux/reducers/authSlice";
 
 const LoginForm = () => {
     const [showPassword, setShowPassword] = useState(false);
     const [password, setPassword] = useState('');
     const [email, setEmail] = useState('');
+    const dispatch = useDispatch();
 
-    const handleOnloginClicked = (e) => {
+    const handleOneLoginClicked = (e) => {
         e.preventDefault();
-        console.log(email);
-        console.log(password);
+        const userDetails = {
+            email: 'harshaabeyvickrama@gmail.com',
+            password: 'harsha98'
+        }
+        dispatch(login(userDetails));
 
     }
     const handleOnEmailChanged = (e) => {
@@ -34,7 +40,7 @@ const LoginForm = () => {
                     Login
                 </Col>
             </Row>
-            <Form onSubmit={handleOnloginClicked} id='loginForm'>
+            <Form onSubmit={handleOneLoginClicked} id='loginForm'>
                 <Row style={{marginLeft: '8em', marginRight: '8em'}}>
                     <Col className="p-0 mb-5" sm={12}>
                         <Row className="m-0">
