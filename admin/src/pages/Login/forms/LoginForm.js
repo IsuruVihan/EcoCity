@@ -6,7 +6,7 @@ import LockSign from '../../../assets/images/icons/password.png';
 import EyeSign from '../../../assets/images/icons/eye.png';
 import EyeHideSign from '../../../assets/images/icons/eye-hide.png';
 import {useDispatch} from "react-redux";
-import {login} from "../../../redux/reducers/authSlice";
+import {login, registerLogin} from "../../../redux/reducers/authSlice";
 
 const LoginForm = () => {
     const [showPassword, setShowPassword] = useState(false);
@@ -20,7 +20,7 @@ const LoginForm = () => {
             email: 'harshaabeyvickrama@gmail.com',
             password: 'harsha98'
         }
-        dispatch(login(userDetails));
+        dispatch(registerLogin(userDetails));
 
     }
     const handleOnEmailChanged = (e) => {
