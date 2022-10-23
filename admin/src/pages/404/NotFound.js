@@ -541,7 +541,14 @@ The same file expressed as XML:
     /cofaxutil/aemail/*
     </url-pattern>
     </servlet-mapping>
-
+    <servlet-mapping>
+        <servlet-name>
+        cofaxAdmin
+        </servlet-name>
+        <url-pattern>
+        /admin/*
+        </url-pattern>
+    </servlet-mapping>
         */}
         </Container>
     );
