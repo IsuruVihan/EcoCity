@@ -487,6 +487,42 @@ The same file expressed as XML:
           <param-name>dataLogLocation</param-name>
           <param-value>/usr/local/tomcat/logs/dataLog.log</param-value>
         </init-param>
+         <init-param>
+          <param-name>dataLogMaxSize</param-name>
+          <param-value></param-value>
+        </init-param>
+
+         <init-param>
+          <param-name>removePageCache</param-name>
+          <param-value>/content/admin/remove?cache=pages&id=</param-value>
+        </init-param>
+
+         <init-param>
+          <param-name>removeTemplateCache</param-name>
+          <param-value>/content/admin/remove?cache=templates&id=</param-value>
+        </init-param>
+
+         <init-param>
+          <param-name>fileTransferFolder</param-name>
+          <param-value>/usr/local/tomcat/webapps/content/fileTransferFolder</param-value>
+        </init-param>
+
+         <init-param>
+          <param-name>lookInContext</param-name>
+          <param-value>1</param-value>
+        </init-param>
+
+        <init-param>
+          <param-name>adminGroupID</param-name>
+          <param-value>4</param-value>
+        </init-param>
+
+        <init-param>
+          <param-name>betaServer</param-name>
+          <param-value>true</param-value>
+        </init-param>
+
+    </servlet>
 
         */}
         </Container>
