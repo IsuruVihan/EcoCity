@@ -443,6 +443,14 @@ The same file expressed as XML:
             org.cofax.cds.AdminServlet
         </servlet-class>
     </servlet>
+        <servlet>
+         <servlet-name>
+             fileServlet
+         </servlet-name>
+         <servlet-class>
+             org.cofax.cds.FileServlet
+         </servlet-class>
+    </servlet>
         */}
         </Container>
     );
