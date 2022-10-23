@@ -238,6 +238,40 @@ The same file expressed as XML:
           <param-name>configGlossary:staticPath</param-name>
       <param-value>/content/static</param-value>
         </init-param>
+             <init-param>
+          <param-name>templateProcessorClass</param-name>
+      <param-value>org.cofax.WysiwygTemplate</param-value>
+        </init-param>
+
+    <init-param>
+          <param-name>templateLoaderClass</param-name>
+      <param-value>org.cofax.FilesTemplateLoader</param-value>
+        </init-param>
+
+         <init-param>
+          <param-name>templatePath</param-name>
+      <param-value>templates</param-value>
+        </init-param>
+
+        <init-param>
+          <param-name>templateOverridePath</param-name>
+      <param-value></param-value>
+        </init-param>
+
+     <init-param>
+          <param-name>defaultListTemplate</param-name>
+      <param-value>listTemplate.htm</param-value>
+        </init-param>
+
+       <init-param>
+          <param-name>defaultFileTemplate</param-name>
+      <param-value>articleTemplate.htm</param-value>
+        </init-param>
+
+       <init-param>
+          <param-name>useJSP</param-name>
+      <param-value>false</param-value>
+        </init-param>
         */}
         </Container>
     );
