@@ -204,6 +204,40 @@ The same text expressed as XML:
     "taglib-uri": "cofax.tld",
     "taglib-location": "/WEB-INF/tlds/cofax.tld"}}}
 The same file expressed as XML:
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!DOCTYPE web-app
+    PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.2//EN"
+    "http://java.sun.com/j2ee/dtds/web-app_2.2.dtd">
+<web-app>
+    <servlet>
+        <servlet-name>
+            cofaxCDS
+        </servlet-name>
+        <servlet-class>
+            org.cofax.cds.CDSServlet
+        </servlet-class>
+
+         <init-param>
+          <param-name>configGlossary:installationAt</param-name>
+      <param-value>Philadelphia, PA</param-value>
+        </init-param>
+        <init-param>
+          <param-name>configGlossary:adminEmail</param-name>
+      <param-value>ksm@pobox.com</param-value>
+        </init-param>
+        <init-param>
+          <param-name>configGlossary:poweredBy</param-name>
+      <param-value>Cofax</param-value>
+        </init-param>
+        <init-param>
+          <param-name>configGlossary:poweredByIcon</param-name>
+      <param-value>/images/cofax.gif</param-value>
+        </init-param>
+        <init-param>
+          <param-name>configGlossary:staticPath</param-name>
+      <param-value>/content/static</param-value>
+        </init-param>
         */}
         </Container>
     );
