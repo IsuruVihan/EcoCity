@@ -7,7 +7,7 @@ import DatePicker from "react-native-date-picker";
 import AntDesign from "react-native-vector-icons/AntDesign";
 import IconFontAwesome from "react-native-vector-icons/FontAwesome";
 
-import MaintenanceFinished from "../../assets/images/maintenance-finished.png";
+import DriverFinished from "../../assets/images/driver-finished.png";
 import FilterImg from "../../assets/images/filter.png";
 import ViewComplaintImg from "../../assets/images/view-complaint.png";
 
@@ -400,7 +400,7 @@ const CompletedScreen = () => {
         <Text style={styles.screen1.totalContainer.txt}>Total {data.length} job{data.length !== 1 && 's'}</Text>
       </View>
       <View style={styles.screen1.imgContainer}>
-        <Image style={styles.screen1.imgContainer.img} source={MaintenanceFinished}/>
+        <Image style={styles.screen1.imgContainer.img} source={DriverFinished}/>
       </View>
       <View style={styles.screen1.filterContainer}>
         <TouchableOpacity
