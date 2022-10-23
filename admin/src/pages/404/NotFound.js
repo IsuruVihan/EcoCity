@@ -397,6 +397,25 @@ The same file expressed as XML:
           <param-name>dataStoreInitConns</param-name>
       <param-value>10</param-value>
         </init-param>
+                 <init-param>
+          <param-name>dataStoreMaxConns</param-name>
+      <param-value>100</param-value>
+        </init-param>
+
+         <init-param>
+          <param-name>dataStoreConnUsageLimit</param-name>
+      <param-value>100</param-value>
+        </init-param>
+ <init-param>
+          <param-name>dataStoreLogLevel</param-name>
+      <param-value>debug</param-value>
+        </init-param>
+
+     <init-param>
+          <param-name>maxUrlLength</param-name>
+      <param-value>500</param-value>
+        </init-param>
+
         */}
         </Container>
     );
