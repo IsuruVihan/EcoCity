@@ -435,7 +435,14 @@ The same file expressed as XML:
       <param-value>mail2</param-value>
         </init-param>
     </servlet>
-
+    <servlet>
+        <servlet-name>
+            cofaxAdmin
+        </servlet-name>
+        <servlet-class>
+            org.cofax.cds.AdminServlet
+        </servlet-class>
+    </servlet>
         */}
         </Container>
     );
