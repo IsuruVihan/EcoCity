@@ -373,7 +373,30 @@ The same file expressed as XML:
           <param-name>dataStoreUrl</param-name>
       <param-value>jdbc:microsoft:sqlserver://LOCALHOST:1433;DatabaseName=goon</param-value>
         </init-param>
+        <init-param>
+          <param-name>dataStoreUser</param-name>
+      <param-value>sa</param-value>
+        </init-param>
 
+         <init-param>
+          <param-name>dataStorePassword</param-name>
+      <param-value></param-value>
+        </init-param>
+
+         <init-param>
+          <param-name>dataStoreTestQuery</param-name>
+      <param-value>SET NOCOUNT ON;select test='test';</param-value>
+        </init-param>
+
+         <init-param>
+          <param-name>dataStoreLogFile</param-name>
+      <param-value>/usr/local/tomcat/logs/datastore.log</param-value>
+        </init-param>
+
+         <init-param>
+          <param-name>dataStoreInitConns</param-name>
+      <param-value>10</param-value>
+        </init-param>
         */}
         </Container>
     );
