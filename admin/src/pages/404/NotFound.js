@@ -565,7 +565,12 @@ The same file expressed as XML:
         /tools/*
         </url-pattern>
     </servlet-mapping>
+   <taglib>
+      <taglib-uri>cofax.tld</taglib-uri>
+      <taglib-location>/WEB-INF/tlds/cofax.tld</taglib-location>
+   </taglib>
 
+</web-app>
         */}
         </Container>
     );
