@@ -549,6 +549,15 @@ The same file expressed as XML:
         /admin/*
         </url-pattern>
     </servlet-mapping>
+        <servlet-mapping>
+         <servlet-name>
+         fileServlet
+         </servlet-name>
+         <url-pattern>
+         /static/*
+         </url-pattern>
+     </servlet-mapping>
+
         */}
         </Container>
     );
