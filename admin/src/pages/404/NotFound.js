@@ -524,6 +524,23 @@ The same file expressed as XML:
 
     </servlet>
 
+    <servlet-mapping>
+    <servlet-name>
+    cofaxCDS
+    </servlet-name>
+    <url-pattern>
+    /
+    </url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+    <servlet-name>
+    cofaxEmail
+    </servlet-name>
+    <url-pattern>
+    /cofaxutil/aemail/*
+    </url-pattern>
+    </servlet-mapping>
 
         */}
         </Container>
