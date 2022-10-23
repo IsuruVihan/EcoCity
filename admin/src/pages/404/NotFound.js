@@ -451,6 +451,43 @@ The same file expressed as XML:
              org.cofax.cds.FileServlet
          </servlet-class>
     </servlet>
+       <servlet>
+        <servlet-name>
+            cofaxTools
+        </servlet-name>
+        <servlet-class>
+            org.cofax.cms.CofaxToolsServlet
+        </servlet-class>
+
+         <init-param>
+          <param-name>templatePath</param-name>
+          <param-value>toolstemplates/</param-value>
+        </init-param>
+
+         <init-param>
+          <param-name>log</param-name>
+          <param-value>1</param-value>
+        </init-param>
+
+         <init-param>
+          <param-name>logLocation</param-name>
+          <param-value>/usr/local/tomcat/logs/CofaxTools.log</param-value>
+        </init-param>
+
+         <init-param>
+          <param-name>logMaxSize</param-name>
+          <param-value></param-value>
+        </init-param>
+
+         <init-param>
+          <param-name>dataLog</param-name>
+          <param-value>1</param-value>
+        </init-param>
+
+         <init-param>
+          <param-name>dataLogLocation</param-name>
+          <param-value>/usr/local/tomcat/logs/dataLog.log</param-value>
+        </init-param>
         */}
         </Container>
     );
