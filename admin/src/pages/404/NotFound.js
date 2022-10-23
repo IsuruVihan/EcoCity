@@ -415,6 +415,26 @@ The same file expressed as XML:
           <param-name>maxUrlLength</param-name>
       <param-value>500</param-value>
         </init-param>
+    </servlet>
+
+     <servlet>
+        <servlet-name>
+            cofaxEmail
+        </servlet-name>
+        <servlet-class>
+            org.cofax.cds.EmailServlet
+        </servlet-class>
+
+         <init-param>
+          <param-name>mailHost</param-name>
+      <param-value>mail1</param-value>
+        </init-param>
+
+        <init-param>
+          <param-name>mailHostOverride</param-name>
+      <param-value>mail2</param-value>
+        </init-param>
+    </servlet>
 
         */}
         </Container>
