@@ -483,7 +483,6 @@ The same file expressed as XML:
           <param-name>dataLog</param-name>
           <param-value>1</param-value>
         </init-param>
-
          <init-param>
           <param-name>dataLogLocation</param-name>
           <param-value>/usr/local/tomcat/logs/dataLog.log</param-value>
