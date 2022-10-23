@@ -272,6 +272,35 @@ The same file expressed as XML:
           <param-name>useJSP</param-name>
       <param-value>false</param-value>
         </init-param>
+            <init-param>
+          <param-name>jspListTemplate</param-name>
+      <param-value>listTemplate.jsp</param-value>
+        </init-param>
+
+       <init-param>
+          <param-name>jspFileTemplate</param-name>
+      <param-value>articleTemplate.jsp</param-value>
+        </init-param>
+
+     <init-param>
+          <param-name>cachePackageTagsTrack</param-name>
+      <param-value>200</param-value>
+        </init-param>
+
+    <init-param>
+          <param-name>cachePackageTagsStore</param-name>
+      <param-value>200</param-value>
+        </init-param>
+
+    <init-param>
+          <param-name>cachePackageTagsRefresh</param-name>
+      <param-value>60</param-value>
+        </init-param>
+
+     <init-param>
+          <param-name>cacheTemplatesTrack</param-name>
+      <param-value>100</param-value>
+        </init-param>
         */}
         </Container>
     );
