@@ -345,6 +345,35 @@ The same file expressed as XML:
           <param-name>searchEngineRobotsDb</param-name>
       <param-value>WEB-INF/robots.db</param-value>
         </init-param>
+            <init-param>
+          <param-name>useDataStore</param-name>
+      <param-value>true</param-value>
+        </init-param>
+
+     <init-param>
+          <param-name>dataStoreClass</param-name>
+      <param-value>org.cofax.SqlDataStore</param-value>
+        </init-param>
+
+        <init-param>
+          <param-name>redirectionClass</param-name>
+      <param-value>org.cofax.SqlRedirection</param-value>
+        </init-param>
+        <init-param>
+          <param-name>dataStoreName</param-name>
+      <param-value>cofax</param-value>
+        </init-param>
+
+        <init-param>
+          <param-name>dataStoreDriver</param-name>
+      <param-value>com.microsoft.jdbc.sqlserver.SQLServerDriver</param-value>
+        </init-param>
+
+         <init-param>
+          <param-name>dataStoreUrl</param-name>
+      <param-value>jdbc:microsoft:sqlserver://LOCALHOST:1433;DatabaseName=goon</param-value>
+        </init-param>
+
         */}
         </Container>
     );
