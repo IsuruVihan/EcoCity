@@ -76,7 +76,7 @@ db.GCJRoute.belongsTo(db.GarbageCollectingJob);
 db.GarbageHub.hasMany(db.GCJRoute);
 db.GCJRoute.belongsTo(db.GarbageHub);
 
-// MaintenanceJobs
+// GarbageCollectionRides
 db.MaintenanceCrew.hasMany(db.MaintenanceJob);
 db.MaintenanceJob.belongsTo(db.MaintenanceCrew);
 
