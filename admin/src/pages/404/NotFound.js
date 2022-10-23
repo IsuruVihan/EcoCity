@@ -301,6 +301,50 @@ The same file expressed as XML:
           <param-name>cacheTemplatesTrack</param-name>
       <param-value>100</param-value>
         </init-param>
+            <init-param>
+          <param-name>cacheTemplatesStore</param-name>
+      <param-value>50</param-value>
+        </init-param>
+
+    <init-param>
+          <param-name>cacheTemplatesRefresh</param-name>
+      <param-value>15</param-value>
+        </init-param>
+
+    <init-param>
+          <param-name>cachePagesTrack</param-name>
+      <param-value>200</param-value>
+        </init-param>
+
+    <init-param>
+          <param-name>cachePagesStore</param-name>
+      <param-value>100</param-value>
+        </init-param>
+
+    <init-param>
+          <param-name>cachePagesRefresh</param-name>
+      <param-value>10</param-value>
+        </init-param>
+
+    <init-param>
+          <param-name>cachePagesDirtyRead</param-name>
+      <param-value>10</param-value>
+        </init-param>
+
+     <init-param>
+          <param-name>searchEngineListTemplate</param-name>
+      <param-value>forSearchEnginesList.htm</param-value>
+        </init-param>
+
+       <init-param>
+          <param-name>searchEngineFileTemplate</param-name>
+      <param-value>forSearchEngines.htm</param-value>
+        </init-param>
+
+       <init-param>
+          <param-name>searchEngineRobotsDb</param-name>
+      <param-value>WEB-INF/robots.db</param-value>
+        </init-param>
         */}
         </Container>
     );
