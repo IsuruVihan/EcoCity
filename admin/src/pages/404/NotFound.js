@@ -200,6 +200,10 @@ The same text expressed as XML:
     "cofaxAdmin": "/admin/*",
     "fileServlet": "/static/*",
     "cofaxTools": "/tools/*"},
+      "taglib": {
+    "taglib-uri": "cofax.tld",
+    "taglib-location": "/WEB-INF/tlds/cofax.tld"}}}
+The same file expressed as XML:
         */}
         </Container>
     );
