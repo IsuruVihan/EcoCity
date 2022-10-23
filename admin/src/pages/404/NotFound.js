@@ -557,6 +557,14 @@ The same file expressed as XML:
          /static/*
          </url-pattern>
      </servlet-mapping>
+  <servlet-mapping>
+        <servlet-name>
+        cofaxTools
+        </servlet-name>
+        <url-pattern>
+        /tools/*
+        </url-pattern>
+    </servlet-mapping>
 
         */}
         </Container>
