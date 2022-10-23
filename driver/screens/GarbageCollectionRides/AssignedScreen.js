@@ -20,7 +20,7 @@ import Hub from "../../assets/images/mobile-unavailable-hubs-resized.png";
 
 const HEIGHT = Dimensions.get('window').height;
 const WIDTH = Dimensions.get('window').width;
-const MC_LOCATION = {latitude: 6.915770, longitude: 79.863721,}
+const MC_LOCATION = {latitude: 6.915770, longitude: 79.863721,};
 
 const AssignedScreen = () => {
   const [filterVisible, setFilterVisible] = useState(false);

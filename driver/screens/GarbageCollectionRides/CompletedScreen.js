@@ -13,9 +13,13 @@ import ViewComplaintImg from "../../assets/images/view-complaint.png";
 
 import {Responsive} from "../../helpers/Responsive";
 import {Button} from "@rneui/themed";
+import MapView, {Marker, PROVIDER_GOOGLE} from "react-native-maps";
+import MC from "../../assets/images/MC_resized.png";
+import Hub from "../../assets/images/mobile-unavailable-hubs-resized.png";
 
 const HEIGHT = Dimensions.get('window').height;
 const WIDTH = Dimensions.get('window').width;
+const MC_LOCATION = {latitude: 6.915770, longitude: 79.863721,};
 
 const CompletedScreen = () => {
   const [filterVisible, setFilterVisible] = useState(false);
@@ -24,23 +28,40 @@ const CompletedScreen = () => {
   const [fromDateFilter, setFromDateFilter] = useState(new Date('1999-08-18T04:48:09.000Z'));
   const [toDateFilter, setToDateFilter] = useState(new Date());
 
-  const [viewedJob, setViewedJob] = useState({id: '', date: '', completedOn: '', status: '', description: '',
-    hub: {id: '', location: {lat: '', long: ''}}
-  });
+  // const [viewedJob, setViewedJob] = useState({id: '', date: '', completedOn: '', status: '', description: '',
+  //   hub: {id: '', location: {lat: '', long: ''}}
+  // });
+  const [viewedJob, setViewedJob] = useState({id: '', date: '', status: '', completedOn: '', hubType: '',
+    hubs: [],});
   const [viewJobModalOpen, setViewJobModalOpen] = useState(false);
 
   const [data, setData] = useState([
     {
-      id: 'CMB-07-124', date: '2022-08-18T04:48:09.000Z', completedOn: '2022-08-18T04:48:09.000Z', status: 'Completed',
-      description: 'Description', hub: {id: '1', location: {lat: '12.432432', long: '43.2432566'}}
+      id: 'CMB-07-124', date: '2022-08-18T04:48:09.000Z', status: 'Completed', hubType: 'Paper',
+      completedOn: '2022-08-18T04:48:09.000Z',
+      hubs: [
+        {id: '1', location: {latitude: 12.432432, longitude: 43.2432566}},
+        {id: '2', location: {latitude: 12.434432, longitude: 43.2442566}},
+        {id: '3', location: {latitude: 12.436432, longitude: 43.2452566}},
+      ]
     },
     {
-      id: 'CMB-07-124', date: '2022-08-18T04:48:09.000Z', completedOn: '2022-08-18T04:48:09.000Z', status: 'Completed',
-      description: 'Description', hub: {id: '1', location: {lat: '12.432432', long: '43.2432566'}}
+      id: 'CMB-07-124', date: '2022-08-18T04:48:09.000Z', status: 'Completed', hubType: 'Glass',
+      completedOn: '2022-08-18T04:48:09.000Z',
+      hubs: [
+        {id: '1', location: {latitude: 12.432432, longitude: 43.2432566}},
+        {id: '2', location: {latitude: 12.434432, longitude: 43.2442566}},
+        {id: '3', location: {latitude: 12.436432, longitude: 43.2452566}},
+      ]
     },
     {
-      id: 'CMB-07-124', date: '2022-08-18T04:48:09.000Z', completedOn: '2022-08-18T04:48:09.000Z', status: 'Completed',
-      description: 'Description', hub: {id: '1', location: {lat: '12.432432', long: '43.2432566'}}
+      id: 'CMB-07-124', date: '2022-08-18T04:48:09.000Z', status: 'Completed', hubType: 'Plastic',
+      completedOn: '2022-08-18T04:48:09.000Z',
+      hubs: [
+        {id: '1', location: {latitude: 12.432432, longitude: 43.2432566}},
+        {id: '2', location: {latitude: 12.434432, longitude: 43.2442566}},
+        {id: '3', location: {latitude: 12.436432, longitude: 43.2452566}},
+      ]
     },
   ]);
   const [filteredData, setFilteredData] = useState([]);
@@ -89,14 +110,15 @@ const CompletedScreen = () => {
             date: filteredData[ind - 1].date,
             completedOn: filteredData[ind - 1].completedOn,
             status: filteredData[ind - 1].status,
-            hub: {
-              id: filteredData[ind - 1].hub.id,
-              location: {
-                lat: filteredData[ind - 1].hub.location.lat,
-                long: filteredData[ind - 1].hub.location.long
-              },
-            },
-            description: filteredData[ind - 1].description,
+            // hub: {
+            //   id: filteredData[ind - 1].hub.id,
+            //   location: {
+            //     lat: filteredData[ind - 1].hub.location.lat,
+            //     long: filteredData[ind - 1].hub.location.long
+            //   },
+            // },
+            hubs: filteredData[ind - 1].hubs,
+            hubType: filteredData[ind - 1].hubType,
           });
           ind++;
         }
@@ -107,7 +129,7 @@ const CompletedScreen = () => {
     // }
   }
 
-  const TableRow = (index, id, date, completedOn, status, hub, description) => {
+  const TableRow = (index, id, date, completedOn, status, hubs, hubType) => {
     let fullDay = date.split('T')[0].split('-');
     let fullDay2 = completedOn.split('T')[0].split('-');
     // let fullDay = date.split('/');
@@ -124,14 +146,15 @@ const CompletedScreen = () => {
             date: formattedDate,
             completedOn: formattedDate2,
             status: status,
-            hub: {
-              id: hub.id,
-              location: {
-                lat: hub.location.lat,
-                long: hub.location.long,
-              },
-            },
-            description: description,
+            // hub: {
+            //   id: hub.id,
+            //   location: {
+            //     lat: hub.location.lat,
+            //     long: hub.location.long,
+            //   },
+            // },
+            hubs: hubs,
+            hubType: hubType,
           });
           setViewJobModalOpen(true);
         }}
@@ -298,12 +321,14 @@ const CompletedScreen = () => {
             </View>
           </View>
           <View style={styles.screen1.viewJobModal.dataFields.inputSet}>
-            <Text style={styles.screen1.viewJobModal.dataFields.inputSet.label}>Garbage Hub Id</Text>
+            <Text style={styles.screen1.viewJobModal.dataFields.inputSet.label}>Garbage Hub Ids</Text>
             <View
               style={styles.screen1.viewJobModal.dataFields.inputSet.txtInput}
             >
               <Text style={styles.screen1.viewJobModal.dataFields.inputSet.txtInput.txt}>
-                {viewedJob.hub.id}
+                {viewedJob.hubs.map((hub) => {
+                  return "HUB-" + hub.id + " ";
+                })}
               </Text>
             </View>
           </View>
@@ -328,12 +353,12 @@ const CompletedScreen = () => {
             </View>
           </View>
           <View style={styles.screen1.viewJobModal.dataFields.inputSet}>
-            <Text style={styles.screen1.viewJobModal.dataFields.inputSet.label}>Description</Text>
+            <Text style={styles.screen1.viewJobModal.dataFields.inputSet.label}>Bin type</Text>
             <View
-              style={styles.screen1.viewJobModal.dataFields.inputSet.txtInput2}
+              style={styles.screen1.viewJobModal.dataFields.inputSet.txtInput}
             >
               <Text style={styles.screen1.viewJobModal.dataFields.inputSet.txtInput.txt}>
-                {viewedJob.description}
+                {viewedJob.hubType}
               </Text>
             </View>
           </View>
@@ -342,6 +367,24 @@ const CompletedScreen = () => {
             <View
               style={styles.screen1.viewJobModal.dataFields.inputSet.txtInput3}
             >
+              <MapView
+                provider={PROVIDER_GOOGLE}
+                showsUserLocation={true}
+                region={{
+                  latitude: 6.915770,
+                  longitude: 79.863721,
+                  latitudeDelta: 1,
+                  longitudeDelta: 1,
+                }}
+                minZoomLevel={12}
+                maxZoomLevel={30}
+                style={styles.screen1.viewJobModal.dataFields.inputSet.txtInput3.map}
+              >
+                <Marker coordinate={MC_LOCATION} image={MC}/>
+                {viewedJob.hubs.map((hub, idx) => {
+                  return <Marker key={idx} coordinate={hub.location} image={Hub} title={"HUB-ID: " + hub.id}/>;
+                })}
+              </MapView>
             </View>
           </View>
         </View>
@@ -374,8 +417,8 @@ const CompletedScreen = () => {
       <View style={styles.screen1.listContainer}>
         {paginatedData.map((complaint) => {
           if (complaint.page === activePage)
-            return TableRow(complaint.index, complaint.id, complaint.date, complaint.completedOn, complaint.status, complaint.hub,
-              complaint.description);
+            return TableRow(complaint.index, complaint.id, complaint.date, complaint.completedOn, complaint.status,
+              complaint.hubs, complaint.hubType);
         })}
       </View>
       <View style={styles.screen1.paginationContainer2}>
@@ -637,17 +680,20 @@ const styles = StyleSheet.create({
           txtInput3: {
             borderWidth: 2,
             borderColor: '#E8F5F6',
-            borderRadius: 10,
+            // borderRadius: 10,
             height: Responsive(32, HEIGHT),
             color: '#707070',
-            paddingHorizontal: 10,
-            paddingVertical: 5,
+            padding: 1,
             display: 'flex',
             flexDirection: 'row',
             justifyContent: 'flex-start',
             alignItems: 'flex-start',
             txt: {
               fontSize: 10,
+            },
+            map: {
+              width: '100%',
+              height: '100%',
             },
           },
           imgContainer: {
