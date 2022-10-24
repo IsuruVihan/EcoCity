@@ -6,6 +6,8 @@ import logo from '../assets/images/Logo1.png';
 import logoutIcon from '../assets/images/icons/log-out.png';
 import notificationIcon from '../assets/images/icons/notification.png';
 import Notifications from "./Notifications/Notifications";
+import {useDispatch} from "react-redux";
+import {logout} from "../redux/reducers/authSlice";
 
 const Header = () => {
     const location = useLocation();
@@ -13,6 +15,7 @@ const Header = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(true);
     const [notificationCount, setNotificationCount] = useState(2);
     const [isNotificationsVisible, setIsNotificationsVisible] = useState(false);
+    const dispatch = useDispatch();
 
     //update the url when the location changes
     useEffect(() => {
@@ -23,6 +26,9 @@ const Header = () => {
         setIsNotificationsVisible(!isNotificationsVisible);
     }
 
+    const handleLogout = () => {
+        dispatch(logout());
+    }
     if (isLoggedIn) {
 
         //Logged In header
@@ -49,7 +55,7 @@ const Header = () => {
                     </Col>
                     <Col lg={1} className='pe-2 d-flex align-items-center justify-content-evenly'>
                         <label className=' vertical-divider'/>
-                        <Image src={logoutIcon} className='logout-icon me-4'/>
+                        <Image src={logoutIcon} className='logout-icon me-4' onClick={handleLogout}/>
                     </Col>
                 </Navbar>
             </Row>

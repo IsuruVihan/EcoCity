@@ -6,7 +6,7 @@ import LockSign from '../../../assets/images/icons/password.png';
 import EyeSign from '../../../assets/images/icons/eye.png';
 import EyeHideSign from '../../../assets/images/icons/eye-hide.png';
 import {useDispatch, useSelector} from "react-redux";
-import {login} from "../../../redux/reducers/authSlice";
+import {login, resetErrors} from "../../../redux/reducers/authSlice";
 import {useNavigate} from "react-router";
 
 
@@ -28,6 +28,7 @@ const LoginForm = () => {
     useEffect(() => {
         if (isError) {
             alert('Invalid Username of Password!');
+            dispatch(resetErrors());
         }
     }, [isError])
 

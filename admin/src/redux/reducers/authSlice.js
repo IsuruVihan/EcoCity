@@ -1,6 +1,7 @@
 import {createSlice, createAsyncThunk} from "@reduxjs/toolkit";
 import {loginUser} from "../../pages/Login/api/api";
 import {useNavigate} from "react-router";
+import {resetLoginSession} from "../../helpers/SessionHelper";
 
 
 export const login = createAsyncThunk(
@@ -29,8 +30,14 @@ export const authSlice = createSlice({
     name: 'auth',
     initialState,
     reducers: {
-        logout: (status, action) => {
-
+        logout: (state, action) => {
+            resetLoginSession();
+            state.isUserLoggedIn = false;
+            state.loggedUser = null;
+        },
+        resetErrors: (state, action) => {
+            state.isError = false;
+            state.errorMessage = null;
         }
         // login: (state, action) => {
         //     let isLoggedIn = false;
@@ -76,5 +83,5 @@ export const authSlice = createSlice({
     }
 })
 
-export const {logout} = authSlice.actions;
+export const {logout, resetErrors} = authSlice.actions;
 export default authSlice.reducer;

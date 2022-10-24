@@ -1,30 +1,17 @@
 import React, {useEffect, useState} from 'react';
 
-const useSessionHelper = () => {
-    // const [loggedInUser, setLoggedInUser] = useState(sessionStorage.getItem('loggedInUser'));
-    //
-    // useEffect(() => {
-    //     console.log(loggedInUser);
-    // }, [loggedInUser])
-    //
-    // const setLoginSession = (loggedInUser) => {
-    //     setSession('loggedInUser', JSON.stringify(loggedInUser));
-    //     setLoggedInUser(loggedInUser);
-    // }
 
-    const resetLoginSession = () => {
-        sessionStorage.removeItem('loggedInUser');
-    }
-    const setSession = (key, value) => {
-        sessionStorage.setItem(key, value);
-    }
+export const resetLoginSession = () => {
+    sessionStorage.removeItem('loggedInUser');
+}
 
-    const readSession = (key) => {
-        sessionStorage.getItem(key);
-    }
+export const setSession = (key, value) => {
+    sessionStorage.setItem(key, value);
+}
 
-    return [readSession, resetLoginSession];
+export const readSession = (key) => {
+    sessionStorage.getItem(key);
 }
 
 
-export default useSessionHelper;
+

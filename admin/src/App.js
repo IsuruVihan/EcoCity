@@ -26,8 +26,13 @@ import readSession from "./helpers/SessionHelper";
 
 const App = () => {
     // const dispatch = useDispatch();
-    // const navigate = useNavigate();
+    const navigate = useNavigate();
     const isUserLoggedIn = useSelector((state) => state.auth.isUserLoggedIn);
+    useEffect(() => {
+        if (!isUserLoggedIn) {
+            navigate('/login');
+        }
+    }, [isUserLoggedIn])
     return (
         <div className="App mx-0 px-0 h-100">
             <Routes>
