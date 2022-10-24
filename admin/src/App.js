@@ -30,6 +30,7 @@ const App = () => {
     const isUserLoggedIn = useSelector((state) => state.auth.isUserLoggedIn);
     useEffect(() => {
         if (!isUserLoggedIn) {
+
             navigate('/login');
         }
     }, [isUserLoggedIn])

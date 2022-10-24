@@ -10,6 +10,7 @@ export const login = createAsyncThunk(
     async (userDetails, {rejectWithValue}) => {
         try {
             const response = await loginUser(userDetails);
+            response.data.rememberMe = userDetails.rememberMe;
             return response.data;
         } catch (e) {
             return rejectWithValue(e.response.data);
@@ -70,7 +71,9 @@ export const authSlice = createSlice({
                 refreshToken: data.refreshToken,
             };
             //If remembered save in local storage
-            // localStorage.setItem('rememberedUser', JSON.stringify(loggedInUser));
+            if (data.rememberMe) {
+                localStorage.setItem('rememberedUser', JSON.stringify(loggedInUser));
+            }
 
             //else save in session storage
             sessionStorage.setItem('loggedInUser', JSON.stringify(loggedInUser));
