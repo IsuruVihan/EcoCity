@@ -516,4 +516,3 @@ const styles = StyleSheet.create({
 });
 
 export default AreaMap;
-
