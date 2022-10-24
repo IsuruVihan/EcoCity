@@ -10,7 +10,7 @@ export const setSession = (key, value) => {
 }
 
 export const readSession = (key) => {
-    sessionStorage.getItem(key);
+    return JSON.parse(sessionStorage.getItem(key));
 }
 
 

@@ -2,6 +2,7 @@ import {createSlice, createAsyncThunk} from "@reduxjs/toolkit";
 import {loginUser} from "../../pages/Login/api/api";
 import {useNavigate} from "react-router";
 import {resetLoginSession} from "../../helpers/SessionHelper";
+import {useEffect} from "react";
 
 
 export const login = createAsyncThunk(
