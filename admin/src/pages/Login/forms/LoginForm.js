@@ -14,6 +14,7 @@ const LoginForm = () => {
     const [showPassword, setShowPassword] = useState(false);
     const [password, setPassword] = useState('');
     const [email, setEmail] = useState('');
+    const [rememberMe, setRememberMe] = useState(false);
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const isLoggedIn = useSelector((state) => state.auth.isUserLoggedIn);
@@ -37,7 +38,8 @@ const LoginForm = () => {
 
         const userDetails = {
             email: email,
-            password: password
+            password: password,
+            rememberMe: rememberMe
         }
         dispatch(login(userDetails));
     }
@@ -49,6 +51,9 @@ const LoginForm = () => {
 
     }
 
+    const handleRememberMe = (e) => {
+        setRememberMe(e.target.checked);
+    }
     return (
         <Container className="p-0">
             <Row className="m-0 mb-5">
@@ -124,7 +129,7 @@ const LoginForm = () => {
                     <Col className="p-0 pb-4" sm={12}>
                         <Row className="m-0">
                             <Col className="p-0 d-flex align-items-center">
-                                <input type='checkbox' style={{cursor: 'pointer'}}/>
+                                <input type='checkbox' style={{cursor: 'pointer'}} onChange={handleRememberMe}/>
                                 <label className='ms-1' style={{color: '#BFDDDE', fontSize: 15, fontWeight: '500'}}>Remember
                                     me</label>
                             </Col>
