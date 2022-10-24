@@ -1,14 +1,14 @@
-module.exports = (sequelize, DataTypes) => {
-  return sequelize.define("Complaint", {
-    id: {
-      primaryKey: true,
-      type: DataTypes.INTEGER,
-      autoIncrement: true,
-    },
-    hubornfcid: {
-      type: DataTypes.INTEGER,
-      allowNull: true,
-    },
+  module.exports = (sequelize, DataTypes) => {
+      return sequelize.define("Complaint", {
+          id: {
+              primaryKey: true,
+              type: DataTypes.INTEGER,
+              autoIncrement: true,
+          },
+          hubornfcid: {
+              type: DataTypes.INTEGER,
+              allowNull: true,
+          },
     category: {
       type: DataTypes.ENUM,
       values: [

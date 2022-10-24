@@ -11,11 +11,14 @@ import filtericon from "../../assets/images/icons/filter.png";
 import ComplaintsTable from "./tables/ComplaintsTable";
 import {FiFilter} from "react-icons/fi";
 import GarbageHubsTableFilter from "../Database/GarbageHubs/filters/GarbageHubsTableFilter";
+import {useDispatch} from "react-redux";
+import {fetchAll, test} from "../../redux/reducers/complaintsSlice";
 
 
 const Complaints = () => {
     const [open, setOpen] = useState(false);
-
+    const dispatch = useDispatch();
+    dispatch(fetchAll());
     return (
         <Col lg={10}>
             <Row className="px-3 pb-3 pt-2 d-flex align-items-center">

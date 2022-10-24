@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Col, Container, Image, Modal, Row, Table, Button} from "react-bootstrap";
 
 import ViewComplaintModal from "../modals/ViewComplaintModal";
@@ -8,12 +8,33 @@ import rightarrow from "../../../assets/images/icons/rightarrow.png";
 import close from "../../../assets/images/icons/close.png";
 import RemarksForm from "../forms/RemarksForm";
 import {FiArrowLeft, FiArrowRight, FiEdit} from "react-icons/fi";
+import {useDispatch, useSelector} from "react-redux";
+import {fetchAll} from "../../../redux/reducers/complaintsSlice";
 
 const ComplaintsTable = () => {
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
     const teampArray = Array.from(Array(10).keys());
+    const allComplaints = useSelector((state) => state.complaint.complaints);
+    const isLoading = useSelector((state) => state.complaint.isLoading);
+    const [complaintCount, setComplaintCount] = useState(0);
+    //onload
+    // const filteredComplaints = allComplaints.slice()
+    useEffect(() => {
+        if (!isLoading) {
+            setComplaintCount(allComplaints.length);
+        }
+    }, [isLoading])
+    const complaintsPerPage = 10;
+    const pageCount = Math.ceil(complaintCount / complaintsPerPage);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [startIndex, setStartIndex] = useState(0);
+    const [endIndex, setEndIndex] = useState(complaintsPerPage);
+    const [filteredComplaints, setFilteredComplaints] = useState(allComplaints.slice(startIndex, endIndex));
+
+    console.log(filteredComplaints);
+
     return (
         <Container>
             <Row>
@@ -30,19 +51,19 @@ const ComplaintsTable = () => {
                     </thead>
                     <tbody>
                     {
-                        teampArray.map((num, idx) => {
+                        filteredComplaints.map((complaint, idx) => {
+                            // const date = new Date(complaint.updatedAt);
                             return <tr style={{borderBottom: '1px solid #BFDDDE', cursor: 'pointer'}}
                                        onClick={handleShow}>
                                 <th scope="row">{idx + 1}</th>
-                                <td>1234</td>
-                                <td>Harith kumar</td>
-                                <td>hub</td>
-                                <td>CMB-7-12</td>
-                                <td>CMB-7-12</td>
+                                <td>{complaint.House.id}</td>
+                                <td>{complaint.House.firstname + ' ' + complaint.House.lastname}</td>
+                                <td>{complaint.category}</td>
+                                <td>{complaint.hubornfcid == null ? 'N/A' : complaint.hubornfcid}</td>
+                                <td>{complaint.updatedAt}</td>
                             </tr>
                         })
                     }
-
                     </tbody>
                 </Table>
 
