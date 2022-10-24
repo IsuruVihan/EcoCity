@@ -23,15 +23,21 @@ import Database from "./pages/Database/Database";
 import MaintenanceCrewMembers from "./pages/Database/MaintenanceCrewMembers/MaintenanceCrewMembers";
 import Admin from "./pages/Admin";
 import readSession from "./helpers/SessionHelper";
+import {loginRememberedUser} from "./redux/reducers/authSlice";
 
 const App = () => {
-    // const dispatch = useDispatch();
+    const dispatch = useDispatch();
     const navigate = useNavigate();
     const isUserLoggedIn = useSelector((state) => state.auth.isUserLoggedIn);
     useEffect(() => {
         if (!isUserLoggedIn) {
-
-            navigate('/login');
+            const rememberedUser = JSON.parse(localStorage.getItem('rememberedUser'));
+            if (rememberedUser) {
+                console.log(rememberedUser);
+                dispatch(loginRememberedUser(rememberedUser));
+            } else {
+                navigate('/login');
+            }
         }
     }, [isUserLoggedIn])
     return (

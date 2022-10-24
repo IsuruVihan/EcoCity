@@ -1,5 +1,5 @@
 import {createSlice, createAsyncThunk} from "@reduxjs/toolkit";
-import {loginUser} from "../../pages/Login/api/api";
+import {getLoggedInUser, loginUser} from "../../pages/Login/api/api";
 import {useNavigate} from "react-router";
 import {resetLoginSession} from "../../helpers/SessionHelper";
 import {useEffect} from "react";
@@ -17,6 +17,33 @@ export const login = createAsyncThunk(
         }
     }
 )
+
+export const loginRememberedUser = createAsyncThunk(
+    'auth/login/current',
+    async (rememberedUser) => {
+        const response = await getLoggedInUser(rememberedUser.accessToken, rememberedUser.refreshToken);
+        return response.data;
+    }
+)
+
+const registerLogin = (state, action) => {
+    const data = action.payload;
+    console.log(data);
+    const loggedInUser = {
+        email: data.email,
+        accessToken: data.accessToken,
+        refreshToken: data.refreshToken,
+    };
+    //If remembered save in local storage
+    if (data.rememberMe) {
+        localStorage.setItem('rememberedUser', JSON.stringify(loggedInUser));
+    }
+
+    //else save in session storage
+    sessionStorage.setItem('loggedInUser', JSON.stringify(loggedInUser));
+    state.loggedUser = loggedInUser;
+    state.isUserLoggedIn = true;
+}
 
 let initialState = {
     isUserLoggedIn: false,
@@ -63,26 +90,14 @@ export const authSlice = createSlice({
     },
     extraReducers: {
         [login.fulfilled]: (state, action) => {
-            const data = action.payload;
-            console.log(data);
-            const loggedInUser = {
-                email: data.email,
-                accessToken: data.accessToken,
-                refreshToken: data.refreshToken,
-            };
-            //If remembered save in local storage
-            if (data.rememberMe) {
-                localStorage.setItem('rememberedUser', JSON.stringify(loggedInUser));
-            }
-
-            //else save in session storage
-            sessionStorage.setItem('loggedInUser', JSON.stringify(loggedInUser));
-            state.loggedUser = loggedInUser;
-            state.isUserLoggedIn = true;
+            registerLogin(state, action);
         },
         [login.rejected]: (state, action) => {
             state.isError = true;
             state.errorMessage = action.payload.message;
+        },
+        [loginRememberedUser.fulfilled]: (state, action) => {
+            registerLogin(state, action);
         }
     }
 })
