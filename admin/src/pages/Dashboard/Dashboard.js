@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {Col, Row} from "react-bootstrap";
 
 import CountCard from "./cards/CountCard";
@@ -9,16 +9,24 @@ import Moment from 'moment';
 import SideNav from "../../common/SideNav";
 import Header from "../../common/Header";
 import Footer from "../../common/Footer";
+import {useDispatch, useSelector} from "react-redux";
+import {fetchWeights} from "../../redux/reducers/StatSlice";
 
 const Dashboard = () => {
     const formatDate = Moment().format('MMMM Do, YYYY');
+    const dispatch = useDispatch();
+
+
+    useEffect(() => {
+        dispatch(fetchWeights());
+    }, []);
 
     return (
         <Col lg={10}>
             <Row className="m-0">
                 <Col className="p-0 mt-4" style={{
                     fontWeight: 800, fontSize: 30, color: '#075061'
-                }} sm={12}>Hello Nisal,</Col>
+                }} sm={12}>Hello Harsha,</Col>
                 <Col className="p-0 mb-3" sm={12}>This is what we have got for you today - {formatDate}</Col>
                 <Col lg={10} className="p-0" style={{border: '2px solid #BFDDDE', borderRadius: '20px'}}>
                     <Row className="m-0">

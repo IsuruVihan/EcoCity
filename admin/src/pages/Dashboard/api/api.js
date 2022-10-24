@@ -15,8 +15,8 @@ export const createRecord = async ({player, reason, borrowDate, returnDate, quan
   });
 }
 
-export const getBorrowRecords = async (accessToken, refreshToken) => {
-  return await axios.get(`${process.env.REACT_APP_API}/borrow`, {
+export const getWeights = async (accessToken, refreshToken) => {
+  return await axios.get(`${process.env.REACT_APP_API}/stats/weight`, {
     headers: {
       accessToken: accessToken,
       refreshToken: refreshToken
