@@ -22,13 +22,12 @@ import GarbageCollectionRides from "./pages/GarbageCollectionRides/GarbageCollec
 import Database from "./pages/Database/Database";
 import MaintenanceCrewMembers from "./pages/Database/MaintenanceCrewMembers/MaintenanceCrewMembers";
 import Admin from "./pages/Admin";
-import useLoginSessionHelper from "./helpers/loginSessionHelper";
+import readSession from "./helpers/SessionHelper";
 
 const App = () => {
     // const dispatch = useDispatch();
     // const navigate = useNavigate();
     const isUserLoggedIn = useSelector((state) => state.auth.isUserLoggedIn);
-    console.log(isUserLoggedIn);
     return (
         <div className="App mx-0 px-0 h-100">
             <Routes>

@@ -1,27 +1,38 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Container, Row, Col, Image, Form} from "react-bootstrap";
 
 import AtSign from '../../../assets/images/icons/email.png';
 import LockSign from '../../../assets/images/icons/password.png';
 import EyeSign from '../../../assets/images/icons/eye.png';
 import EyeHideSign from '../../../assets/images/icons/eye-hide.png';
-import {useDispatch} from "react-redux";
-import {login, registerLogin} from "../../../redux/reducers/authSlice";
+import {useDispatch, useSelector} from "react-redux";
+import {login} from "../../../redux/reducers/authSlice";
+import {useNavigate} from "react-router";
+
 
 const LoginForm = () => {
     const [showPassword, setShowPassword] = useState(false);
     const [password, setPassword] = useState('');
     const [email, setEmail] = useState('');
+    const navigate = useNavigate();
     const dispatch = useDispatch();
+    const isLoggedIn = useSelector((state) => state.auth.isUserLoggedIn);
+
+    useEffect(() => {
+        if (isLoggedIn) {
+            navigate('/dashboard');
+        }
+    }, [isLoggedIn])
+
 
     const handleOneLoginClicked = (e) => {
         e.preventDefault();
+        // change this
         const userDetails = {
             email: 'harshaabeyvickrama@gmail.com',
             password: 'harsha98'
         }
-        dispatch(registerLogin(userDetails));
-
+        dispatch(login(userDetails));
     }
     const handleOnEmailChanged = (e) => {
         setEmail(e.target.value);

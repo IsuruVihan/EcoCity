@@ -1,14 +1,18 @@
-import {createSlice} from "@reduxjs/toolkit";
+import {createSlice, createAsyncThunk} from "@reduxjs/toolkit";
 import {loginUser} from "../../pages/Login/api/api";
-import {createAsyncThunk} from "@reduxjs/toolkit/src/createAsyncThunk";
+import {useNavigate} from "react-router";
 
-export const login = createAsyncThunk('auth/login', async (obj) => {
-    return loginUser(obj).then((res) => res);
-})
+
+export const login = createAsyncThunk(
+    'auth/login',
+    async (userDetails) => {
+        const response = await loginUser(userDetails);
+        return response.data;
+    })
 
 let initialState = {
     isUserLoggedIn: false,
-    loggedInUser: {
+    loggedUser: {
         email: null,
         accessToken: null,
         refreshToken: null
@@ -43,7 +47,19 @@ export const authSlice = createSlice({
     },
     extraReducers: {
         [login.fulfilled]: (state, action) => {
+            const data = action.payload;
+            const loggedInUser = {
+                email: data.email,
+                accessToken: data.accessToken,
+                refreshToken: data.refreshToken,
+            };
+            //If remembered save in local storage
+            // localStorage.setItem('rememberedUser', JSON.stringify(loggedInUser));
 
+            //else save in session storage
+            sessionStorage.setItem('loggedInUser', JSON.stringify(loggedInUser));
+            state.loggedUser = loggedInUser;
+            state.isUserLoggedIn = true;
         }
     }
 })
