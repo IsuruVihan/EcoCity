@@ -25,6 +25,16 @@ export const getAllComplaints = async (accessToken, refreshToken) => {
     });
 }
 
+export const resolveOrReject = async (accessToken, refreshToken, data) => {
+    return await axios.post(`${BASE_URL}/complaints/update`, {data}, {
+        headers: {
+            accessToken: accessToken,
+            refreshToken: refreshToken
+        }
+
+    });
+}
+
 export const returnEquipments = async (borrowRecordId, borrowedOn, returnedOn, accessToken, refreshToken) => {
     return await axios.put(`${process.env.REACT_APP_API}/borrow/return/${borrowRecordId}`, {
         borrowedOn: borrowedOn,

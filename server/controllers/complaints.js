@@ -36,7 +36,6 @@ exports.getComplaintsByUserId = async (req, res) => {
 }
 
 exports.getAllComplaints = async (req, res) => {
-
     Complaint.findAll({
         include: [{
             model: House,
@@ -48,6 +47,7 @@ exports.getAllComplaints = async (req, res) => {
         })
     })
 }
+
 exports.testing = async (req, res) => {
     console.log('test')
     const c = await Complaint.findAll();
@@ -67,6 +67,27 @@ exports.removeComplaint = async (req, res) => {
         })
         .catch((err) => {
             console.log("REMOVE COMPLAINT ERROR: ", err);
+            return res.status(400).json({
+                error: err,
+            });
+        });
+}
+
+exports.resolveReject = async (req, res) => {
+    const {id, action, remark} = req.body.data;
+    const status = action === 'reject' ? 'Removed' : 'Resolved'
+    Complaint.update({status: status, remarks: remark}, {
+        where: {
+            id: id
+        }
+    })
+        .then((complaint) => {
+            return res.status(200).json({
+                complaint: complaint,
+            });
+        })
+        .catch((err) => {
+            console.log("UPDATE COMPLAINT ERROR: ", err);
             return res.status(400).json({
                 error: err,
             });

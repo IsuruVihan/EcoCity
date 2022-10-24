@@ -1,11 +1,35 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Container, Row, Col, Image} from "react-bootstrap";
 
 import remarks from "../../../assets/images/icons/remarks.png";
+import {useDispatch, useSelector} from "react-redux";
+import {resolveRejectComplaint} from "../../../redux/reducers/complaintsSlice";
 
 const RemarksForm = (props) => {
     const complaint = props.complaint;
-
+    const [remark, setRemark] = useState('');
+    const dispatch = useDispatch();
+    const handleRemarkChange = (e) => {
+        setRemark(e.target.value);
+    }
+    const handleOnResolve = () => {
+        const remarkObject = {
+            id: complaint?.id,
+            action: 'resolve',
+            remark: remark
+        }
+        dispatch(resolveRejectComplaint(remarkObject));
+    }
+    const handleOnReject = () => {
+        const remarkObject = {
+            id: complaint?.id,
+            action: 'reject',
+            remark: remark
+        }
+        dispatch(resolveRejectComplaint(remarkObject)).then((res) => {
+            console.log(res)
+        });
+    }
     return (
         <Container>
             <Row>
@@ -30,7 +54,8 @@ const RemarksForm = (props) => {
                                                    paddingBottom: 5,
                                                    fontSize: 12
                                                }}
-                                               value={complaint.id}
+                                               value={complaint?.id}
+                                               readOnly
                                         />
                                     </Row>
                                 </Col>
@@ -53,7 +78,8 @@ const RemarksForm = (props) => {
                                                    paddingBottom: 5,
                                                    fontSize: 12
                                                }}
-                                               value={complaint.category}
+                                               value={complaint?.category}
+                                               readOnly
                                         />
                                     </Row>
                                 </Col>
@@ -76,7 +102,8 @@ const RemarksForm = (props) => {
                                                    paddingBottom: 5,
                                                    fontSize: 12
                                                }}
-                                               value={complaint.hubornfcid}
+                                               value={complaint?.hubornfcid}
+                                               readOnly
                                         />
                                     </Row>
                                 </Col>
@@ -100,6 +127,7 @@ const RemarksForm = (props) => {
                                                    fontSize: 12
                                                }}
                                                value={complaint.House.firstname + ' ' + complaint.House.lastname}
+                                               readOnly
                                         />
                                     </Row>
                                 </Col>
@@ -123,6 +151,7 @@ const RemarksForm = (props) => {
                                                    fontSize: 12
                                                }}
                                                value={complaint.createdAt}
+                                               readOnly
                                         />
                                     </Row>
                                 </Col>
@@ -146,6 +175,7 @@ const RemarksForm = (props) => {
                                                    fontSize: 12
                                                }}
                                                value={complaint.description}
+                                               readOnly
                                         />
                                     </Row>
                                 </Col>
@@ -168,6 +198,7 @@ const RemarksForm = (props) => {
                                                    fontSize: 12
                                                }}
                                                value={''}
+                                               readOnly
                                         />
                                     </Row>
                                 </Col>
@@ -189,7 +220,12 @@ const RemarksForm = (props) => {
                                         fontSize: 12
                                     }}>
                                         <Col xs={10}>
-                                            <input type="text" style={{border: 'none', outline: 'none', width: 350}}/>
+                                            <input
+                                                type="text"
+                                                style={{border: 'none', outline: 'none', width: 350}}
+                                                onChange={handleRemarkChange}
+                                                value={remark}
+                                            />
                                         </Col>
                                         <Col style={{marginTop: 2, textAlign: 'right'}}>
                                             <Image src={remarks} width='50%'/>
@@ -209,7 +245,9 @@ const RemarksForm = (props) => {
                                 justifyContent: 'space-evenly'
                             }}>
                             <button
-                                style={{width: 100, fontSize: 15, padding: 5, borderRadius: 8, border: 'none'}}>
+                                style={{width: 100, fontSize: 15, padding: 5, borderRadius: 8, border: 'none'}}
+                                onClick={handleOnReject}
+                            >
                                 Reject
                             </button>
                             <button
@@ -222,7 +260,9 @@ const RemarksForm = (props) => {
                                     backgroundColor: '#228693',
                                     color: '#fff',
                                     fontWeight: 'bold'
-                                }}>
+                                }}
+                                onClick={handleOnResolve}
+                            >
                                 Resolve
                             </button>
                         </Col>

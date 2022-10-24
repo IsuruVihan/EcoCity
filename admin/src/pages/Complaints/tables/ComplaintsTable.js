@@ -19,7 +19,7 @@ const ComplaintsTable = () => {
     const isLoading = useSelector((state) => state.complaint.isLoading);
     const [complaintCount, setComplaintCount] = useState(0);
     const [selectedcomplaintId, setSelectedcomplaintId] = useState(0);
-    const [selectedcomplaint, setSelectedcomplaint] = useState(0);
+    const [selectedcomplaint, setSelectedcomplaint] = useState(null);
     //onload
     // const filteredComplaints = allComplaints.slice()
     //handle show complaint
@@ -29,23 +29,28 @@ const ComplaintsTable = () => {
     }
 
     useEffect(() => {
+        if (!allComplaints) return;
         const selected = allComplaints.filter((c) => c.id === selectedcomplaintId);
         setSelectedcomplaint(selected[0]);
     }, [selectedcomplaintId])
 
     useEffect(() => {
+        if (!allComplaints) return;
         if (!isLoading) {
             setComplaintCount(allComplaints.length);
         }
     }, [isLoading])
+
     const complaintsPerPage = 10;
     const pageCount = Math.ceil(complaintCount / complaintsPerPage);
     const [currentPage, setCurrentPage] = useState(1);
     const [startIndex, setStartIndex] = useState(0);
     const [endIndex, setEndIndex] = useState(complaintsPerPage);
-    const [filteredComplaints, setFilteredComplaints] = useState(allComplaints.slice(startIndex, endIndex));
+    const [filteredComplaints, setFilteredComplaints] = useState(allComplaints ? allComplaints.slice(0, complaintsPerPage) : null);
 
-    console.log(filteredComplaints);
+    useEffect(() => {
+        allComplaints && allComplaints.slice(startIndex, complaintsPerPage)
+    }, [startIndex])
 
     return (
         <Container>
@@ -63,7 +68,7 @@ const ComplaintsTable = () => {
                     </thead>
                     <tbody>
                     {
-                        filteredComplaints.map((complaint, idx) => {
+                        filteredComplaints !== null && filteredComplaints.map((complaint, idx) => {
                             // const date = new Date(complaint.updatedAt);
                             return <tr style={{borderBottom: '1px solid #BFDDDE', cursor: 'pointer'}}
                                        onClick={() => {
@@ -81,7 +86,7 @@ const ComplaintsTable = () => {
                     </tbody>
                 </Table>
 
-                <Modal show={show} onHide={handleClose}>
+                <Modal show={show && selectedcomplaint != null} onHide={handleClose}>
                     <Modal.Header style={{border: 'none'}}>
                         <Row>
                             <Col style={{marginLeft: 430}}>

@@ -1,17 +1,35 @@
 import {createSlice, createAsyncThunk} from "@reduxjs/toolkit";
-import {getAllComplaints} from "../../pages/Complaints/api/api";
+import {getAllComplaints, resolveOrReject} from "../../pages/Complaints/api/api";
 import {readSession} from "../../helpers/SessionHelper";
 
 const loggedUser = readSession('loggedInUser');
-console.log(loggedUser.accessToken)
+
 
 export const fetchAll = createAsyncThunk(
     'complaint/fetchAll',
     async () => {
+        if (loggedUser == null) {
+            return;
+        }
         try {
             const response = await getAllComplaints(
                 loggedUser.accessToken,
                 loggedUser.refreshToken
+            );
+            return response.data;
+        } catch (e) {
+            // return rejectWithValue(e.response.data);
+        }
+    }
+)
+export const resolveRejectComplaint = createAsyncThunk(
+    'complaint/resolveOrReject',
+    async (remark) => {
+        try {
+            const response = await resolveOrReject(
+                loggedUser.accessToken,
+                loggedUser.refreshToken,
+                remark
             );
             return response.data;
         } catch (e) {
@@ -46,6 +64,9 @@ export const complaintsSlice = createSlice({
         },
         [fetchAll.pending]: (state) => {
             state.isLoading = true;
+        },
+        [resolveRejectComplaint.fulfilled]: (state, action) => {
+            alert('Resolve/Reject Succesful')
         }
     }
 })
