@@ -6,16 +6,18 @@ import logo from '../assets/images/Logo1.png';
 import logoutIcon from '../assets/images/icons/log-out.png';
 import notificationIcon from '../assets/images/icons/notification.png';
 import Notifications from "./Notifications/Notifications";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {logout} from "../redux/reducers/authSlice";
 
 const Header = () => {
     const location = useLocation();
     const [url, setUrl] = useState(null);
-    const [isLoggedIn, setIsLoggedIn] = useState(true);
+    // const [isLoggedIn, setIsLoggedIn] = useState(true);
     const [notificationCount, setNotificationCount] = useState(2);
     const [isNotificationsVisible, setIsNotificationsVisible] = useState(false);
     const dispatch = useDispatch();
+    const isLoggedIn = useSelector((state) => state.auth.isUserLoggedIn);
+
 
     //update the url when the location changes
     useEffect(() => {
@@ -67,7 +69,7 @@ const Header = () => {
         <Row className='bg-transparent shadow-effect top-0' fluid>
             <Row>
                 <Navbar className='py-2 px-5 navigation-bar justify-content-end'>
-                    <Link to='/' className={'me-3 px-4 py-2 link ' + (url === '/' ? 'active' : '')}>Home</Link>
+                    <Link to='/home' className={'me-3 px-4 py-2 link ' + (url === '/' ? 'active' : '')}>Home</Link>
                     <Link to='/login' className={'px-4 py-2 link ' + (url === '/login' ? 'active' : '')}>Login</Link>
                 </Navbar>
             </Row>
