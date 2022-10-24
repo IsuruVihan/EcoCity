@@ -5,17 +5,18 @@ import RemarksForm from "../forms/RemarksForm";
 
 import modelimage from "../../../assets/images/view-complaint.png";
 
-const ViewComplaintModal = () => {
-  return (
-    <Container>
-        <Row>
-            <Col style={{textAlign: 'center'}}>
-                <Image src={modelimage} fluid style={{width: '25%'}}/>
-            </Col>
-        </Row>
-        <Row>
-            <Col>
-                <Row style={{textAlign: 'center'}} className="d-flex">
+const ViewComplaintModal = (props) => {
+    const complaint = props.complaint;
+    return (
+        <Container>
+            <Row>
+                <Col style={{textAlign: 'center'}}>
+                    <Image src={modelimage} fluid style={{width: '25%'}}/>
+                </Col>
+            </Row>
+            <Row>
+                <Col>
+                    <Row style={{textAlign: 'center'}} className="d-flex">
                     <Col
                         style={{
                             marginRight: 130,
@@ -31,7 +32,7 @@ const ViewComplaintModal = () => {
                     </Col>
                 </Row>
                 <Row style={{marginTop: 10}}>
-                    <RemarksForm/>
+                    <RemarksForm complaint={complaint}/>
                 </Row>
             </Col>
         </Row>

@@ -14,13 +14,25 @@ import {fetchAll} from "../../../redux/reducers/complaintsSlice";
 const ComplaintsTable = () => {
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
     const teampArray = Array.from(Array(10).keys());
     const allComplaints = useSelector((state) => state.complaint.complaints);
     const isLoading = useSelector((state) => state.complaint.isLoading);
     const [complaintCount, setComplaintCount] = useState(0);
+    const [selectedcomplaintId, setSelectedcomplaintId] = useState(0);
+    const [selectedcomplaint, setSelectedcomplaint] = useState(0);
     //onload
     // const filteredComplaints = allComplaints.slice()
+    //handle show complaint
+    const handleShow = (id) => {
+        setSelectedcomplaintId(id);
+        setShow(true);
+    }
+
+    useEffect(() => {
+        const selected = allComplaints.filter((c) => c.id === selectedcomplaintId);
+        setSelectedcomplaint(selected[0]);
+    }, [selectedcomplaintId])
+
     useEffect(() => {
         if (!isLoading) {
             setComplaintCount(allComplaints.length);
@@ -54,9 +66,11 @@ const ComplaintsTable = () => {
                         filteredComplaints.map((complaint, idx) => {
                             // const date = new Date(complaint.updatedAt);
                             return <tr style={{borderBottom: '1px solid #BFDDDE', cursor: 'pointer'}}
-                                       onClick={handleShow}>
+                                       onClick={() => {
+                                           handleShow(complaint.id);
+                                       }}>
                                 <th scope="row">{idx + 1}</th>
-                                <td>{complaint.House.id}</td>
+                                <td>{complaint.id}</td>
                                 <td>{complaint.House.firstname + ' ' + complaint.House.lastname}</td>
                                 <td>{complaint.category}</td>
                                 <td>{complaint.hubornfcid == null ? 'N/A' : complaint.hubornfcid}</td>
@@ -76,7 +90,7 @@ const ComplaintsTable = () => {
                         </Row>
                     </Modal.Header>
                     <Modal.Body>
-                        <ViewComplaintModal/>
+                        <ViewComplaintModal complaint={selectedcomplaint}/>
                     </Modal.Body>
                 </Modal>
             </Row>
@@ -135,7 +149,6 @@ const ComplaintsTable = () => {
                     <label className={'single-page-number mx-1 active-page-number px-2'}> 1 </label>
                     <label className={'single-page-number mx-1 px-2'}> 2 </label>
                     <label className={'single-page-number mx-1 px-2'}> 3 </label>
-
                     <FiArrowRight color='#228693' size='23px' id='next'/>
                 </Col>
             </Row>
