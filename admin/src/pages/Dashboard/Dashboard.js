@@ -9,8 +9,8 @@ import Moment from 'moment';
 import SideNav from "../../common/SideNav";
 import Header from "../../common/Header";
 import Footer from "../../common/Footer";
-import {useDispatch, useSelector} from "react-redux";
-import {fetchWeights} from "../../redux/reducers/StatSlice";
+import {useDispatch} from "react-redux";
+import {fetchUserCounts, fetchWeights} from "../../redux/reducers/StatSlice";
 
 const Dashboard = () => {
     const formatDate = Moment().format('MMMM Do, YYYY');
@@ -19,7 +19,8 @@ const Dashboard = () => {
 
     useEffect(() => {
         dispatch(fetchWeights());
-    }, []);
+        dispatch(fetchUserCounts());
+    },);
 
     return (
         <Col lg={10}>

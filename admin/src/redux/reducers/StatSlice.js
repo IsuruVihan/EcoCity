@@ -1,6 +1,7 @@
 import {createSlice, createAsyncThunk} from "@reduxjs/toolkit";
-import {getWeights} from "../../pages/Dashboard/api/api";
+import {getWeights, getUserCounts} from "../../pages/Dashboard/api/api";
 import {useDispatch} from "react-redux";
+
 
 export const fetchWeights = createAsyncThunk(
     'stat/weights',
@@ -13,10 +14,23 @@ export const fetchWeights = createAsyncThunk(
         }
     }
 )
+export const fetchUserCounts = createAsyncThunk(
+    'stat/userCounts',
+    async () => {
+        try {
+            const response = await getUserCounts();
+            console.log(response);
+            return response.data;
+        } catch (e) {
+            // return rejectWithValue(e.response.data);
+        }
+    }
+)
 
 
 let initialState = {
     weights: null,
+    userCounts: null
 };
 export const statSlice = createSlice({
     name: 'stat',
@@ -34,8 +48,8 @@ export const statSlice = createSlice({
             weights.total = totalWeight;
             state.weights = weights;
         },
-        [fetchWeights.rejected]: (state, action) => {
-
+        [fetchUserCounts.fulfilled]: (state, action) => {
+            state.userCounts = action.payload;
         },
 
     }

@@ -20,7 +20,8 @@ const WeightCard = () => {
                 </Col>
                 <Col className="p-0 d-flex align-items-center justify-content-center" lg={12}
                      style={{color: '#042434'}}>
-                    <label style={{fontWeight: 700, fontSize: 55}}>{weights.total}<span style={{fontSize: 25}}>Kg</span></label>
+                    <label style={{fontWeight: 700, fontSize: 55}}>{weights?.total}<span
+                        style={{fontSize: 25}}>Kg</span></label>
                 </Col>
                 <Col className="p-0 pb-4 d-flex align-items-center justify-content-center" lg={12}
                      style={{color: '#042434'}}>

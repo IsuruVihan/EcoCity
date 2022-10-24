@@ -1,9 +1,8 @@
 const db = require('../models/index');
-const {House, Bin} = db;
+const {House, Bin, Driver, MaintenanceCrew, GarbageHub,} = db;
 const sequelize = require('sequelize');
 
 exports.getAllWeights = async (req, res) => {
-    const {email} = req.params;
     Bin.findAll({
         attributes: [
             "bintype",
@@ -16,4 +15,20 @@ exports.getAllWeights = async (req, res) => {
                 weights: result,
             });
         });
+}
+
+exports.getAllUserCount = async (req, res) => {
+    console.log()
+    const driver = await Driver.count();
+    const maintenance = await MaintenanceCrew.count();
+    const hubs = await GarbageHub.count();
+    const house = await House.count();
+
+    return res.status(200).json({
+        driver: driver,
+        maintenance: maintenance,
+        hubs: hubs,
+        house: house
+    });
+
 }
