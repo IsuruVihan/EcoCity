@@ -5,8 +5,11 @@ import TruckDriver from '../../../assets/images/driver-profile.png';
 import Crew from '../../../assets/images/crew-profile.png';
 import Hub from '../../../assets/images/hub.png';
 import House from '../../../assets/images/house-profile.png';
+import {useSelector} from "react-redux";
 
 const CountCard = () => {
+    const userCount = useSelector((state) => state.stat.userCounts);
+    console.log(userCount)
     return (
         <Container className="p-0">
             <Row className="m-0 ">
@@ -29,7 +32,7 @@ const CountCard = () => {
                                  color: '#042434',
                                  textAlign: "center",
                                  lineHeight: "70px"
-                             }}>26</Col>
+                             }}>{userCount?.driver}</Col>
                     </Row>
                 </Col>
                 <Col sm={12} className="p-0 mb-2" style={{border: '2px solid #BFDDDE', borderRadius: '20px'}}>
@@ -46,7 +49,7 @@ const CountCard = () => {
                         }}>Maintenance</Col>
                         <Col lg={12} className="p-0" style={{
                             fontWeight: 700, fontSize: 50, color: '#042434', textAlign: "center", lineHeight: "70px"
-                        }}>13</Col>
+                        }}>{userCount?.maintenance}</Col>
                     </Row>
                 </Col>
                 <Col sm={12} className="p-0 mb-2" style={{border: '2px solid #BFDDDE', borderRadius: '20px'}}>
@@ -63,7 +66,7 @@ const CountCard = () => {
                         }}>Garbage Hubs</Col>
                         <Col lg={12} className="p-0" style={{
                             fontWeight: 700, fontSize: 50, color: '#042434', textAlign: "center", lineHeight: "70px"
-                        }}>11</Col>
+                        }}>{userCount?.hubs}</Col>
                     </Row>
                 </Col>
                 <Col sm={12} className="p-0" style={{border: '2px solid #BFDDDE', borderRadius: '20px'}}>
@@ -80,7 +83,7 @@ const CountCard = () => {
                         }}>Houses</Col>
                         <Col lg={12} className="p-0" style={{
                             fontWeight: 700, fontSize: 50, color: '#042434', textAlign: "center", lineHeight: "70px"
-                        }}>73</Col>
+                        }}>{userCount?.house}</Col>
                     </Row>
                 </Col>
             </Row>
