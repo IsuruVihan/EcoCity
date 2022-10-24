@@ -1,8 +1,9 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {Container} from "react-bootstrap";
 import {Routes, Route, useNavigate} from "react-router";
 import {ToastContainer} from 'react-toastify';
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import {Navigate} from "react-router";
 
 import Home from "./pages/Home/Home";
 import Login from "./pages/Login/Login";
@@ -21,11 +22,17 @@ import GarbageCollectionRides from "./pages/GarbageCollectionRides/GarbageCollec
 import Database from "./pages/Database/Database";
 import MaintenanceCrewMembers from "./pages/Database/MaintenanceCrewMembers/MaintenanceCrewMembers";
 import Admin from "./pages/Admin";
+import readSession from "./helpers/SessionHelper";
 
 const App = () => {
     // const dispatch = useDispatch();
-    // const navigate = useNavigate();
-
+    const navigate = useNavigate();
+    const isUserLoggedIn = useSelector((state) => state.auth.isUserLoggedIn);
+    useEffect(() => {
+        if (!isUserLoggedIn) {
+            navigate('/login');
+        }
+    }, [isUserLoggedIn])
     return (
         <div className="App mx-0 px-0 h-100">
             <Routes>
@@ -33,21 +40,30 @@ const App = () => {
                 <Route path={'/login'} element={<Login/>}/>
                 <Route path={'/forgot-password'} element={<ForgotPassword/>}/>
                 <Route path={'/check-your-email'} element={<CheckYourEmail/>}/>
-                <Route path={'/'} element={<Admin/>}>
-                    <Route path={'dashboard'} element={<Dashboard/>}/>
-                    <Route path={'database'}>
-                        <Route exact path={'garbage-hubs'} element={<GarbageHubs/>}/>
-                        <Route exact path={'truck-drivers'} element={<TruckDrivers/>}/>
-                        <Route exact path={'garbage-trucks'} element={<GarbageTrucks/>}/>
-                        <Route exact path={'maintenance'} element={<MaintenanceCrewMembers/>}/>
-                        <Route exact path={'house'} element={<Houses/>}/>
-                        <Route exact path={'nfc-tags'} element={<NFCTags/>}/>
-                    </Route>
-                    <Route path={'/area-map'} element={<AreaMap/>}/>
-                    <Route path={'/complaints'} element={<Complaints/>}/>
-                    <Route path={'/maintenance'} element={<MaintenanceJobs/>}/>
-                    <Route path={'/garbage-collection'} element={<GarbageCollectionRides/>}/>
-                </Route>
+
+                {
+                    isUserLoggedIn && (
+                        <Route path={'/'} element={<Admin/>}>
+                            <Route path={'dashboard'} element={<Dashboard/>}/>
+                            <Route path={'database'}>
+                                <Route exact path={'garbage-hubs'} element={<GarbageHubs/>}/>
+                                <Route exact path={'truck-drivers'} element={<TruckDrivers/>}/>
+                                <Route exact path={'garbage-trucks'} element={<GarbageTrucks/>}/>
+                                <Route exact path={'maintenance'} element={<MaintenanceCrewMembers/>}/>
+                                <Route exact path={'house'} element={<Houses/>}/>
+                                <Route exact path={'nfc-tags'} element={<NFCTags/>}/>
+                            </Route>
+                            <Route path={'/area-map'} element={<AreaMap/>}/>
+                            <Route path={'/complaints'} element={<Complaints/>}/>
+                            <Route path={'/maintenance'} element={<MaintenanceJobs/>}/>
+                            <Route path={'/garbage-collection'} element={<GarbageCollectionRides/>}/>
+                        </Route>
+                    )
+                }
+                {
+                    !isUserLoggedIn && <Route path={'*'} element={<Navigate to={'/login'}/>}/>
+                }
+
             </Routes>
         </div>
     );
