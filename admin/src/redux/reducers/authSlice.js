@@ -5,10 +5,15 @@ import {useNavigate} from "react-router";
 
 export const login = createAsyncThunk(
     'auth/login',
-    async (userDetails) => {
-        const response = await loginUser(userDetails);
-        return response.data;
-    })
+    async (userDetails, {rejectWithValue}) => {
+        try {
+            const response = await loginUser(userDetails);
+            return response.data;
+        } catch (e) {
+            return rejectWithValue(e.response.data);
+        }
+    }
+)
 
 let initialState = {
     isUserLoggedIn: false,
@@ -16,7 +21,9 @@ let initialState = {
         email: null,
         accessToken: null,
         refreshToken: null
-    }
+    },
+    isError: false,
+    errorMessage: null
 };
 export const authSlice = createSlice({
     name: 'auth',
@@ -48,6 +55,7 @@ export const authSlice = createSlice({
     extraReducers: {
         [login.fulfilled]: (state, action) => {
             const data = action.payload;
+            console.log(data);
             const loggedInUser = {
                 email: data.email,
                 accessToken: data.accessToken,
@@ -60,6 +68,10 @@ export const authSlice = createSlice({
             sessionStorage.setItem('loggedInUser', JSON.stringify(loggedInUser));
             state.loggedUser = loggedInUser;
             state.isUserLoggedIn = true;
+        },
+        [login.rejected]: (state, action) => {
+            state.isError = true;
+            state.errorMessage = action.payload.message;
         }
     }
 })

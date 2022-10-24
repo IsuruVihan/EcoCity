@@ -17,6 +17,7 @@ const LoginForm = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const isLoggedIn = useSelector((state) => state.auth.isUserLoggedIn);
+    const isError = useSelector((state) => state.auth.isError);
 
     useEffect(() => {
         if (isLoggedIn) {
@@ -24,13 +25,18 @@ const LoginForm = () => {
         }
     }, [isLoggedIn])
 
+    useEffect(() => {
+        if (isError) {
+            alert('Invalid Username of Password!');
+        }
+    }, [isError])
 
     const handleOneLoginClicked = (e) => {
         e.preventDefault();
-        // change this
+
         const userDetails = {
-            email: 'harshaabeyvickrama@gmail.com',
-            password: 'harsha98'
+            email: email,
+            password: password
         }
         dispatch(login(userDetails));
     }
@@ -67,6 +73,7 @@ const LoginForm = () => {
                                         <input
                                             className='input-field'
                                             type='email'
+                                            required
                                             style={{width: '100%', color: '#7CB6B8', outline: 'none', border: 'none'}}
                                             onChange={handleOnEmailChanged}
                                         />
@@ -87,6 +94,7 @@ const LoginForm = () => {
                                     </Col>
                                     <Col className="p-0" sm={10}>
                                         <input
+                                            required
                                             className='input-field'
                                             type={showPassword ? 'text' : 'password'}
                                             style={{width: '100%', color: '#7CB6B8', outline: 'none', border: 'none'}}
