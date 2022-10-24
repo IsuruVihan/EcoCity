@@ -12,7 +12,7 @@ import MC from "../assets/images/MC_resized.png";
 import {API_TOKEN} from "@env";
 import {Responsive} from "../helpers/Responsive";
 
-const MC_LOCATION = {latitude: 6.915770, longitude: 79.863721,}
+const MC_LOCATION = {latitude: 6.915770, longitude: 79.863721,};
 const HEIGHT = Dimensions.get('window').height;
 const WIDTH = Dimensions.get('window').width;
 
@@ -222,14 +222,14 @@ const AreaMap = () => {
             </Marker>;
           })}
           <Marker coordinate={MC_LOCATION} image={MC}/>
-          <MapViewDirections
-            origin={myLocation}
-            destination={routingLocation}
-            apikey={API_TOKEN}
-            strokeWidth={4}
-            strokeColor="#228693"
-            mode={"DRIVING"}
-          />
+          {/*<MapViewDirections*/}
+          {/*  origin={myLocation}*/}
+          {/*  destination={routingLocation}*/}
+          {/*  apikey={API_TOKEN}*/}
+          {/*  strokeWidth={4}*/}
+          {/*  strokeColor="#228693"*/}
+          {/*  mode={"DRIVING"}*/}
+          {/*/>*/}
         </MapView>
       </View>
     </View>
