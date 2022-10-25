@@ -98,6 +98,7 @@ const RidesTable = () => {
                                 allGCJ.map((gcj, index) => {
                                     return <tr style={{borderBottom: '1px solid #BFDDDE', cursor: 'pointer'}}
                                                id={gcj.id}
+                                               key={index}
                                                onClick={() => {
                                                    handleOnGCJClicked(gcj.id)
                                                }}>

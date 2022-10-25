@@ -31,6 +31,7 @@ const ComplaintsTable = () => {
     }
 
 
+
     useEffect(() => {
         if (!allComplaints) return;
         const selected = allComplaints.filter((c) => c.id === selectedcomplaintId);
