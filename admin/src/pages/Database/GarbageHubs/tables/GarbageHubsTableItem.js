@@ -62,8 +62,8 @@ const GarbageHubsTableItem = (props) => {
                 </td>
                 <td>
                     <label className='action-item-group'>
-                        <FiEdit id={bins[0].id} onClick={handleOnGarbageBinEditClicked}/>
-                        <FiTrash onClick={handleOnGarbageBinDeleteClicked}/>
+                        <FiEdit id={hub.id} onClick={handleOnGarbageBinEditClicked}/>
+                        <FiTrash id={hub.id} onClick={handleOnGarbageBinDeleteClicked}/>
                     </label>
                 </td>
             </tr>
@@ -80,8 +80,8 @@ const GarbageHubsTableItem = (props) => {
                             </td>
                             <td>
                                 <div className='action-item-group'>
-                                    <FiEdit id={bin.id} onClick={handleOnGarbageBinEditClicked}/>
-                                    <FiTrash id={bin.id} onClick={handleOnGarbageBinDeleteClicked}/>
+                                    <FiEdit id={hub.id} onClick={handleOnGarbageBinEditClicked}/>
+                                    <FiTrash id={hub.id} onClick={handleOnGarbageBinDeleteClicked}/>
                                 </div>
                             </td>
                         </tr>
