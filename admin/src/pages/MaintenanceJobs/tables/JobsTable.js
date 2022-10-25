@@ -68,6 +68,7 @@ const JobsTable = () => {
                         <th scope="col">Bin Type</th>
                     </tr>
                     </thead>
+
                     <tbody>
                     {
                         allMJ.map((mj, index) => {
