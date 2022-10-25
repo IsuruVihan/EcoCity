@@ -7,7 +7,7 @@ const sequelize = require("sequelize");
 
 //get hub details
 exports.getBin = async (req, res) => {
-    const {id} = req.body.data;
+    const {id} = req.params;
 
     Bin.findAll({
             include: [{

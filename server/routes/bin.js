@@ -6,7 +6,7 @@ const {openLid, dumpGarbage, getAllHubs, updateHub, removeHub, getHub} = require
 const {getBin} = require("../controllers/bin");
 
 // Endpoints
-router.get('/bin/get', getBin);
+router.get('/bin/:id', getBin);
 // router.put('/complaints', validateToken, removeComplaint);
 // router.get('/complaints/all', validateToken, getAllComplaints);
 // router.post('/complaints/update', validateToken, resolveReject);
