@@ -1,5 +1,14 @@
 import React, {useContext, useEffect, useState} from 'react';
-import {Text, View, StyleSheet, Image, Dimensions, TouchableOpacity, TextInput} from "react-native";
+import {
+  Text,
+  View,
+  StyleSheet,
+  Image,
+  Dimensions,
+  TouchableOpacity,
+  TextInput,
+  TouchableWithoutFeedback
+} from "react-native";
 import MapView, {Callout, Marker, PROVIDER_GOOGLE} from "react-native-maps";
 import MapViewDirections from "react-native-maps-directions";
 import Geolocation from "@react-native-community/geolocation";
@@ -42,23 +51,8 @@ const AreaMap = () => {
   const [organicWeight, setOrganicWeight] = useState("Any");
 
   useEffect(() => {
-    Geolocation.getCurrentPosition((pos) => {
-      const crd = pos.coords;
-      setMyLocation({
-        latitude: crd.latitude,
-        longitude: crd.longitude,
-      });
-    }, (err) => {
-      console.log(err);
-    });
-    getGarbageHubDetails(loggedUser)
-      .then((hubs) => {
-        setHubs(hubs.data.hubs);
-        // console.log(hubs.data.hubs[0]);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    getMyLocation();
+    garbageHubs();
     // {
     //   "Bins": [
     //     {"GarbageHubId": 1, "bintype": "Organic", "garbagelevel": "0%", "garbageweight": 0, "id": 1, "methane": 1000, "temperature": 25.6},
@@ -79,12 +73,39 @@ const AreaMap = () => {
     // console.log(2);
   }, [hubs]);
 
+  const refresh = () => {
+    getMyLocation();
+    garbageHubs();
+    filterHubs();
+  }
+
+  const getMyLocation = () => {
+    Geolocation.getCurrentPosition((pos) => {
+      const crd = pos.coords;
+      setMyLocation({
+        latitude: crd.latitude,
+        longitude: crd.longitude,
+      });
+    }, (err) => {
+      console.log(err);
+    });
+  }
+
+  const garbageHubs = () => {
+    getGarbageHubDetails(loggedUser)
+      .then((hubs) => {
+        setHubs(hubs.data.hubs);
+        // console.log(hubs.data.hubs[0]);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+
   const filterHubs = () => {
     let tempHubs = [];
-
     if(hubs.length === 0)
       return;
-
     // User selection
     let actualWeights = {
       paper: paperWeight === "Any" ? 0 : parseInt(paperWeight.split(' ')[1].split('k')[0]),
@@ -93,7 +114,6 @@ const AreaMap = () => {
       organic: organicWeight === "Any" ? 0 : parseInt(organicWeight.split(' ')[1].split('k')[0]),
     };
     console.log("ACTUAL WEIGHTS: ", actualWeights);
-
     loop:
     for (let i = 0; i < hubs.length; i++) {
       for (let j = 0; j < hubs[i].Bins.length; j++) {
@@ -131,7 +151,7 @@ const AreaMap = () => {
   }
 
   const FindComponent = () => {
-    const InputSetComponent = (label, weightSet, btnTxt, selectMethod, selctedValue) => {
+    const InputSetComponent = (label, weightSet, btnTxt, selectMethod, selectedValue) => {
       return <View style={styles.areaMap.createComplaintModal.content.inputSet}>
         <Text style={styles.areaMap.createComplaintModal.content.inputSet.label}>{label}</Text>
         <SelectDropdown
@@ -139,7 +159,7 @@ const AreaMap = () => {
           defaultValue="Any"
           defaultButtonText={btnTxt}
           onSelect={(selectedItem) => selectMethod(selectedItem)}
-          buttonTextAfterSelection={(selectedItem) => selectedItem}
+          buttonTextAfterSelection={selectedValue}
           rowTextForSelection={(item) => item}
           buttonStyle={{
             width: '100%',
@@ -278,10 +298,10 @@ const AreaMap = () => {
   return (
     <View style={styles.areaMap}>
       {FindComponent()}
-      <View style={styles.areaMap.sec1}>
+      <TouchableOpacity style={styles.areaMap.sec1} onPress={() => refresh()}>
         <Text style={styles.areaMap.sec1.txt}>Garbage Hubs</Text>
-      </View>
-      <View style={styles.areaMap.sec2}>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.areaMap.sec2} onPress={() => refresh()}>
         <View style={styles.areaMap.sec2.legend}>
           <Image style={styles.areaMap.sec2.legend.img} source={AllHub}/>
           <Text style={styles.areaMap.sec2.legend.txt}>Available</Text>
@@ -290,7 +310,7 @@ const AreaMap = () => {
           <Image style={styles.areaMap.sec2.legend.img} source={AssignedHub}/>
           <Text style={styles.areaMap.sec2.legend.txt}>Repairing (Unavailable)</Text>
         </View>
-      </View>
+      </TouchableOpacity>
       <View style={styles.areaMap.sec3}>
         <MapView
           provider={PROVIDER_GOOGLE}
