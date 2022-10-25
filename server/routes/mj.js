@@ -1,5 +1,5 @@
 const express = require('express');
-const {getInitialDetails, createCollectionJob, getAllGCJ} = require("../controllers/mj");
+const {getInitialDetails, getAllGCJ, createMaintenanceJob} = require("../controllers/mj");
 const router = express.Router();
 
 // Controllers
@@ -7,7 +7,7 @@ const router = express.Router();
 
 // Endpoints
 router.get('/mj/initial', getInitialDetails);
-router.post('/mj/create', createCollectionJob);
+router.post('/mj/create', createMaintenanceJob);
 router.get('/mj/all', getAllGCJ);
 // router.put('/complaints', validateToken, removeComplaint);
 // router.get('/complaints/all', validateToken, getAllComplaints);

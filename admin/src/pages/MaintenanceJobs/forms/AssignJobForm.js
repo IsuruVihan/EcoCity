@@ -1,10 +1,51 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import {Container, Row, Col, Button} from "react-bootstrap";
 
 import AssignJobMapFilter from "../filters/AssignJobMapFilter";
 import AssignJobMap from "../maps/AssignJobMap";
+import {createMJ, getInitial} from "../api/api";
+import {useSelector} from "react-redux";
 
 const AssignJobForm = () => {
+    const loggedUser = useSelector((state) => state.auth.loggedUser);
+    const [initialDetails, setInitialDetails] = useState(null);
+    const [crewMember, setCrewMember] = useState(null);
+    const [selectedComplaint, setSelectedComplaint] = useState(null);
+    const [selectedComplaintDescription, setSelectedComplaintDescription] = useState(null);
+
+    useEffect(() => {
+        getInitial(loggedUser.accessToken, loggedUser.refreshToken)
+            .then((res) => {
+                setInitialDetails(res.data)
+            })
+    }, [])
+
+    const handleOnCrewMemberChange = (e) => {
+        e.stopPropagation();
+        setCrewMember(e.target.value);
+    }
+
+    const handleOnComplaintChange = (e) => {
+        e.stopPropagation();
+        initialDetails.complaints.map((c) => {
+            if (c.id == e.target.value) {
+                setSelectedComplaint(c);
+            }
+        })
+    }
+
+    const handleOnSubmit = (e) => {
+        e.stopPropagation();
+        const newMJ = {
+            complaintId: selectedComplaint.id,
+            crew: crewMember
+        }
+        createMJ(loggedUser.accessToken, loggedUser.refreshToken, newMJ).then((res) => {
+            alert(res.data.message);
+            // props.hide();
+        })
+    }
+    if (!initialDetails) return;
     return (
         <Container>
             <Row className="p-0 m-0 pb-3 ps-3">
@@ -33,9 +74,15 @@ const AssignJobForm = () => {
                                 paddingTop: 3,
                                 fontSize: 12,
                             }}
+                            onChange={handleOnCrewMemberChange}
                         >
-                            <option value="">--Select--</option>
-                            <option value="member1">Harith Kumar</option>
+                            <option value="-1">--Select--</option>
+                            {
+                                initialDetails.crew.map((crew) => {
+                                    return <option key={crew.id}
+                                                   value={crew.id}>{crew.name + ' (' + crew.id + ')'}</option>
+                                })
+                            }
                         </select>
                     </Row>
                 </Col>
@@ -50,10 +97,11 @@ const AssignJobForm = () => {
                     }}
                 >
                     <Row className={"m-0 p-0 pb-2"} style={{paddingBottom: 5}}>
-                        Garbage Hub ID
+                        Complaint ID
                     </Row>
                     <Row className={"m-0 p-0 "}>
                         <select
+                            onChange={handleOnComplaintChange}
                             id="hubId"
                             name="hubId"
                             style={{
@@ -65,8 +113,15 @@ const AssignJobForm = () => {
                                 fontSize: 12,
                             }}
                         >
-                            <option value="option1">CMB-07-12</option>
-                            <option value="option2">CMB-07-13</option>
+                            <option key={-1}
+                                    value={''}>{'Select Complaint'}</option>
+                            {
+                                initialDetails.complaints.map((complaint) => {
+                                    console.log(complaint)
+                                    return <option key={complaint.id}
+                                                   value={complaint.id}>{complaint.id}</option>
+                                })
+                            }
                         </select>
                     </Row>
                 </Col>
@@ -123,6 +178,7 @@ const AssignJobForm = () => {
                 type="text"
                 rows="1"
                 cols="50"
+                readOnly
                 style={{
                     outline: "none",
                     border: "2px solid #E8F5F6",
@@ -131,6 +187,7 @@ const AssignJobForm = () => {
                     paddingTop: 3,
                     fontSize: 12,
                 }}
+                value={selectedComplaint ? selectedComplaint.description : ''}
             />
                     </Row>
                 </Col>
@@ -218,23 +275,23 @@ const AssignJobForm = () => {
                 {/*    </Row>*/}
                 {/*</Col>*/}
             </Row>
-            <Row className="p-0 m-0 ps-3 pb-2 pt-2">
-                <Col sm={4} className="p-0 m-0" style={{fontWeight: "bold"}}>
-                    Location
-                </Col>
-                <Col sm={5}></Col>
-                <Col sm={3} className="p-0 pe-2 m-0">
-                    <AssignJobMapFilter/>
-                </Col>
-            </Row>
-            <Row className="p-3 pt-1 m-0" style={{height: 200}}>
-                <Col
-                    className="p-0 m-0"
-                    style={{borderRadius: 10}}
-                >
-                    <AssignJobMap/>
-                </Col>
-            </Row>
+            {/*<Row className="p-0 m-0 ps-3 pb-2 pt-2">*/}
+            {/*    <Col sm={4} className="p-0 m-0" style={{fontWeight: "bold"}}>*/}
+            {/*        Location*/}
+            {/*    </Col>*/}
+            {/*    <Col sm={5}></Col>*/}
+            {/*    <Col sm={3} className="p-0 pe-2 m-0">*/}
+            {/*        <AssignJobMapFilter/>*/}
+            {/*    </Col>*/}
+            {/*</Row>*/}
+            {/*<Row className="p-3 pt-1 m-0" style={{height: 200}}>*/}
+            {/*    <Col*/}
+            {/*        className="p-0 m-0"*/}
+            {/*        style={{borderRadius: 10}}*/}
+            {/*    >*/}
+            {/*        <AssignJobMap/>*/}
+            {/*    </Col>*/}
+            {/*</Row>*/}
             <Row className="m-0 p-3 pt-0">
                 <Col className="p-0 m-0" sm={10}></Col>
                 <Col className="p-0 m-0" sm={2}>
@@ -245,6 +302,7 @@ const AssignJobForm = () => {
                             backgroundColor: "#228693",
                             border: "none"
                         }}
+                        onClick={handleOnSubmit}
                     >
                         Assign
                     </Button>

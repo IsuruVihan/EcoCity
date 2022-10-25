@@ -1,14 +1,14 @@
 const db = require('../models/index');
 const bcrypt = require("bcrypt");
 const {isRecordExists} = require("./common");
-const {Bin, GarbageHub, Truck, Driver, GarbageCollectingJob, GCJRoute, MaintenanceCrew, Complaint} = db;
+const {Bin, GarbageHub, Truck, Driver, GarbageCollectingJob, GCJRoute, MaintenanceCrew, Complaint, MaintenanceJob} = db;
 const {Op, Sequelize} = require("sequelize");
 const sequelize = require("sequelize");
 
 //get initial details
 exports.getInitialDetails = async (req, res) => {
     const complaints = await Complaint.findAll({
-            attributes: ['id', 'description','hubornfcid'],
+            attributes: ['id', 'description', 'hubornfcid'],
             where: {
                 category: 'Garbage hub'
             }
@@ -55,29 +55,20 @@ exports.getAllGCJ = async (req, res) => {
 }
 
 //create collection job
-exports.createCollectionJob = async (req, res) => {
+exports.createMaintenanceJob = async (req, res) => {
     //check if exists
-    const {hubs, driver, truck, date, binType} = req.body.cj;
+    const {complaintId, crew} = req.body.mj;
     const timeNow = new Date().toLocaleTimeString('en-GB');
+    const dateNow = new Date().toLocaleDateString();
 
     //write to gcjJobs table
-    const gcj = await GarbageCollectingJob.create({
-        date: date,
+    const mj = await MaintenanceJob.create({
+        date: dateNow,
         time: timeNow,
-        bintype: binType,
         status: 'Not started',
-        'DriverId': driver,
-        'TruckId': truck
+        'MaintenanceCrewId': crew,
     })
-    const records = hubs.map((hub, index) => {
-        return {
-            order: index + 1,
-            collected: false,
-            'GarbageCollectingJobId': gcj.id,
-            'GarbageHubId': hub
-        }
-    })
-    const gcjRoute = await GCJRoute.bulkCreate(records);
+
     return res.status(200).json({
         status: 'SUCCESS',
         message: 'Job Created Succesfully'
