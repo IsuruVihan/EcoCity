@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Col, Container, Image, Row, Collapse, Button} from "react-bootstrap";
 
 import SideNav from "../../common/SideNav";
@@ -18,7 +18,12 @@ import {fetchAll, test} from "../../redux/reducers/complaintsSlice";
 const Complaints = () => {
     const [open, setOpen] = useState(false);
     const dispatch = useDispatch();
-    dispatch(fetchAll());
+
+    useEffect(() => {
+        console.log('disptahcing')
+        dispatch(fetchAll());
+    }, []);
+
     return (
         <Col lg={10}>
             <Row className="px-3 pb-3 pt-2 d-flex align-items-center">

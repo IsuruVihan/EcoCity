@@ -1,6 +1,6 @@
 const db = require('../models/index');
 const bcrypt = require("bcrypt");
-const {NFCTag, Bin} = db;
+const {NFCTag, Bin,GarbageHub} = db;
 
 exports.openLid = async (req, res) => {
   const {id, serial} = req.body;
@@ -32,5 +32,19 @@ exports.dumpGarbage = async (req, res) => {
       return res.status(200).json({
         data: "Success",
       });
+    });
+}
+
+//get all hub details
+exports.getAllHubs = async (req,res)=>{
+    GarbageHub.findAll({
+        include: [{
+            model: Bin,
+            attributes: {exclude:['GarbageHubId']}
+        },]
+    }).then((hubs) => {
+        return res.status(200).json({
+            hubs,
+        });
     });
 }

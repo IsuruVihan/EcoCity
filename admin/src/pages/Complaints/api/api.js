@@ -17,6 +17,8 @@ export const createRecord = async ({player, reason, borrowDate, returnDate, quan
 }
 
 export const getAllComplaints = async (accessToken, refreshToken) => {
+    console.log('access' + accessToken)
+    console.log('ref' + refreshToken)
     return await axios.get(`${BASE_URL}/complaints/all`, {
         headers: {
             accessToken: accessToken,

@@ -20,7 +20,7 @@ const Dashboard = () => {
     useEffect(() => {
         dispatch(fetchWeights());
         dispatch(fetchUserCounts());
-    },);
+    },[]);
 
     return (
         <Col lg={10}>
