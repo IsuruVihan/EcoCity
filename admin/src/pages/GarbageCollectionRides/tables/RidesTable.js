@@ -242,7 +242,7 @@ const RidesTable = () => {
                             </Row>
                         </Modal.Header>
                         <Modal.Body>
-                            <AssignRideModal/>
+                            <AssignRideModal hide={handleassignClose}/>
                         </Modal.Body>
                     </Modal>
                 </Col>

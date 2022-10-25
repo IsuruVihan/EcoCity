@@ -11,7 +11,7 @@ import map from "../../../assets/images/popup-model-map.png";
 import {useSelector} from "react-redux";
 import {createCJ, getInitial} from "../api/api";
 
-const AssignRideForm = () => {
+const AssignRideForm = (props) => {
     const styles = {
         multiselectContainer: () => { // To change css for multiselect (Width,height,etc..)
 
@@ -77,9 +77,9 @@ const AssignRideForm = () => {
             binType: selectedBinType,
             date: selectedDate
         }
-        console.log(collectionRide)
         createCJ(loggedUser.accessToken, loggedUser.refreshToken, collectionRide).then((res) => {
             alert(res.data.message);
+            props.hide();
         })
 
     }
