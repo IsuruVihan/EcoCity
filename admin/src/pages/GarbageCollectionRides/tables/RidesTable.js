@@ -17,10 +17,19 @@ const RidesTable = () => {
     const [allGCJ, setAllGCJ] = useState(null);
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
     const [showassign, setShowassign] = useState(false);
     const handleassignClose = () => setShowassign(false);
     const handleassingShow = () => setShowassign(true);
+    const [currentSelectedGCJ, setCurrentSelectedGCJ] = useState(null);
+    const handleOnGCJClicked = (id) => {
+        allGCJ.filter((gcj) => {
+            if (gcj.id === id) {
+                setCurrentSelectedGCJ(gcj);
+            }
+            return 0;
+        })
+        setShow(true);
+    };
 
     useEffect(() => {
         getAllGCJobs(loggedUser.accessToken, loggedUser.refreshToken).then((res) => {
@@ -88,7 +97,10 @@ const RidesTable = () => {
                             {
                                 allGCJ.map((gcj, index) => {
                                     return <tr style={{borderBottom: '1px solid #BFDDDE', cursor: 'pointer'}}
-                                               onClick={handleShow}>
+                                               id={gcj.id}
+                                               onClick={() => {
+                                                   handleOnGCJClicked(gcj.id)
+                                               }}>
                                         <th scope="row" style={{color: '#B9B9B9'}}>{index + 1}</th>
                                         <td>{gcj.id}</td>
                                         <td>{gcj.Driver.firstname + ' ' + gcj.Driver.lastname}</td>
@@ -122,7 +134,7 @@ const RidesTable = () => {
                                     </Row>
                                 </Modal.Header>
                                 <Modal.Body>
-                                    <ViewRideModal/>
+                                    <ViewRideModal gcj={currentSelectedGCJ}/>
                                 </Modal.Body>
                             </Modal>
                             </tbody>
