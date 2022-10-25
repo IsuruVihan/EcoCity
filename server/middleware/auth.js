@@ -2,7 +2,6 @@ const jwt = require('jsonwebtoken');
 
 exports.validateToken = async (req, res, next) => {
   const {accesstoken, refreshtoken} = req.headers;
-
   if (
     typeof accesstoken == 'undefined' || accesstoken === '' || accesstoken == null ||
     typeof refreshtoken == 'undefined' || refreshtoken === '' || refreshtoken == null
