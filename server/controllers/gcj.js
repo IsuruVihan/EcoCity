@@ -1,7 +1,7 @@
 const db = require('../models/index');
 const bcrypt = require("bcrypt");
 const {isRecordExists} = require("./common");
-const {NFCTag, Bin, GarbageHub, Truck, Driver} = db;
+const {NFCTag, Bin, GarbageHub, Truck, Driver, GarbageCollectingJob, GCJRoute} = db;
 const {Op, Sequelize} = require("sequelize");
 const sequelize = require("sequelize");
 
@@ -63,26 +63,30 @@ exports.getInitialDetails = async (req, res) => {
 exports.createCollectionJob = async (req, res) => {
     //check if exists
     const {hubs, driver, truck, date, binType} = req.body.cj;
+    const timeNow = new Date().toLocaleTimeString('en-GB');
+
+    //write to gcjJobs table
+    const gcj = await GarbageCollectingJob.create({
+        date: date,
+        time: timeNow,
+        bintype: binType,
+        status: 'Not started',
+        'DriverId': driver,
+        'TruckId': truck
+    })
+    const records = hubs.map((hub, index) => {
+        return {
+            order: index + 1,
+            collected: false,
+            'GarbageCollectingJobId': gcj.id,
+            'GarbageHubId': hub
+        }
+    })
+    const gcjRoute = await GCJRoute.bulkCreate(records);
     return res.status(200).json({
-        data: req.body.cj
+        status: 'SUCCESS',
+        message: 'Job Created Succesfully'
     });
-    // GarbageHub.update({latitude: lat, longitude: lon}, {
-    //     where: {
-    //         id: id
-    //     }
-    // }).then((hub) => {
-    //     return res.status(200).json({
-    //         status: "Hub Updated successfully",
-    //         hub,
-    //     });
-    // }).catch((err) => {
-    //     return res.status(400).json({
-    //         status: "failed",
-    //         err
-    //     })
-    // });
-
-
 }
 
 // //Remove hub details

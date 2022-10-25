@@ -79,7 +79,7 @@ const AssignRideForm = () => {
         }
         console.log(collectionRide)
         createCJ(loggedUser.accessToken, loggedUser.refreshToken, collectionRide).then((res) => {
-            console.log(res.data);
+            alert(res.data.message);
         })
 
     }
