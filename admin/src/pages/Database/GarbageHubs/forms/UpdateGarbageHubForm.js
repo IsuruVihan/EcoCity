@@ -7,7 +7,9 @@ import GarbageHubNewLocationMap from "../maps/GarbageHubNewLocationMap";
 //Temporary imports
 import mapImage from '../../../../assets/images/temp/popupMap.png';
 
-const UpdateGarbageHubForm = () => {
+const UpdateGarbageHubForm = (props) => {
+    const id = props.id;
+
     return (
         <Container>
             <Row>

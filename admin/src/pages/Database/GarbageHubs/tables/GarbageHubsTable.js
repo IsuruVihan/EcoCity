@@ -11,8 +11,8 @@ import {useSelector} from "react-redux";
 // import hubsDetails from '../../../../data/HubDetails.json';
 
 const GarbageHubsTable = (props) => {
-    const dbHubs = useSelector((state) => state.database.hubs);
-    const [hubsDetails, setHubsDetails] = useState(null);
+    // const dbHubs = useSelector((state) => state.database.hubs);
+    const [hubsDetails, setHubsDetails] = useState(useSelector((state) => state.database.hubs));
     const hubs = hubsDetails ? hubsDetails.hubs : [];
     const hubCount = hubs ? hubs.length : 0;
     const hubsPerPage = 3;
@@ -25,10 +25,10 @@ const GarbageHubsTable = (props) => {
     const [currentSelectedHubID, setCurrentSelectedHubID] = useState('');
     const [currentSelectedHub, setCurrentSelectedHub] = useState(filteredHubs[0]);
 
-    useEffect(() => {
-        if (!dbHubs) return;
-        setHubsDetails(dbHubs);
-    }, [dbHubs])
+    // useEffect(() => {
+    //     if (!dbHubs) return;
+    //     setHubsDetails(dbHubs);
+    // }, [dbHubs])
 
     useEffect(() => {
         console.log(hubsDetails)
@@ -114,7 +114,7 @@ const GarbageHubsTable = (props) => {
         }
 
         //add active class to current page number
-        currentPageNumberElement.classList.add('active-page-number');
+        // currentPageNumberElement.classList.add('active-page-number');
     }
 
     // const changeNextPrevButtonSelection = () => {

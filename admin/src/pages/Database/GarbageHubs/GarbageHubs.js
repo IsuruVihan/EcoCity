@@ -1,9 +1,8 @@
 import React, {useEffect, useState} from 'react';
-import {Col, Container, Image, Row} from "react-bootstrap";
+import {Col, Image, Row} from "react-bootstrap";
 import '../../../assets/styles/Database/database.css';
 import '../../../assets/styles/Database/GarbageHubs/GarbageHubs.css';
 
-import SideNav from "../../../common/SideNav";
 import GarbageHubsTable from "./tables/GarbageHubsTable";
 import GarbageHubsTableFilter from "./filters/GarbageHubsTableFilter";
 import GarbageHubsMap from "./maps/GarbageHubsMap";

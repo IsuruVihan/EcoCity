@@ -1,20 +1,8 @@
 import React, {useEffect} from 'react';
 import {Col, Container, Row} from "react-bootstrap";
 import {Outlet} from 'react-router-dom';
-
-import Footer from "../../common/Footer";
-import {Route, Routes} from "react-router";
-import GarbageHubs from "./GarbageHubs/GarbageHubs";
-import TruckDrivers from "./TruckDrivers/TruckDrivers";
-import GarbageTrucks from "./GarbageTrucks/GarbageTrucks";
-import MaintenanceJobs from "../MaintenanceJobs/MaintenanceJobs";
-import Houses from "./Houses/Houses";
-import NFCTags from "./NFCTags/NFCTags";
 import Header from "../../common/Header";
 import SideNav from "../../common/SideNav";
-import {fetchUserCounts, fetchWeights} from "../../redux/reducers/StatSlice";
-import {useDispatch} from "react-redux";
-import {fetchHubs} from "../../redux/reducers/databaseSlice";
 
 const Database = () => {
 

@@ -11,7 +11,7 @@ const GarbageHubsTableItem = (props) => {
     const bins = hub.Bins;
     const [isEditHubDetailsVisible, setIsEditHubDetailsVisible] = useState(false);
     const [isDeleteBinVisible, setIsDeleteBinVisible] = useState(false);
-
+    const [selectedBinId, setSelectedBinId] = useState(-1);
     const getFillLevelClasses = (level) => {
         let classes = 'px-2 label ';
         if (level <= 25) {
@@ -33,8 +33,9 @@ const GarbageHubsTableItem = (props) => {
     }
 
     const handleOnGarbageBinEditClicked = (e) => {
-        setIsEditHubDetailsVisible(true);
         e.stopPropagation();
+        setSelectedBinId(e.target.id);
+        setIsEditHubDetailsVisible(true);
     }
     const handleOnGarbageBinDeleteClicked = (e) => {
         setIsDeleteBinVisible(true);
@@ -61,7 +62,7 @@ const GarbageHubsTableItem = (props) => {
                 </td>
                 <td>
                     <label className='action-item-group'>
-                        <FiEdit id={1} onClick={handleOnGarbageBinEditClicked}/>
+                        <FiEdit id={bins[0].id} onClick={handleOnGarbageBinEditClicked}/>
                         <FiTrash onClick={handleOnGarbageBinDeleteClicked}/>
                     </label>
                 </td>
@@ -79,8 +80,8 @@ const GarbageHubsTableItem = (props) => {
                             </td>
                             <td>
                                 <div className='action-item-group'>
-                                    <FiEdit id={1} onClick={handleOnGarbageBinEditClicked}/>
-                                    <FiTrash id={1} onClick={handleOnGarbageBinDeleteClicked}/>
+                                    <FiEdit id={bin.id} onClick={handleOnGarbageBinEditClicked}/>
+                                    <FiTrash id={bin.id} onClick={handleOnGarbageBinDeleteClicked}/>
                                 </div>
                             </td>
                         </tr>
@@ -88,7 +89,7 @@ const GarbageHubsTableItem = (props) => {
                 })
             }
             </tbody>
-            <UpdateGarbageHubModal show={isEditHubDetailsVisible} onHide={handleOnHubCloseClicked}/>
+            <UpdateGarbageHubModal show={isEditHubDetailsVisible} onHide={handleOnHubCloseClicked} binid={selectedBinId}/>
             <DeleteGarbagBinModal show={isDeleteBinVisible} onHide={handleOnEditBinClicked}
                                   onConfirm={handleOnBinDeleted}/>
         </Fragment>
