@@ -33,7 +33,6 @@ const RidesTable = () => {
 
     useEffect(() => {
         getAllGCJobs(loggedUser.accessToken, loggedUser.refreshToken).then((res) => {
-            console.log(res.data.gcjs);
             setAllGCJ(res.data.gcjs);
         })
     }, [])

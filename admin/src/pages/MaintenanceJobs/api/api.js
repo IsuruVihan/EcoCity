@@ -20,3 +20,12 @@ export const createMJ = async (accessToken, refreshToken, mj) => {
     }
   });
 }
+
+export const getAllMJobs = async (accessToken, refreshToken, id) => {
+  return await axios.get(`${BASE_URL}/mj/all`, {
+    headers: {
+      accessToken: accessToken,
+      refreshToken: refreshToken
+    }
+  });
+}
