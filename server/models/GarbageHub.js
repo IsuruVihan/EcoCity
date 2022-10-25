@@ -6,10 +6,12 @@ module.exports = (sequelize, DataTypes) => {
       autoIncrement: true,
     },
     latitude: {
-      type: DataTypes.STRING(1000),
+      // type: DataTypes.STRING(1000),
+      type: DataTypes.DOUBLE,
     },
     longitude: {
-      type: DataTypes.STRING(1000),
+      // type: DataTypes.STRING(1000),
+      type: DataTypes.DOUBLE,
     },
     status: {
       type: DataTypes.ENUM,
