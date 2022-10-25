@@ -1,4 +1,20 @@
 import axios from "axios";
+import {BASE_URL} from "../../../../api/config";
+
+export const getHubs = async (accessToken, refreshToken) => {
+  return await axios.get(`${BASE_URL}/bins/all`, {
+    headers: {
+      accessToken: accessToken,
+      refreshToken: refreshToken
+    }
+  });
+}
+
+
+
+
+
+
 
 export const createRecord = async ({player, reason, borrowDate, returnDate, quantities}, accessToken, refreshToken) => {
   return await axios.post(`${process.env.REACT_APP_API}/borrow`, {

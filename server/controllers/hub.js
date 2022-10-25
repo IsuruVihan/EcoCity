@@ -3,6 +3,7 @@ const bcrypt = require("bcrypt");
 const {isRecordExists} = require("./common");
 const {NFCTag, Bin, GarbageHub} = db;
 const {Op} = require("sequelize");
+const sequelize = require("sequelize");
 
 exports.openLid = async (req, res) => {
     const {id, serial} = req.body;
@@ -53,6 +54,45 @@ exports.getAllHubs = async (req, res) => {
             hubs,
         });
     });
+}
+
+//get hub details
+exports.getHub = async (req, res) => {
+    const {id} = req.body.data;
+
+    Bin.findAll({
+            attributes: [
+                "bintype",
+                [sequelize.fn("SUM", sequelize.col("garbageweight")), "garbageweight"],
+            ],
+            group: ['bintype'],
+            where: {
+                "GarbageHubId": id
+            }
+        }
+    ).then((hubs) => {
+        return res.status(200).json({
+            hubs,
+        });
+    });
+    // GarbageHub.findAll({
+    //         include: [{
+    //             model:Bin,
+    //             attributes: [
+    //                 "bintype",
+    //                 [sequelize.fn("SUM", sequelize.col("garbageweight")), "garbageweight"],
+    //             ],
+    //             group: ['bintype'],
+    //         }],
+    //         where: {
+    //
+    //         },
+    //     }
+    // ).then((hubs) => {
+    //     return res.status(200).json({
+    //         hubs,
+    //     });
+    // });
 }
 
 //update hub details
