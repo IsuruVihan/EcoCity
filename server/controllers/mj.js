@@ -41,16 +41,14 @@ exports.getInitialDetails = async (req, res) => {
 }
 
 //getAll jobs
-exports.getAllGCJ = async (req, res) => {
-    const allGCjs = await GarbageCollectingJob.findAll({
+exports.getAllMJ = async (req, res) => {
+    const allMj = await MaintenanceJob.findAll({
         include: [{
-            model: Driver,
-        }, {
-            model: Truck
+            model: MaintenanceCrew,
         }]
     });
     return res.status(200).json({
-        'gcjs': allGCjs
+        'mjs': allMj
     });
 }
 
