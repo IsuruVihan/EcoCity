@@ -159,7 +159,7 @@ const AreaMap = () => {
           defaultValue="Any"
           defaultButtonText={btnTxt}
           onSelect={(selectedItem) => selectMethod(selectedItem)}
-          buttonTextAfterSelection={selectedValue}
+          buttonTextAfterSelection={(selectedItem) => selectedItem}
           rowTextForSelection={(item) => item}
           buttonStyle={{
             width: '100%',
