@@ -1,19 +1,18 @@
 import React, {useEffect, useState} from "react";
 import {Dimensions, Image, StyleSheet, Text, TouchableOpacity, View} from "react-native";
-
 import {Dialog} from "@rneui/themed";
 import IconFontAwesome5 from "react-native-vector-icons/FontAwesome5";
 import DatePicker from "react-native-date-picker";
 import AntDesign from "react-native-vector-icons/AntDesign";
 import IconFontAwesome from "react-native-vector-icons/FontAwesome";
+import {Button} from "@rneui/themed";
+import MapView, {Marker, PROVIDER_GOOGLE} from "react-native-maps";
+
+import {Responsive} from "../../helpers/Responsive";
 
 import DriverAssigned from "../../assets/images/driver-assigned.png";
 import FilterImg from "../../assets/images/filter.png";
 import ViewComplaintImg from "../../assets/images/view-complaint.png";
-
-import {Responsive} from "../../helpers/Responsive";
-import {Button} from "@rneui/themed";
-import MapView, {Marker, PROVIDER_GOOGLE} from "react-native-maps";
 import MC from "../../assets/images/MC_resized.png";
 import Hub2 from "../../assets/images/mobile-all-hubs-resized.png";
 import Hub from "../../assets/images/mobile-unavailable-hubs-resized.png";

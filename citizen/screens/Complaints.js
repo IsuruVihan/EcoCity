@@ -76,26 +76,7 @@ const Complaints = () => {
   const [numRemovedComplaints, setNumRemovedComplaints] = useState(0);
 
   const [data, setData] = useState([]);
-  const [filteredData, setFilteredData] = useState([
-    {id: 'CMB-07-123', date: '23/06/2022', status: 'Viewed'},
-    {id: 'CMB-07-124', date: '24/06/2022', status: 'Not Viewed'},
-    {id: 'CMB-07-125', date: '25/06/2022', status: 'Resolved'},
-    {id: 'CMB-07-126', date: '26/06/2022', status: 'Removed'},
-    {id: 'CMB-07-127', date: '27/06/2022', status: 'Viewed'},
-    {id: 'CMB-07-128', date: '28/06/2022', status: 'Viewed'},
-    {id: 'CMB-07-123', date: '23/06/2022', status: 'Viewed'},
-    {id: 'CMB-07-124', date: '24/06/2022', status: 'Not Viewed'},
-    {id: 'CMB-07-125', date: '25/06/2022', status: 'Resolved'},
-    {id: 'CMB-07-126', date: '26/06/2022', status: 'Removed'},
-    {id: 'CMB-07-127', date: '27/06/2022', status: 'Viewed'},
-    {id: 'CMB-07-128', date: '28/06/2022', status: 'Viewed'},
-    {id: 'CMB-07-123', date: '23/06/2022', status: 'Viewed'},
-    {id: 'CMB-07-124', date: '24/06/2022', status: 'Not Viewed'},
-    {id: 'CMB-07-125', date: '25/06/2022', status: 'Resolved'},
-    {id: 'CMB-07-126', date: '26/06/2022', status: 'Removed'},
-    {id: 'CMB-07-127', date: '27/06/2022', status: 'Viewed'},
-    {id: 'CMB-07-128', date: '28/06/2022', status: 'Viewed'},
-  ]);
+  const [filteredData, setFilteredData] = useState([]);
   const [paginatedData, setPaginatedData] = useState([]);
 
   useEffect(() => {

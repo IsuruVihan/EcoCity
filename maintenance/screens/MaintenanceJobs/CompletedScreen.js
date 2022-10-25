@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {Dimensions, Image, StyleSheet, Text, TouchableOpacity, View} from "react-native";
-
+import {Button} from "@rneui/themed";
+import MapView, {Marker, PROVIDER_GOOGLE} from "react-native-maps";
 import {Dialog} from "@rneui/themed";
 import IconFontAwesome5 from "react-native-vector-icons/FontAwesome5";
 import DatePicker from "react-native-date-picker";
@@ -10,12 +11,14 @@ import IconFontAwesome from "react-native-vector-icons/FontAwesome";
 import MaintenanceFinished from "../../assets/images/maintenance-finished.png";
 import FilterImg from "../../assets/images/filter.png";
 import ViewComplaintImg from "../../assets/images/view-complaint.png";
+import MC from "../../assets/images/MC_resized.png";
+import Hub from "../../assets/images/mobile-unavailable-hubs-resized.png";
 
 import {Responsive} from "../../helpers/Responsive";
-import {Button} from "@rneui/themed";
 
 const HEIGHT = Dimensions.get('window').height;
 const WIDTH = Dimensions.get('window').width;
+const MC_LOCATION = {latitude: 6.915770, longitude: 79.863721,};
 
 const CompletedScreen = () => {
   const [filterVisible, setFilterVisible] = useState(false);
@@ -25,22 +28,22 @@ const CompletedScreen = () => {
   const [toDateFilter, setToDateFilter] = useState(new Date());
 
   const [viewedJob, setViewedJob] = useState({id: '', date: '', completedOn: '', status: '', description: '',
-    hub: {id: '', location: {lat: '', long: ''}}
+    hub: {id: '', location: {latitude: '', longitude: ''}}
   });
   const [viewJobModalOpen, setViewJobModalOpen] = useState(false);
 
   const [data, setData] = useState([
     {
       id: 'CMB-07-124', date: '2022-08-18T04:48:09.000Z', completedOn: '2022-08-18T04:48:09.000Z', status: 'Completed',
-      description: 'Description', hub: {id: '1', location: {lat: '12.432432', long: '43.2432566'}}
+      description: 'Description', hub: {id: '1', location: {latitude: 12.432432, longitude: 43.2432566}}
     },
     {
       id: 'CMB-07-124', date: '2022-08-18T04:48:09.000Z', completedOn: '2022-08-18T04:48:09.000Z', status: 'Completed',
-      description: 'Description', hub: {id: '1', location: {lat: '12.432432', long: '43.2432566'}}
+      description: 'Description', hub: {id: '1', location: {latitude: 12.432432, longitude: 43.2432566}}
     },
     {
       id: 'CMB-07-124', date: '2022-08-18T04:48:09.000Z', completedOn: '2022-08-18T04:48:09.000Z', status: 'Completed',
-      description: 'Description', hub: {id: '1', location: {lat: '12.432432', long: '43.2432566'}}
+      description: 'Description', hub: {id: '1', location: {latitude: 12.432432, longitude: 43.2432566}}
     },
   ]);
   const [filteredData, setFilteredData] = useState([]);
@@ -92,8 +95,8 @@ const CompletedScreen = () => {
             hub: {
               id: filteredData[ind - 1].hub.id,
               location: {
-                lat: filteredData[ind - 1].hub.location.lat,
-                long: filteredData[ind - 1].hub.location.long
+                latitude: filteredData[ind - 1].hub.location.latitude,
+                longitude: filteredData[ind - 1].hub.location.longitude
               },
             },
             description: filteredData[ind - 1].description,
@@ -127,8 +130,8 @@ const CompletedScreen = () => {
             hub: {
               id: hub.id,
               location: {
-                lat: hub.location.lat,
-                long: hub.location.long,
+                latitude: hub.location.latitude,
+                longitude: hub.location.longitude,
               },
             },
             description: description,
@@ -342,6 +345,22 @@ const CompletedScreen = () => {
             <View
               style={styles.screen1.viewJobModal.dataFields.inputSet.txtInput3}
             >
+              <MapView
+                provider={PROVIDER_GOOGLE}
+                showsUserLocation={true}
+                region={{
+                  latitude: 6.915770,
+                  longitude: 79.863721,
+                  latitudeDelta: 1,
+                  longitudeDelta: 1,
+                }}
+                minZoomLevel={12}
+                maxZoomLevel={30}
+                style={styles.screen1.viewJobModal.dataFields.inputSet.txtInput3.map}
+              >
+                <Marker coordinate={MC_LOCATION} image={MC}/>
+                <Marker coordinate={viewedJob.hub.location} image={Hub}/>
+              </MapView>
             </View>
           </View>
         </View>
@@ -637,17 +656,20 @@ const styles = StyleSheet.create({
           txtInput3: {
             borderWidth: 2,
             borderColor: '#E8F5F6',
-            borderRadius: 10,
+            // borderRadius: 10,
             height: Responsive(32, HEIGHT),
             color: '#707070',
-            paddingHorizontal: 10,
-            paddingVertical: 5,
+            padding: 1,
             display: 'flex',
             flexDirection: 'row',
             justifyContent: 'flex-start',
             alignItems: 'flex-start',
             txt: {
               fontSize: 10,
+            },
+            map: {
+              width: '100%',
+              height: '100%',
             },
           },
           imgContainer: {
