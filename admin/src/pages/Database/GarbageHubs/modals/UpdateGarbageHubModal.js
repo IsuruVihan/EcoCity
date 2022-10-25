@@ -5,6 +5,7 @@ import Modal from "react-bootstrap/Modal";
 
 
 const UpdateGarbageHubModal = (props) => {
+    const id = props.binid;
     return (
         <Modal
             {...props}
@@ -19,7 +20,7 @@ const UpdateGarbageHubModal = (props) => {
                 <Modal.Title>Edit Garbage bin</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                <UpdateGarbageHubForm/>
+                <UpdateGarbageHubForm id={id}/>
             </Modal.Body>
         </Modal>
     );

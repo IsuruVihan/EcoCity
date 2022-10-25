@@ -1,9 +1,13 @@
 import {createSlice, createAsyncThunk} from "@reduxjs/toolkit";
 import {getAllComplaints, resolveOrReject} from "../../pages/Complaints/api/api";
-import {readSession} from "../../helpers/SessionHelper";
+import {readSession, readStorage} from "../../helpers/SessionHelper";
 
-const loggedUser = readSession('loggedInUser');
-
+let loggedUser = readSession('loggedInUser');
+// let loggedUser = state.auth.loggedUser;
+console.log(loggedUser)
+// if(!loggedUser.email || !loggedUser.accessToken || !loggedUser.refreshToken){
+//     loggedUser = readStorage('rememberedUser');
+// }
 
 export const fetchAll = createAsyncThunk(
     'complaint/fetchAll',

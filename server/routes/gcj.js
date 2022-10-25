@@ -1,16 +1,13 @@
 const express = require('express');
+const {getInitialDetails, createCollectionJob} = require("../controllers/gcj");
 const router = express.Router();
 
 // Controllers
-const {openLid, dumpGarbage, getAllHubs, updateHub, removeHub, getHub} = require('../controllers/hub');
+
 
 // Endpoints
-router.post('/hub/open', openLid);
-router.post('/hub/dump', dumpGarbage);
-router.get('/hub/all', getAllHubs);
-router.post('/hub/update', updateHub);
-router.post('/hub/remove', removeHub);
-router.get('/hub/get', getHub);
+router.get('/gcj/initial', getInitialDetails);
+router.post('/gcj/create', createCollectionJob);
 // router.put('/complaints', validateToken, removeComplaint);
 // router.get('/complaints/all', validateToken, getAllComplaints);
 // router.post('/complaints/update', validateToken, resolveReject);

@@ -5,22 +5,34 @@ import GarbageHubDetailsModal from "../modals/GarbageHubDetailsModal";
 import UpdateGarbageHubModal from "../modals/UpdateGarbageHubModal";
 import GarbageHubsTableItem from "./GarbageHubsTableItem";
 import {FiArrowLeft, FiArrowRight, FiEdit} from "react-icons/fi";
+import {useSelector} from "react-redux";
 
 //Temporary json file to render hub details
-import hubsDetails from '../../../../data/HubDetails.json';
+// import hubsDetails from '../../../../data/HubDetails.json';
 
 const GarbageHubsTable = (props) => {
-    const hubs = hubsDetails.hubs;
-    const hubCount = hubs.length;
+    // const dbHubs = useSelector((state) => state.database.hubs);
+    const [hubsDetails, setHubsDetails] = useState(useSelector((state) => state.database.hubs));
+    const hubs = hubsDetails ? hubsDetails.hubs : [];
+    const hubCount = hubs ? hubs.length : 0;
     const hubsPerPage = 3;
     const pageCount = Math.ceil(hubCount / hubsPerPage);
     const [currentPage, setCurrentPage] = useState(1);
     const [startIndex, setStartIndex] = useState(0);
     const [endIndex, setEndIndex] = useState(hubsPerPage);
-    const [filteredHubs, setFilteredHubs] = useState(hubs.slice(startIndex, endIndex));
+    const [filteredHubs, setFilteredHubs] = useState(hubs ? hubs.slice(startIndex, endIndex) : []);
     const [isHubDetailsVisible, setIsHubDetailsVisible] = useState(false);
     const [currentSelectedHubID, setCurrentSelectedHubID] = useState('');
     const [currentSelectedHub, setCurrentSelectedHub] = useState(filteredHubs[0]);
+
+    // useEffect(() => {
+    //     if (!dbHubs) return;
+    //     setHubsDetails(dbHubs);
+    // }, [dbHubs])
+
+    useEffect(() => {
+        console.log(hubsDetails)
+    }, [hubsDetails])
 
     const calculateStartIndex = () => {
         setStartIndex((currentPage - 1) * hubsPerPage);
@@ -53,7 +65,7 @@ const GarbageHubsTable = (props) => {
         if (startIndex > endIndex) {
             return;
         }
-        setFilteredHubs(hubs.slice(startIndex, endIndex));
+        setFilteredHubs(hubs ? hubs.slice(startIndex, endIndex) : []);
     }, [endIndex]);
 
     const pageNumbers = range(1, pageCount).map((item) => {
@@ -94,7 +106,7 @@ const GarbageHubsTable = (props) => {
 
     const changeActivePageNumberClasses = () => {
         let currentPageNumberElement = document.getElementById(currentPage.toString());
-
+        if (!currentPageNumberElement) return;
         //remove active classes
         let elements = document.getElementsByClassName('active-page-number');
         for (let i = 0; i < elements.length; i++) {
@@ -102,7 +114,7 @@ const GarbageHubsTable = (props) => {
         }
 
         //add active class to current page number
-        currentPageNumberElement.classList.add('active-page-number');
+        // currentPageNumberElement.classList.add('active-page-number');
     }
 
     // const changeNextPrevButtonSelection = () => {
@@ -129,6 +141,7 @@ const GarbageHubsTable = (props) => {
     // }
 
     const handleOnHubClicked = (hubId) => {
+        console.log(hubId)
         setCurrentSelectedHubID(hubId);
         const newState = !isHubDetailsVisible;
         setIsHubDetailsVisible(newState);
@@ -136,7 +149,7 @@ const GarbageHubsTable = (props) => {
 
     useEffect(() => {
         for (let i = 0; i < filteredHubs.length; i++) {
-            if (currentSelectedHubID === filteredHubs[i].hubID) {
+            if (currentSelectedHubID === filteredHubs[i].id) {
                 setCurrentSelectedHub(filteredHubs[i]);
             }
         }
@@ -145,7 +158,7 @@ const GarbageHubsTable = (props) => {
     const handleOnHubCloseClicked = () => {
         setIsHubDetailsVisible(false);
     }
-
+    console.log(typeof filteredHubs)
     return (
         <Row className='mx-0'>
             <GarbageHubDetailsModal show={isHubDetailsVisible} onHide={() => setIsHubDetailsVisible(false)}

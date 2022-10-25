@@ -13,5 +13,9 @@ export const readSession = (key) => {
     return JSON.parse(sessionStorage.getItem(key));
 }
 
+export const readStorage = (key) => {
+    return JSON.parse(localStorage.getItem(key));
+}
+
 
 

@@ -28,7 +28,6 @@ export const loginRememberedUser = createAsyncThunk(
 
 const registerLogin = (state, action) => {
     const data = action.payload;
-    console.log(data);
     const loggedInUser = {
         email: data.email,
         accessToken: data.accessToken,
@@ -49,7 +48,7 @@ let initialState = {
     isUserLoggedIn: false,
     loggedUser: {
         email: null,
-        accessToken: null,
+            accessToken: null,
         refreshToken: null
     },
     isError: false,

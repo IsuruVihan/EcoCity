@@ -7,9 +7,9 @@ import paperBinImage from '../../../../assets/images/paper.png';
 
 const GarbageBinDetailsCard = (props) => {
     const bin = props.bin;
-
+    console.log(bin)
     const getBinImage = () => {
-        switch (bin.binType) {
+        switch (bin.bintype) {
             case 'Organic':
                 return <Image fluid src={organicBinImage}/>;
             case 'Paper':
@@ -30,10 +30,10 @@ const GarbageBinDetailsCard = (props) => {
             </Col>
             <Col lg={7} className={'px-0'}>
                 <h6 style={{fontSize: '15px'}} className={'mb-0'}>Fill Level</h6>
-                <p className={'fs-2 fw-bolder lh-1'}>{bin.level}%</p>
+                <p className={'fs-2 fw-bolder lh-1'}>{bin.garbagelevel}</p>
                 <p style={{fontSize: '15px'}}>Temperature {bin.temperature}&deg;C</p>
-                <p style={{fontSize: '15px'}}>Humidity {bin.humidity}</p>
-                <p style={{fontSize: '15px'}}>Weight {bin.level} Kg</p>
+                {/*<p style={{fontSize: '15px'}}>Humidity {bin.humidity}</p>*/}
+                <p style={{fontSize: '15px'}}>Weight {bin.garbageweight} Kg</p>
             </Col>
         </Row>
     );

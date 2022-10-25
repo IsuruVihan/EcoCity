@@ -7,10 +7,10 @@ import AssignRideMap from "../maps/AssignRideMap";
 import map from "../../../assets/images/popup-model-map.png";
 
 
-const AssignRideModal = () => {
+const AssignRideModal = (props) => {
   return (
     <Container>
-      <AssignRideForm/>
+      <AssignRideForm hide={props.hide}/>
     </Container>
   );
 }

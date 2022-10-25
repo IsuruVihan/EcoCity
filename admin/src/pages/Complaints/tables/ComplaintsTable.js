@@ -10,8 +10,10 @@ import RemarksForm from "../forms/RemarksForm";
 import {FiArrowLeft, FiArrowRight, FiEdit} from "react-icons/fi";
 import {useDispatch, useSelector} from "react-redux";
 import {fetchAll} from "../../../redux/reducers/complaintsSlice";
+import {fetchUserCounts, fetchWeights} from "../../../redux/reducers/StatSlice";
 
 const ComplaintsTable = () => {
+    const dispatch = useDispatch();
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const teampArray = Array.from(Array(10).keys());
@@ -27,6 +29,7 @@ const ComplaintsTable = () => {
         setSelectedcomplaintId(id);
         setShow(true);
     }
+
 
     useEffect(() => {
         if (!allComplaints) return;

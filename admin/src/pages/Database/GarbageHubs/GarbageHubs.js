@@ -1,9 +1,8 @@
-import React, {useState} from 'react';
-import {Col, Container, Image, Row} from "react-bootstrap";
+import React, {useEffect, useState} from 'react';
+import {Col, Image, Row} from "react-bootstrap";
 import '../../../assets/styles/Database/database.css';
 import '../../../assets/styles/Database/GarbageHubs/GarbageHubs.css';
 
-import SideNav from "../../../common/SideNav";
 import GarbageHubsTable from "./tables/GarbageHubsTable";
 import GarbageHubsTableFilter from "./filters/GarbageHubsTableFilter";
 import GarbageHubsMap from "./maps/GarbageHubsMap";
@@ -15,6 +14,8 @@ import {FiFilter} from "react-icons/fi";
 
 //Temporary imports
 import mapImage from '../../../assets/images/temp/databaseMaps.png';
+import {useDispatch} from "react-redux";
+import {fetchHubs} from "../../../redux/reducers/databaseSlice";
 
 const GarbageHubs = () => {
 
@@ -29,6 +30,13 @@ const GarbageHubs = () => {
 
     const handleClose = () => setShowCreateHubForm(false);
     const handleShow = () => setShowCreateHubForm(true);
+
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(fetchHubs());
+    }, []);
+
     return (
 
         <Col className='' lg={10}>
