@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {Col, Container, Row} from "react-bootstrap";
 import {Outlet} from 'react-router-dom';
 
@@ -12,8 +12,12 @@ import Houses from "./Houses/Houses";
 import NFCTags from "./NFCTags/NFCTags";
 import Header from "../../common/Header";
 import SideNav from "../../common/SideNav";
+import {fetchUserCounts, fetchWeights} from "../../redux/reducers/StatSlice";
+import {useDispatch} from "react-redux";
+import {fetchHubs} from "../../redux/reducers/databaseSlice";
 
 const Database = () => {
+
     return (
         <Container className='mx-0 px-0 h-100 overflow-hidden' fluid>
             <Header/>

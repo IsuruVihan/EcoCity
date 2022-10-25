@@ -8,8 +8,7 @@ import DeleteGarbagBinModal from "../modals/DeleteGarbagBinModal";
 
 const GarbageHubsTableItem = (props) => {
     const hub = props.hub;
-    const bins = hub.bins;
-
+    const bins = hub.Bins;
     const [isEditHubDetailsVisible, setIsEditHubDetailsVisible] = useState(false);
     const [isDeleteBinVisible, setIsDeleteBinVisible] = useState(false);
 
@@ -48,16 +47,18 @@ const GarbageHubsTableItem = (props) => {
     return (
         <Fragment>
             <tbody onClick={() => {
-                props.onClick(hub.hubID)
-            }} id={hub.hubID}>
+                props.onClick(hub.id)
+            }} id={hub.id}>
             <tr>
                 <td rowSpan={4}>{props.index + 1}</td>
-                <td rowSpan={4}>{hub.hubID}</td>
-                <td>{bins[0].binType}</td>
+                <td rowSpan={4}>{hub.id}</td>
+                <td>{bins[0].bintype}</td>
                 <td>{bins[0].status}</td>
                 <td>{bins[0].temperature}&deg;C</td>
                 <td>{bins[0].humidity}</td>
-                <td><label className={getFillLevelClasses(bins[0].level)}>{bins[0].level}%</label></td>
+                <td><label
+                    className={getFillLevelClasses(bins[0].garbagelevel.replace('%', ''))}>{bins[0].garbagelevel}</label>
+                </td>
                 <td>
                     <label className='action-item-group'>
                         <FiEdit id={1} onClick={handleOnGarbageBinEditClicked}/>
@@ -69,11 +70,13 @@ const GarbageHubsTableItem = (props) => {
                 bins.map((bin, idx) => {
                     if (idx !== 0) {
                         return <tr key={idx}>
-                            <td>{bin.binType}</td>
+                            <td>{bin.bintype}</td>
                             <td>{bin.status}</td>
                             <td>{bin.temperature}&deg;C</td>
                             <td>{bin.humidity}</td>
-                            <td><label className={getFillLevelClasses(bin.level)}>{bin.level}%</label></td>
+                            <td><label
+                                className={getFillLevelClasses(bin.garbagelevel.replace('%', ''))}>{bin.garbagelevel}</label>
+                            </td>
                             <td>
                                 <div className='action-item-group'>
                                     <FiEdit id={1} onClick={handleOnGarbageBinEditClicked}/>
