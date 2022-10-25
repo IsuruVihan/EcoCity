@@ -2,6 +2,7 @@ const db = require('../models/index');
 const bcrypt = require("bcrypt");
 const {isRecordExists} = require("./common");
 const {NFCTag, Bin, GarbageHub} = db;
+const {Op} = require("sequelize");
 
 exports.openLid = async (req, res) => {
     const {id, serial} = req.body;
@@ -42,7 +43,11 @@ exports.getAllHubs = async (req, res) => {
         include: [{
             model: Bin,
             attributes: {exclude: ['GarbageHubId']}
-        },]
+        }],
+        where: {
+            status: {[Op.ne]: "Removed"},
+        }
+
     }).then((hubs) => {
         return res.status(200).json({
             hubs,
@@ -54,11 +59,11 @@ exports.getAllHubs = async (req, res) => {
 exports.updateHub = async (req, res) => {
     //check if exists
     const {id, lat, lon} = req.body.data;
-    const isExists = await isRecordExists(GarbageHub,id);
-    if(!isExists){
+    const isExists = await isRecordExists(GarbageHub, id);
+    if (!isExists) {
         return res.status(400).json({
-            status:"FAILED",
-            message:"Hub Doesnt exists!!",
+            status: "FAILED",
+            message: "Hub Doesnt exists!!",
         })
     }
     GarbageHub.update({latitude: lat, longitude: lon}, {
@@ -71,8 +76,38 @@ exports.updateHub = async (req, res) => {
             hub,
         });
     }).catch((err) => {
-        return res.status(204).json({
-            status:"failed",
+        return res.status(400).json({
+            status: "failed",
+            err
+        })
+    });
+}
+
+//Remove hub details
+exports.removeHub = async (req, res) => {
+    //check if exists
+    const {id} = req.body.data;
+
+    const isExists = await isRecordExists(GarbageHub, id);
+    if (!isExists) {
+        return res.status(400).json({
+            status: "FAILED",
+            message: "Hub Doesnt exists!!",
+        })
+    }
+
+    GarbageHub.update({status: "Removed"}, {
+        where: {
+            id: id
+        }
+    }).then((hub) => {
+        return res.status(200).json({
+            status: "Hub Deleted successfully",
+            hub,
+        });
+    }).catch((err) => {
+        return res.status(400).json({
+            status: "Failed",
             err
         })
     });
