@@ -1,8 +1,8 @@
 const db = require('../models/index');
 const bcrypt = require("bcrypt");
 const {isRecordExists} = require("./common");
-const {NFCTag, Bin, GarbageHub, Truck} = db;
-const {Op} = require("sequelize");
+const {NFCTag, Bin, GarbageHub, Truck, Driver} = db;
+const {Op, Sequelize} = require("sequelize");
 const sequelize = require("sequelize");
 
 //get hub details
@@ -16,14 +16,23 @@ exports.getInitialDetails = async (req, res) => {
         }
     )
     const trucks = await Truck.findAll({
-        attributes:['id','numberplate'],
-        where:{
-            status:'Active'
+        attributes: ['id', 'numberplate'],
+        where: {
+            status: 'Active'
+        }
+    })
+    const drivers = await Driver.findAll({
+        attributes: ['id',
+            [sequelize.fn('concat', sequelize.col('firstname'), sequelize.col('lastname')), 'name']
+        ],
+        where: {
+            status: 'Active'
         }
     })
     return res.status(200).json({
         hubs: hubs,
-        trucks: trucks
+        trucks: trucks,
+        drivers: drivers
     });
     // .then((hubs) => {
     //     return res.status(200).json({
@@ -51,59 +60,57 @@ exports.getInitialDetails = async (req, res) => {
 }
 
 //update hub details
-exports.updateHub = async (req, res) => {
+exports.createCollectionJob = async (req, res) => {
     //check if exists
-    const {id, lat, lon} = req.body.data;
-    const isExists = await isRecordExists(GarbageHub, id);
-    if (!isExists) {
-        return res.status(400).json({
-            status: "FAILED",
-            message: "Hub Doesnt exists!!",
-        })
-    }
-    GarbageHub.update({latitude: lat, longitude: lon}, {
-        where: {
-            id: id
-        }
-    }).then((hub) => {
-        return res.status(200).json({
-            status: "Hub Updated successfully",
-            hub,
-        });
-    }).catch((err) => {
-        return res.status(400).json({
-            status: "failed",
-            err
-        })
+    const {hubs, driver, truck, date, binType} = req.body.cj;
+    return res.status(200).json({
+        data: req.body.cj
     });
+    // GarbageHub.update({latitude: lat, longitude: lon}, {
+    //     where: {
+    //         id: id
+    //     }
+    // }).then((hub) => {
+    //     return res.status(200).json({
+    //         status: "Hub Updated successfully",
+    //         hub,
+    //     });
+    // }).catch((err) => {
+    //     return res.status(400).json({
+    //         status: "failed",
+    //         err
+    //     })
+    // });
+
+
 }
 
-//Remove hub details
-exports.removeHub = async (req, res) => {
-    //check if exists
-    const {id} = req.body.data;
-
-    const isExists = await isRecordExists(GarbageHub, id);
-    if (!isExists) {
-        return res.status(400).json({
-            status: "FAILED",
-            message: "Hub Doesnt exists!!",
-        })
-    }
-
-    GarbageHub.update({status: "Removed"}, {
-        where: {
-            id: id
-        }
-    }).then((hub) => {
-        return res.status(200).json({
-            status: "Hub Deleted successfully",
-            hub,
-        });
-    }).catch((err) => {
-        return res.status(400).json({
-            status: "Failed",
-            err
-        })
-    });
-}
+// //Remove hub details
+// exports.removeHub = async (req, res) => {
+//     //check if exists
+//     const {id} = req.body.data;
+//
+//     const isExists = await isRecordExists(GarbageHub, id);
+//     if (!isExists) {
+//         return res.status(400).json({
+//             status: "FAILED",
+//             message: "Hub Doesnt exists!!",
+//         })
+//     }
+//
+//     GarbageHub.update({status: "Removed"}, {
+//         where: {
+//             id: id
+//         }
+//     }).then((hub) => {
+//         return res.status(200).json({
+//             status: "Hub Deleted successfully",
+//             hub,
+//         });
+//     }).catch((err) => {
+//         return res.status(400).json({
+//             status: "Failed",
+//             err
+//         })
+//     });
+// }

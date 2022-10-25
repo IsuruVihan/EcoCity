@@ -1,5 +1,5 @@
 const express = require('express');
-const {getInitialDetails} = require("../controllers/gcj");
+const {getInitialDetails, createCollectionJob} = require("../controllers/gcj");
 const router = express.Router();
 
 // Controllers
@@ -7,6 +7,7 @@ const router = express.Router();
 
 // Endpoints
 router.get('/gcj/initial', getInitialDetails);
+router.post('/gcj/create', createCollectionJob);
 // router.put('/complaints', validateToken, removeComplaint);
 // router.get('/complaints/all', validateToken, getAllComplaints);
 // router.post('/complaints/update', validateToken, resolveReject);
