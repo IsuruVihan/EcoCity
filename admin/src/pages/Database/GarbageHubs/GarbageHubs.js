@@ -53,8 +53,8 @@ const GarbageHubs = () => {
                     <GarbageHubsTable onCreateClicked={setShowCreateHubForm}/>
                     <CreateGarbageHubModal onHide={handleClose} show={showCreateHubForm}/>
                 </Col>
-                <Col lg={4} className='box-shadow px-0'>
-
+                <Col lg={4} className='box-shadow px-0' >
+                    {/*<GarbageHubsMap style={{height: "50px"}}/>*/}
                     <Image src={mapImage} fluid/>
                 </Col>
             </Row>
