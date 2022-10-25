@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {Text, View, StyleSheet, Image, Dimensions} from "react-native";
 import MapView, {Callout, Marker, PROVIDER_GOOGLE} from "react-native-maps";
 import MapViewDirections from "react-native-maps-directions";
@@ -11,29 +11,26 @@ import MC from "../assets/images/MC_resized.png";
 
 import {API_TOKEN} from "@env";
 import {Responsive} from "../helpers/Responsive";
+import {getGarbageHubDetails} from "../api/areaMap";
+import {AuthContext} from "../context/AuthContext";
 
 const MC_LOCATION = {latitude: 6.915770, longitude: 79.863721,};
 const HEIGHT = Dimensions.get('window').height;
 const WIDTH = Dimensions.get('window').width;
 
 const AreaMap = () => {
-  const [hubLocations, setHubLocations] = useState([{
-    latitude: 6.915829,
-    longitude: 79.859268,
-    assigned: true,
-  }, {
-    latitude: 6.916829,
-    longitude: 79.858268,
-    assigned: false,
-  }, {
-    latitude: 6.917829,
-    longitude: 79.857268,
-    assigned: false,
-  },]);
+  const {loggedUser} = useContext(AuthContext);
+
+  const [hubs, setHubs] = useState([]);
   const [routingLocation, setRoutingLocation] = useState(MC_LOCATION);
   const [myLocation, setMyLocation] = useState(MC_LOCATION);
 
   useEffect(() => {
+    getMyLocation();
+    garbageHubs();
+  }, []);
+
+  const getMyLocation = () => {
     Geolocation.getCurrentPosition((pos) => {
       const crd = pos.coords;
       setMyLocation({
@@ -43,131 +40,69 @@ const AreaMap = () => {
     }, (err) => {
       console.log(err);
     });
-  }, []);
+  }
 
-  const CalloutComponent = (toBeCollected) => {
+  const garbageHubs = () => {
+    getGarbageHubDetails(loggedUser)
+      .then((hubs) => {
+        // console.log(hubs.data.data);
+        setHubs(hubs.data.data);
+      });
+  }
+
+  const CalloutComponent = (hub) => {
     return (
       <Callout style={styles.areaMap.sec3.map.callout}>
         <View style={styles.areaMap.sec3.map.callout.container}>
           <View style={styles.areaMap.sec3.map.callout.container.group1}>
             <Text style={styles.areaMap.sec3.map.callout.container.group1.label}>Hub Id: </Text>
-            <Text style={styles.areaMap.sec3.map.callout.container.group1.data}>2852</Text>
+            <Text style={styles.areaMap.sec3.map.callout.container.group1.data}>{hub.id}</Text>
           </View>
-          {toBeCollected && <>
-            <View style={styles.areaMap.sec3.map.callout.container.group2}>
-              <Text style={styles.areaMap.sec3.map.callout.container.group2.label}>Garbage to be Collected: </Text>
-              <Text style={styles.areaMap.sec3.map.callout.container.group2.data}>Glass</Text>
-            </View>
-            <View style={styles.areaMap.sec3.map.callout.container.group3}>
-              <Text style={styles.areaMap.sec3.map.callout.container.group3.label}>Timestamp: </Text>
-              <Text style={styles.areaMap.sec3.map.callout.container.group3.data}>9/17/2022 12:43:00</Text>
-            </View>
-          </>}
           <Text style={styles.areaMap.sec3.map.callout.container.binTitle}>Bin details</Text>
-          <View style={styles.areaMap.sec3.map.callout.container.bin}>
-            <View style={styles.areaMap.sec3.map.callout.container.bin.sec1}>
-              <Text style={styles.areaMap.sec3.map.callout.container.bin.sec1.part1}>
-                <FontAwesomeIcons name={'trash-o'} size={20}/>
-              </Text>
-              <Text style={styles.areaMap.sec3.map.callout.container.bin.sec1.part2}>Glass</Text>
-            </View>
-            <View style={styles.areaMap.sec3.map.callout.container.bin.sec2}>
-              <View style={styles.areaMap.sec3.map.callout.container.bin.sec2.sec}>
-                <Text style={styles.areaMap.sec3.map.callout.container.bin.sec2.sec.label}>Filled: </Text>
-                <Text style={styles.areaMap.sec3.map.callout.container.bin.sec2.sec.data}>45%</Text>
+          {hub.Bins.map((bin) => {
+            return <View style={styles.areaMap.sec3.map.callout.container.bin}>
+              <View style={
+                bin.bintype === "Paper" ? styles.areaMap.sec3.map.callout.container.bin.sec1 :
+                  bin.bintype === "Plastic" ? styles.areaMap.sec3.map.callout.container.bin4.sec1 :
+                    bin.bintype === "Organic" ? styles.areaMap.sec3.map.callout.container.bin3.sec1 :
+                      styles.areaMap.sec3.map.callout.container.bin2.sec1
+              }
+              >
+                <Text style={
+                  bin.bintype === "Paper" ? styles.areaMap.sec3.map.callout.container.bin.sec1.part1 :
+                    bin.bintype === "Plastic" ? styles.areaMap.sec3.map.callout.container.bin4.sec1.part1 :
+                      bin.bintype === "Organic" ? styles.areaMap.sec3.map.callout.container.bin3.sec1.part1 :
+                        styles.areaMap.sec3.map.callout.container.bin2.sec1.part1
+                }>
+                  <FontAwesomeIcons name={'trash-o'} size={20}/>
+                </Text>
+                <Text style={
+                  bin.bintype === "Paper" ? styles.areaMap.sec3.map.callout.container.bin.sec1.part2 :
+                    bin.bintype === "Plastic" ? styles.areaMap.sec3.map.callout.container.bin4.sec1.part2 :
+                      bin.bintype === "Organic" ? styles.areaMap.sec3.map.callout.container.bin3.sec1.part2 :
+                        styles.areaMap.sec3.map.callout.container.bin2.sec1.part2
+                }>{bin.bintype}</Text>
               </View>
-              <View style={styles.areaMap.sec3.map.callout.container.bin.sec2.sec}>
-                <Text style={styles.areaMap.sec3.map.callout.container.bin.sec2.sec.label}>Humidity: </Text>
-                <Text style={styles.areaMap.sec3.map.callout.container.bin.sec2.sec.data}>4%</Text>
+              <View style={styles.areaMap.sec3.map.callout.container.bin.sec2}>
+                <View style={styles.areaMap.sec3.map.callout.container.bin.sec2.sec}>
+                  <Text style={styles.areaMap.sec3.map.callout.container.bin.sec2.sec.label}>Filled: </Text>
+                  <Text style={styles.areaMap.sec3.map.callout.container.bin.sec2.sec.data}>{bin.garbagelevel}</Text>
+                </View>
+                {/*<View style={styles.areaMap.sec3.map.callout.container.bin.sec2.sec}>*/}
+                {/*  <Text style={styles.areaMap.sec3.map.callout.container.bin.sec2.sec.label}>Humidity: </Text>*/}
+                {/*  <Text style={styles.areaMap.sec3.map.callout.container.bin.sec2.sec.data}>4%</Text>*/}
+                {/*</View>*/}
+                <View style={styles.areaMap.sec3.map.callout.container.bin.sec2.sec}>
+                  <Text style={styles.areaMap.sec3.map.callout.container.bin.sec2.sec.label}>Temp: </Text>
+                  <Text style={styles.areaMap.sec3.map.callout.container.bin.sec2.sec.data}>{bin.temperature} C</Text>
+                </View>
+                <View style={styles.areaMap.sec3.map.callout.container.bin.sec2.sec}>
+                  <Text style={styles.areaMap.sec3.map.callout.container.bin.sec2.sec.label}>Methane: </Text>
+                  <Text style={styles.areaMap.sec3.map.callout.container.bin.sec2.sec.data}>{bin.methane} ppm</Text>
+                </View>
               </View>
-              <View style={styles.areaMap.sec3.map.callout.container.bin.sec2.sec}>
-                <Text style={styles.areaMap.sec3.map.callout.container.bin.sec2.sec.label}>Temp: </Text>
-                <Text style={styles.areaMap.sec3.map.callout.container.bin.sec2.sec.data}>28 C</Text>
-              </View>
-              <View style={styles.areaMap.sec3.map.callout.container.bin.sec2.sec}>
-                <Text style={styles.areaMap.sec3.map.callout.container.bin.sec2.sec.label}>Methane: </Text>
-                <Text style={styles.areaMap.sec3.map.callout.container.bin.sec2.sec.data}>55%</Text>
-              </View>
-            </View>
-          </View>
-          <View style={styles.areaMap.sec3.map.callout.container.bin2}>
-            <View style={styles.areaMap.sec3.map.callout.container.bin2.sec1}>
-              <Text style={styles.areaMap.sec3.map.callout.container.bin2.sec1.part1}>
-                <FontAwesomeIcons name={'trash-o'} size={20}/>
-              </Text>
-              <Text style={styles.areaMap.sec3.map.callout.container.bin2.sec1.part2}>Glass</Text>
-            </View>
-            <View style={styles.areaMap.sec3.map.callout.container.bin2.sec2}>
-              <View style={styles.areaMap.sec3.map.callout.container.bin2.sec2.sec}>
-                <Text style={styles.areaMap.sec3.map.callout.container.bin2.sec2.sec.label}>Filled: </Text>
-                <Text style={styles.areaMap.sec3.map.callout.container.bin2.sec2.sec.data}>45%</Text>
-              </View>
-              <View style={styles.areaMap.sec3.map.callout.container.bin2.sec2.sec}>
-                <Text style={styles.areaMap.sec3.map.callout.container.bin2.sec2.sec.label}>Humidity: </Text>
-                <Text style={styles.areaMap.sec3.map.callout.container.bin2.sec2.sec.data}>4%</Text>
-              </View>
-              <View style={styles.areaMap.sec3.map.callout.container.bin2.sec2.sec}>
-                <Text style={styles.areaMap.sec3.map.callout.container.bin2.sec2.sec.label}>Temp: </Text>
-                <Text style={styles.areaMap.sec3.map.callout.container.bin2.sec2.sec.data}>28 C</Text>
-              </View>
-              <View style={styles.areaMap.sec3.map.callout.container.bin2.sec2.sec}>
-                <Text style={styles.areaMap.sec3.map.callout.container.bin2.sec2.sec.label}>Methane: </Text>
-                <Text style={styles.areaMap.sec3.map.callout.container.bin2.sec2.sec.data}>55%</Text>
-              </View>
-            </View>
-          </View>
-          <View style={styles.areaMap.sec3.map.callout.container.bin3}>
-            <View style={styles.areaMap.sec3.map.callout.container.bin3.sec1}>
-              <Text style={styles.areaMap.sec3.map.callout.container.bin3.sec1.part1}>
-                <FontAwesomeIcons name={'trash-o'} size={20}/>
-              </Text>
-              <Text style={styles.areaMap.sec3.map.callout.container.bin3.sec1.part2}>Glass</Text>
-            </View>
-            <View style={styles.areaMap.sec3.map.callout.container.bin3.sec2}>
-              <View style={styles.areaMap.sec3.map.callout.container.bin3.sec2.sec}>
-                <Text style={styles.areaMap.sec3.map.callout.container.bin3.sec2.sec.label}>Filled: </Text>
-                <Text style={styles.areaMap.sec3.map.callout.container.bin3.sec2.sec.data}>45%</Text>
-              </View>
-              <View style={styles.areaMap.sec3.map.callout.container.bin3.sec2.sec}>
-                <Text style={styles.areaMap.sec3.map.callout.container.bin3.sec2.sec.label}>Humidity: </Text>
-                <Text style={styles.areaMap.sec3.map.callout.container.bin3.sec2.sec.data}>4%</Text>
-              </View>
-              <View style={styles.areaMap.sec3.map.callout.container.bin3.sec2.sec}>
-                <Text style={styles.areaMap.sec3.map.callout.container.bin3.sec2.sec.label}>Temp: </Text>
-                <Text style={styles.areaMap.sec3.map.callout.container.bin3.sec2.sec.data}>28 C</Text>
-              </View>
-              <View style={styles.areaMap.sec3.map.callout.container.bin3.sec2.sec}>
-                <Text style={styles.areaMap.sec3.map.callout.container.bin3.sec2.sec.label}>Methane: </Text>
-                <Text style={styles.areaMap.sec3.map.callout.container.bin3.sec2.sec.data}>55%</Text>
-              </View>
-            </View>
-          </View>
-          <View style={styles.areaMap.sec3.map.callout.container.bin4}>
-            <View style={styles.areaMap.sec3.map.callout.container.bin4.sec1}>
-              <Text style={styles.areaMap.sec3.map.callout.container.bin4.sec1.part1}>
-                <FontAwesomeIcons name={'trash-o'} size={20}/>
-              </Text>
-              <Text style={styles.areaMap.sec3.map.callout.container.bin4.sec1.part2}>Glass</Text>
-            </View>
-            <View style={styles.areaMap.sec3.map.callout.container.bin4.sec2}>
-              <View style={styles.areaMap.sec3.map.callout.container.bin4.sec2.sec}>
-                <Text style={styles.areaMap.sec3.map.callout.container.bin4.sec2.sec.label}>Filled: </Text>
-                <Text style={styles.areaMap.sec3.map.callout.container.bin4.sec2.sec.data}>45%</Text>
-              </View>
-              <View style={styles.areaMap.sec3.map.callout.container.bin4.sec2.sec}>
-                <Text style={styles.areaMap.sec3.map.callout.container.bin4.sec2.sec.label}>Humidity: </Text>
-                <Text style={styles.areaMap.sec3.map.callout.container.bin4.sec2.sec.data}>4%</Text>
-              </View>
-              <View style={styles.areaMap.sec3.map.callout.container.bin4.sec2.sec}>
-                <Text style={styles.areaMap.sec3.map.callout.container.bin4.sec2.sec.label}>Temp: </Text>
-                <Text style={styles.areaMap.sec3.map.callout.container.bin4.sec2.sec.data}>28 C</Text>
-              </View>
-              <View style={styles.areaMap.sec3.map.callout.container.bin4.sec2.sec}>
-                <Text style={styles.areaMap.sec3.map.callout.container.bin4.sec2.sec.label}>Methane: </Text>
-                <Text style={styles.areaMap.sec3.map.callout.container.bin4.sec2.sec.data}>55%</Text>
-              </View>
-            </View>
-          </View>
+            </View>;
+          })}
         </View>
       </Callout>
     );
@@ -192,17 +127,17 @@ const AreaMap = () => {
         <MapView
           provider={PROVIDER_GOOGLE}
           showsUserLocation={true}
-          region={{
-            latitude: 6.915770,
-            longitude: 79.863721,
-            latitudeDelta: 1,
-            longitudeDelta: 1,
-          }}
+          // region={{
+          //   latitude: 6.915770,
+          //   longitude: 79.863721,
+          //   latitudeDelta: 1,
+          //   longitudeDelta: 1,
+          // }}
           minZoomLevel={12}
           maxZoomLevel={20}
           style={styles.areaMap.sec3.map}
         >
-          {hubLocations.map((hub, idx) => {
+          {hubs.map((hub, idx) => {
             if (hub.assigned)
               return <Marker
                 key={idx}
@@ -210,7 +145,7 @@ const AreaMap = () => {
                 coordinate={{latitude: hub.latitude, longitude: hub.longitude}}
                 image={AssignedHub}
               >
-                {CalloutComponent(true)}
+                {CalloutComponent(hub)}
               </Marker>;
             return <Marker
               key={idx}
@@ -218,7 +153,7 @@ const AreaMap = () => {
               coordinate={{latitude: hub.latitude, longitude: hub.longitude}}
               image={AllHub}
             >
-              {CalloutComponent(false)}
+              {CalloutComponent(hub)}
             </Marker>;
           })}
           <Marker coordinate={MC_LOCATION} image={MC}/>
