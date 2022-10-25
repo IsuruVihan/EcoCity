@@ -5,7 +5,7 @@ const {NFCTag, Bin, GarbageHub, Truck, Driver, GarbageCollectingJob, GCJRoute} =
 const {Op, Sequelize} = require("sequelize");
 const sequelize = require("sequelize");
 
-//get hub details
+//get initial details
 exports.getInitialDetails = async (req, res) => {
     const hubs = await GarbageHub.findAll({
             attributes: ['id'],
@@ -34,32 +34,23 @@ exports.getInitialDetails = async (req, res) => {
         trucks: trucks,
         drivers: drivers
     });
-    // .then((hubs) => {
-    //     return res.status(200).json({
-    //         hubs,
-    //     });
-    // });
-    // GarbageHub.findAll({
-    //         include: [{
-    //             model:Bin,
-    //             attributes: [
-    //                 "bintype",
-    //                 [sequelize.fn("SUM", sequelize.col("garbageweight")), "garbageweight"],
-    //             ],
-    //             group: ['bintype'],
-    //         }],
-    //         where: {
-    //
-    //         },
-    //     }
-    // ).then((hubs) => {
-    //     return res.status(200).json({
-    //         hubs,
-    //     });
-    // });
 }
 
-//update hub details
+//getAll jobs
+exports.getAllGCJ = async (req, res) => {
+    const allGCjs = await GarbageCollectingJob.findAll({
+        include: [{
+            model: Driver,
+        }, {
+            model: Truck
+        }]
+    });
+    return res.status(200).json({
+        'gcjs': allGCjs
+    });
+}
+
+//create collection job
 exports.createCollectionJob = async (req, res) => {
     //check if exists
     const {hubs, driver, truck, date, binType} = req.body.cj;
