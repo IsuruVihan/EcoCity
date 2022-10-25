@@ -1,6 +1,6 @@
 const db = require('../models/index');
 const bcrypt = require("bcrypt");
-const {NFCTag} = db;
+const {NFCTag, Bin} = db;
 
 exports.openLid = async (req, res) => {
   const {id, serial} = req.body;
@@ -19,5 +19,18 @@ exports.openLid = async (req, res) => {
           data: "Invalid NFC"
         });
       }
+    });
+}
+
+exports.dumpGarbage = async (req, res) => {
+  const {nfcId, hubId, binType, addingGarbageWeight, newGarbageWeight, newGarbageLevel} = req.body;
+
+  Bin.update({garbageweight: newGarbageWeight, garbagelevel: newGarbageLevel}, {
+    where: {GarbageHubId: hubId, bintype: binType}
+  })
+    .then(() => {
+      return res.status(200).json({
+        data: "Success",
+      });
     });
 }
