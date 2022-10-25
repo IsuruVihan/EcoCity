@@ -140,7 +140,7 @@ const JobsTable = () => {
                     }} onClick={handleassingShow}><FiEdit/>Assign</Button>
                 </Col>
                 <Modal show={showassign} onHide={handleassignClose} size='lg' backdrop="static" centered>
-                    <Modal.Header className='p-0 m-0 border-red' style={{border: 'none'}}>
+                    <Modal.Header className='p-0 m-0' style={{border: 'none'}}>
                         <Row>
                             <Col style={{marginLeft: 740, marginTop: 10}}>
                                 <Image src={close} onClick={handleassignClose} width="20%"/>

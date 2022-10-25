@@ -72,39 +72,39 @@ const AssignJobForm = () => {
                 </Col>
             </Row>
             <Row className="p-0 m-0 ps-3 pb-2">
-                <Col
-                    className={"m-0 p-0 pe-3"}
-                    sm={6}
-                    style={{
-                        marginRight: 15,
-                        marginLeft: 15,
-                        fontWeight: "bold",
-                        paddingBottom: 5,
-                    }}
-                >
-                    <Row className={"m-0 p-0 pb-2"} style={{paddingBottom: 5}}>
-                        Garbage Bin Type
-                    </Row>
-                    <Row className={"m-0 p-0 "}>
-                        <select
-                            id="binType"
-                            name="binType"
-                            style={{
-                                outline: "none",
-                                border: "2px solid #E8F5F6",
-                                borderRadius: 8,
-                                paddingBottom: 3,
-                                paddingTop: 3,
-                                fontSize: 12,
-                            }}
-                        >
-                            <option value="organic">Organic</option>
-                            <option value="plastic">Plastic</option>
-                            <option value="paper">Paper</option>
-                            <option value="glass">Glass</option>
-                        </select>
-                    </Row>
-                </Col>
+                {/*<Col*/}
+                {/*    className={"m-0 p-0 pe-3"}*/}
+                {/*    sm={6}*/}
+                {/*    style={{*/}
+                {/*        marginRight: 15,*/}
+                {/*        marginLeft: 15,*/}
+                {/*        fontWeight: "bold",*/}
+                {/*        paddingBottom: 5,*/}
+                {/*    }}*/}
+                {/*>*/}
+                {/*    <Row className={"m-0 p-0 pb-2"} style={{paddingBottom: 5}}>*/}
+                {/*        Garbage Bin Type*/}
+                {/*    </Row>*/}
+                {/*    <Row className={"m-0 p-0 "}>*/}
+                {/*        <select*/}
+                {/*            id="binType"*/}
+                {/*            name="binType"*/}
+                {/*            style={{*/}
+                {/*                outline: "none",*/}
+                {/*                border: "2px solid #E8F5F6",*/}
+                {/*                borderRadius: 8,*/}
+                {/*                paddingBottom: 3,*/}
+                {/*                paddingTop: 3,*/}
+                {/*                fontSize: 12,*/}
+                {/*            }}*/}
+                {/*        >*/}
+                {/*            <option value="organic">Organic</option>*/}
+                {/*            <option value="plastic">Plastic</option>*/}
+                {/*            <option value="paper">Paper</option>*/}
+                {/*            <option value="glass">Glass</option>*/}
+                {/*        </select>*/}
+                {/*    </Row>*/}
+                {/*</Col>*/}
                 <Col
                     className={"m-0 p-0 pe-3"}
                     sm={6}
@@ -131,92 +131,92 @@ const AssignJobForm = () => {
                     paddingTop: 3,
                     fontSize: 12,
                 }}
-            ></textarea>
+            />
                     </Row>
                 </Col>
             </Row>
             <Row className="p-0 m-0 ps-3 pb-2">
-                <Col
-                    className={"m-0 p-0 pe-3"}
-                    sm={4}
-                    style={{
-                        marginRight: 15,
-                        marginLeft: 15,
-                        fontWeight: "bold",
-                        paddingBottom: 5,
-                    }}
-                >
-                    <Row className={"m-0 p-0 pb-2"} style={{paddingBottom: 5}}>
-                        Fill Level
-                    </Row>
-                    <Row className={"m-0 p-0 "}>
-                        <input
-                            type="text"
-                            style={{
-                                outline: "none",
-                                border: "2px solid #E8F5F6",
-                                borderRadius: 8,
-                                paddingBottom: 3,
-                                paddingTop: 3,
-                                fontSize: 12,
-                            }}
-                        />
-                    </Row>
-                </Col>
-                <Col
-                    className={"m-0 p-0 pe-3"}
-                    sm={4}
-                    style={{
-                        marginRight: 15,
-                        marginLeft: 15,
-                        fontWeight: "bold",
-                        paddingBottom: 5,
-                    }}
-                >
-                    <Row className={"m-0 p-0 pb-2"} style={{paddingBottom: 5}}>
-                        Temperature
-                    </Row>
-                    <Row className={"m-0 p-0 "}>
-                        <input
-                            type="number"
-                            style={{
-                                outline: "none",
-                                border: "2px solid #E8F5F6",
-                                borderRadius: 8,
-                                paddingBottom: 3,
-                                paddingTop: 3,
-                                fontSize: 12,
-                            }}
-                        />
-                    </Row>
-                </Col>
-                <Col
-                    className={"m-0 p-0 pe-3"}
-                    sm={4}
-                    style={{
-                        marginRight: 15,
-                        marginLeft: 15,
-                        fontWeight: "bold",
-                        paddingBottom: 5,
-                    }}
-                >
-                    <Row className={"m-0 p-0 pb-2"} style={{paddingBottom: 5}}>
-                        Humidity
-                    </Row>
-                    <Row className={"m-0 p-0 "}>
-                        <input
-                            type="text"
-                            style={{
-                                outline: "none",
-                                border: "2px solid #E8F5F6",
-                                borderRadius: 8,
-                                paddingBottom: 3,
-                                paddingTop: 3,
-                                fontSize: 12,
-                            }}
-                        />
-                    </Row>
-                </Col>
+                {/*<Col*/}
+                {/*    className={"m-0 p-0 pe-3"}*/}
+                {/*    sm={4}*/}
+                {/*    style={{*/}
+                {/*        marginRight: 15,*/}
+                {/*        marginLeft: 15,*/}
+                {/*        fontWeight: "bold",*/}
+                {/*        paddingBottom: 5,*/}
+                {/*    }}*/}
+                {/*>*/}
+                {/*    <Row className={"m-0 p-0 pb-2"} style={{paddingBottom: 5}}>*/}
+                {/*        Fill Level*/}
+                {/*    </Row>*/}
+                {/*    <Row className={"m-0 p-0 "}>*/}
+                {/*        <input*/}
+                {/*            type="text"*/}
+                {/*            style={{*/}
+                {/*                outline: "none",*/}
+                {/*                border: "2px solid #E8F5F6",*/}
+                {/*                borderRadius: 8,*/}
+                {/*                paddingBottom: 3,*/}
+                {/*                paddingTop: 3,*/}
+                {/*                fontSize: 12,*/}
+                {/*            }}*/}
+                {/*        />*/}
+                {/*    </Row>*/}
+                {/*</Col>*/}
+                {/*<Col*/}
+                {/*    className={"m-0 p-0 pe-3"}*/}
+                {/*    sm={4}*/}
+                {/*    style={{*/}
+                {/*        marginRight: 15,*/}
+                {/*        marginLeft: 15,*/}
+                {/*        fontWeight: "bold",*/}
+                {/*        paddingBottom: 5,*/}
+                {/*    }}*/}
+                {/*>*/}
+                {/*    <Row className={"m-0 p-0 pb-2"} style={{paddingBottom: 5}}>*/}
+                {/*        Temperature*/}
+                {/*    </Row>*/}
+                {/*    <Row className={"m-0 p-0 "}>*/}
+                {/*        <input*/}
+                {/*            type="number"*/}
+                {/*            style={{*/}
+                {/*                outline: "none",*/}
+                {/*                border: "2px solid #E8F5F6",*/}
+                {/*                borderRadius: 8,*/}
+                {/*                paddingBottom: 3,*/}
+                {/*                paddingTop: 3,*/}
+                {/*                fontSize: 12,*/}
+                {/*            }}*/}
+                {/*        />*/}
+                {/*    </Row>*/}
+                {/*</Col>*/}
+                {/*<Col*/}
+                {/*    className={"m-0 p-0 pe-3"}*/}
+                {/*    sm={4}*/}
+                {/*    style={{*/}
+                {/*        marginRight: 15,*/}
+                {/*        marginLeft: 15,*/}
+                {/*        fontWeight: "bold",*/}
+                {/*        paddingBottom: 5,*/}
+                {/*    }}*/}
+                {/*>*/}
+                {/*    <Row className={"m-0 p-0 pb-2"} style={{paddingBottom: 5}}>*/}
+                {/*        Humidity*/}
+                {/*    </Row>*/}
+                {/*    <Row className={"m-0 p-0 "}>*/}
+                {/*        <input*/}
+                {/*            type="text"*/}
+                {/*            style={{*/}
+                {/*                outline: "none",*/}
+                {/*                border: "2px solid #E8F5F6",*/}
+                {/*                borderRadius: 8,*/}
+                {/*                paddingBottom: 3,*/}
+                {/*                paddingTop: 3,*/}
+                {/*                fontSize: 12,*/}
+                {/*            }}*/}
+                {/*        />*/}
+                {/*    </Row>*/}
+                {/*</Col>*/}
             </Row>
             <Row className="p-0 m-0 ps-3 pb-2 pt-2">
                 <Col sm={4} className="p-0 m-0" style={{fontWeight: "bold"}}>
