@@ -1,50 +1,79 @@
 const db = require('../models/index');
 const bcrypt = require("bcrypt");
-const {NFCTag, Bin,GarbageHub} = db;
+const {isRecordExists} = require("./common");
+const {NFCTag, Bin, GarbageHub} = db;
 
 exports.openLid = async (req, res) => {
-  const {id, serial} = req.body;
-  NFCTag.findAll({where: {id: id}, attributes: ['serialnumber']})
-    .then(async (result) => {
-      if (result.length === 0)
-        return res.status(401).json({
-          data: "Invalid NFC"
+    const {id, serial} = req.body;
+    NFCTag.findAll({where: {id: id}, attributes: ['serialnumber']})
+        .then(async (result) => {
+            if (result.length === 0)
+                return res.status(401).json({
+                    data: "Invalid NFC"
+                });
+            if (await bcrypt.compare(serial, result[0].serialnumber)) {
+                return res.status(200).json({
+                    data: "Success"
+                });
+            } else {
+                return res.status(401).json({
+                    data: "Invalid NFC"
+                });
+            }
         });
-      if (await bcrypt.compare(serial, result[0].serialnumber)) {
-        return res.status(200).json({
-          data: "Success"
-        });
-      } else {
-        return res.status(401).json({
-          data: "Invalid NFC"
-        });
-      }
-    });
 }
 
 exports.dumpGarbage = async (req, res) => {
-  const {nfcId, hubId, binType, addingGarbageWeight, newGarbageWeight, newGarbageLevel} = req.body;
+    const {nfcId, hubId, binType, addingGarbageWeight, newGarbageWeight, newGarbageLevel} = req.body;
 
-  Bin.update({garbageweight: newGarbageWeight, garbagelevel: newGarbageLevel}, {
-    where: {GarbageHubId: hubId, bintype: binType}
-  })
-    .then(() => {
-      return res.status(200).json({
-        data: "Success",
-      });
-    });
+    Bin.update({garbageweight: newGarbageWeight, garbagelevel: newGarbageLevel}, {
+        where: {GarbageHubId: hubId, bintype: binType}
+    })
+        .then(() => {
+            return res.status(200).json({
+                data: "Success",
+            });
+        });
 }
 
 //get all hub details
-exports.getAllHubs = async (req,res)=>{
+exports.getAllHubs = async (req, res) => {
     GarbageHub.findAll({
         include: [{
             model: Bin,
-            attributes: {exclude:['GarbageHubId']}
+            attributes: {exclude: ['GarbageHubId']}
         },]
     }).then((hubs) => {
         return res.status(200).json({
             hubs,
         });
+    });
+}
+
+//update hub details
+exports.updateHub = async (req, res) => {
+    //check if exists
+    const {id, lat, lon} = req.body.data;
+    const isExists = await isRecordExists(GarbageHub,id);
+    if(!isExists){
+        return res.status(400).json({
+            status:"FAILED",
+            message:"Hub Doesnt exists!!",
+        })
+    }
+    GarbageHub.update({latitude: lat, longitude: lon}, {
+        where: {
+            id: id
+        }
+    }).then((hub) => {
+        return res.status(200).json({
+            status: "Hub Updated successfully",
+            hub,
+        });
+    }).catch((err) => {
+        return res.status(204).json({
+            status:"failed",
+            err
+        })
     });
 }
