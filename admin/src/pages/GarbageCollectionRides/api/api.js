@@ -9,6 +9,15 @@ export const getInitial = async (accessToken, refreshToken, id) => {
         }
     });
 }
+
+export const getAllGCJobs = async (accessToken, refreshToken, id) => {
+    return await axios.get(`${BASE_URL}/gcj/all`, {
+        headers: {
+            accessToken: accessToken,
+            refreshToken: refreshToken
+        }
+    });
+}
 export const createCJ = async (accessToken, refreshToken, cj) => {
     return await axios.post(`${BASE_URL}/gcj/create`, {
         cj

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Col, Container, Image, Modal, Row, Table} from "react-bootstrap";
 import AssignRideModal from "../modals/AssignRideModal";
 import "../../../assets/styles/GarbageCollectionRides/tables/table.css";
@@ -9,16 +9,34 @@ import rightarrow from "../../../assets/images/icons/rightarrow.png";
 import create from "../../../assets/images/icons/create.png";
 import close from "../../../assets/images/icons/close.png";
 import {FiArrowLeft, FiArrowRight} from "react-icons/fi";
+import {getAllGCJobs} from "../api/api";
+import {useSelector} from "react-redux";
 
 const RidesTable = () => {
+    const loggedUser = useSelector((state) => state.auth.loggedUser);
+    const [allGCJ, setAllGCJ] = useState(null);
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
-
     const [showassign, setShowassign] = useState(false);
     const handleassignClose = () => setShowassign(false);
     const handleassingShow = () => setShowassign(true);
+    const [currentSelectedGCJ, setCurrentSelectedGCJ] = useState(null);
+    const handleOnGCJClicked = (id) => {
+        allGCJ.filter((gcj) => {
+            if (gcj.id === id) {
+                setCurrentSelectedGCJ(gcj);
+            }
+            return 0;
+        })
+        setShow(true);
+    };
 
+    useEffect(() => {
+        getAllGCJobs(loggedUser.accessToken, loggedUser.refreshToken).then((res) => {
+            console.log(res.data.gcjs);
+            setAllGCJ(res.data.gcjs);
+        })
+    }, [])
     let status = 'assigned';
     const changeColor = (status) => {
         let classes = 'pt-1 pb-1 pe-2 px-2 label ';
@@ -31,6 +49,32 @@ const RidesTable = () => {
         }
         return classes;
     }
+    const getTextColor = (status) => {
+        switch (status) {
+            case 'Not started':
+                return '#008BD1';
+            case 'Finished':
+                return '#00C186';
+            case 'Ongoing':
+                return '#FF9900';
+            default:
+                return '';
+        }
+    }
+    const getBGColor = (status) => {
+        switch (status) {
+            case 'Not started':
+                return '#E1F0FF';
+            case 'Finished':
+                return '#E0F8E3';
+            case 'Ongoing':
+                return '#FFF6E9';
+            default:
+                return '';
+        }
+    }
+    if (!allGCJ) return;
+
     return (
         <Container>
             <Row>
@@ -47,118 +91,40 @@ const RidesTable = () => {
                                 <th scope="col">Date</th>
                                 <th scope="col">Bin Type</th>
                                 <th scope="col">Bin Count</th>
-                                <th scope="col">Weight(Kg)</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <tr style={{borderBottom: '1px solid #BFDDDE', cursor: 'pointer'}} onClick={handleShow}>
-                                <th scope="row" style={{color: '#B9B9B9'}}>1.</th>
-                                <td>1234</td>
-                                <td>Harith Kumar</td>
-                                <td>NC-5205</td>
-                                <td style={{textAlign: 'center'}}><p className='m-0 p-1'
-                                                                     style={{
-                                                                         color: '#008BD1',
-                                                                         backgroundColor: '#E1F0FF',
-                                                                         width: '100px',
-                                                                         borderRadius: '8px',
-                                                                         fontWeight: 700
-                                                                     }}>Assigned</p></td>
-                                <td>06/07/2022</td>
-                                <td>Paper</td>
-                                <td>0/2</td>
-                                <td>-</td>
-                            </tr>
-                            <tr style={{borderBottom: '1px solid #BFDDDE', cursor: 'pointer'}} onClick={handleShow}>
-                                <th scope="row" style={{color: '#B9B9B9'}}>2.</th>
-                                <td>1235</td>
-                                <td>Ashen Perera</td>
-                                <td>XA-0808</td>
-                                <td style={{textAlign: 'center'}}><p className='m-0 p-1'
-                                                                     style={{
-                                                                         color: '#00C186',
-                                                                         backgroundColor: '#E0F8E3',
-                                                                         width: '100px',
-                                                                         borderRadius: '8px',
-                                                                         fontWeight: 700
-                                                                     }}>Completed</p></td>
-                                <td>30/06/2022</td>
-                                <td>Paper</td>
-                                <td>2/2</td>
-                                <td>1.4</td>
-                            </tr>
-                            <tr style={{borderBottom: '1px solid #BFDDDE', cursor: 'pointer'}} onClick={handleShow}>
-                                <th scope="row" style={{color: '#B9B9B9'}}>3.</th>
-                                <td>1235</td>
-                                <td>Andrew Heshan</td>
-                                <td>LB-7644</td>
-                                <td style={{textAlign: 'center'}}><p className='m-0 p-1'
-                                                                     style={{
-                                                                         color: '#FF9900',
-                                                                         backgroundColor: '#FFF6E9',
-                                                                         width: '100px',
-                                                                         borderRadius: '8px',
-                                                                         fontWeight: 700
-                                                                     }}>On Going</p></td>
-                                <td>29/06/2022</td>
-                                <td>Plastic</td>
-                                <td>1/3</td>
-                                <td>-</td>
-                            </tr>
-                            <tr style={{borderBottom: '1px solid #BFDDDE', cursor: 'pointer'}} onClick={handleShow}>
-                                <th scope="row" style={{color: '#B9B9B9'}}>4.</th>
-                                <td>1235</td>
-                                <td>Dasun Hathiyaldeniya</td>
-                                <td>CAC-0207</td>
-                                <td style={{textAlign: 'center'}}><p className='m-0 p-1'
-                                                                     style={{
-                                                                         color: '#FF9900',
-                                                                         backgroundColor: '#FFF6E9',
-                                                                         width: '100px',
-                                                                         borderRadius: '8px',
-                                                                         fontWeight: 700
-                                                                     }}>On Going</p></td>
-                                <td>29/06/2022</td>
-                                <td>Organic</td>
-                                <td>2/4</td>
-                                <td>2.3</td>
-                            </tr>
-                            <tr style={{borderBottom: '1px solid #BFDDDE', cursor: 'pointer'}} onClick={handleShow}>
-                                <th scope="row" style={{color: '#B9B9B9'}}>5.</th>
-                                <td>1532</td>
-                                <td>Dasun Hathiyaldeniya</td>
-                                <td>LB-7644</td>
-                                <td style={{textAlign: 'center'}}><p className='m-0 p-1'
-                                                                     style={{
-                                                                         color: '#008BD1',
-                                                                         backgroundColor: '#E1F0FF',
-                                                                         width: '100px',
-                                                                         borderRadius: '8px',
-                                                                         fontWeight: 700
-                                                                     }}>Assigned</p></td>
-                                <td>29/06/2022</td>
-                                <td>Organic</td>
-                                <td>0/5</td>
-                                <td>-</td>
-                            </tr>
-                            <tr style={{borderBottom: '1px solid #BFDDDE', cursor: 'pointer'}} onClick={handleShow}>
-                                <th scope="row" style={{color: '#B9B9B9'}}>6 .</th>
-                                <td>1221</td>
-                                <td>Waruna Gihan</td>
-                                <td>CBA-0001</td>
-                                <td style={{textAlign: 'center'}}><p className='m-0 p-1'
-                                                                     style={{
-                                                                         color: '#00C186',
-                                                                         backgroundColor: '#E0F8E3',
-                                                                         width: '100px',
-                                                                         borderRadius: '8px',
-                                                                         fontWeight: 700
-                                                                     }}>Completed</p></td>
-                                <td>15/06/2022</td>
-                                <td>Glass</td>
-                                <td>1/1</td>
-                                <td>1.1</td>
-                            </tr>
+                            {
+                                allGCJ.map((gcj, index) => {
+                                    return <tr style={{borderBottom: '1px solid #BFDDDE', cursor: 'pointer'}}
+                                               id={gcj.id}
+                                               onClick={() => {
+                                                   handleOnGCJClicked(gcj.id)
+                                               }}>
+                                        <th scope="row" style={{color: '#B9B9B9'}}>{index + 1}</th>
+                                        <td>{gcj.id}</td>
+                                        <td>{gcj.Driver.firstname + ' ' + gcj.Driver.lastname}</td>
+                                        <td>{gcj.Truck.numberplate}</td>
+                                        <td style={{textAlign: 'center'}}>
+                                            <p className='m-0 p-1'
+                                               style={{
+                                                   color: getTextColor(gcj.status),
+                                                   backgroundColor: getBGColor(gcj.status),
+                                                   width: '100px',
+                                                   borderRadius: '8px',
+                                                   fontWeight: 700
+                                               }}
+                                            >
+                                                {gcj.status}
+                                            </p>
+                                        </td>
+                                        <td>{gcj.date}</td>
+                                        <td>{gcj.bintype}</td>
+                                        <td>0/2</td>
+                                    </tr>
+                                })
+                            }
+
                             <Modal show={show} onHide={handleClose}>
                                 <Modal.Header style={{border: 'none'}}>
                                     <Row>
@@ -168,7 +134,7 @@ const RidesTable = () => {
                                     </Row>
                                 </Modal.Header>
                                 <Modal.Body>
-                                    <ViewRideModal/>
+                                    <ViewRideModal gcj={currentSelectedGCJ}/>
                                 </Modal.Body>
                             </Modal>
                             </tbody>
