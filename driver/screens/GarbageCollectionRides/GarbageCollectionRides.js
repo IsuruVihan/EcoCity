@@ -1,10 +1,13 @@
-import React, {useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {Text, View, StyleSheet, TouchableOpacity} from "react-native";
 
 import AllScreen from "./AllScreen";
 import AssignedScreen from "./AssignedScreen";
 import OngoingScreen from "./OngoingScreen";
 import CompletedScreen from "./CompletedScreen";
+
+import {getGCRJobDetails} from "../../api/garbageCollectionRides";
+import {AuthContext} from "../../context/AuthContext";
 
 const tabs = [
   {id: 0, label: 'All'},
@@ -14,7 +17,22 @@ const tabs = [
 ];
 
 const GarbageCollectionRides = () => {
+  const {loggedUser} = useContext(AuthContext);
+
   const [viewedTab, setViewedTab] = useState(0);
+
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    getGCRData();
+  });
+
+  const getGCRData = () => {
+    getGCRJobDetails(loggedUser)
+      .then((gcrData) => {
+        // console.log(gcrData);
+      });
+  }
 
   return (
     <View style={styles.maintenance}>
