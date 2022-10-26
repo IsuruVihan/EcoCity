@@ -6,19 +6,30 @@ import GarbageHubsTableItem from "../../GarbageHubs/tables/GarbageHubsTableItem"
 import {FiArrowLeft, FiArrowRight, FiEdit} from "react-icons/fi";
 import TruckDriversTableItem from "./TruckDriversTableItem";
 import ViewTruckDriverModal from "../modals/ViewTruckDriverModal";
+import {useSelector} from "react-redux";
+import {getDrivers} from "../api/api";
 
 const TruckDriversTable = (props) => {
-    const drivers = driverDetails.truckDrivers;
-    const driverCount = drivers.length;
+    const loggedUser = useSelector((state) => state.auth.loggedUser);
+    const [drivers, setDrivers] = useState(null);
+    useEffect(() => {
+        getDrivers(loggedUser.accessToken, loggedUser.refreshToken).then((res) => {
+            console.log(res.data.drivers)
+            setDrivers(res.data.drivers);
+        })
+    }, [])
+
+    // const drivers = driverDetails.truckDrivers;
+    const driverCount = drivers ? drivers.length : 0;
     const driversPerPage = 9;
     const pageCount = Math.ceil(driverCount / driversPerPage);
     const [currentPage, setCurrentPage] = useState(1);
     const [startIndex, setStartIndex] = useState(0);
     const [endIndex, setEndIndex] = useState(driversPerPage);
-    const [filteredDrivers, setFilteredDrivers] = useState(drivers.slice(startIndex, endIndex));
+    const [filteredDrivers, setFilteredDrivers] = useState(drivers ? drivers.slice(startIndex, endIndex) : null);
     const [isDriverDetailsVisible, setIsDriverDetailsVisible] = useState(false);
     const [currentSelectedDriverID, setCurrentSelectedDriverID] = useState('');
-    const [currentSelectedDriver, setCurrentSelectedDriver] = useState(filteredDrivers[0]);
+    const [currentSelectedDriver, setCurrentSelectedDriver] = useState(filteredDrivers ? filteredDrivers[0] : null);
 
     const calculateStartIndex = () => {
         setStartIndex((currentPage - 1) * driversPerPage);
@@ -51,7 +62,7 @@ const TruckDriversTable = (props) => {
         if (startIndex > endIndex) {
             return;
         }
-        setFilteredDrivers(drivers.slice(startIndex, endIndex));
+        setFilteredDrivers(drivers ? drivers.slice(startIndex, endIndex) : null);
     }, [endIndex]);
 
     const pageNumbers = range(1, pageCount).map((item) => {
@@ -92,7 +103,7 @@ const TruckDriversTable = (props) => {
 
     const changeActivePageNumberClasses = () => {
         let currentPageNumberElement = document.getElementById(currentPage.toString());
-
+        if (!currentPageNumberElement) return;
         //remove active classes
         let elements = document.getElementsByClassName('active-page-number');
         for (let i = 0; i < elements.length; i++) {
@@ -133,6 +144,7 @@ const TruckDriversTable = (props) => {
     }
 
     useEffect(() => {
+        if (!filteredDrivers) return;
         for (let i = 0; i < filteredDrivers.length; i++) {
             if (currentSelectedDriverID === filteredDrivers[i].id) {
                 setCurrentSelectedDriver(filteredDrivers[i]);
@@ -144,7 +156,10 @@ const TruckDriversTable = (props) => {
         setIsDriverDetailsVisible(false);
     }
 
+    // if (!currentSelectedDriver || !drivers || !filteredDrivers) return;
+    console.log(filteredDrivers)
     return (
+
         <Row className='mx-0'>
             <ViewTruckDriverModal show={isDriverDetailsVisible} onHide={() => setIsDriverDetailsVisible(false)}
                                   driver={currentSelectedDriver}/>
@@ -162,7 +177,7 @@ const TruckDriversTable = (props) => {
                 </tr>
                 </thead>
                 <Fragment>
-                    {
+                    {filteredDrivers &&
                         filteredDrivers.map((driver, index) => {
                             return <TruckDriversTableItem driver={driver} index={index}
                                                           onClick={handleOnDriverClicked}/>

@@ -19,10 +19,10 @@ const Complaints = () => {
     const [open, setOpen] = useState(false);
     const dispatch = useDispatch();
 
-    useEffect(() => {
-        console.log('disptahcing')
-        dispatch(fetchAll());
-    }, []);
+    // useEffect(() => {
+    //     console.log('disptahcing')
+    //     dispatch(fetchAll());
+    // }, []);
 
     return (
         <Col lg={10}>

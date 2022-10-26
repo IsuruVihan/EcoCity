@@ -14,6 +14,7 @@ import '../../../../assets/styles/Database/Truck Driver/truckDriver.css'
 
 const ViewTruckDriverModal = (props) => {
     const driver = props.driver;
+    if (!driver) return;
     return (
         <Modal
             {...props}

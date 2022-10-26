@@ -11,15 +11,28 @@ import {FiArrowLeft, FiArrowRight, FiEdit} from "react-icons/fi";
 import {useDispatch, useSelector} from "react-redux";
 import {fetchAll} from "../../../redux/reducers/complaintsSlice";
 import {fetchUserCounts, fetchWeights} from "../../../redux/reducers/StatSlice";
+import {getAllComplaints} from "../api/api";
 
 const ComplaintsTable = () => {
-    const dispatch = useDispatch();
+    const loggedUser = useSelector((state) => state.auth.loggedUser);
+    const [allComplaints, setAllComplaints] = useState(null);
+    useEffect(() => {
+        getAllComplaints(loggedUser.accessToken, loggedUser.refreshToken).then((res) => {
+            setAllComplaints(res.data.complaints);
+        })
+    }, []);
+
+    // useEffect(() => {
+    //     if (!allComplaints) return;
+    //     setComplaintCount(allComplaints.length);
+    // }, [allComplaints])
+
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const teampArray = Array.from(Array(10).keys());
-    const allComplaints = useSelector((state) => state.complaint.complaints);
+    // const allComplaints = useSelector((state) => state.complaint.complaints);
     const isLoading = useSelector((state) => state.complaint.isLoading);
-    const [complaintCount, setComplaintCount] = useState(0);
+    // const [complaintCount, setComplaintCount] = useState(0);
     const [selectedcomplaintId, setSelectedcomplaintId] = useState(0);
     const [selectedcomplaint, setSelectedcomplaint] = useState(null);
     //onload
@@ -31,31 +44,32 @@ const ComplaintsTable = () => {
     }
 
 
-
     useEffect(() => {
         if (!allComplaints) return;
         const selected = allComplaints.filter((c) => c.id === selectedcomplaintId);
         setSelectedcomplaint(selected[0]);
     }, [selectedcomplaintId])
 
-    useEffect(() => {
-        if (!allComplaints) return;
-        if (!isLoading) {
-            setComplaintCount(allComplaints.length);
-        }
-    }, [isLoading])
+    // useEffect(() => {
+    //     if (!allComplaints) return;
+    //     if (!isLoading) {
+    //         setComplaintCount(allComplaints.length);
+    //     }
+    // }, [isLoading])
 
-    const complaintsPerPage = 10;
-    const pageCount = Math.ceil(complaintCount / complaintsPerPage);
-    const [currentPage, setCurrentPage] = useState(1);
-    const [startIndex, setStartIndex] = useState(0);
-    const [endIndex, setEndIndex] = useState(complaintsPerPage);
-    const [filteredComplaints, setFilteredComplaints] = useState(allComplaints ? allComplaints.slice(0, complaintsPerPage) : null);
+    // const complaintsPerPage = 10;
+    // const pageCount = Math.ceil(complaintCount / complaintsPerPage);
+    // const [currentPage, setCurrentPage] = useState(1);
+    // const [startIndex, setStartIndex] = useState(0);
+    // const [endIndex, setEndIndex] = useState(complaintsPerPage);
+    // const [filteredComplaints, setFilteredComplaints] = useState(allComplaints ? allComplaints.slice(0, complaintsPerPage) : null);
 
-    useEffect(() => {
-        allComplaints && allComplaints.slice(startIndex, complaintsPerPage)
-    }, [startIndex])
+    // useEffect(() => {
+    //     allComplaints && allComplaints.slice(startIndex, complaintsPerPage)
+    // }, [startIndex])
 
+
+    if (!allComplaints) return;
     return (
         <Container>
             <Row>
@@ -72,7 +86,8 @@ const ComplaintsTable = () => {
                     </thead>
                     <tbody>
                     {
-                        filteredComplaints !== null && filteredComplaints.map((complaint, idx) => {
+                        allComplaints.map((complaint, idx) => {
+                            console.log(complaint)
                             // const date = new Date(complaint.updatedAt);
                             return <tr style={{borderBottom: '1px solid #BFDDDE', cursor: 'pointer'}}
                                        onClick={() => {
