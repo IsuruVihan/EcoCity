@@ -6,6 +6,7 @@ export const getGarbageHubDetails = async (loggedUser) => {
     headers: {
       accessToken: loggedUser.accessToken,
       refreshToken: loggedUser.refreshToken,
+      email: loggedUser.email,
     }
   });
 }

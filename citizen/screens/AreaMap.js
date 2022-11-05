@@ -94,8 +94,7 @@ const AreaMap = () => {
   const garbageHubs = () => {
     getGarbageHubDetails(loggedUser)
       .then((hubs) => {
-        setHubs(hubs.data.hubs);
-        // console.log(hubs.data.hubs[0]);
+        setHubs(hubs.data.data);
       })
       .catch((error) => {
         console.log(error);
